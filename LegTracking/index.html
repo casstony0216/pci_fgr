@@ -5,11 +5,13 @@
     <meta charset="utf-8" />
     <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
     <link href="styles/main.css" rel="stylesheet" />
+    <link href="styles/legislators.css" rel="stylesheet" />
 
     <script src="kendo/js/jquery.min.js"></script>
     <script src="kendo/js/kendo.mobile.min.js"></script>
 
     <script src="scripts/app.js"></script>
+    <script src="scripts/legislators.js"></script>
 
 </head>
 <body>
@@ -24,10 +26,11 @@
         
         <div data-role="footer">
             <div data-role="tabstrip">
-                <a href="views/home.html" data-icon="home">Home</a>   
-                <a href="views/settings.html" data-icon="settings">Settings</a>
-                <a href="views/contacts.html" data-icon="contacts">Contacts</a>
-            </div>
+                <a href="views/legislators.html" data-icon="search">Legislator Search</a>   
+                <a href="views/meetings.html" data-icon="history">Meetings</a>
+                <a href="views/actionItems.html" data-icon="recent">Action Items</a>
+                <a href="views/pciContacts.html" data-icon="contacts">Profile Search</a>
+             </div>
         </div>
     </div>
     <script>
@@ -41,7 +44,7 @@
           skin: 'flat',
     
           // the application needs to know which view to load first
-          initial: 'views/home.html'
+          initial: 'views/legislators.html'
         });
     </script>
 </body>
