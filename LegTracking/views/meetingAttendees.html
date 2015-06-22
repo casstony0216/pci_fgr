@@ -1,0 +1,27 @@
+<div data-role="view" id="meetingAttendeeview" data-init="attendeeListViewDataBindInit" data-title="Meeting Attendees" data-layout="main">
+	<header data-role="header">
+        <div data-role="navbar">
+            <a class="nav-button nav-button-back" data-align="left" data-role="backbutton" id="back">
+                <div>
+                	Back
+                </div>
+            </a>
+            <span data-role="view-title">Meeting Attendees</span>
+            <a class="nav-button nav-button-post" data-align="right" data-role="button" href="views/meetingAttendeeAdd.html">Add</a>
+        </div>
+    </header>
+	<ul id="attendee-listview"></ul>
+</div>
+
+<script type="text/x-kendo-template" id="attendeeListViewTemplate">
+	<div class="listview-row-photo-container-square">
+    	<img class="listview-row-photo" src="#:ImageUrl#" />
+    </div>
+    <div>
+    	<span class="listview-row-header">#:Name#</span>
+        <br/>
+        <span class="listview-row-detail">#:Company#</span>
+    </div>
+    <a data-role="detailbutton" data-icon="details"></a>
+</script>
+

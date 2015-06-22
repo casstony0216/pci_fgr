@@ -1,14 +1,25 @@
-<div data-role="view" data-title="Contacts" data-layout="main" >
-  <ul data-role="listview" data-style="inset" data-type="group">
-        <li>
-            Thursday 05/06/15
-            <ul>
-                <li>Sen.Cory Booker <br>2:00 PM <br> with Matt Klapper Chief of Staff [D-NJ]) </li>
-                <li>Rep. Donald Norcross [D-NJ] <br>3:00 PM <br> with Michael Maitland, Chief of Staff</li>
-                <li>Rep. Bonnie Watson Coleman <br>1:00 PM <br> with James Gee, Chief of Staff</li>
-
-            </ul>
-        </li>
-    </ul>
+<div data-role="view" id="flat" data-init="meetingsListViewDataBindInitFlat" data-layout="main" >
+	<header data-role="header">
+        <div data-role="navbar">
+            <a class="nav-button nav-button-back" data-align="left" data-role="backbutton" id="back">
+                <div>
+                	Back
+                </div>
+            </a>
+            <span data-role="view-title">Meetings</span>
+            <a class="nav-button nav-button-post" data-align="right" data-role="button" href="views/meeting.html">Add</a>
+            <!--<a class="nav-button nav-button-add hide-text" data-align="right" data-role="button" href="views/meeting.html">Add</a>-->
+        </div>
+    </header>
+    <ul id="meetings-listview"></ul>
 </div>
+
+<script type="text/x-kendo-tmpl" id="meetings-listview-filtering-template">
+	<span class="listview-row-header">#:Name#</span>
+    <br/>
+    <span class="listview-row-detail">#:Date#</span>
+    <br/>
+    <span class="listview-row-subdetail">with #:Staffer#</span>
+   	<a data-role="detailbutton"  data-icon="details"></a>
+</script>
 

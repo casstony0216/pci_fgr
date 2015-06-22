@@ -1,35 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>PCI</title>
     <meta charset="utf-8" />
     <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
     <link href="styles/main.css" rel="stylesheet" />
-    <link href="styles/legislators.css" rel="stylesheet" />
+    <!--<link href="styles/meetings.css" rel="stylesheet" />-->
+   	<link href="styles/profile.css" rel="stylesheet" />
 
     <script src="kendo/js/jquery.min.js"></script>
     <script src="kendo/js/kendo.mobile.min.js"></script>
-
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCG4jUolof0jhqQu0j1aNqSWfW_ms-wRKg&amp;sensor=true"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/bio.js"></script>
+    <script src="scripts/committees.js"></script>
     <script src="scripts/legislators.js"></script>
-
+    <script src="scripts/legislator.js"></script>
+    <script src="scripts/meetings.js"></script>
+    <script src="scripts/meeting.js"></script>
+    <script src="scripts/issues.js"></script>  
+    <script src="scripts/issue.js"></script>
+    <script src="scripts/subcommittees.js"></script>
+    <script src="scripts/tasks.js"></script>
+    <script src="scripts/task.js"></script>
+    <script src="scripts/profile.js"></script>
+    <script src="scripts/locationMap.js"></script>
+    <script src="scripts/meetingAttendees.js"></script>
+    <script src="scripts/meetingAttendeeAdd.js"></script>
+    <script src="scripts/legislatorPciRelationship.js"></script>
+    <script src="scripts/legislatorPciRelationshipAdd.js"></script> 
 </head>  
-<body>
+    <body id="fgrApp">                           
     <div data-role="layout" data-id="main">
         <div data-role="header">
-            <div data-role="navbar">
+            <div data-role="navbar"> 
                 <span data-role="view-title"></span>
             </div>
-        </div>
+        </div>  
 
-        <!-- application views will be rendered here -->
-        
+        <!-- application views will be rendered here -->        
         <div data-role="footer">
             <div data-role="tabstrip">
-                <a href="views/legislators.html" data-icon="search">Legislator Search</a>   
+                <a href="views/legislators.html" data-icon="search">Legislators</a>   
                 <a href="views/meetings.html" data-icon="history">Meetings</a>
-                <a href="views/actionItems.html" data-icon="recent">Action Items</a>
-                <a href="views/pciContacts.html" data-icon="contacts">Profile Search</a>
+                <a href="views/tasks.html" data-icon="recents">Tasks</a>
+             <!--     <a href="views/profile.html" data-icon="contacts">Profile</a>-->
              </div>
         </div>
     </div>

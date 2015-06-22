@@ -1,0 +1,93 @@
+<div data-role="view" id="task-edit-detailview" data-show="taskDetailShow" data-init="taskDetailInit">
+    <header data-role="header">
+        <div data-role="navbar">
+            <a class="nav-button nav-button-cancel" data-align="left" data-role="backbutton" id="cancel">
+                <div>
+                	Cancel
+                </div>
+            </a>
+            <span data-role="view-title">Legislator Task</span>
+            <a class="nav-button nav-button-post" data-align="right" data-role="button" id="done">Save</a>
+        </div>
+    </header>
+    <form>
+        <ul data-role="listview" data-style="inset" class="formArea" onclick="">
+  			<li style="margin: 0px; padding: 0px; width: 100%;">
+                <ul class="listview-row-input-heading-table">
+					<li class="listview-row-input-heading-cell">
+                        <span>TASK DETAILS</span>
+                    </li>
+           		</ul>
+            </li>
+            <li style="margin: 0px; padding: 0px; width: 100%;">
+				<ul class="listview-row-input-table">
+					<li class="listview-row-input-cell-label">
+                        <span>Task</span>
+                    </li>
+					<li class="listview-row-input-cell-control">
+                        <input type="text" data-bind="value: Action"/>
+                    </li>
+           		</ul>
+            </li>
+            <li style="margin: 0px; padding: 0px; width: 100%;">
+				<ul class="listview-row-input-table">
+					<li class="listview-row-input-cell-label">
+                        <span>Date Needed</span>
+                    </li>
+					<li class="listview-row-input-cell-control">
+                        <input type="text" data-bind="value: DateNeeded"/>
+                    </li>
+           		</ul>
+            </li>
+            <li style="margin: 0px; padding: 0px; width: 100%;">
+				<ul class="listview-row-input-table">
+					<li class="listview-row-input-cell-label">
+                        <span>Status</span>
+                    </li>
+					<li class="listview-row-input-cell-control">
+                        <select id="taskStatusId">
+                            <option value="0">Select a Value</option>
+                            <option value="1">Not Started</option>
+                            <option value="2">In Process</option>
+                            <option value="3">Complete</option>
+                        </select>
+                    </li>
+           		</ul>
+            </li>
+            <li style="margin: 0px; padding: 0px; width: 100%;">
+				<ul class="listview-row-input-table">
+					<li class="listview-row-input-cell-label">
+                        <span>Date Completed</span>
+                    </li>
+					<li class="listview-row-input-cell-control">
+                        <input type="text" data-bind="value: DateNeeded"/>
+                    </li>
+           		</ul>
+            </li>
+            <li style="margin: 0px; padding: 0px; width: 100%;">
+				<ul class="listview-row-input-table">
+					<li class="listview-row-input-cell-label">
+                        <span>Legislator</span>
+                    </li>
+					<li class="listview-row-input-cell-control">
+                        <input type="text" data-bind="value: Legislator"/>
+                    </li>
+           		</ul>
+            </li>
+  			<li style="margin: 0px; padding: 0px; width: 100%;">
+                <ul class="listview-row-input-heading-table">
+					<li class="listview-row-input-heading-cell">
+                        <span>NOTES</span>
+                    </li>
+           		</ul>
+            </li>
+      		<li style="margin: 0px; padding: 0px; width: 100%;">
+           		<ul class="listview-row-input-table">
+             		<li class="listview-row-input-cell-control">
+                        <textarea style="resize: none" data-bind="value: Notes" rows="5"></textarea>
+                	</li>
+           		</ul>
+    		</li>
+        </ul>
+    </form>
+  </div>

@@ -24,6 +24,96 @@ body, html {
     font-size: 1em;
 }
 
+#fgrApp.km-flat .km-content {
+  overflow: hidden;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+  border: 0 none;
+  background-color: #ffffff;
+  color: #000000;
+  font-family: "Open Sans", sans-serif;
+}
+
+#fgrApp .formArea {
+    font-family: "Open Sans", sans-serif;
+   	margin: 0px !important;
+  	/*border: solid 1px green !important;*/
+}
+
+#fgrApp .formArea li {
+	/*border: solid 1px green !important;*/
+    border: none !important;
+  	color: #000 !important;
+    font-weight: bold;
+    vertical-align: middle !important;
+}
+   
+#fgrApp .formArea li label {
+  	width: 30% !important;
+}
+   
+#fgrApp .formArea li select {
+    /*border: solid 1px #ccc !important;*/
+    color: #999 !important;
+    margin: 0px !important;
+	position: relative !important;
+    direction: rtl !important;
+    width: 100% !important;
+}  
+  
+#fgrApp .formArea li input {
+	/*border: solid 1px #ccc !important;*/
+    color: #999 !important;
+    margin: 0px !important;
+	position: relative !important;
+    text-align: right !important;
+    width: 100% !important;
+}  
+  
+#fgrApp .formArea li textarea {
+    background-color: #fff !important;
+    /*border: solid 1px #ccc !important;*/
+	color: #999 !important;
+    float: left !important;
+    margin: 0px !important;
+	position: relative !important;
+    width: 100% !important;
+    height: 200px !important;
+}  
+
+/* App Header */
+.km-view-title
+{
+    background-color: #0a6fb0 !important;
+    color: #fff !important;
+    font-size: 1.25em !important;
+}
+
+#fgrApp .km-flat.km-on-ios.km-black-translucent-status-bar .km-header {
+  min-height: 20px;
+  background-color: #2d3e50;
+}
+
+#fgrApp .km-flat .km-header .km-navbar {
+  min-height: 3.15em;
+}
+
+#fgrApp .km-flat.km-on-ios.km-black-translucent-status-bar .km-header .km-navbar {
+  min-height: 4.5em;
+}
+
+#fgrApp .km-flat .km-header .km-view-title {
+  margin-top: .4em !important;
+  font-size: 1rem;
+}
+
+#fgrApp .km-flat.km-on-ios.km-black-translucent-status-bar .km-header .km-view-title {
+  margin-top: .4em !important;
+}
+
+
+
 /* IMAGE STYLES*/
 .img {
     background-image: url(../styles/images/appbuilder.png);
@@ -160,57 +250,7 @@ body, html {
     display: inline-block;
 }
 
-.weather-info.date {
-    margin-top: 7px;
-}
 
-.weather-info.temperature {
-    margin-left: 5px;
-}
-
-.weather-info.temperature.low {
-    color: rgba(0,0,0,0.5);
-}
-
-/* Weather Icons*/
-.weather-icon {
-    width: 64px;
-    height: 64px;
-    background-image: url(../styles/images/sprite-weather.png);
-    background-repeat: no-repeat;
-    float: right;
-    position: relative;
-    top: -6px;
-    left: -10px;
-}
-
-.weather-icon.sunny {
-    background-position: 0px 0px;
-}
-
-.weather-icon.cloudy {
-    background-position: 0px -64px;
-}
-
-.weather-icon.partly-cloudy {
-    background-position: 0px -128px;
-}
-
-.weather-icon.partly-sunny {
-    background-position: 0px -192px;
-}
-
-.weather-icon.shower {
-    background-position: 0px -256px;
-}
-
-.weather-icon.foggy {
-    background-position: 0px -320px;
-}
-
-.weather-icon.storm {
-    background-position: 0px -384px;
-}
 
 .position-left {
     float: left;
@@ -248,6 +288,12 @@ body, html {
     text-shadow: 0 -1px rgba(255,255,255,0.3);
 }
 
+.km-tablet .km-ios #edit-listview .km-view-title,
+.km-tablet .km-ios #edit-detailview .km-view-title {
+    color: #fff;
+    text-shadow: 0 -1px rgba(0,0,0,.5);
+}
+
 .km-android .view-content h1 {
     color: #8a8b8f;
 }
@@ -257,25 +303,6 @@ body, html {
     color: #2e5968;
 }
 
-.km-android .weather-info.temperature.low {
-    color: #2e5968;
-}
-
-.km-ios .km-view .weather {
-    background: #5fb4ed; /* Old browsers */
-    background: -moz-linear-gradient(top, #5fb4ed 0%, #0076c5 74%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5fb4ed), color-stop(74%,#0076c5)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #5fb4ed 0%,#0076c5 74%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #5fb4ed 0%,#0076c5 74%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #5fb4ed 0%,#0076c5 74%); /* IE10+ */
-    background: linear-gradient(to bottom, #5fb4ed 0%,#0076c5 74%); /* W3C */
-}
-.km-ios7 .km-view .weather,
-.km-wp .km-view .weather,
-.km-flat .km-view .weather {
-    background: #b0b0b0;
-}
-
 .km-flat .km-list > li {
     box-shadow: none;
 }
@@ -283,6 +310,7 @@ body, html {
 .km-ios .km-list > li,
 .km-flat .km-list > li {
     background: none;
+    color:black;
 }
 
 /* Separator Style*/
@@ -355,4 +383,317 @@ body, html {
         background-repeat: no-repeat;
         background-size: 100%;
     }
+}
+
+.bio-detail-container
+{
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    width: 100%;
+}
+
+/* Button Styles */
+#fgrApp .km-header .nav-button {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: 2em;
+  height: 2em;
+  border: 0 none;
+  background-color: transparent;
+  background-position: 0 50%;
+  background-repeat: no-repeat;
+}
+
+#fgrApp .km-header .nav-button-back {
+  background-image: url(images/icon-arrow_left.png);
+  background-position: .65em 50%;
+}
+
+#fgrApp .km-header .nav-button-back .km-text div {
+    color: white !important;
+	margin-left: 1.5em !important;
+    margin-top: .3em !important;
+}
+
+#fgrApp .km-header .nav-button-add {
+  background-image: url(images/icon-add.png);
+}
+
+#fgrApp .km-header .nav-button-back,
+#fgrApp .km-header .nav-button-add {
+  -webkit-transition: opacity 0.3s;
+     -moz-transition: opacity 0.3s;
+          transition: opacity 0.3s;
+}
+
+
+#fgrApp .km-header .nav-button-edit {
+  -webkit-transition: opacity 0.3s;
+     -moz-transition: opacity 0.3s;
+          transition: opacity 0.3s;
+}
+
+#fgrApp .km-header .nav-button-back:hover,
+#fgrApp .km-header .nav-button-add:hover {
+  opacity: .6;
+}
+
+#fgrApp .km-header .nav-button-cancel,
+#fgrApp .km-header .nav-button-post {
+    color: #fff;
+	font-size: 1rem;
+  	height: 2.5em;
+  	line-height: 2.5em;
+  	width: auto;
+}
+
+#fgrApp .km-header .nav-button-edit {
+    color: #fff;
+	font-size: 1rem;
+  	height: 2.5em;
+  	line-height: 2.5em;
+  	width: auto;
+}
+
+#fgrApp .km-header .hide-text {
+  overflow: hidden;
+  text-indent: -999px;
+}
+
+
+/* View Styles */
+.view-photo-container
+{
+    border-radius: 8px;
+    box-shadow: 0 1px 3px #333;
+    float: left;
+    height: 5.5em;
+    width: 4.5em;
+    margin-right: 10px;
+    overflow: hidden;
+    -webkit-border-radius: 8px;
+    -webkit-box-shadow: 0 1px 3px #333;
+}
+.view-photo-container-square
+{
+    border-radius: 8px;
+    box-shadow: 0 1px 3px #333;
+    float: left;
+    height: 4.5em;
+    width: 4.5em;
+    margin-right: 10px;
+    overflow: hidden;
+    -webkit-border-radius: 8px;
+    -webkit-box-shadow: 0 1px 3px #333;
+}
+.view-row-details-container
+{
+    background-color: #cc2d30 !important;
+    display: inline-block;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    width: 100%;
+}
+.view-header
+{
+    color: #ffffff;
+    font-size: 1.5em;
+}
+.view-detail
+{
+    color: #cccccc;
+    font-size: 1em;
+}
+.view-header-photo 
+{
+    height: auto;
+    width: 4.5em;
+}
+
+/* List View Styles */
+.listview-row-photo-container
+{
+    border-radius: 8px;
+    box-shadow: 0 1px 3px #333;
+    float: left;
+    height: 5.5em;
+    width: 4.5em;
+    margin-right: 10px;
+    overflow: hidden;
+    -webkit-border-radius: 8px;
+    -webkit-box-shadow: 0 1px 3px #333;
+}
+.listview-row-photo-container-square
+{
+    border-radius: 8px;
+    box-shadow: 0 1px 3px #333;
+    float: left;
+    height: 4.5em;
+    width: 4.5em;
+    margin-right: 10px;
+    overflow: hidden;
+    -webkit-border-radius: 8px;
+    -webkit-box-shadow: 0 1px 3px #333;
+}
+.listview-row-details-container
+{
+    background-color: #cc2d30 !important;
+    display: inline-block;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    width: 100%;
+}
+.listview-row-header
+{
+    color: #cc2d30;
+    font-size: 1.5em;
+}
+.listview-row-detail
+{
+    font-size: 1em;
+}
+.listview-row-subdetail
+{
+    color: #999;
+    font-size: 1em;
+}
+.listview-row-photo 
+{
+    height: auto;
+    width: 4.5em;
+}
+.listview-row-input-heading-table
+{
+    border-bottom: solid 1px #ccc;
+    display: table; 
+    height: 30px; 
+    margin: 0px;
+    padding: 0px; 
+    width: 100%;
+}
+.listview-row-input-heading-cell
+{
+    color: #999 !important;
+    display: table-cell;
+    width: 100%;
+}
+.listview-row-input-heading-cell span
+{
+    color: #999 !important;
+    font-weight: normal !important;
+    margin-left: 10px !important;
+}
+.listview-row-input-table
+{
+    background-color: #fff;
+    border-bottom: solid 1px #ccc;
+    display: table; 
+    height: 30px; 
+    margin: 0px;
+    padding: 0px; 
+    width: 100%;
+}
+.listview-row-input-cell-label
+{
+    display: table-cell;
+    margin-left: 10px !important;
+    width: 35%;
+}
+.listview-row-input-cell-label span
+{
+    font-weight: normal !important;
+    margin-left: 10px !important;
+}
+.listview-row-input-cell-control
+{
+    display: table-cell; 
+    text-align: right;
+    width: 65%;
+}
+.listview-row-input-cell-control span
+{
+    color: #999 !important;
+    font-weight: normal !important;
+    margin-right: 10px;
+}
+
+/*.km-filter-form
+{
+    background-color: #eee !important;
+}*/
+
+.km-scroll-wrapper,
+.km-native-scroller
+{
+    /*background-color: #eee !important;*/
+    background: -webkit-linear-gradient(#fff, #eee, #eee, #eee, #fff) !important; /* For Safari 5.1 to 6.0 */
+  	background: -o-linear-gradient(#fff, #eee, #eee, #eee, #fff) !important; /* For Opera 11.1 to 12.0 */
+  	background: -moz-linear-gradient(#fff, #eee, #eee, #eee, #fff) !important; /* For Firefox 3.6 to 15 */
+  	background: linear-gradient(#ddd, #eee, #fff, #eee, #ddd) !important; /* Standard syntax */
+}
+
+.mainList li {
+    background-color: #eee !important;
+    background: -webkit-linear-gradient(#ddd, #eee, #eee, #eee, #ddd) !important; /* For Safari 5.1 to 6.0 */
+  	background: -o-linear-gradient(#ddd, #eee, #eee, #eee, #ddd) !important; /* For Opera 11.1 to 12.0 */
+  	background: -moz-linear-gradient(#ddd, #eee, #eee, #eee, #ddd) !important; /* For Firefox 3.6 to 15 */
+  	background: linear-gradient(#ddd, #eee, #eee, #eee, #ddd) !important; /* Standard syntax */
+}
+
+.km-tabstrip {
+    background-color: #0a6fb0 !important;
+}
+
+.km-tabstrip .km-state-active
+{
+    background-color: #cc2d30 !important;
+}
+
+/* Icon Definitions */
+.km-bio-e:after,
+.km-bio-e:before
+{
+    content: "\e319";
+}
+.km-vote-e:after,
+.km-vote-e:before
+{
+    content: "\e037";
+}
+.km-committees-e:after,
+.km-committees-e:before
+{
+    content: "\e077";
+}
+.km-news-e:after,
+.km-news-e:before
+{
+    content: "\e0cf";
+}
+.km-youtube-e:after,
+.km-youtube-e:before
+{
+    content: "";
+}
+.km-website-e:after,
+.km-website-e:before
+{
+    content: "\e0dc";
+}
+.km-facebook-e:after,
+.km-facebook-e:before
+{
+    content: "";
+}
+.km-twitter-e:after,
+.km-twitter-e:before
+{
+    content: "";
 }

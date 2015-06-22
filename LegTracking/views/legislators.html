@@ -1,17 +1,15 @@
-<div data-role="view" id="tabstrip-legislator" data-title="legislator Search"  data-layout="main" data-init="mobileListViewFiltering"  >
-     <header data-role="header">
-        <div data-role="navbar">
-            <span data-role="view-title"></span>
-        </div>
-    </header>
+<div data-role="view" id="legislatorsview" data-init="legislatorsListViewDataBindInit" data-title="Legislators" data-layout="main">
+    <ul id="legislators-listview"></ul>
+</div>
 
-    <ul id="filterable-listview"></ul>
- </div>
-
-<script type="text/x-kendo-tmpl" id="mobile-listview-filtering-template">
-    <div class="product">
-        <img src="http://demos.telerik.com/kendo-ui/web/foods/#=ProductID#.jpg" alt="#=ProductName# image" class="pullImage"/>
-        <h3>#:ProductName#</h3>
-        <p>#:kendo.toString(UnitPrice, "c")#</p>
+<script type="text/x-kendo-template" id="legislatorsListViewTemplate">
+	<div class="listview-row-photo-container">
+    	<img class="listview-row-photo" src="#:ImageUrl#" />
     </div>
+    <div>
+    	<span class="listview-row-header">#:Name#</span>
+        <br/>
+        <span class="listview-row-detail">#:Description#</span>
+    </div>
+    <a data-role="detailbutton" data-icon="details"></a>
 </script>

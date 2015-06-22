@@ -1,0 +1,54 @@
+<div data-role="view" id="profileview" data-init="profileListViewDataBindInit" data-title="Profile" data-layout="main">
+	<header data-role="header">
+        <div data-role="navbar">
+            <a class="nav-button nav-button-back" data-align="left" data-role="backbutton" id="back">
+                <div>
+                	Back
+                </div>
+            </a>
+            <span data-role="view-title">Profile</span>
+            <a class="nav-button nav-button-add hide-text" data-align="right" data-role="button" href="profile-detailview">Add</a>
+        </div>
+    </header>
+	<ul id="profile-listview"></ul>
+</div>
+
+<script type="text/x-kendo-template" id="profileListViewTemplate">
+	<div class="profile-photo-container">
+    	<img class="profile-photo" src="#:ImageUrl#" />
+    </div>
+    <div class="profile-details-container">
+    	<span class="profile-name">#:Name#</span>
+        <br/>
+        <span class="profile-company">#:Company#</span>
+    </div>
+    <a data-role="detailbutton" data-icon="details"></a>
+</script>
+
+<div data-role="view" id="profile-detailview" data-show="profileDetailShow" data-init="profileDetailInit">
+	<header data-role="header">
+		<div data-role="navbar">
+			<a class="nav-button" data-align="left" data-role="backbutton" id="back">< Back</a>
+			<span data-role="view-title">Profile</span>
+		</div>
+    </header>
+    <ul data-role="listview" data-style="inset" onclick="">
+        <li style="background-color: #cc2d30;">
+            <div class="profile-photo-container">
+                <img id="photo" class="profile-photo" data-bind="attr: { src: ImageUrl }" />
+            </div>
+            <div class="profile-details-container">
+                <span class="profile-name-detail" data-bind="text: Name"></span>
+                <br/>
+                <span class="profile-company-detail" data-bind="text: Company"></span>
+            </div>
+        </li>
+        <li>
+            <span>Phone: </span><span data-bind="text: Phone"></span>
+            <!--<a id="phone" data-bind="attr: { href: Phone }" data-rel="external"></a>-->
+        </li>
+        <li>
+            <span>Email: </span><span data-bind="text: Email"></span>
+        </li>
+    </ul>
+</div>

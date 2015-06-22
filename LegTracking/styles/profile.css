@@ -1,0 +1,40 @@
+.profile-photo-container
+{
+    border-radius: 8px;
+    box-shadow: 0 1px 3px #333;
+    float: left;
+    height: 4.5em;
+    width: 4.5em;
+    margin-right: 10px;
+    overflow: hidden;
+    -webkit-border-radius: 8px;
+    -webkit-box-shadow: 0 1px 3px #333;
+}
+.profile-photo 
+{
+    height: auto;
+    width: 4.5em;
+}
+.profile-details-container
+{
+
+}
+.profile-name 
+{
+    color: #cc2d30;
+    font-size: 1.5em;
+}
+.profile-name-detail 
+{
+    color: #ffffff;
+    font-size: 1.5em;
+}
+.profile-company 
+{
+    font-size: 1em;
+}
+.profile-company-detail
+{
+    color: #cccccc;
+    font-size: 1em;
+}

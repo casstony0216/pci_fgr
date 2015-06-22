@@ -1,0 +1,119 @@
+<div data-role="view" id="edit-detailview" data-show="meetingsdetailShow" data-init="meetingsdetailInit" data-use-native-scrolling="true">
+	<header data-role="header">
+		<div data-role="navbar">
+            <a class="nav-button nav-button-cancel" data-align="left" data-role="backbutton" id="cancel">
+                <div>
+                	Cancel
+                </div>
+            </a>
+            <span data-role="view-title">Details</span>
+            <a class="nav-button nav-button-post" data-align="right" data-role="button" id="done">Save</a>
+        </div>
+    </header>
+	<form>
+  		<ul data-role="listview" data-style="inset" class="formArea" onclick="">
+            <li style="margin: 0px; padding: 0px; width: 100%;">
+                <ul class="listview-row-input-heading-table">
+					<li class="listview-row-input-heading-cell">
+                        <span>MEETING INFORMATION</span>
+                    </li>
+           		</ul>
+            </li>
+			<li style="margin: 0px; padding: 0px; width: 100%;">
+				<ul class="listview-row-input-table">
+					<li class="listview-row-input-cell-label">
+                        <span>Type</span>
+                    </li>
+					<li class="listview-row-input-cell-control">
+                        <select id="meetingTypedown">
+                            <option value="0">Select a Value</option>
+                            <option value="1">Meeting in D.C.</option>
+                            <option value="2">Meeting in District</option>
+                            <option value="3">PCI PAC Hosted Fundraiser</option>
+                            <option value="4">Other Fundraiser</option>
+                            <option value="5">Fundraiser Trip</option>
+                        </select>
+                    </li>
+           		</ul>
+    		</li>
+     		<li style="margin: 0px; padding: 0px; width: 100%;">
+            	<ul class="listview-row-input-table">
+             		<li class="listview-row-input-cell-label">
+                        <span>Meeting Date</span>
+                    </li>
+             		<li class="listview-row-input-cell-control">
+                  		<input type="text" data-bind="value: Date"/>
+                	</li>
+           		</ul>
+            </li>
+  			<li style="margin: 0px; padding: 0px; width: 100%;">
+                <ul class="listview-row-input-heading-table">
+					<li class="listview-row-input-heading-cell">
+                        <span>LEGISLATOR INFORMATION</span>
+                    </li>
+           		</ul>
+            </li>
+			<li style="margin: 0px; padding: 0px; width: 100%;">
+            	<ul class="listview-row-input-table">
+             		<li class="listview-row-input-cell-label">
+                        <span>Legislator</span>
+                    </li>
+             		<li class="listview-row-input-cell-control">
+                      	<select id="meetingLegislator">
+                            <option value="0">Select a Value</option>
+                            <option value="1">Sen.Cory Booker</option>
+                            <option value="2">Rep. Donald Norcross</option>
+                            <option value="3">Rep. Bonnie Watson Coleman</option>
+                            <option value="4">Rep. Scott Tester</option>
+                            <option value="5">Sen. Test Jones</option>
+                        </select>
+                    </li>
+            	</ul>
+    		</li>
+   			<li style="margin: 0px; padding: 0px; width: 100%;">
+            	<ul class="listview-row-input-table">
+             		<li class="listview-row-input-cell-label">
+                        <span>Legislator Phone</span>
+                    </li>
+             		<li class="listview-row-input-cell-control">
+              			<input type="tel" data-bind="value: Phone"/>
+                    </li>
+           		</ul>
+    		</li>
+     		<li style="margin: 0px; padding: 0px; width: 100%;">
+            	<ul class="listview-row-input-table">
+             		<li class="listview-row-input-cell-label">
+                        <span>Staffer</span>
+                    </li>
+             		<li class="listview-row-input-cell-control">
+                  		<input type="text" data-bind="value: Staffer"/>
+                	</li>
+           		</ul>
+    		</li>
+  			<li style="margin: 0px; padding: 0px; width: 100%;">
+                <ul class="listview-row-input-heading-table">
+					<li class="listview-row-input-heading-cell">
+                        <span>NOTES</span>
+                    </li>
+           		</ul>
+            </li>
+      		<li style="margin: 0px; padding: 0px; width: 100%;">
+           		<ul class="listview-row-input-table">
+             		<li class="listview-row-input-cell-control">
+                        <textarea style="resize: none" data-bind="value: Notes" rows="5"></textarea>
+                	</li>
+           		</ul>
+    		</li>  
+        </ul>
+	</form>
+    <br/>
+    <ul id="meeting-listview" ></ul>
+</div>
+
+<script type="text/x-kendo-tmpl" id="meeting-listview-template">
+    <input type="hidden" id="url" value="#:Url#" />
+    <input type="hidden" id="id" value="#:Id#" />
+	<span class="listview-row-detail">#:Label#</span>
+    <a data-role="detailbutton" data-icon="details"></a>
+</script>
+

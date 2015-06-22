@@ -1,0 +1,34 @@
+<div data-role="view" id="bioview" data-init="bioListViewDataBindInit" data-show="bioListViewDataBindShow">
+    <header data-role="header">
+        <div data-role="navbar">
+            <a class="nav-button nav-button-back" data-align="left" data-role="backbutton" id="back">
+                <div>
+                	Back
+                </div>
+            </a>
+            <span data-role="view-title">Bio</span>
+        </div>
+    </header>
+    <div class="view-row-details-container">
+        <div class="view-photo-container">
+            <img id="photo" class="view-header-photo" data-bind="attr: { src: ImageUrl }"/>
+        </div>
+        <div>
+            <span class="view-header" data-bind="text: Name"></span>
+            <br/>
+            <span class="view-detail" data-bind="text: Description"></span>
+        </div>
+    </div>
+	<div class="bio-detail-container">
+        <span class="bio" data-bind="text: Bio"></span>
+        
+        <br/><br/>
+        <span style="color: purple; font-weight: bold">
+            ---------------------------------------------------------------- 
+            <br/><br/>
+            WILL BE ADDING ADDITIONAL BIO RELATED INFORMATION HERE
+            <br/><br/> 
+            ----------------------------------------------------------------
+        </span>
+    </div>
+</div>
