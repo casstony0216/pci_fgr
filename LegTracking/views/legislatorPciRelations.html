@@ -1,4 +1,4 @@
-<div data-role="view" id="relationview" data-init="relationListViewDataBindInit" data-title="Legislator Relationship" data-layout="main">
+<div data-role="view" id="relationsview" data-show="relationsDetailShow" data-init="relationsListViewDataBindInit" data-title="Legislator Relationship" data-layout="main">
        <header data-role="header">
         <div data-role="navbar">
             <a class="nav-button nav-button-back" data-align="left" data-role="backbutton" id="back">
@@ -7,18 +7,21 @@
                 </div>
             </a>
             <span data-role="view-title">Legislator Relationship</span>
-            <a class="nav-button nav-button-post" data-align="right" data-role="button" href="views/legislatorPciRelationAdd.html">Add</a>
+            <a class="nav-button nav-button-post" data-align="right" data-role="button" href="views/legislatorPciRelationSelect.html">Add</a>
         </div>
     </header>
-	<ul id="relation-listview"></ul>
+	<ul id="relations-listview"></ul>
 </div>
 
-<script type="text/x-kendo-template" id="relationListViewTemplate">
+<script type="text/x-kendo-template" id="relationsListViewTemplate">
+   <!-- 
 	<div class="profile-photo-container">
-    	<img class="profile-photo" src="#: ImageUrl #" />
+    	
+             <img class="profile-photo" src="#: ImageUrl #" /> 
     </div>
+     -->  
     <div class="profile-details-container">
-    	<span class="profile-name">#: Name #</span>
+    	<span class="profile-name">#: FullName #</span>
         <br/>
         <span class="profile-company">#: Company #</span>
     </div>

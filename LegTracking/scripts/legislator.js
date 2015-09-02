@@ -1,3 +1,4 @@
+var legislatorId=null;
 var legislatorData = 
     [ 
         {

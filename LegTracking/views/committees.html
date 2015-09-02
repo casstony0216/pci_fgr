@@ -1,4 +1,4 @@
-<div data-role="view" id="committeesview" data-init="committeesListViewDataBindInit" data-show="committeesListViewDataBindShow">
+<div data-role="view" id="committeesview" data-init="committeesListViewDataBindInit" data-show="committeesListViewDataBindShow"  >
     <header data-role="header">
         <div data-role="navbar">
             <a class="nav-button nav-button-back" data-align="left" data-role="backbutton" id="back">
@@ -15,8 +15,12 @@
 <script type="text/x-kendo-template" id="committeesListViewTemplate">
 	<span class="listview-row-header">#:Name#</span>
     <br/>
-    <span class="listview-row-detail">#:Type#</span>
+    Title:<span class="listview-row-detail">#:Title#</span>
     <br/>
-    <span class="listview-row-subdetail">#:SubcommitteeCount# Subcommittees</span>
-	<a data-role="detailbutton" data-icon="details"></a>
+    Rank:<span class="listview-row-subdetail">#:Rank#</span>
+	  <!--<a data-role="detailbutton" data-icon="details"></a>-->
 </script>
+
+
+
+ 
