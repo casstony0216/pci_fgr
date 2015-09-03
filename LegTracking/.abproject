@@ -1,8 +1,45 @@
 {
-  "ProjectName": "LegTracking",
-  "ProjectGuid": "2f3aff40-5124-4bc7-a847-a39ad5de2dcd",
+  "ProjectName": "FGR",
+  "ProjectGuid": "dc5bed57-5253-46d1-8a03-7f538a90f307",
   "projectVersion": 1,
-  "ProjectTypeGuids": "{da2f9169-4696-40a5-919b-f73985228cac}",
-  "FrameworkVersion": "0.0.1",
-  "Framework": "MobileWebsite"
+  "AppIdentifier": "com.telerik.MobileProject1",
+  "DisplayName": "MobileProject1",
+  "Author": "",
+  "Description": "MobileProject1",
+  "BundleVersion": "1.0",
+  "AndroidVersionCode": "1",
+  "iOSDeviceFamily": [
+    "1",
+    "2"
+  ],
+  "iOSBackgroundMode": [],
+  "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
+  "FrameworkVersion": "3.7.0",
+  "AndroidPermissions": [
+    "android.permission.INTERNET"
+  ],
+  "DeviceOrientations": [
+    "Portrait",
+    "Landscape"
+  ],
+  "AndroidHardwareAcceleration": "false",
+  "iOSStatusBarStyle": "Default",
+  "Framework": "Cordova",
+  "WP8TileTitle": "",
+  "WP8Publisher": "",
+  "WP8Capabilities": [
+    "ID_CAP_NETWORKING",
+    "ID_CAP_WEBBROWSERCOMPONENT"
+  ],
+  "WP8Requirements": [],
+  "WP8PublisherID": "{a40d4ba0-f22e-4fbe-9f56-5197f0771d73}",
+  "WP8ProductID": "{441f6d52-1d5b-4872-a61f-8f4b25521780}",
+  "WPSdk": "8.0",
+  "WP8PackageIdentityName": "1234Telerik.MobileProject1",
+  "WP8WindowsPublisherName": "CN=Telerik",
+  "WP8SupportedResolutions": [
+    "ID_RESOLUTION_WVGA",
+    "ID_RESOLUTION_WXGA",
+    "ID_RESOLUTION_HD720P"
+  ]
 }
