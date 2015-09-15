@@ -30,7 +30,247 @@
     <Content Include="cordova.android.js" />
     <Content Include="cordova.ios.js" />
     <Content Include="cordova.wp8.js" />
+    <Content Include="FGR.jmconfig">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="FGR.sln">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="index.html" />
+    <Content Include="kendo\js\jquery.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="kendo\js\kendo.mobile.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="kendo\styles\images\back.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="kendo\styles\images\kendoui.svg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="kendo\styles\images\kendoui.ttf">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="kendo\styles\images\kendoui.woff">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="kendo\styles\images\wp8_icons.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="kendo\styles\images\wp8_inverseicons.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="kendo\styles\kendo.mobile.all.min.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="kendo\typescript\jquery.d.ts">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="kendo\typescript\kendo.mobile.d.ts">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\app.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\AutoComplete.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\bio.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\committees.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\issue.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\issues.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\legislator.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\legislatorPciRelationship.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\legislators.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\locationMap.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\meeting.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\meetingAttendeeAdd.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\meetingAttendees.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\meetings.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\old_legislators.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\profile.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\subcommittees.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\task.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\tasks.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\appbuilder.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\appbuilder2x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\icon-add.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\icon-adsf.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\icon-arrow_left.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\icon-facebook.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\icon-google.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\icon-password.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\icon-username.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\location.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\location2x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\location_active.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\location_active2x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\logo.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\logo2x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\search.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\search2x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\search_active.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\search_active2x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\sprite-weather.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\sprite-weather2x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\main.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\meetings.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\profile.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\AutoComplete.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\bio.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\committees.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\HtmlPage.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\issue.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\issues.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\legislator.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\legislatorPciRelation.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\legislatorPciRelations.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\legislatorPciRelationSelect.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\legislators.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\locationMap.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\login.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\meeting.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\meetingAttendee.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\meetingAttendeeAdd.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\meetingAttendees.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\meetings.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\profile.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\sampleSushi.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\sampleSushi2.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\subcommittees.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\task.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\tasks.html">
+      <SubType>Content</SubType>
+    </Content>
     <Resource Include="App_Resources\Android\drawable-hdpi\icon.png" />
     <Resource Include="App_Resources\Android\drawable-ldpi\icon.png" />
     <Resource Include="App_Resources\Android\drawable-mdpi\icon.png" />
@@ -93,7 +333,16 @@
     <Folder Include="css\" />
     <Folder Include="img\" />
     <Folder Include="js\" />
+    <Folder Include="kendo\" />
+    <Folder Include="kendo\js\" />
+    <Folder Include="kendo\styles\" />
+    <Folder Include="kendo\styles\images\" />
+    <Folder Include="kendo\typescript\" />
     <Folder Include="Plugins\" />
+    <Folder Include="scripts\" />
+    <Folder Include="styles\" />
+    <Folder Include="styles\images\" />
+    <Folder Include="views\" />
   </ItemGroup>
   <Import Project="$(IceniumTargets)Build.targets" />
   <!--
