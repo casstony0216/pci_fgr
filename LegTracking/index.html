@@ -1,68 +1,85 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-<head>
-    <title>PCI</title>
-    <meta charset="utf-8" />
+    <head>
+        <title>PCI</title>
+        <meta charset="utf-8" />
     
-    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
-    <link href="styles/main.css" rel="stylesheet" />
-    <!--<link href="styles/meetings.css" rel="stylesheet" />-->
-   	<link href="styles/profile.css" rel="stylesheet" />
+        <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+        <link href="styles/main.css" rel="stylesheet" />
+        <!--<link href="styles/meetings.css" rel="stylesheet" />-->
+   	    <link href="styles/profile.css" rel="stylesheet" />
 
-    <script src="kendo/js/jquery.min.js"></script>
-    <script src="kendo/js/kendo.mobile.min.js"></script>
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCG4jUolof0jhqQu0j1aNqSWfW_ms-wRKg&amp;sensor=true"></script>
-    <script src="scripts/app.js"></script>
-    <script src="scripts/bio.js"></script>
-    <script src="scripts/committees.js"></script>
-    <script src="scripts/legislators.js"></script>
-    <script src="scripts/legislator.js"></script>
-    <script src="scripts/meetings.js"></script>
-    <script src="scripts/meeting.js"></script>
-    <script src="scripts/issues.js"></script>  
-    <script src="scripts/issue.js"></script>
-    <script src="scripts/subcommittees.js"></script>
-    <script src="scripts/tasks.js"></script>
-    <script src="scripts/task.js"></script>
-    <script src="scripts/profile.js"></script>
-    <script src="scripts/locationMap.js"></script>
-    <script src="scripts/meetingAttendees.js"></script>
-    <script src="scripts/meetingAttendeeAdd.js"></script>
-    <script src="scripts/legislatorPciRelationship.js"></script>
-    <script src="scripts/AutoComplete.js"></script>
-</head>  
+        <script src="kendo/js/jquery.min.js"></script>
+        <script src="kendo/js/kendo.mobile.min.js"></script>
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCG4jUolof0jhqQu0j1aNqSWfW_ms-wRKg&amp;sensor=true"></script>
+        <script src="scripts/app.js"></script>
+        <script src="scripts/bio.js"></script>
+        <script src="scripts/committees.js"></script>
+        <script src="scripts/legislators.js"></script>
+        <script src="scripts/legislator.js"></script>
+        <script src="scripts/meetings.js"></script>
+        <script src="scripts/meeting.js"></script>
+        <script src="scripts/issues.js"></script>  
+        <script src="scripts/issue.js"></script>
+        <script src="scripts/subcommittees.js"></script>
+        <script src="scripts/tasks.js"></script>
+        <script src="scripts/task.js"></script>
+        <script src="scripts/profile.js"></script>
+        <script src="scripts/locationMap.js"></script>
+        <script src="scripts/meetingAttendees.js"></script>
+        <script src="scripts/meetingAttendeeAdd.js"></script>
+        <script src="scripts/legislatorPciRelationship.js"></script>
+        <script src="scripts/AutoComplete.js"></script>
+
+        <style>
+            .km-legislator-e:after,
+            .km-legislator-e:before 
+            {
+                content: "\e319";
+            }
+
+            .km-meeting-e:after,
+            .km-meeting-e:before 
+            {
+                content: "\e089";
+            }
+        </style>
+
+    </head>  
     <body id="fgrApp">                           
-    <div data-role="layout" data-id="main">
-        <div data-role="header">
-            <div data-role="navbar"> 
-                <span data-role="view-title"></span>
+        <div data-role="layout" data-id="main">
+            <div data-role="header">
+                <div data-role="navbar"> 
+                    <span data-role="view-title"></span>
+                </div>
             </div>
-        </div>  
-
-        <!-- application views will be rendered here -->        
-        <div data-role="footer">
-            <div data-role="tabstrip">
-                <a href="views/legislators.html" data-icon="search">Legislators</a>   
-                <a href="views/meetings.html" data-icon="history">Meetings</a>
-                <a href="views/AutoComplete.html" data-icon="recents">Auto</a>
-                <a href="views/Login.html" data-icon="recents">Login</a>
-             <!--     <a href="views/profile.html" data-icon="contacts">Profile</a>-->
-             </div>
+            <!-- application views will be rendered here -->        
+            <div data-role="footer">
+                <div data-role="tabstrip">
+                    <a href="views/legislators.html" data-icon="legislator-e">Legislators</a>   
+                    <a href="views/meetings.html" data-icon="meeting-e">Meetings</a>
+                    <!--<a href="views/AutoComplete.html" data-icon="recents">Auto</a>-->
+                    <!--<a href="views/Login.html" data-icon="recents">Login</a>-->
+                    <!--<a href="views/profile.html" data-icon="contacts">Profile</a>-->
+                </div>
+            </div>
         </div>
-    </div>
-    <script>
-        app = new kendo.mobile.Application(document.body, {
+        <script>
+            app = new kendo.mobile.Application
+                (
+                    document.body,
+                    {
+                        // you can change the default transition (slide, zoom or fade)
+                        transition: 'slide',
           
-          // you can change the default transition (slide, zoom or fade)
-          transition: 'slide',
-          
-          // comment out the following line to get a UI which matches the look
-          // and feel of the operating system
-          skin: 'flat',
+                        // comment out the following line to get a UI which matches the look
+                        // and feel of the operating system
+                        skin: 'flat',
     
-          // the application needs to know which view to load first
-          initial: 'views/legislators.html'
-        });
-    </script>
-</body>
+                        // the application needs to know which view to load first
+                        initial: 'views/legislators.html'
+                    }
+                );
+        </script>
+    </body>
 </html>

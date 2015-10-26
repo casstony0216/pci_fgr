@@ -1,65 +1,67 @@
-var profileModel = kendo.data.Model.define({
-    id: "PersonId"   
-    });
-
-var profileViewModel = kendo.observable({
-   // LastName: null,
-    dataSource: new kendo.data.DataSource({
-        serverFiltering: true,
-        batch: false,
-        autobind: false,
-        transport: {
-            read: {
-                type: "get",
-                url: "http://dev.pciaa.net/pciwebsite/congressapi/profile/list",
-                dataType: "json",
-                error: function (xhr, ajaxOptions, thrownError) {
-                    alert("error " + xhr.responseText);
-                    
-                },
-                 complete: function (jqXhr, textStatus) {
-                   // alert('Lookup Complete'); 
-                },
-             // crossDomain: true, // enable this,
-             beforeSend: function (xhr) {
-                          xhr.setRequestHeader("Authorization", token);
-             },
-            },
-            parameterMap: function (options, type) {
-                 if (type === 'read') {
-                     var parameters = {
-                       search: options.filter ? options.filter.filters[0].value : 'AAAAAAA',
-                    };
-                    return parameters;
-                }
-                
-                //pass the model to the url
-             //   if (type !== "read") {
-             //       
-           //				 return kendo.stringify(options);
-          //		}
-                
-   
-            }
-        },
-       
-      schema: 
+var profileModel = kendo.data.Model.define
+    (
         {
-			model: profileModel
+            id: "PersonId"   
         }
-    })
-});
+    );
 
+var profileViewModel = kendo.observable
+    (
+        {
+            dataSource: new kendo.data.DataSource
+            (
+                {
+                    serverFiltering: true,
+                    batch: false,
+                    autobind: false,
+                    transport:
+                    {
+                        read:
+                        {
+                            type: "get",
+                            url: "http://dev.pciaa.net/pciwebsite/congressapi/profile/list",
+                            dataType: "json",
+                            error: function (xhr, ajaxOptions, thrownError)
+                            {
+                                alert("error " + xhr.responseText);
+                    
+                            },
+                            complete: function (jqXhr, textStatus)
+                            {
+                                // alert('Lookup Complete'); 
+                            },
+                            // crossDomain: true, // enable this,
+                            beforeSend: function (xhr)
+                            {
+                                xhr.setRequestHeader("Authorization", token);
+                            },
+                        },
+                        parameterMap: function (options, type)
+                        {
+                            if (type === 'read')
+                            {
+                                var parameters =
+                                {
+                                    search: options.filter ? options.filter.filters[0].value : 'AAAAAAA',
+                                };
 
-
-
-
-
-
-
-
-
-
+                                return parameters;
+                            }
+                
+                            // Pass the model to the url
+                            //if (type !== "read") {
+                                //return kendo.stringify(options);
+                            //}
+                        }
+                    },
+                    schema: 
+                    {
+			            model: profileModel
+                    }
+                }
+            )
+        }
+    );
 
 var profileData = 
     [ 

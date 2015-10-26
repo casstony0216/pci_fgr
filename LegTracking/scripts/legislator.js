@@ -1,62 +1,98 @@
 var legislatorId=null;
 var legislatorData = 
-    [ 
+    [
         {
             id: 1,
-            name: "bio", 
-            label: "Bio",
-            url: "views/bio.html?uid=",
-            icon: "bio-e"
-        }, 
-        /*{
+            name: "meetings",
+            label: "Meetings",
+            url: "views/meetings.html?uid="
+        },
+        {
             id: 2,
-            name: "votes", 
-            label: "Bills & Votes",
-            url: "views/votes.html",
-            icon: "vote-e"
-        }, */
+            name: "tiers",
+            label: "PCI Initiative Tiers",
+            url: "views/tiers.html?uid="
+        },
         {
             id: 3,
-            name: "committees", 
-            label: "Committees",
-            url: "views/committees.html?uid=",
-            icon: "committees-e"
-        }, 
+            name: "surveys",
+            label: "Initiative Surveys",
+            url: "views/surveys.html?uid="
+        },
         {
             id: 4,
-            name: "relationships", 
+            name: "relationships",
             label: "PCI Relationships",
-            url: "views/legislatorPciRelations.html?uid=",
-            icon: "featured"
+            url: "views/legislatorPciRelations.html?uid="
         },
         {
             id: 5,
-            name: "youtube", 
-            label: "YouTube Videos",
-            url: "YouTubeUrl",
-            icon: "youtube-e"
-        }, 
+            name: "bio",
+            label: "Bio",
+            url: "views/bio.html?uid="
+        },
         {
             id: 6,
-            name: "website", 
-            label: "Website",
-            url: "WebsiteUrl",
-            icon: "website-e"
-        }, 
-        {
-            id: 7,
-            name: "facebook", 
-            label: "Facebook",
-            url: "FacebookUrl",
-            icon: "facebook-e"
-        }, 
-        {
-            id: 8,
-            name: "twitter", 
-            label: "Twitter",
-            url: "TwitterUrl",
-            icon: "twitter-e"
+            name: "committees",
+            label: "Committees",
+            url: "views/committees.html?uid="
         }
+        //{
+        //    id: 1,
+        //    name: "bio", 
+        //    label: "Bio",
+        //    url: "views/bio.html?uid=",
+        //    icon: "bio-e"
+        //}, 
+        ///*{
+        //    id: 2,
+        //    name: "votes", 
+        //    label: "Bills & Votes",
+        //    url: "views/votes.html",
+        //    icon: "vote-e"
+        //}, */
+        //{
+        //    id: 3,
+        //    name: "committees", 
+        //    label: "Committees",
+        //    url: "views/committees.html?uid=",
+        //    icon: "committees-e"
+        //}, 
+        //{
+        //    id: 4,
+        //    name: "relationships", 
+        //    label: "PCI Relationships",
+        //    url: "views/legislatorPciRelations.html?uid=",
+        //    icon: "featured"
+        //},
+        //{
+        //    id: 5,
+        //    name: "youtube", 
+        //    label: "YouTube Videos",
+        //    url: "YouTubeUrl",
+        //    icon: "youtube-e"
+        //}, 
+        //{
+        //    id: 6,
+        //    name: "website", 
+        //    label: "Website",
+        //    url: "WebsiteUrl",
+        //    icon: "website-e"
+        //}, 
+        //{
+        //    id: 7,
+        //    name: "facebook", 
+        //    label: "Facebook",
+        //    url: "FacebookUrl",
+        //    icon: "facebook-e"
+        //}, 
+        //{
+        //    id: 8,
+        //    name: "twitter", 
+        //    label: "Twitter",
+        //    url: "TwitterUrl",
+        //    icon: "twitter-e"
+        //}
     ];
 
 var legislatorDataSource = new kendo.data.DataSource
@@ -84,10 +120,10 @@ var legislatorDataSource = new kendo.data.DataSource
 
 // The following is used to store the master UID for the detail record so references can be made back to the original datasource.
 var masterUid;
-var youtubeUrl;
-var websiteUrl;
-var facebookUrl;
-var twitterUrl;
+//var youtubeUrl;
+//var websiteUrl;
+//var facebookUrl;
+//var twitterUrl;
 
 function legislatorListViewDataBindShow(e) 
 {
@@ -95,10 +131,10 @@ function legislatorListViewDataBindShow(e)
 
     var model = legislatorsDataSource.getByUid(masterUid);
     
-    youtubeUrl = model.YouTubeUrl;
-    websiteUrl = model.WebsiteUrl;
-    facebookUrl = model.FacebookUrl;
-    twitterUrl = model.TwitterUrl;
+    //youtubeUrl = model.YouTubeUrl;
+    //websiteUrl = model.WebsiteUrl;
+    //facebookUrl = model.FacebookUrl;
+    //twitterUrl = model.TwitterUrl;
     
     kendo.bind(e.view.element, model, kendo.mobile.ui);
 }
@@ -155,44 +191,45 @@ function legislatorTouchStart(e)
 function legislatorNavigate(e) 
 {
 	var url = e.touch.currentTarget.childNodes[1].value;
-    var filter = '[id=id]';
+	var filter = '[id=id]';
 
-    if (url.toLowerCase().indexOf("/") >= 0)
-    {
-		kendo.mobile.application.navigate(url + masterUid);
-    }
-   	else
-    {
-        switch(url.toLowerCase())
-        {
-            case "youtubeurl":
-                window.open(youtubeUrl);
+	kendo.mobile.application.navigate(url + masterUid);
+
+    //if (url.toLowerCase().indexOf("/") >= 0)
+    //{
+	//	kendo.mobile.application.navigate(url + masterUid);
+    //}
+   	//else
+    //{
+    //    switch(url.toLowerCase())
+    //    {
+    //        case "youtubeurl":
+    //            window.open(youtubeUrl);
                 
-                break;
+    //            break;
                 
-            case "websiteurl":
-                window.open(websiteUrl);
+    //        case "websiteurl":
+    //            window.open(websiteUrl);
                 
-                break;
+    //            break;
                 
-            case "facebookurl":
-                window.open(facebookUrl);
+    //        case "facebookurl":
+    //            window.open(facebookUrl);
                 
-                break;
+    //            break;
                 
-            case "twitterurl":
-                window.open(twitterUrl);
+    //        case "twitterurl":
+    //            window.open(twitterUrl);
                 
-                break;
+    //            break;
                 
-            default:
-                window.open(websiteUrl);
+    //        default:
+    //            window.open(websiteUrl);
                 
-                break;
+    //            break;
                 
-        }
-    }
-    
+    //    }
+    //}
 }
 
 function legislatorSwipe(e) 

@@ -3,13 +3,15 @@
 </div>
 
 <script type="text/x-kendo-template" id="legislatorsListViewTemplate">
-	<div class="listview-row-photo-container">
+	<!--<div class="listview-row-photo-container">
     	<img class="listview-row-photo" src="#:ImageUrl#" />
-    </div>
-    <div>
-    	<span class="listview-row-header">#:Name#</span>
-        <br/>
-        <span class="listview-row-detail">#:Description#</span>
+    </div>-->
+    <div style="display: table; height: 4em;">
+        <div style="display: table-cell; text-align: center; vertical-align: middle;">
+            <span class="listview-row-header">#:LastName#, #:FirstName# #:MiddleName#</span>
+            <!--<br/>
+            <span class="listview-row-detail">#:Description#</span>-->
+        </div>
     </div>
     <a data-role="detailbutton" data-icon="details"></a>
 </script>

@@ -9,22 +9,28 @@
             <span data-role="view-title">Legislator</span>
         </div>
     </header>
-    <div class="view-row-details-container">
-        <div class="view-photo-container">
+    <div class="view-row-details-container-table">
+        <!--<div class="view-photo-container">
             <img id="photo" class="view-header-photo" data-bind="attr: { src: ImageUrl }"/>
-        </div>
-        <div>
-            <span class="view-header" data-bind="text: Name"></span>
-            <br/>
-            <span class="view-detail" data-bind="text: Description"></span>
+        </div>-->
+        <div class="view-row-details-container-table-cell">
+            <span class="view-header" data-bind="text: FirstName"></span>
+            <span class="view-header" data-bind="text: MiddleName"></span>
+            <span class="view-header" data-bind="text: LastName"></span>
+            <!--<br/>
+            <span class="view-detail" data-bind="text: Description"></span>-->
         </div>
     </div>
     <ul id="legislator-listview"></ul>
 </div>
 
 <script type="text/x-kendo-template" id="legislatorListViewTemplate">
-	<input type="hidden" id="url" value="#:Url#" />
-	<input type="hidden" id="id" value="#:Id#" />
-	<span class="listview-row-detail">#:Label#</span>
-	<a data-role="detailbutton" data-icon="details"></a>
+    <div style="display: table; height: 4em;">
+        <div style="display: table-cell; text-align: center; vertical-align: middle;">
+            <input type="hidden" id="url" value="#:Url#" />
+            <input type="hidden" id="id" value="#:Id#" />
+            <span class="listview-row-detail">#:Label#</span>
+        </div>
+    </div>
+    <a data-role="detailbutton" data-icon="details"></a>
 </script>
