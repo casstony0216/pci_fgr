@@ -40,6 +40,9 @@
     <Content Include="kendo\js\jquery.min.js">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="kendo\js\kendo.all.min.js">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="kendo\js\kendo.mobile.min.js">
       <SubType>Content</SubType>
     </Content>

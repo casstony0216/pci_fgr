@@ -5,6 +5,23 @@ body, html
     width: 100%;
 }
 
+.km-collapsible-header
+{
+    border-bottom: solid 1px lightgray;
+    border-top: solid 1px lightgray;
+}
+
+.km-collapsible-header span.km-icon.km-arrow-s, .km-collapsible-header span.km-icon.km-arrow-n
+{
+    display: none !important;
+}
+
+.km-collapsible-header h2
+{
+    margin: 0.25em 0.5em 0.25em 0.5em !important;
+    padding: 0 !important;
+}
+
 /* COMMON STYLES*/
 .view-content h1 
 {
@@ -99,7 +116,7 @@ body, html
 {
     background-color: #0a6fb0 !important;
     color: #fff !important;
-    font-size: 1.25em !important;
+    font-size: 1.75em !important;
 }
 
 #fgrApp .km-flat.km-on-ios.km-black-translucent-status-bar .km-header 
@@ -448,6 +465,7 @@ body, html
 #fgrApp .km-header .nav-button 
 {
   display: inline-block;
+  font-size: 1.25em !important;
   margin: 0;
   padding: 0;
   width: 2em;
@@ -495,7 +513,7 @@ body, html
 #fgrApp .km-header .nav-button-back:hover,
 #fgrApp .km-header .nav-button-add:hover 
 {
-  opacity: .6;
+    opacity: .6;
 }
 
 #fgrApp .km-header .nav-button-cancel,
@@ -628,6 +646,10 @@ body, html
     padding-top: 5px;
     width: 100%;
 }
+.listview-row-header-default
+{
+    font-size: 1.75em !important;
+}
 .listview-row-header
 {
     color: #cc2d30;
@@ -635,7 +657,12 @@ body, html
 }
 .listview-row-detail
 {
-    font-size: 1.75em !important;
+    font-size: 1.5em !important;
+}
+.listview-row-detail-form
+{
+    font-size: 1.25em !important;
+    font-weight: normal !important;
 }
 .listview-row-subdetail
 {
@@ -686,6 +713,7 @@ body, html
 }
 .listview-row-input-cell-label span
 {
+    font-size: 1.25em !important;
     font-weight: normal !important;
     margin-left: 10px !important;
 }

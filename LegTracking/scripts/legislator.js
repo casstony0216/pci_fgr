@@ -1,4 +1,8 @@
-var legislatorId=null;
+// The following is used to store the master UID for the detail record so references can be made back to the original datasource.
+var parentUid;
+var parentModel;
+var legislatorId = null;
+
 var legislatorData = 
     [
         {
@@ -37,62 +41,6 @@ var legislatorData =
             label: "Committees",
             url: "views/committees.html?uid="
         }
-        //{
-        //    id: 1,
-        //    name: "bio", 
-        //    label: "Bio",
-        //    url: "views/bio.html?uid=",
-        //    icon: "bio-e"
-        //}, 
-        ///*{
-        //    id: 2,
-        //    name: "votes", 
-        //    label: "Bills & Votes",
-        //    url: "views/votes.html",
-        //    icon: "vote-e"
-        //}, */
-        //{
-        //    id: 3,
-        //    name: "committees", 
-        //    label: "Committees",
-        //    url: "views/committees.html?uid=",
-        //    icon: "committees-e"
-        //}, 
-        //{
-        //    id: 4,
-        //    name: "relationships", 
-        //    label: "PCI Relationships",
-        //    url: "views/legislatorPciRelations.html?uid=",
-        //    icon: "featured"
-        //},
-        //{
-        //    id: 5,
-        //    name: "youtube", 
-        //    label: "YouTube Videos",
-        //    url: "YouTubeUrl",
-        //    icon: "youtube-e"
-        //}, 
-        //{
-        //    id: 6,
-        //    name: "website", 
-        //    label: "Website",
-        //    url: "WebsiteUrl",
-        //    icon: "website-e"
-        //}, 
-        //{
-        //    id: 7,
-        //    name: "facebook", 
-        //    label: "Facebook",
-        //    url: "FacebookUrl",
-        //    icon: "facebook-e"
-        //}, 
-        //{
-        //    id: 8,
-        //    name: "twitter", 
-        //    label: "Twitter",
-        //    url: "TwitterUrl",
-        //    icon: "twitter-e"
-        //}
     ];
 
 var legislatorDataSource = new kendo.data.DataSource
@@ -110,60 +58,24 @@ var legislatorDataSource = new kendo.data.DataSource
                     Id: "id",
                     Name: "name",
                     Label: "label",
-                    Url: "url",
-            		Icon: "icon"
+                    Url: "url"
                 }
             }
         }
 	}
 );
 
-// The following is used to store the master UID for the detail record so references can be made back to the original datasource.
-var masterUid;
-//var youtubeUrl;
-//var websiteUrl;
-//var facebookUrl;
-//var twitterUrl;
-
-function legislatorListViewDataBindShow(e) 
+function legislatorListViewDataShow(e) 
 {
-    masterUid = e.view.params.uid;
-
-    var model = legislatorsDataSource.getByUid(masterUid);
+    parentUid = e.view.params.uid;
+    parentModel = legislatorsDataSource.getByUid(parentUid);
     
-    //youtubeUrl = model.YouTubeUrl;
-    //websiteUrl = model.WebsiteUrl;
-    //facebookUrl = model.FacebookUrl;
-    //twitterUrl = model.TwitterUrl;
-    
-    kendo.bind(e.view.element, model, kendo.mobile.ui);
+    kendo.bind(e.view.element, parentModel, kendo.mobile.ui);
 }
 
-function legislatorListViewDataBindInit(e) 
+function legislatorListViewDataInit(e) 
 {
-    e.view.element.find("#back")
-    	.data("kendoMobileBackButton")
-    		.bind
-    		(
-        		"click", function(e) 
-            	{
-        			e.preventDefault();
-        			
-        			legislatorsDataSource.one
-                    (
-                        "change", function() 
-                        {
-            				e.view.loader.hide();
-            				kendo.mobile.application.navigate("#:back");
-        				}
-                    );
-
-        			e.view.loader.show();
-        			legislatorsDataSource.cancelChanges();
-    			}
-			);
-    
-    e.view.element.find("#legislator-listview")
+    e.view.element.find("#legislatorListView")
         .kendoMobileListView
         (
            { 
@@ -190,46 +102,12 @@ function legislatorTouchStart(e)
 
 function legislatorNavigate(e) 
 {
-	var url = e.touch.currentTarget.childNodes[1].value;
-	var filter = '[id=id]';
-
-	kendo.mobile.application.navigate(url + masterUid);
-
-    //if (url.toLowerCase().indexOf("/") >= 0)
-    //{
-	//	kendo.mobile.application.navigate(url + masterUid);
-    //}
-   	//else
-    //{
-    //    switch(url.toLowerCase())
-    //    {
-    //        case "youtubeurl":
-    //            window.open(youtubeUrl);
-                
-    //            break;
-                
-    //        case "websiteurl":
-    //            window.open(websiteUrl);
-                
-    //            break;
-                
-    //        case "facebookurl":
-    //            window.open(facebookUrl);
-                
-    //            break;
-                
-    //        case "twitterurl":
-    //            window.open(twitterUrl);
-                
-    //            break;
-                
-    //        default:
-    //            window.open(websiteUrl);
-                
-    //            break;
-                
-    //    }
-    //}
+    var uid = $(e.touch.currentTarget).data("uid");
+    var currentRecord = legislatorDataSource.getByUid(uid);
+    var url = currentRecord.Url;
+    legislatorId = parentModel.LegislatorId;
+    
+	kendo.mobile.application.navigate(url + legislatorId);
 }
 
 function legislatorSwipe(e) 

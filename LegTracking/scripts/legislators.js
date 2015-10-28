@@ -46,7 +46,7 @@ var legislatorsDataSource = new kendo.data.DataSource
 				    fields: 
                     {
                         LegislatorId: "LegislatorId",
-                        Name: "FullName",
+                        FullName: "FullName",
                         FirstName: "FirstName",
                         MiddleName: "MiddleName",
                         LastName: "LastName",
@@ -63,9 +63,9 @@ var legislatorsDataSource = new kendo.data.DataSource
         }
     );
 
-function legislatorsListViewDataBindInit(e) 
+function legislatorsListViewDataInit(e) 
 {
-    e.view.element.find("#legislators-listview")
+    e.view.element.find("#legislatorsListView")
         .kendoMobileListView
         (
             { 
@@ -107,7 +107,7 @@ function legislatorsswipe(e)
 function legislatorstouchstart(e) 
 {
     var target = $(e.touch.initialTouch),
-        listview = $("#legislators-listview").data("kendoMobileListView"),
+        listview = $("#legislatorsListView").data("kendoMobileListView"),
         model,
         button = $(e.touch.target).find("[data-role=button]:visible");
 

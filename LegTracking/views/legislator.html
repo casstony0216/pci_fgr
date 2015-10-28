@@ -1,27 +1,15 @@
-<div data-role="view" id="legislatorview" data-init="legislatorListViewDataBindInit" data-show="legislatorListViewDataBindShow">
-    <header data-role="header">
-        <div data-role="navbar">
-            <a class="nav-button nav-button-back" data-align="left" data-role="backbutton" id="back">
-                <div>
-                	Back
-                </div>
-            </a>
-            <span data-role="view-title">Legislator</span>
-        </div>
-    </header>
+<div data-role="view" id="legislatorview" data-init="legislatorListViewDataInit" data-show="legislatorListViewDataShow" data-layout="back-button-layout" data-title="Legislator">
     <div class="view-row-details-container-table">
         <!--<div class="view-photo-container">
             <img id="photo" class="view-header-photo" data-bind="attr: { src: ImageUrl }"/>
         </div>-->
         <div class="view-row-details-container-table-cell">
-            <span class="view-header" data-bind="text: FirstName"></span>
-            <span class="view-header" data-bind="text: MiddleName"></span>
-            <span class="view-header" data-bind="text: LastName"></span>
+            <span class="view-header" data-bind="text: FullName"></span>
             <!--<br/>
             <span class="view-detail" data-bind="text: Description"></span>-->
         </div>
     </div>
-    <ul id="legislator-listview"></ul>
+    <ul id="legislatorListView"></ul>
 </div>
 
 <script type="text/x-kendo-template" id="legislatorListViewTemplate">
@@ -29,7 +17,7 @@
         <div style="display: table-cell; text-align: center; vertical-align: middle;">
             <input type="hidden" id="url" value="#:Url#" />
             <input type="hidden" id="id" value="#:Id#" />
-            <span class="listview-row-detail">#:Label#</span>
+            <span class="listview-row-header-default">#:Label#</span>
         </div>
     </div>
     <a data-role="detailbutton" data-icon="details"></a>

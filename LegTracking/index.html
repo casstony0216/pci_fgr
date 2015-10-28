@@ -47,7 +47,7 @@
 
     </head>  
     <body id="fgrApp">                           
-        <div data-role="layout" data-id="main">
+        <div data-role="layout" data-id="no-buttons-layout">
             <div data-role="header">
                 <div data-role="navbar"> 
                     <span data-role="view-title"></span>
@@ -61,6 +61,74 @@
                     <!--<a href="views/AutoComplete.html" data-icon="recents">Auto</a>-->
                     <!--<a href="views/Login.html" data-icon="recents">Login</a>-->
                     <!--<a href="views/profile.html" data-icon="contacts">Profile</a>-->
+                </div>
+            </div>
+        </div>
+        <div data-role="layout" data-id="add-button-layout">
+            <div data-role="header">
+                <div data-role="navbar">
+                    <a class="nav-button nav-button-back" data-align="left" data-role="backbutton" id="back-button">
+                        <div>
+                            Back
+                        </div>
+                    </a>
+                    <span data-role="view-title"></span>
+                    <a class="nav-button nav-button-post" data-align="right" data-role="button" id="add-button">
+                        <!--href="views/meeting.html"-->
+                        <div>
+                            Add
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- application views will be rendered here -->
+            <div data-role="footer">
+                <div data-role="tabstrip">
+                    <a href="views/legislators.html" data-icon="legislator-e">Legislators</a>
+                    <a href="views/meetings.html" data-icon="meeting-e">Meetings</a>
+                </div>
+            </div>
+        </div>
+        <div data-role="layout" data-id="save-button-layout">
+            <div data-role="header">
+                <div data-role="navbar">
+                    <a class="nav-button nav-button-back" data-align="left" data-role="backbutton" id="back-button">
+                        <div>
+                            Back
+                        </div>
+                    </a>
+                    <span data-role="view-title"></span>
+                    <a class="nav-button nav-button-post" data-align="right" data-role="button" id="done-button">
+                        <div>
+                            Save
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- application views will be rendered here -->
+            <div data-role="footer">
+                <div data-role="tabstrip">
+                    <a href="views/legislators.html" data-icon="legislator-e">Legislators</a>
+                    <a href="views/meetings.html" data-icon="meeting-e">Meetings</a>
+                </div>
+            </div>
+        </div>
+        <div data-role="layout" data-id="back-button-layout">
+            <div data-role="header">
+                <div data-role="navbar">
+                    <a class="nav-button nav-button-back" data-align="left" data-role="backbutton" id="back-button">
+                        <div>
+                            Back
+                        </div>
+                    </a>
+                    <span data-role="view-title"></span>
+                </div>
+            </div>
+            <!-- application views will be rendered here -->
+            <div data-role="footer">
+                <div data-role="tabstrip">
+                    <a href="views/legislators.html" data-icon="legislator-e">Legislators</a>
+                    <a href="views/meetings.html" data-icon="meeting-e">Meetings</a>
                 </div>
             </div>
         </div>
