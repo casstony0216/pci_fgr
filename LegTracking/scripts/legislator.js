@@ -1,7 +1,6 @@
 // The following is used to store the master UID for the detail record so references can be made back to the original datasource.
 var parentUid;
 var parentModel;
-var legislatorId = null;
 
 var legislatorData = 
     [
@@ -21,7 +20,7 @@ var legislatorData =
             id: 3,
             name: "surveys",
             label: "Initiative Surveys",
-            url: "views/surveys.html?uid="
+            url: "views/initiativesurveys.html?uid="
         },
         {
             id: 4,
@@ -67,21 +66,13 @@ var legislatorDataSource = new kendo.data.DataSource
 
 function legislatorListViewDataShow(e) 
 {
-    parentUid = e.view.params.uid;
-    parentModel = legislatorsDataSource.getByUid(parentUid);
-    
-    kendo.bind(e.view.element, parentModel, kendo.mobile.ui);
-}
-
-function legislatorListViewDataInit(e) 
-{
     e.view.element.find("#legislatorListView")
         .kendoMobileListView
         (
-           { 
-                dataSource: legislatorDataSource,
-                template: $("#legislatorListViewTemplate").html()
-            }
+           {
+               dataSource: legislatorDataSource,
+               template: $("#legislatorListViewTemplate").html()
+           }
         )
         .kendoTouch
         (
@@ -93,6 +84,16 @@ function legislatorListViewDataInit(e)
                 swipe: legislatorSwipe
             }
         );
+
+    parentUid = e.view.params.uid;
+    parentModel = legislatorsDataSource.getByUid(parentUid);
+    
+    kendo.bind(e.view.element, parentModel, kendo.mobile.ui);
+}
+
+function legislatorListViewDataInit(e) 
+{
+    
 }
 
 function legislatorTouchStart(e) 
@@ -105,7 +106,7 @@ function legislatorNavigate(e)
     var uid = $(e.touch.currentTarget).data("uid");
     var currentRecord = legislatorDataSource.getByUid(uid);
     var url = currentRecord.Url;
-    legislatorId = parentModel.LegislatorId;
+    var legislatorId = parentModel.LegislatorId;
     
 	kendo.mobile.application.navigate(url + legislatorId);
 }

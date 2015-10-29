@@ -82,6 +82,8 @@
     <Content Include="scripts\committees.js">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="scripts\initiativesurvey.js" />
+    <Content Include="scripts\initiativesurveys.js" />
     <Content Include="scripts\issue.js">
       <SubType>Content</SubType>
     </Content>
@@ -213,6 +215,8 @@
     <Content Include="views\HtmlPage.html">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="views\initiativesurvey.html" />
+    <Content Include="views\initiativesurveys.html" />
     <Content Include="views\issue.html">
       <SubType>Content</SubType>
     </Content>

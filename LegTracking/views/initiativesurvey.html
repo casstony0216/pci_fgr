@@ -1,0 +1,17 @@
+<div data-role="view" id="initiativesurveyview" data-show="initiativeSurveyListViewDataShow" data-layout="back-button-layout" data-title="Initiative Surveys">
+    <ul data-role="buttongroup" data-index="0">
+        <li>Current Questions</li>
+        <li>Archived Questions</li>
+    </ul>
+    <ul id="initiativeSurveyListView"></ul>
+</div>
+
+<script type="text/x-kendo-template" id="initiativeSurveyListViewTemplate">
+    <div style="display: table; height: 4em;">
+        <div style="display: table-cell; text-align: center; vertical-align: middle;">
+            <input type="hidden" id="id" value="#:InitiativeSurveyId#" />
+            <span class="listview-row-detail">#:InitiativeSurvey#</span>
+        </div>
+    </div>
+    <a data-role="detailbutton" data-icon="details"></a>
+</script>

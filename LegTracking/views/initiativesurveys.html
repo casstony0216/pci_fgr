@@ -1,0 +1,19 @@
+<div data-role="view" id="initiativesurveysview" data-show="initiativeSurveysListViewDataShow" data-layout="back-button-layout" data-title="Initiative Surveys">
+    <div class="view-row-details-container-table">
+        <div class="view-row-details-container-table-cell">
+            <span class="view-header" data-bind="text: FullName"></span>
+        </div>
+    </div>
+    <ul id="initiativeSurveysListView"></ul>
+</div>
+
+<script type="text/x-kendo-template" id="initiativeSurveysListViewTemplate">
+    <div style="display: table; height: 4em;">
+        <div style="display: table-cell; text-align: center; vertical-align: middle;">
+            <input type="hidden" id="legislatorId" value="#:LegislatorId#" />
+            <input type="hidden" id="initiativeId" value="#:InitiativeId#" />
+            <span class="listview-row-detail">#:Initiative#</span>
+        </div>
+    </div>
+    <a data-role="detailbutton" data-icon="details"></a>
+</script>

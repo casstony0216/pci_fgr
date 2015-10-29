@@ -1,22 +1,27 @@
 <div data-role="view" id="initiativetiersview" data-show="initiativeTiersListViewDataShow" data-layout="back-button-layout" data-title="Initiative Tiers">
-    <ul style="border-bottom: solid 1px gray; display: table; margin: 0; padding: 0; width: 100%;">
-        <li style="display: table-cell; padding: 0.5em 0 0.5em 0.5em; width: 80%;">
+    <div class="view-row-details-container-table">
+        <div class="view-row-details-container-table-cell">
+            <span class="view-header" data-bind="text: FullName"></span>
+        </div>
+    </div>
+    <div style="border-bottom: solid 1px gray; display: table; height: 4em; width: 100%;">
+        <div style="display: table-cell; padding: 0.5em 0 0.5em 0.75em; vertical-align: middle; width: 80%;">
             <span class="listview-row-header">Initiative</span>
-        </li>
-        <li style="display: table-cell; padding: 0.5em 0.5em 0.5em 0; text-align: right; width: 20%;">
+        </div>
+        <div style="display: table-cell; padding: 0.5em 0.75em 0.5em 0; text-align: right; vertical-align: middle; width: 20%;">
             <span class="listview-row-header">Tier</span>
-        </li>
-    </ul>
+        </div>
+    </div>
     <ul id="initiativeTiersListView"></ul>
 </div>
 
 <script type="text/x-kendo-template" id="initiativeTiersListViewTemplate">
-    <ul style="display: table; margin: 0; padding: 0; width: 100%;">
-        <li style="display: table-cell; width: 80%;">
+    <div style="display: table; height: 4em; width: 100%;">
+        <div style="display: table-cell; vertical-align: middle; width: 80%;">
             <span class="listview-row-detail">#:Initiative#</span>
-        </li>
-        <li style="display: table-cell; text-align: right; width: 20%;">
+        </div>
+        <div style="display: table-cell; text-align: right; vertical-align: middle; width: 20%;">
             <span class="listview-row-detail">#:Tier#</span>
-        </li>
-    </ul>
+        </div>
+    </div>
 </script>
