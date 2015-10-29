@@ -88,6 +88,7 @@
     <Content Include="scripts\issue.js">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="scripts\initiativetiers.js" />
     <Content Include="scripts\meetingInitiatives.js" />
     <Content Include="scripts\issues.js">
       <SubType>Content</SubType>
@@ -218,6 +219,7 @@
     <Content Include="views\issue.html">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="views\initiativetiers.html" />
     <Content Include="views\meetingInitiatives.html" />
     <Content Include="views\issues.html">
       <SubType>Content</SubType>

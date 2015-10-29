@@ -15,7 +15,7 @@ var legislatorData =
             id: 2,
             name: "tiers",
             label: "PCI Initiative Tiers",
-            url: "views/tiers.html?uid="
+            url: "views/initiativetiers.html?uid="
         },
         {
             id: 3,
