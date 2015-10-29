@@ -53,14 +53,10 @@
                             <span>Legislator</span>
                         </li>
                         <li class="listview-row-input-cell-control">
-                            <select id="meetingLegislator">
-                                <option value="0">Select a Value</option>
-                                <option value="1">Sen.Cory Booker</option>
-                                <option value="2">Rep. Donald Norcross</option>
-                                <option value="3">Rep. Bonnie Watson Coleman</option>
-                                <option value="4">Rep. Scott Tester</option>
-                                <option value="5">Sen. Test Jones</option>
-                            </select>
+                            <select data-bind="source: legislatorsOptions, value: meetingItem.LegislatorId" data-template="legislator-select-template"></select>
+                            <script id="legislator-select-template" type="text/x-kendo-template">
+                                <option value="#:Value#">#:Text#</option>
+                            </script>
                         </li>
                     </ul>
                 </li>
@@ -70,7 +66,7 @@
                             <span>Office Attendees</span>
                         </li>
                         <li class="listview-row-input-cell-control">
-                            <select data-bind="source: attendeeTypes" data-template="attendeeType-select-template"></select>
+                            <select data-bind="source: attendeeTypesOptions, value: meetingItem.AttendeeTypeId" data-template="attendeeType-select-template"></select>
                             <script id="attendeeType-select-template" type="text/x-kendo-template">
                                 <option value="#:Value#">#:Text#</option>
                             </script>
@@ -83,7 +79,7 @@
                             <span>Type</span>
                         </li>
                         <li class="listview-row-input-cell-control">
-                            <select data-bind="source: meetingLocations" data-template="meetingLocation-select-template"></select>
+                            <select data-bind="source: meetingLocationsOptions, value: meetingItem.MeetingLocationId" data-template="meetingLocation-select-template"></select>
                             <script id="meetingLocation-select-template" type="text/x-kendo-template">
                                 <option value="#:Value#">#:Text#</option>
                             </script>

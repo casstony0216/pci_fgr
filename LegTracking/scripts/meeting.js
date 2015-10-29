@@ -12,13 +12,13 @@ var meetingInitiativeData =
             id: 1,
             name: "Initiatives",
             label: "Initiatives",
-            url: "views/initiatives.html"
+            url: "views/meetingInitiatives.html?uid="
         },
         {
             id: 2,
             name: "Initiative Surveys",
             label: "Initiative Surveys",
-            url: "views/initiativeSurveys.html"
+            url: "views/initiativeSurveys.html?uid="
         }
     ];
 
@@ -44,7 +44,51 @@ var meetingInitiativeDataSource = new kendo.data.DataSource
     }
 );
 
-var attendeeTypesDataSource = new kendo.data.DataSource
+var legislatorsOptionsDataSource = new kendo.data.DataSource
+    (
+        {
+            transport:
+            {
+                read:
+                {
+                    // the remote service url
+                    url: "http://dev1.pciaa.net/pciwebsite/congressapi/legislators/list",
+
+                    // the request type
+                    type: "get",
+
+                    // the data type of the returned result
+                    dataType: "json",
+
+                    // crossDomain: true, // enable this,
+                    beforeSend: function (xhr)
+                    {
+                        xhr.setRequestHeader("Authorization", token);
+                    },
+
+                    error: function (xhr, ajaxOptions, thrownError)
+                    {
+                        alert("error " + xhr.responseText);
+                    }
+                }
+            },
+            batch: true,
+            schema:
+            {
+                model:
+                {
+                    Id: "LegislatorId",
+                    fields:
+                    {
+                        Value: "LegislatorId",
+                        Text: "FullName"
+                    }
+                }
+            }
+        }
+    );
+
+var attendeeTypesOptionsDataSource = new kendo.data.DataSource
     (
         {
             transport:
@@ -88,7 +132,7 @@ var attendeeTypesDataSource = new kendo.data.DataSource
         }
     );
 
-var meetingLocationsDataSource = new kendo.data.DataSource
+var meetingLocationsOptionsDataSource = new kendo.data.DataSource
     (
         {
             transport:
@@ -138,17 +182,7 @@ var meetingOtherData =
             id: 1,
             name: "PCI Attendees",
             label: "PCI Attendees",
-            url: "views/meetingAttendees.html"
-        }
-    ];
-
-var meetingOtherData =
-    [
-        {
-            id: 1,
-            name: "PCI Attendees",
-            label: "PCI Attendees",
-            url: "views/meetingAttendees.html"
+            url: "views/meetingAttendees.html?uid="
         }
     ];
 
@@ -190,8 +224,9 @@ function meetingListViewDataShow(e)
 
     var viewModel = kendo.observable({
         meetingItem: parentModel,
-        attendeeTypes: attendeeTypesDataSource,
-        meetingLocations: meetingLocationsDataSource
+        legislatorsOptions: legislatorsOptionsDataSource,
+        attendeeTypesOptions: attendeeTypesOptionsDataSource,
+        meetingLocationsOptions: meetingLocationsOptionsDataSource
     });
 
     kendo.bind(e.view.element, viewModel, kendo.mobile.ui);
@@ -296,7 +331,7 @@ function meetingInitiativeNavigate(e)
     var url = currentRecord.Url;
     var id = null;
 
-    if (url == "views/initiatives.html")
+    if (url == "views/meetingInitiatives.html?uid=")
     {
         id = parentModel.MeetingId;
     }
