@@ -134,30 +134,30 @@ function meetingsListViewDataShow(e)
             {
                 filter: ">li",
                 enableSwipe: true,
-                touchstart: meetingstouchstart,
-                tap: meetingsnavigate,
-                swipe: meetingsswipe
+                touchstart: meetingsTouchStart,
+                tap: meetingsNavigate,
+                swipe: meetingsSwipe
             }
         );
 
     $('.km-rightitem a').attr('href', 'views/meeting.html');
 }
 
-function meetingsnavigate(e)
+function meetingsNavigate(e)
 {
     var uid = $(e.touch.currentTarget).data("uid");
 
     kendo.mobile.application.navigate("views/meeting.html?uid=" + uid);
 }
 
-function meetingsswipe(e)
+function meetingsSwipe(e)
 {
     var button = kendo.fx($(e.touch.currentTarget).find("[data-role=button]"));
 
     button.expand().duration(200).play();
 }
 
-function meetingstouchstart(e)
+function meetingsTouchStart(e)
 {
     var target = $(e.touch.initialTouch),
         listview = $("#meetingsListView").data("kendoMobileListView"),

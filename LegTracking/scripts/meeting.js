@@ -355,7 +355,6 @@ function meetingInitiativeTouchStart(e)
 
 }
 
-
 function meetingOtherNavigate(e)
 {
     var uid = $(e.touch.currentTarget).data("uid");

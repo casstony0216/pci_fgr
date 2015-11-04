@@ -91,11 +91,6 @@ function legislatorListViewDataShow(e)
     kendo.bind(e.view.element, parentModel, kendo.mobile.ui);
 }
 
-function legislatorListViewDataInit(e) 
-{
-    
-}
-
 function legislatorTouchStart(e) 
 {
     

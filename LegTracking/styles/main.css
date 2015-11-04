@@ -670,10 +670,14 @@ input, select
     font-size: 1.25em !important;
     font-weight: normal !important;
 }
+.listview-row-subdetail-header
+{
+    font-size: 1.25em !important;
+}
 .listview-row-subdetail
 {
-    color: #999;
-    font-size: 1em;
+    color: #999 !important;
+    font-size: 1em !important;
 }
 .listview-row-photo 
 {

@@ -2,15 +2,17 @@
 var token = 'http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fname=jonathon.leslie%40pciaa.net&TokenId=9ba3e4e1-efd7-4ac2-8230-60cf01d9137b&http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2femailaddress=jonathon.leslie%40pciaa.net&PersonID=47561&FirstName=Jonathon&MiddleName=&LastName=Leslie&FullName=Leslie%2c+Jonathon&StreetAddress1=8700+West+Bryn+Mawr+Avenue+STE+1200S&StreetAddress2=STE+1200S&City=Chicago&State=IL&PostalCode=60631-3512&Country=USA&WorkPhone=847-553-3699&Extension=&Fax=847-297-5064&Company=PCI&CompanyID=4274&DeptID=262&Department=Information+Technology&SupervisorID=52112&Supervisor=DAngelo%2c+Tony+E&Title=Project+Manager%2c+Information+Technology&EmailAddress=jonathon.leslie%40pciaa.net&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=Amicus+Admin&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=Broadcast+Admin&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=Broadcast+Branding&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=Broadcast+Sender&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=Broadcast+User&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=PCI.Everyone&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=Staff+Request+Admin&Issuer=urn%3a%2f%2fpciaa-sts&Audience=http%3a%2f%2fdev.pciaa.net%2f&ExpiresOn=1445884400&HMACSHA256=vVyMUM0ntSXhTaMBdHYSe3e36LMYp53EwOIqbShOzgs%3d';
 
 var profilesDataSource = null;
+var profileType = null;
 
 function profilesViewDataShow(e)
 {
     var apiUrl = null;
-    var type = e.view.params.type;
     var uid = e.view.params.uid;
     var dataTitle = null;
 
-    if (type == "legislator")
+    profileType = e.view.params.type;
+
+    if (profileType == "legislator")
     {
         apiUrl = "http://dev1.pciaa.net/pciwebsite/congressapi/legislators/relationships?legislatorId=" + uid;
 
@@ -88,9 +90,9 @@ function profilesViewDataShow(e)
             {
                 filter: ">li",
                 enableSwipe: true,
-                touchstart: profilestouchstart,
-                tap: profilesnavigate,
-                swipe: profilesswipe
+                touchstart: profilesTouchStart,
+                tap: profilesNavigate,
+                swipe: profilesSwipe
             }
         );
 
@@ -101,28 +103,21 @@ function profilesViewDataShow(e)
     navbar.title(dataTitle);
 }
 
-function profilesnavigate(e)
+function profilesNavigate(e)
 {
-    alert("navigate");
-    var type = $(e.touch.currentTarget).data("type");
-    alert(type);
     var uid = $(e.touch.currentTarget).data("uid");
-    alert(uid);
 
-    var url = "views/profile.html?type=" + type + "&uid=" + uid;
-    alert(url);
-
-    kendo.mobile.application.navigate("views/profile.html?type=" + type + "&uid=" + uid);
+    kendo.mobile.application.navigate("views/profile.html?type=" + profileType + "&uid=" + uid);
 }
 
-function profilesswipe(e)
+function profilesSwipe(e)
 {
     var button = kendo.fx($(e.touch.currentTarget).find("[data-role=button]"));
 
     button.expand().duration(200).play();
 }
 
-function profilestouchstart(e)
+function profilesTouchStart(e)
 {
     var target = $(e.touch.initialTouch),
         listview = $("#profilesListView").data("kendoMobileListView"),

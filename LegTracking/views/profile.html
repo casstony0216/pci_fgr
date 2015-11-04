@@ -5,7 +5,15 @@
                 <ul class="listview-row-input-table">
                     <li class="listview-row-input-cell">
                         <div style="display: inline-block; margin-left: 10px;">
-                            <span data-bind="text:FullName"></span>
+                            <span class="listview-row-subdetail-header" data-bind="text:FullName"></span>
+                            <br />
+                            <span class="listview-row-subdetail" data-bind="text:Company"></span>
+                            <br />
+                            <span class="listview-row-subdetail" data-bind="text:Title"></span>
+                            <br />
+                            <span class="listview-row-subdetail" data-bind="text:EmailAddress"></span>
+                            <br />
+                            <span class="listview-row-subdetail" data-bind="text:WorkPhone"></span>
                         </div>
                     </li>
                 </ul>
@@ -21,6 +29,21 @@
                 <ul class="listview-row-input-table">
                     <li class="listview-row-input-cell-control">
                         <textarea style="resize: none" data-bind="value:Notes" rows="5"></textarea>
+                    </li>
+                </ul>
+            </li>
+            <li style="margin: 0; padding: 0; width: 100%;">
+                <ul class="listview-row-input-table">
+                    <li class="listview-row-input-cell-control" style="background-color: #eee; text-align: center;">
+                        <a data-role="button" style="font-size: 1.5em; width: 90%;"><span style="color: #0a6fb0 !important;">Save</span></a>
+                        <a data-role="button" style="font-size: 1.5em; width: 90%;"><span style="color: #0a6fb0 !important;">Delete</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li style="margin: 0; padding: 0; width: 100%;">
+                <ul class="listview-row-input-table">
+                    <li class="listview-row-input-cell-control" style="background-color: #eee; text-align: center;">
+                        <a data-role="button" style="font-size: 1.5em; width: 90%;"><span style="color: #0a6fb0 !important;">Cancel</span></a>
                     </li>
                 </ul>
             </li>
