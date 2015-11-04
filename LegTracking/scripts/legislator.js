@@ -26,7 +26,7 @@ var legislatorData =
             id: 4,
             name: "relationships",
             label: "PCI Relationships",
-            url: "views/legislatorPciRelations.html?uid="
+            url: "views/profiles.html?type=legislator&uid="
         },
         {
             id: 5,

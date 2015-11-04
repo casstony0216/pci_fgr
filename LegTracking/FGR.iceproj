@@ -88,14 +88,13 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="scripts\initiativetiers.js" />
+    <Content Include="scripts\profile.js" />
+    <Content Include="scripts\profiles.js" />
     <Content Include="scripts\meetingInitiatives.js" />
     <Content Include="scripts\issues.js">
       <SubType>Content</SubType>
     </Content>
     <Content Include="scripts\legislator.js">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="scripts\legislatorPciRelationship.js">
       <SubType>Content</SubType>
     </Content>
     <Content Include="scripts\legislators.js">
@@ -119,12 +118,10 @@
     <Content Include="scripts\old_legislators.js">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="scripts\profile.js">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="scripts\subcommittees.js">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="scripts\surveyquestion.js" />
     <Content Include="scripts\task.js">
       <SubType>Content</SubType>
     </Content>
@@ -221,6 +218,8 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="views\initiativetiers.html" />
+    <Content Include="views\profile.html" />
+    <Content Include="views\profiles.html" />
     <Content Include="views\meetingInitiatives.html" />
     <Content Include="views\issues.html">
       <SubType>Content</SubType>
@@ -229,9 +228,6 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="views\legislatorPciRelation.html">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="views\legislatorPciRelations.html">
       <SubType>Content</SubType>
     </Content>
     <Content Include="views\legislatorPciRelationSelect.html">
@@ -261,9 +257,6 @@
     <Content Include="views\meetings.html">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="views\profile.html">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="views\sampleSushi.html">
       <SubType>Content</SubType>
     </Content>
@@ -273,6 +266,7 @@
     <Content Include="views\subcommittees.html">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="views\surveyquestion.html" />
     <Content Include="views\task.html">
       <SubType>Content</SubType>
     </Content>

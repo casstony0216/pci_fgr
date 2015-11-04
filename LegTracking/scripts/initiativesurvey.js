@@ -47,11 +47,12 @@ function initiativeSurveyListViewDataShow(e)
                     {
                         LegislatorId: "LegislatorId",
                         InitiativeId: "InitiativeId",
+                        Initiative: "Initiative",
                         InitiativeSurveyId: "InitiativeSurveyId",
                         InitiativeSurvey: "InitiativeSurvey",
                         SupportLevelId: "SupportLevelId",
                         SupportLevel: "SupportLevel",
-                        FollowUpRequired: "FollowUpRequired",
+                        FollowUpRequired: { type: "boolean" },
                         Comments: "Comments"
                     }
                 }
@@ -78,7 +79,11 @@ function initiativeSurveyListViewDataShow(e)
             }
         );
 
-    //kendo.bind(e.view.element, parentModel, kendo.mobile.ui);
+    var uid = e.view.params.uid;
+    var initiativeSurveyModel = initiativeSurveysDataSource.getByUid(uid);
+    var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
+
+    navbar.title(initiativeSurveyModel.Initiative);
 }
 
 function initiativeSurveyTouchStart(e)
@@ -89,7 +94,6 @@ function initiativeSurveyTouchStart(e)
 function initiativeSurveyNavigate(e)
 {
     var uid = $(e.touch.currentTarget).data("uid");
-    alert(uid);
     var url = "views/surveyquestion.html?uid=";
 
     kendo.mobile.application.navigate(url + uid);

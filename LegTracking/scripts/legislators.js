@@ -83,28 +83,28 @@ function legislatorsListViewDataInit(e)
             {
                 filter: ">li",
                 enableSwipe: true,
-                touchstart: legislatorstouchstart,
-                tap: legislatorsnavigate,
-                swipe: legislatorsswipe
+                touchstart: legislatorsTouchStart,
+                tap: legislatorsNavigate,
+                swipe: legislatorsSwipe
             }
         );
 }
 
-function legislatorsnavigate(e) 
+function legislatorsNavigate(e) 
 {
     var itemUID = $(e.touch.currentTarget).data("uid");
     
     kendo.mobile.application.navigate("views/legislator.html?uid=" + itemUID);
 }
 
-function legislatorsswipe(e) 
+function legislatorsSwipe(e) 
 {
     var button = kendo.fx($(e.touch.currentTarget).find("[data-role=button]"));
     
     button.expand().duration(200).play();
 }
 
-function legislatorstouchstart(e) 
+function legislatorsTouchStart(e) 
 {
     var target = $(e.touch.initialTouch),
         listview = $("#legislatorsListView").data("kendoMobileListView"),

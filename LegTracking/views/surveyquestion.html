@@ -1,0 +1,52 @@
+<div data-role="view" id="surveyquestionview" data-show="surveyQuestionListViewDataShow" data-use-native-scrolling="true" data-layout="save-button-layout" data-title="Survey Question">
+    <form>
+        <ul data-role="listview" data-style="inset" class="formArea" onclick="">
+            <li style="margin: 0; padding: 0; width: 100%;">
+                <ul class="listview-row-input-table">
+                    <li class="listview-row-input-cell">
+                        <div style="display: inline-block; margin-left: 10px;">
+                            <span data-bind="text:surveyQuestionItem.InitiativeSurvey"></span>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li style="margin: 0; padding: 0; width: 100%;">
+                <ul class="listview-row-input-table">
+                    <li class="listview-row-input-cell-label">
+                        <span>Support Level</span>
+                    </li>
+                    <li class="listview-row-input-cell-control">
+                        <select data-bind="source:supportLevelsOptions, value:surveyQuestionItem.SupportLevelId" data-template="supportLevel-select-template"></select>
+                        <script id="supportLevel-select-template" type="text/x-kendo-template">
+                            <option value="#:Value#">#:Text#</option>
+                        </script>
+                    </li>
+                </ul>
+            </li>
+            <li style="margin: 0; padding: 0; width: 100%;">
+                <ul class="listview-row-input-table">
+                    <li class="listview-row-input-cell-label">
+                        <span>Follow Up Required?</span>
+                    </li>
+                    <li class="listview-row-input-cell-control">
+                        <input data-role="switch" data-on-label="Yes" data-off-label="No" data-bind="checked:surveyQuestionItem.FollowUpRequired" />
+                    </li>
+                </ul>
+            </li>
+            <li style="margin: 0; padding: 0; width: 100%;">
+                <ul class="listview-row-input-table">
+                    <li class="listview-row-input-cell-label">
+                        <span>Comments/Observations</span>
+                    </li>
+                </ul>
+            </li>
+            <li style="margin: 0; padding: 0; width: 100%;">
+                <ul class="listview-row-input-table">
+                    <li class="listview-row-input-cell-control">
+                        <textarea style="resize: none" data-bind="value:surveyQuestionItem.Comments" rows="5"></textarea>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </form>
+</div>

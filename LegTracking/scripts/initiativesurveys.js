@@ -85,7 +85,7 @@ function initiativeSurveysNavigate(e)
     var currentRecord = initiativeSurveysDataSource.getByUid(uid);
     var legislatorId = currentRecord.LegislatorId;
     var initiativeId = currentRecord.InitiativeId;
-    var url = "views/initiativesurvey.html?legislatorId=" + legislatorId + "&initiativeId=" + initiativeId;
+    var url = "views/initiativesurvey.html?uid=" + uid + "&legislatorId=" + legislatorId + "&initiativeId=" + initiativeId;
 
     kendo.mobile.application.navigate(url);
 }

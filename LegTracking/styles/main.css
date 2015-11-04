@@ -105,6 +105,7 @@ body, html
     /*border: solid 1px #ccc !important;*/
 	color: #999 !important;
     float: left !important;
+    font-size: 1.25em !important;
     margin: 0px !important;
 	position: relative !important;
     width: 100% !important;
@@ -705,10 +706,18 @@ input, select
     background-color: #fff;
     border-bottom: solid 1px #ccc;
     display: table; 
-    height: 30px; 
-    margin: 0px;
-    padding: 0px; 
+    height: 3em !important; 
+    margin: 0;
+    padding: 0; 
     width: 100%;
+}
+.listview-row-input-cell
+{
+    display: table-cell;
+    font-size: 1.25em !important;
+    font-weight: normal !important;
+    padding-bottom: 0.5em !important;
+    padding-top: 0.5em !important;
 }
 .listview-row-input-cell-label
 {
@@ -739,6 +748,16 @@ input, select
 {
     background-color: #eee !important;
 }*/
+
+.km-flat .km-switch-background, .km-flat .km-switch-wrapper
+{
+    background-color: #0a6fb0 !important;
+}
+
+span.km-switch-label-on
+{
+    color: white !important;
+}
 
 .km-scroll-wrapper,
 .km-native-scroller
