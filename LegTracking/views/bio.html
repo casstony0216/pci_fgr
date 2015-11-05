@@ -1,34 +1,79 @@
-<div data-role="view" id="bioview" data-init="bioListViewDataBindInit" data-show="bioListViewDataBindShow">
-    <header data-role="header">
-        <div data-role="navbar">
-            <a class="nav-button nav-button-back" data-align="left" data-role="backbutton" id="back">
-                <div>
-                	Back
-                </div>
-            </a>
-            <span data-role="view-title">Bio</span>
-        </div>
-    </header>
-    <div class="view-row-details-container">
-        <div class="view-photo-container">
-            <img id="photo" class="view-header-photo" data-bind="attr: { src: ImageUrl }"/>
-        </div>
-        <div>
-            <span class="view-header" data-bind="text: Name"></span>
-            <br/>
-            <span class="view-detail" data-bind="text: Description"></span>
+<div data-role="view" id="bioview" data-show="bioListViewDataShow" data-layout="back-button-layout" data-title="Bio">
+    <div class="view-row-details-container-table">
+        <div class="view-row-details-container-table-cell">
+            <span class="view-header" data-bind="text: FullName"></span>
         </div>
     </div>
-	<div class="bio-detail-container">
-        <span class="bio" data-bind="text: Bio"></span>
-        
-        <br/><br/>
-        <span style="color: purple; font-weight: bold">
-            ---------------------------------------------------------------- 
-            <br/><br/>
-            WILL BE ADDING ADDITIONAL BIO RELATED INFORMATION HERE
-            <br/><br/> 
-            ----------------------------------------------------------------
-        </span>
-    </div>
+    <ul data-role="listview" data-style="inset" class="formArea" onclick="">
+        <li style="margin: 0px; padding: 0px; width: 100%;">
+            <ul class="listview-row-input-table">
+                <li class="listview-row-display-cell-label">
+                    <span>Office</span>
+                </li>
+                <li class="listview-row-display-cell-data">
+                    <span data-bind="text:Office"></span>
+                </li>
+            </ul>
+            <ul class="listview-row-input-table">
+                <li class="listview-row-display-cell-label">
+                    <span>State</span>
+                </li>
+                <li class="listview-row-display-cell-data">
+                    <span data-bind="text:StateName"></span>
+                </li>
+            </ul>
+            <ul class="listview-row-input-table">
+                <li class="listview-row-display-cell-label">
+                    <span>Phone</span>
+                </li>
+                <li class="listview-row-display-cell-data">
+                    <span data-bind="text:Phone"></span>
+                </li>
+            </ul>
+            <ul class="listview-row-input-table">
+                <li class="listview-row-display-cell-label">
+                    <span>Year Elected</span>
+                </li>
+                <li class="listview-row-display-cell-data">
+                    <span data-bind="text:TermStart"></span>
+                </li>
+            </ul>
+            <ul class="listview-row-input-table">
+                <li class="listview-row-display-cell-label">
+                    <span>Chamber</span>
+                </li>
+                <li class="listview-row-display-cell-data">
+                    <span data-bind="text:Chamber" style="text-transform: capitalize;"></span>
+                </li>
+            </ul>
+            <ul class="listview-row-input-table">
+                <li class="listview-row-display-cell-label">
+                    <span>Party</span>
+                </li>
+                <li class="listview-row-display-cell-data">
+                    <span data-bind="text:Party"></span>
+                </li>
+            </ul>
+            <ul class="listview-row-input-table">
+                <li class="listview-row-display-cell-label">
+                    <span>State Rank</span>
+                </li>
+                <li class="listview-row-display-cell-data">
+                    <span data-bind="text:StateRank" style="text-transform: capitalize;"></span>
+                </li>
+            </ul>
+            <ul class="listview-row-input-table">
+                <li class="listview-row-display-cell-label">
+                    <span>DETAILS</span>
+                </li>
+            </ul>
+            <ul class="listview-row-input-table">
+                <li class="listview-row-display-cell-data">
+                    <div data-role="scroller" style="height: 10em;">
+                        <span data-bind="text:Bio"></span>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
 </div>

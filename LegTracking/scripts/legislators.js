@@ -70,6 +70,7 @@ var legislatorsDataSource = new kendo.data.DataSource
 				        Phone: "Phone",
 				        State: "State",
 				        StateName: "StateName",
+				        StateRank: "StateRank",
 				        TermStart: "TermStart",
 				        TermEnd: "TermEnd",
 				        ThomasId: "ThomasId",

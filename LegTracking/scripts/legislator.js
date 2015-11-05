@@ -103,7 +103,14 @@ function legislatorNavigate(e)
     var url = currentRecord.Url;
     var legislatorId = parentModel.LegislatorId;
     
-	kendo.mobile.application.navigate(url + legislatorId);
+    if (currentRecord.Name == "bio")
+    {
+        kendo.mobile.application.navigate(url + parentUid);
+    }
+    else
+    {
+        kendo.mobile.application.navigate(url + legislatorId);
+    }
 }
 
 function legislatorSwipe(e) 

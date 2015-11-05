@@ -76,12 +76,7 @@
     <Content Include="scripts\AutoComplete.js">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="scripts\bio.js">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="scripts\committees.js">
-      <SubType>Content</SubType>
-    </Content>
+    <Content Include="scripts\bio.js" />
     <Content Include="scripts\initiativesurvey.js" />
     <Content Include="scripts\initiativesurveys.js" />
     <Content Include="scripts\issue.js">
@@ -203,12 +198,7 @@
     <Content Include="views\AutoComplete.html">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="views\bio.html">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="views\committees.html">
-      <SubType>Content</SubType>
-    </Content>
+    <Content Include="views\bio.html" />
     <Content Include="views\HtmlPage.html">
       <SubType>Content</SubType>
     </Content>

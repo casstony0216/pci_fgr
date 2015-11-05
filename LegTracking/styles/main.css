@@ -747,6 +747,31 @@ input, select
     font-weight: normal !important;
     margin-right: 10px;
 }
+.listview-row-display-cell-label
+{
+    display: table-cell;
+    margin-left: 10px !important;
+    /*width: 45%;*/
+}
+.listview-row-display-cell-label span
+{
+    font-size: 1.1em !important;
+    font-weight: normal !important;
+    margin-left: 10px !important;
+}
+.listview-row-display-cell-data
+{
+    display: table-cell; 
+    text-align: right;
+    /*width: 55%;*/
+}
+.listview-row-display-cell-data span
+{
+    /*color: #999 !important;*/
+    font-size: 1.1em !important;
+    font-weight: normal !important;
+    margin-right: 10px;
+}
 .listview-row-button-table
 {
     background-color: #999 !important;
