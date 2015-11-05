@@ -109,7 +109,7 @@ body, html
     margin: 0px !important;
 	position: relative !important;
     width: 100% !important;
-    height: 200px !important;
+    height: 10em !important;
 }  
 
 /* App Header */
@@ -746,6 +746,32 @@ input, select
     color: #999 !important;
     font-weight: normal !important;
     margin-right: 10px;
+}
+.listview-row-button-table
+{
+    background-color: #999 !important;
+    /*border-bottom: solid 1px #ccc;*/
+    display: table; 
+    /*height: 3em !important;*/ 
+    margin: 0;
+    padding: 0.5em 0 0.5em 0 !important; 
+    width: 100% !important;
+}
+.listview-row-button-cell
+{
+    background-color: #999 !important;
+    display: table-cell;
+    font-weight: normal !important;
+    /*margin-right: 10px;*/ 
+    text-align: center;
+    width: 100% !important;
+}
+.listview-row-button-cell .km-button
+{
+    background-color: white !important;
+    color: #0a6fb0 !important;
+    font-size: 1.5em !important; 
+    width: 95% !important;
 }
 
 /*.km-filter-form
