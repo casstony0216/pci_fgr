@@ -113,9 +113,6 @@
     <Content Include="scripts\old_legislators.js">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="scripts\subcommittees.js">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="scripts\surveyquestion.js" />
     <Content Include="scripts\task.js">
       <SubType>Content</SubType>
@@ -251,9 +248,6 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="views\sampleSushi2.html">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="views\subcommittees.html">
       <SubType>Content</SubType>
     </Content>
     <Content Include="views\surveyquestion.html" />
