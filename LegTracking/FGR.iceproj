@@ -77,15 +77,16 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="scripts\bio.js" />
+    <Content Include="scripts\committees.js" />
     <Content Include="scripts\initiativesurvey.js" />
     <Content Include="scripts\initiativesurveys.js" />
     <Content Include="scripts\issue.js">
       <SubType>Content</SubType>
     </Content>
     <Content Include="scripts\initiativetiers.js" />
+    <Content Include="scripts\meetinginitiatives.js" />
     <Content Include="scripts\profile.js" />
     <Content Include="scripts\profiles.js" />
-    <Content Include="scripts\meetingInitiatives.js" />
     <Content Include="scripts\issues.js">
       <SubType>Content</SubType>
     </Content>
@@ -101,18 +102,13 @@
     <Content Include="scripts\meeting.js">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="scripts\meetingAttendeeAdd.js">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="scripts\meetingAttendees.js">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="scripts\meetings.js">
       <SubType>Content</SubType>
     </Content>
     <Content Include="scripts\old_legislators.js">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="scripts\profilesearch.js" />
     <Content Include="scripts\surveyquestion.js" />
     <Content Include="scripts\task.js">
       <SubType>Content</SubType>
@@ -196,6 +192,7 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="views\bio.html" />
+    <Content Include="views\committees.html" />
     <Content Include="views\HtmlPage.html">
       <SubType>Content</SubType>
     </Content>
@@ -205,19 +202,13 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="views\initiativetiers.html" />
+    <Content Include="views\meetinginitiatives.html" />
     <Content Include="views\profile.html" />
     <Content Include="views\profiles.html" />
-    <Content Include="views\meetingInitiatives.html" />
     <Content Include="views\issues.html">
       <SubType>Content</SubType>
     </Content>
     <Content Include="views\legislator.html">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="views\legislatorPciRelation.html">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="views\legislatorPciRelationSelect.html">
       <SubType>Content</SubType>
     </Content>
     <Content Include="views\legislators.html">
@@ -232,18 +223,10 @@
     <Content Include="views\meeting.html">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="views\meetingAttendee.html">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="views\meetingAttendeeAdd.html">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="views\meetingAttendees.html">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="views\meetings.html">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="views\profilesearch.html" />
     <Content Include="views\sampleSushi.html">
       <SubType>Content</SubType>
     </Content>

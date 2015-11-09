@@ -98,7 +98,7 @@ function legislatorsListViewDataInit(e)
                 template: $("#legislatorsListViewTemplate").html(),
                 filterable: 
                 {
-                    field: "Name",
+                    field: "FullName",
                     operator: "contains"
                 }
             }

@@ -43,6 +43,11 @@ var meetingsDataSource = null;
 //            }
 //        });
 
+function meetingsListViewDataInit(e)
+{
+
+}
+
 function meetingsListViewDataShow(e)
 {
     var apiUrl = null;

@@ -1,0 +1,33 @@
+<div data-role="view" id="profilesearchview" data-init="profileSearchViewDataInit" data-show="profileSearchViewDataShow" data-layout="add-button-layout" data-title="Profile Search">
+    <!--<div class="km-listview-wrapper">
+        <form class="km-filter-form" action="javascript:profileSearch();">
+            <div class="km-filter-wrap">
+                <input type="search" placeholder="Search..." id="searchText" style="width: 98%;">
+                <a href="#" class="km-filter-reset" title="Clear" style="display: none;">
+                    <span class="km-icon km-clear"></span>
+                    <span class="km-text">Clear</span>
+                </a>
+            </div>
+            <div id="searchMessage" style="display: none; margin: 0 .8em;">
+                <span style="color: red; font-size: 1.25em;">Enter at least 3 characters</span>
+            </div>
+        </form>
+    </div>-->
+    <ul id="profileSearchListView"></ul>
+</div>
+
+<script type="text/x-kendo-tmpl" id="profileSearchListViewTemplate">
+    <div style="display: table; width: 100%;">
+        <div style="display: table-cell; vertical-align: middle; width: 75%;">
+            <input type="hidden" id="personId" value="#:PersonId#" />
+            <span class="listview-row-detail">#:FullName#</span>
+            <br />
+            <span class="listview-row-subdetail">#:Company#</span>
+            <br />
+            <span class="listview-row-subdetail">#:Title#</span>
+        </div>
+        <div style="display: table-cell; text-align: right; vertical-align: middle; width: 25%;">
+            <input data-role="switch" data-on-label="Yes" data-off-label="No" data-checked="#:Checked#" />
+        </div>
+    </div>
+</script>

@@ -64,7 +64,7 @@ var legislatorDataSource = new kendo.data.DataSource
 	}
 );
 
-function legislatorListViewDataShow(e) 
+function legislatorListViewDataInit(e)
 {
     e.view.element.find("#legislatorListView")
         .kendoMobileListView
@@ -84,6 +84,11 @@ function legislatorListViewDataShow(e)
                 swipe: legislatorSwipe
             }
         );
+}
+
+function legislatorListViewDataShow(e) 
+{
+    $("#legislatorListView").data("kendoMobileListView").setDataSource(legislatorDataSource);
 
     parentUid = e.view.params.uid;
     parentModel = legislatorsDataSource.getByUid(parentUid);

@@ -12,13 +12,13 @@ var meetingInitiativeData =
             id: 1,
             name: "Initiatives",
             label: "Initiatives",
-            url: "views/meetingInitiatives.html?uid="
+            url: "views/meetinginitiatives.html?uid="
         },
         {
             id: 2,
             name: "Initiative Surveys",
             label: "Initiative Surveys",
-            url: "views/initiativeSurveys.html?uid="
+            url: "views/initiativesurveys.html?uid="
         }
     ];
 
@@ -182,7 +182,7 @@ var meetingOtherData =
             id: 1,
             name: "PCI Attendees",
             label: "PCI Attendees",
-            url: "views/meetingAttendees.html?uid="
+            url: "views/profiles.html?type=meeting&uid="
         }
     ];
 
@@ -331,13 +331,13 @@ function meetingInitiativeNavigate(e)
     var url = currentRecord.Url;
     var id = null;
 
-    if (url == "views/meetingInitiatives.html?uid=")
+    if (url == "views/initiativesurveys.html?uid=")
     {
-        id = parentModel.MeetingId;
+        id = parentModel.LegislatorId;
     }
     else
     {
-        id = parentModel.LegislatorId;
+        id = parentModel.MeetingId;
     }
     
     kendo.mobile.application.navigate(url + id);
