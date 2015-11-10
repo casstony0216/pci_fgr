@@ -21,7 +21,8 @@ function profileSearchViewDataInit(e)
                     field: "FullName",
                     operator: "contains"
                 },
-                endlessScroll: true
+                endlessScroll: true,
+                pullToRefresh: true
             }
         );
 }
@@ -92,6 +93,7 @@ function setProfileSearchDataSource(profileType, uid)
                     return {
                         searchType: profileType,
                         relationalId: uid,
+                        filter: options.filter ? options.filter.filters[0].value : '',
                         page: options.page,
                         pageSize: options.pageSize
                     };
@@ -112,29 +114,21 @@ function setProfileSearchDataSource(profileType, uid)
                             Total: "Total"
                         }
                     },
-                total: function () { return 29365; }
+                parse: function (data)
+                {
+                    // assign top level array to property
+                    data.data = data;
+                    // assign the count off one of the fields to a new total field
+                    data.total = data.data[0].Total;
+
+                    return data;
+                },
+                total: function (data) { return data.total; }
             },
             serverPaging: true,
+            serverFiltering: true,
             pageSize: 50
         }
     );
 
 }
-
-//function profileSearch()
-//{
-//    var searchString = $('#searchText').val();
-
-//    if (searchString.length >= 3)
-//    {
-//        $('#searchMessage').css("display", "none");
-
-//        setProfileSearchDataSource(profileType, profileSearchUid);
-
-//        $("#profileSearchListView").data("kendoMobileListView").setDataSource(profileSearchDataSource);
-//    }
-//    else
-//    {
-//        $('#searchMessage').css("display", "block");
-//    }
-//}
