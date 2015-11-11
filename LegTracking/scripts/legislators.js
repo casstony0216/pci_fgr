@@ -9,7 +9,7 @@ var legislatorsDataSource = new kendo.data.DataSource
                 read:
                 {
                     // the remote service url
-                    url: "http://dev1.pciaa.net/pciwebsite/congressapi/legislators/list",
+                    url: "http://dev.pciaa.net/pciwebsite/congressapi/legislators/list",
 
                     // the request type
                     type: "get",

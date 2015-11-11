@@ -27,6 +27,156 @@
     <Content Include=".abproject" />
     <Content Include=".debug.abproject" />
     <Content Include=".release.abproject" />
+    <Content Include="App_Resources\Android\drawable-hdpi\icon.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\Android\drawable-ldpi\icon.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\Android\drawable-mdpi\icon.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\Android\drawable-nodpi\splashscreen.9.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\Default%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\Default-568h%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\Default-667h.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\Default-736h.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\Default-Landscape%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\Default-Landscape-667h.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\Default-Landscape-736h.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\Default-Landscape.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\Default-Portrait%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\Default-Portrait.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\Default.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\icon%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\icon-40%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\Icon-40%403x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\icon-40.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\icon-60%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\Icon-60%403x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\icon-60.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\icon-72%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\icon-72.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\icon-76%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\icon-76.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\Icon-Small%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\Icon-Small-50%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\Icon-Small-50.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\Icon-Small.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\icon.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\watch-172x172.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\watch-196x196.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\watch-48x48.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\watch-55x55.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\watch-58x58.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\watch-80x80.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\watch-87x87.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\iOS\watch-88x88.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\WP8\ApplicationIcon.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\WP8\Assets\BadgeLogo.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\WP8\Assets\Logo.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\WP8\Assets\SplashScreen.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\WP8\Assets\SquareTile150x150.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\WP8\Assets\SquareTile71x71.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\WP8\Assets\StoreLogo.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\WP8\Assets\WideLogo.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\WP8\SplashScreenImage.jpg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\WP8\Tiles\Iconic\110x110.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="App_Resources\WP8\Tiles\Iconic\202x202.png">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="cordova.android.js" />
     <Content Include="cordova.ios.js" />
     <Content Include="cordova.wp8.js" />
@@ -240,52 +390,6 @@
     <Content Include="views\tasks.html">
       <SubType>Content</SubType>
     </Content>
-    <Resource Include="App_Resources\Android\drawable-hdpi\icon.png" />
-    <Resource Include="App_Resources\Android\drawable-ldpi\icon.png" />
-    <Resource Include="App_Resources\Android\drawable-mdpi\icon.png" />
-    <Resource Include="App_Resources\Android\drawable-nodpi\splashscreen.9.png" />
-    <Resource Include="App_Resources\iOS\Default-568h@2x.png" />
-    <Resource Include="App_Resources\iOS\Default-667h.png" />
-    <Resource Include="App_Resources\iOS\Default-736h.png" />
-    <Resource Include="App_Resources\iOS\Default-Landscape-667h.png" />
-    <Resource Include="App_Resources\iOS\Default-Landscape-736h.png" />
-    <Resource Include="App_Resources\iOS\Default-Landscape.png" />
-    <Resource Include="App_Resources\iOS\Default-Landscape@2x.png" />
-    <Resource Include="App_Resources\iOS\Default-Portrait.png" />
-    <Resource Include="App_Resources\iOS\Default-Portrait@2x.png" />
-    <Resource Include="App_Resources\iOS\Default.png" />
-    <Resource Include="App_Resources\iOS\Default@2x.png" />
-    <Resource Include="App_Resources\iOS\icon-40.png" />
-    <Resource Include="App_Resources\iOS\icon-40@2x.png" />
-    <Resource Include="App_Resources\iOS\Icon-40@3x.png" />
-    <Resource Include="App_Resources\iOS\icon-60.png" />
-    <Resource Include="App_Resources\iOS\icon-60@2x.png" />
-    <Resource Include="App_Resources\iOS\Icon-60@3x.png" />
-    <Resource Include="App_Resources\iOS\icon-72.png" />
-    <Resource Include="App_Resources\iOS\icon-72@2x.png" />
-    <Resource Include="App_Resources\iOS\icon-76.png" />
-    <Resource Include="App_Resources\iOS\icon-76@2x.png" />
-    <Resource Include="App_Resources\iOS\Icon-Small-50.png" />
-    <Resource Include="App_Resources\iOS\Icon-Small-50@2x.png" />
-    <Resource Include="App_Resources\iOS\Icon-Small.png" />
-    <Resource Include="App_Resources\iOS\Icon-Small@2x.png" />
-    <Resource Include="App_Resources\iOS\icon.png" />
-    <Resource Include="App_Resources\iOS\icon@2x.png" />
-    <Resource Include="App_Resources\WP8\ApplicationIcon.png" />
-    <Resource Include="App_Resources\WP8\SplashScreenImage.jpg" />
-    <Resource Include="App_Resources\WP8\Assets\BadgeLogo.png" />
-    <Resource Include="App_Resources\WP8\Assets\Logo.png" />
-    <Resource Include="App_Resources\WP8\Assets\SplashScreen.png" />
-    <Resource Include="App_Resources\WP8\Assets\SquareTile150x150.png" />
-    <Resource Include="App_Resources\WP8\Assets\SquareTile71x71.png" />
-    <Resource Include="App_Resources\WP8\Assets\StoreLogo.png" />
-    <Resource Include="App_Resources\WP8\Assets\WideLogo.png" />
-    <Resource Include="App_Resources\WP8\Tiles\Iconic\110x110.png" />
-    <Resource Include="App_Resources\WP8\Tiles\Iconic\202x202.png" />
-    <Content Include="css\index.css" />
-    <Content Include="img\cordova.png" />
-    <Content Include="img\logo.png" />
-    <Content Include="js\index.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Resources\" />

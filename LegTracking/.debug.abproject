@@ -2,7 +2,6 @@
   "CorePlugins": [
     "org.apache.cordova.battery-status",
     "org.apache.cordova.camera",
-    "org.apache.cordova.console",
     "org.apache.cordova.contacts",
     "org.apache.cordova.device",
     "org.apache.cordova.device-motion",
