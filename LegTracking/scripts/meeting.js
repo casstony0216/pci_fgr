@@ -52,7 +52,7 @@ var legislatorsOptionsDataSource = new kendo.data.DataSource
                 read:
                 {
                     // the remote service url
-                    url: "http://dev1.pciaa.net/pciwebsite/congressapi/legislators/list",
+                    url: "http://dev.pciaa.net/pciwebsite/congressapi/legislators/list",
 
                     // the request type
                     type: "get",
@@ -96,7 +96,7 @@ var attendeeTypesOptionsDataSource = new kendo.data.DataSource
                 read:
                 {
                     // the remote service url
-                    url: "http://dev1.pciaa.net/pciwebsite/congressapi/legislators/meetingattendeetypes",
+                    url: "http://dev.pciaa.net/pciwebsite/congressapi/legislators/meetingattendeetypes",
 
                     // the request type
                     type: "get",
@@ -140,7 +140,7 @@ var meetingLocationsOptionsDataSource = new kendo.data.DataSource
                 read:
                 {
                     // the remote service url
-                    url: "http://dev1.pciaa.net/pciwebsite/congressapi/legislators/meetinglocations",
+                    url: "http://dev.pciaa.net/pciwebsite/congressapi/legislators/meetinglocations",
 
                     // the request type
                     type: "get",
@@ -211,6 +211,7 @@ var meetingOtherDataSource = new kendo.data.DataSource
 function meetingListViewDataShow(e)
 {
     parentUid = e.view.params.uid;
+    var legislatorId = e.view.params.legislatorId;
 
     if (parentUid != null)
     {
@@ -220,6 +221,10 @@ function meetingListViewDataShow(e)
 
             parentModel.MeetingDate = kendo.toString(kendo.parseDate(parentModel.MeetingDate, 'yyyy-MM-dd'), 'yyyy-MM-dd');
         }
+    }
+    else if (legislatorId != null)
+    {
+        parentModel.LegislatorId = legislatorId;
     }
 
     var viewModel = kendo.observable({

@@ -9,7 +9,7 @@ var supportLevelsOptionsDataSource = new kendo.data.DataSource
                 read:
                 {
                     // the remote service url
-                    url: "http://dev1.pciaa.net/pciwebsite/congressapi/legislators/supportlevels",
+                    url: "http://dev.pciaa.net/pciwebsite/congressapi/legislators/supportlevels",
 
                     // the request type
                     type: "get",

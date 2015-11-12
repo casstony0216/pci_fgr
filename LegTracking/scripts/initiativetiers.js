@@ -15,7 +15,7 @@ function initiativeTiersListViewDataShow(e)
                 read:
                 {
                     // the remote service url
-                    url: "http://dev1.pciaa.net/pciwebsite/congressapi/legislators/initiativestances?legislatorId=" + legislatorId,
+                    url: "http://dev.pciaa.net/pciwebsite/congressapi/legislators/initiativestances?legislatorId=" + legislatorId,
 
                     // the request type
                     type: "get",
@@ -24,10 +24,10 @@ function initiativeTiersListViewDataShow(e)
                     dataType: "json",
 
                     // crossDomain: true, // enable this,
-                    beforeSend: function (xhr)
-                    {
-                        xhr.setRequestHeader("Authorization", token);
-                    },
+                    //beforeSend: function (xhr)
+                    //{
+                    //    xhr.setRequestHeader("Authorization", token);
+                    //},
 
                     error: function (xhr, ajaxOptions, thrownError)
                     {

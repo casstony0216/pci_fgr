@@ -1,4 +1,4 @@
-<div data-role="view" id="legislatorsview" data-init="legislatorsListViewDataInit" data-layout="no-button-layout" data-title="Legislators">
+<div data-role="view" id="legislatorsview" data-init="legislatorsListViewDataInit" data-show="legislatorsListViewDataShow" data-layout="no-button-layout" data-title="Legislators">
     <ul id="legislatorsListView"></ul>
 </div>
 
@@ -6,12 +6,23 @@
     <!--<div class="listview-row-photo-container">
         <img class="listview-row-photo" src="#:ImageUrl#" />
     </div>-->
-    <div style="display: table; height: 4em;">
+    <div style="display: table; height: 3em;">
         <div style="display: table-cell; text-align: center; vertical-align: middle;">
             <span class="listview-row-header">#:LastName#, #:FirstName# #:MiddleName#</span>
             <!--<br/>
             <span class="listview-row-detail">#:Description#</span>-->
+            <a data-role="detailbutton" data-icon="details"></a>
+        </div>
+        <div class="swipeButtons">
+            <input type="hidden" name="legislatorid" value="#:LegislatorId#" />
+            <ul style="display: table;">
+                <li style="display: table-cell;">
+                    <a data-role="button" data-icon="meeting-e" data-click="onLegislatorsMeetingButtonClick" class="blueButton"></a><!--<span style="display: block; font-size: 0.5em">Meetings</span>-->
+                </li>
+                <li style="display: table-cell;">
+                    <a data-role="button" data-icon="compose" data-click="onLegislatorsComposeButtonClick" class="redButton"></a><!--<span style="display: block; font-size: 0.5em">New Meeting</span>-->
+                </li>
+            </ul>
         </div>
     </div>
-    <a data-role="detailbutton" data-icon="details"></a>
 </script>

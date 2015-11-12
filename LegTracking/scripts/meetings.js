@@ -55,11 +55,11 @@ function meetingsListViewDataShow(e)
     
     if (legislatorId == undefined)
     {
-        apiUrl = "http://dev1.pciaa.net/pciwebsite/congressapi/legislators/meetings"
+        apiUrl = "http://dev.pciaa.net/pciwebsite/congressapi/legislators/meetings"
     }
     else
     {
-        apiUrl = "http://dev1.pciaa.net/pciwebsite/congressapi/legislators/legislatormeetings?legislatorId=" + legislatorId;
+        apiUrl = "http://dev.pciaa.net/pciwebsite/congressapi/legislators/legislatormeetings?legislatorId=" + legislatorId;
     }
     
     meetingsDataSource = new kendo.data.DataSource

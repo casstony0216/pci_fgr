@@ -14,13 +14,13 @@ function profilesViewDataShow(e)
 
     if (profileType == "legislator")
     {
-        apiUrl = "http://dev1.pciaa.net/pciwebsite/congressapi/legislators/relationships?legislatorId=" + uid;
+        apiUrl = "http://dev.pciaa.net/pciwebsite/congressapi/legislators/relationships?legislatorId=" + uid;
 
         dataTitle = "PCI Relationships";
     }
     else
     {
-        apiUrl = "http://dev1.pciaa.net/pciwebsite/congressapi/legislators/meetingattendees?meetingId=" + uid;
+        apiUrl = "http://dev.pciaa.net/pciwebsite/congressapi/legislators/meetingattendees?meetingId=" + uid;
 
         dataTitle = "PCI Attendees";
     }

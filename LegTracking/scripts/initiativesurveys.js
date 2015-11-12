@@ -15,7 +15,7 @@ function initiativeSurveysListViewDataShow(e)
                 read:
                 {
                     // the remote service url
-                    url: "http://dev1.pciaa.net/pciwebsite/congressapi/legislators/legislatorinitiatives?legislatorId=" + legislatorId,
+                    url: "http://dev.pciaa.net/pciwebsite/congressapi/legislators/legislatorinitiatives?legislatorId=" + legislatorId,
 
                     // the request type
                     type: "get",

@@ -15,7 +15,7 @@ function meetingInitiativesListViewDataShow(e)
                 read:
                 {
                     // the remote service url
-                    url: "http://dev1.pciaa.net/pciwebsite/congressapi/legislators/meetinginitiatives?meetingId=" + meetingId,
+                    url: "http://dev.pciaa.net/pciwebsite/congressapi/legislators/meetinginitiatives?meetingId=" + meetingId,
 
                     // the request type
                     type: "get",

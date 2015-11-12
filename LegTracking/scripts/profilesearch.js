@@ -69,7 +69,7 @@ function setProfileSearchDataSource(profileType, uid)
                 read:
                 {
                     // the remote service url
-                    url: "http://dev1.pciaa.net/pciwebsite/congressapi/legislators/profilesearch",
+                    url: "http://dev.pciaa.net/pciwebsite/congressapi/legislators/profilesearch",
 
                     // the request type
                     type: "get",
@@ -123,7 +123,10 @@ function setProfileSearchDataSource(profileType, uid)
 
                     return data;
                 },
-                total: function (data) { return data.total; }
+                total: function (data)
+                {
+                    return data.total;
+                }
             },
             serverPaging: true,
             serverFiltering: true,

@@ -15,7 +15,7 @@ function committeesListViewDataShow(e)
                 read:
                 {
                     // the remote service url
-                    url: "http://dev1.pciaa.net/pciwebsite/congressapi/legislators/committees?legislatorId=" + legislatorId,
+                    url: "http://dev.pciaa.net/pciwebsite/congressapi/legislators/committees?legislatorId=" + legislatorId,
 
                     // the request type
                     type: "get",
