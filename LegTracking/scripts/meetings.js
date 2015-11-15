@@ -3,49 +3,26 @@ var token = 'http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclai
 
 var meetingsDataSource = null;
 
-//var  dataSourceMeetings = new kendo.data.DataSource({
-//         data: dsMeetings,
-//     	 batch: true,
-//    //,
-//          //  transport: {
-//          //      read:  {
-//          //          url: crudServiceBaseUrl + "/Products",
-//          //          dataType: "jsonp"
-//          //      },
-//          //      update: {
-//          //          url: crudServiceBaseUrl + "/Products/Update",
-//          //          dataType: "jsonp"
-//          //      },
-//          //      destroy: {
-//          //          url: crudServiceBaseUrl + "/Products/Destroy",
-//          //          dataType: "jsonp"
-//           //     },
-//            //    parameterMap: function(options, operation) {
-//            //        if (operation !== "read" && options.models) {
-//           //             return {models: kendo.stringify(options.models)};
-//           //         }
-//           //     }
-//          //  ,
-//         //   batch: true,
-//            schema: {
-//                model: {
-//                    id: "id",
-//                    fields: {
-//                        Id: "id",
-//                        TypeId:"typeId",
-//                        Name: "name",
-//                        Date: "date",
-//                        Staffer: "staffer",
-//                        Notes: "notes",
-//                        Phone: "phone"      
-//                    }
-//                }
-//            }
-//        });
-
 function meetingsListViewDataInit(e)
 {
-
+    e.view.element.find("#meetingsListView")
+        .kendoMobileListView
+        (
+            {
+                dataSource: meetingsDataSource,
+                template: $("#meetingsListViewTemplate").html()
+            }
+        )
+        .kendoTouch
+        (
+            {
+                filter: ">li",
+                enableSwipe: true,
+                touchstart: meetingsTouchStart,
+                tap: meetingsNavigate,
+                swipe: meetingsSwipe
+            }
+        );
 }
 
 function meetingsListViewDataShow(e)
@@ -55,16 +32,18 @@ function meetingsListViewDataShow(e)
     
     if (legislatorId == undefined)
     {
-        apiUrl = "http://dev.pciaa.net/pciwebsite/congressapi/legislators/meetings"
+        apiUrl = apiBaseServiceUrl + "meetings?personId=" + personId;  // personId is set in the legislators.js
     }
     else
     {
-        apiUrl = "http://dev.pciaa.net/pciwebsite/congressapi/legislators/legislatormeetings?legislatorId=" + legislatorId;
+        apiUrl = apiBaseServiceUrl + "legislatormeetings?legislatorId=" + legislatorId;
     }
     
     meetingsDataSource = new kendo.data.DataSource
     (
         {
+            autoSync: true,
+            batch: true,
             transport:
             {
                 read:
@@ -88,19 +67,39 @@ function meetingsListViewDataShow(e)
                     {
                         alert("error " + xhr.responseText);
                     }
-                }
-                //,
-                //parameterMap: function (options, operation)
-                //{
-                //    if (operation === "read")
-                //    {
-                //        options.MeetingDate = kendo.toString(kendo.parseDate(options.MeetingDate, 'yyyy-MM-dd'), 'MM/dd/yyyy');
-                //    }
+                },
+                update:
+                {
+                    // the remote service url
+                    url: apiBaseServiceUrl + "updatemeeting",
 
-                //    return options;
-                //}
+                    // the request type
+                    type: "post",
+
+                    dataType: "json",
+
+                    // crossDomain: true, // enable this,
+                    //beforeSend: function (xhr)
+                    //{
+                    //    xhr.setRequestHeader("Authorization", token);
+                    //},
+
+                    //error: function (xhr, ajaxOptions, thrownError)
+                    //{
+                    //    alert("error " + xhr.responseText);
+                    //}
+                },
+                parameterMap: function (options, operation)
+                {
+                    if (operation !== "read" && options.models)
+                    {
+                        return
+                        {
+                            models: kendo.stringify(options.models)
+                        }
+                    }
+                }
             },
-            batch: true,
             schema:
             {
                 model:
@@ -110,40 +109,41 @@ function meetingsListViewDataShow(e)
                     {
                         MeetingId: "MeetingId",
                         MeetingDate: "MeetingDate",
-                        Notes: "Notes",
+                        AttendeeTypeId: "AttendeeTypeId",
+                        AttendeeType: "AttendeeType",
+                        PersonId: "PersonId",
+                        PciContact: "PciContact",
                         LegislatorId: "LegislatorId",
                         FullName: "FullName",
                         Name: "Name",
-                        AttendeeTypeId: "AttendeeTypeId",
-                        AttendeeType: "AttendeeType",
+                        PrimaryOfficeContact: "PrimaryOfficeContact",
                         MeetingLocationId: "MeetingLocationId",
                         Location: "Location",
                         LegislatorStaffAttendees: "LegislatorStaffAttendees",
-                        PciContact: "PciContact"
+                        FollowUpNeeded: "FollowUpNeeded",
+                        CreatorId: "CreatorId",
+                        Notes: "Notes"
                     }
                 }
+            },
+            error: function (e)
+            {
+                /* the e event argument will represent the following object:
+        
+                {
+                    errorThrown: "Unauthorized",
+                    sender: {... the Kendo UI DataSource instance ...}
+                    status: "error"
+                    xhr: {... the Ajax request object ...}
+                }
+        
+                */
+                alert("Status: " + e.status + "; Error message: " + e.errorThrown);
             }
         }
     );
 
-    e.view.element.find("#meetingsListView")
-        .kendoMobileListView
-        (
-            {
-                dataSource: meetingsDataSource,
-                template: $("#meetingsListViewTemplate").html()
-            }
-        )
-        .kendoTouch
-        (
-            {
-                filter: ">li",
-                enableSwipe: true,
-                touchstart: meetingsTouchStart,
-                tap: meetingsNavigate,
-                swipe: meetingsSwipe
-            }
-        );
+    $("#meetingsListView").data("kendoMobileListView").setDataSource(meetingsDataSource);
 
     $('.km-rightitem a').attr('href', 'views/meeting.html');
 }

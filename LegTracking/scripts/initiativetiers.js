@@ -15,7 +15,7 @@ function initiativeTiersListViewDataShow(e)
                 read:
                 {
                     // the remote service url
-                    url: "http://dev.pciaa.net/pciwebsite/congressapi/legislators/initiativestances?legislatorId=" + legislatorId,
+                    url: apiBaseServiceUrl + "initiativestances?legislatorId=" + legislatorId,
 
                     // the request type
                     type: "get",
@@ -65,5 +65,5 @@ function initiativeTiersListViewDataShow(e)
             }
         );
 
-    kendo.bind(e.view.element, parentModel, kendo.mobile.ui);
+    kendo.bind(e.view.element, legislatorModel, kendo.mobile.ui);
 }

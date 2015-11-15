@@ -220,26 +220,14 @@
     <Content Include="kendo\typescript\kendo.mobile.d.ts">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="scripts\app.js">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="scripts\AutoComplete.js">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="scripts\bio.js" />
     <Content Include="scripts\committees.js" />
     <Content Include="scripts\initiativesurvey.js" />
     <Content Include="scripts\initiativesurveys.js" />
-    <Content Include="scripts\issue.js">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="scripts\initiativetiers.js" />
     <Content Include="scripts\meetinginitiatives.js" />
     <Content Include="scripts\profile.js" />
     <Content Include="scripts\profiles.js" />
-    <Content Include="scripts\issues.js">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="scripts\legislator.js">
       <SubType>Content</SubType>
     </Content>
@@ -255,17 +243,8 @@
     <Content Include="scripts\meetings.js">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="scripts\old_legislators.js">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="scripts\profilesearch.js" />
     <Content Include="scripts\surveyquestion.js" />
-    <Content Include="scripts\task.js">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="scripts\tasks.js">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="styles\images\appbuilder.png">
       <SubType>Content</SubType>
     </Content>
@@ -338,26 +317,14 @@
     <Content Include="styles\profile.css">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="views\AutoComplete.html">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="views\bio.html" />
     <Content Include="views\committees.html" />
-    <Content Include="views\HtmlPage.html">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="views\initiativesurvey.html" />
     <Content Include="views\initiativesurveys.html" />
-    <Content Include="views\issue.html">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="views\initiativetiers.html" />
     <Content Include="views\meetinginitiatives.html" />
     <Content Include="views\profile.html" />
     <Content Include="views\profiles.html" />
-    <Content Include="views\issues.html">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="views\legislator.html">
       <SubType>Content</SubType>
     </Content>
@@ -384,12 +351,6 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="views\surveyquestion.html" />
-    <Content Include="views\task.html">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="views\tasks.html">
-      <SubType>Content</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Resources\" />

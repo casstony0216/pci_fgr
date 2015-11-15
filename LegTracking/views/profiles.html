@@ -1,10 +1,19 @@
-<div data-role="view" id="profilesview" data-show="profilesViewDataShow" data-layout="add-button-layout" data-title="Profiles">
+<div data-role="view" id="profilesview" data-init="profilesViewDataInit" data-show="profilesViewDataShow" data-layout="add-button-layout" data-title="Profiles">
     <ul id="profilesListView"></ul>
 </div>
 
 <script type="text/x-kendo-tmpl" id="profilesListViewTemplate">
-    <span class="listview-row-header">#:FullName#</span>
-    <br />
-    <span class="listview-row-subdetail">#:Company#</span>
-    <a data-role="detailbutton" data-icon="details"></a>
+    <div style="display: table-cell; text-align: left; vertical-align: middle;">
+        <span class="listview-row-header">#:FullName#</span>
+        <br />
+        <span class="listview-row-subdetail">#:Company#</span>
+        <a data-role="detailbutton" data-icon="details"></a>
+    </div>
+    <div class="swipeButtons">
+        <ul style="display: table;">
+            <li style="display: table-cell;">
+                <a data-role="button" data-icon="delete" class="redButton"></a>
+            </li>
+        </ul>
+    </div>
 </script>

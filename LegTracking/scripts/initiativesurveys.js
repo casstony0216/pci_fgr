@@ -15,7 +15,7 @@ function initiativeSurveysListViewDataShow(e)
                 read:
                 {
                     // the remote service url
-                    url: "http://dev.pciaa.net/pciwebsite/congressapi/legislators/legislatorinitiatives?legislatorId=" + legislatorId,
+                    url: apiBaseServiceUrl + "legislatorinitiatives?legislatorId=" + legislatorId,
 
                     // the request type
                     type: "get",
@@ -71,7 +71,7 @@ function initiativeSurveysListViewDataShow(e)
             }
         );
 
-    kendo.bind(e.view.element, parentModel, kendo.mobile.ui);
+    kendo.bind(e.view.element, legislatorModel, kendo.mobile.ui);
 }
 
 function initiativeSurveysTouchStart(e)

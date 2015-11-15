@@ -2,14 +2,9 @@
 var token = 'http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fname=jonathon.leslie%40pciaa.net&TokenId=9ba3e4e1-efd7-4ac2-8230-60cf01d9137b&http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2femailaddress=jonathon.leslie%40pciaa.net&PersonID=47561&FirstName=Jonathon&MiddleName=&LastName=Leslie&FullName=Leslie%2c+Jonathon&StreetAddress1=8700+West+Bryn+Mawr+Avenue+STE+1200S&StreetAddress2=STE+1200S&City=Chicago&State=IL&PostalCode=60631-3512&Country=USA&WorkPhone=847-553-3699&Extension=&Fax=847-297-5064&Company=PCI&CompanyID=4274&DeptID=262&Department=Information+Technology&SupervisorID=52112&Supervisor=DAngelo%2c+Tony+E&Title=Project+Manager%2c+Information+Technology&EmailAddress=jonathon.leslie%40pciaa.net&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=Amicus+Admin&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=Broadcast+Admin&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=Broadcast+Branding&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=Broadcast+Sender&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=Broadcast+User&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=PCI.Everyone&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=Staff+Request+Admin&Issuer=urn%3a%2f%2fpciaa-sts&Audience=http%3a%2f%2fdev.pciaa.net%2f&ExpiresOn=1445884400&HMACSHA256=vVyMUM0ntSXhTaMBdHYSe3e36LMYp53EwOIqbShOzgs%3d';
 
 var profileSearchDataSource = null;
-var profileSearchInit = false;
 
 function profileSearchViewDataInit(e)
 {
-    var uid = e.view.params.uid;
-
-    setProfileSearchDataSource(profileType, uid);
-
     e.view.element.find("#profileSearchListView")
         .kendoMobileListView
         (
@@ -41,25 +36,9 @@ function profileSearchViewDataShow(e)
         dataTitle = "PCI Attendee Search";
     }
 
-    if (!profileSearchInit)
-    {
-        profileSearchInit = true;
-    }
-    else
-    {
-        setProfileSearchDataSource(profileType, uid);
-
-        $("#profileSearchListView").data("kendoMobileListView").setDataSource(profileSearchDataSource);
-    }
-
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
 
     navbar.title(dataTitle);
-}
-
-function setProfileSearchDataSource(profileType, uid)
-{
-    profileSearchDataSource = null;
 
     profileSearchDataSource = new kendo.data.DataSource
     (
@@ -68,58 +47,85 @@ function setProfileSearchDataSource(profileType, uid)
             {
                 read:
                 {
-                    // the remote service url
-                    url: "http://dev.pciaa.net/pciwebsite/congressapi/legislators/profilesearch",
-
-                    // the request type
+                    url: apiBaseServiceUrl + "profilerelationshipfilter",
                     type: "get",
-
-                    // the data type of the returned result
                     dataType: "json",
-
-                    // crossDomain: true, // enable this,
-                    beforeSend: function (xhr)
-                    {
-                        xhr.setRequestHeader("Authorization", token);
-                    },
-
-                    error: function (xhr, ajaxOptions, thrownError)
-                    {
-                        alert("error " + xhr.responseText);
-                    }
+                    //beforeSend: function (xhr)
+                    //{
+                    //    xhr.setRequestHeader("Authorization", token);
+                    //},
+                    //error: function (xhr, ajaxOptions, thrownError)
+                    //{
+                    //    alert("error " + xhr.responseText);
+                    //}
                 },
-                parameterMap: function (options)
+                update:
                 {
-                    return {
-                        searchType: profileType,
-                        relationalId: uid,
-                        filter: options.filter ? options.filter.filters[0].value : '',
-                        page: options.page,
-                        pageSize: options.pageSize
-                    };
+                    url: apiBaseServiceUrl + "updateprofilerelationship",
+                    type: "post",
+                    dataType: "json"
+                    //,
+                    // crossDomain: true, // enable this,
+                    //beforeSend: function (xhr)
+                    //{
+                    //    xhr.setRequestHeader("Authorization", token);
+                    //},
+                    //error: function (xhr, ajaxOptions, thrownError)
+                    //{
+                    //    alert("error " + xhr.responseText);
+                    //}
+                },
+                parameterMap: function (options, operation)
+                {
+                    if (operation === "read")
+                    {
+                        return {
+                            relationalType: profileType,
+                            relationalId: uid,
+                            filter: options.filter ? options.filter.filters[0].value : '',
+                            page: options.page,
+                            pageSize: options.pageSize
+                        };
+                    }
+                    else if (operation !== "read")
+                    {
+                        return options;
+                    }
                 }
             },
             schema:
             {
                 model:
+                {
+                    id: "PersonId",
+                    fields:
                     {
-                        Id: "PersonId",
-                        fields:
-                        {
-                            PersonId: "PersonId",
-                            FullName: "FullName",
-                            Company: "Company",
-                            Title: "Title",
-                            Checked: "Checked",
-                            Total: "Total"
-                        }
-                    },
+                        RelationalType: { editable: false },
+                        RelationalId: { editable: false },
+                        PersonId: { editable: false },
+                        FullName: { editable: false },
+                        Company: { editable: false },
+                        Title: { editable: false },
+                        WorkPhone: { editable: false },
+                        EmailAddress: { editable: false },
+                        Notes: { editable: false },
+                        Checked: { editable: true },
+                        Total: { editable: false }
+                    }
+                },
                 parse: function (data)
                 {
-                    // assign top level array to property
-                    data.data = data;
-                    // assign the count off one of the fields to a new total field
-                    data.total = data.data[0].Total;
+                    if (data.Total)
+                    {
+                        data.total = data.Total;
+                    }
+                    else
+                    {
+                        // assign top level array to property
+                        data.data = data;
+                        // assign the count off one of the fields to a new total field
+                        data.total = data.data[0].Total;
+                    }
 
                     return data;
                 },
@@ -134,4 +140,16 @@ function setProfileSearchDataSource(profileType, uid)
         }
     );
 
+    $("#profileSearchListView").data("kendoMobileListView").setDataSource(profileSearchDataSource);
+}
+
+function profileSearchSwitchChange(e)
+{
+    var listItem = e.sender.element.parent().parent();
+    var uid = listItem.attr("data-uid");
+    var profileSearchModel = profileSearchDataSource.getByUid(uid);
+
+    profileSearchModel.set("Checked", e.checked);
+
+    profileSearchDataSource.sync();
 }

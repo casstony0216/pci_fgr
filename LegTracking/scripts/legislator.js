@@ -1,7 +1,3 @@
-// The following is used to store the master UID for the detail record so references can be made back to the original datasource.
-var parentUid;
-var parentModel;
-
 var legislatorData = 
     [
         {
@@ -46,7 +42,6 @@ var legislatorDataSource = new kendo.data.DataSource
 (
     {
 		data: legislatorData,
-		batch: true,
 		schema: 
         {
 			model: 
@@ -78,27 +73,17 @@ function legislatorListViewDataInit(e)
         (
             {
                 filter: ">li",
-                enableSwipe: true,
-                touchstart: legislatorTouchStart,
-                tap: legislatorNavigate,
-                swipe: legislatorSwipe
+                tap: legislatorNavigate
             }
         );
 }
 
 function legislatorListViewDataShow(e) 
 {
-    $("#legislatorListView").data("kendoMobileListView").setDataSource(legislatorDataSource);
-
-    parentUid = e.view.params.uid;
-    parentModel = legislatorsDataSource.getByUid(parentUid);
+    legislatorUid = e.view.params.uid;
+    legislatorModel = legislatorsDataSource.getByUid(legislatorUid);
     
-    kendo.bind(e.view.element, parentModel, kendo.mobile.ui);
-}
-
-function legislatorTouchStart(e) 
-{
-    
+    kendo.bind(e.view.element, legislatorModel, kendo.mobile.ui);
 }
 
 function legislatorNavigate(e) 
@@ -106,21 +91,14 @@ function legislatorNavigate(e)
     var uid = $(e.touch.currentTarget).data("uid");
     var currentRecord = legislatorDataSource.getByUid(uid);
     var url = currentRecord.Url;
-    var legislatorId = parentModel.LegislatorId;
+    var legislatorId = legislatorModel.LegislatorId;
     
-    if (currentRecord.Name == "bio")
+    if (currentRecord.Name === "bio")
     {
-        kendo.mobile.application.navigate(url + parentUid);
+        kendo.mobile.application.navigate(url + legislatorUid);
     }
     else
     {
         kendo.mobile.application.navigate(url + legislatorId);
     }
-}
-
-function legislatorSwipe(e) 
-{
-    var button = kendo.fx($(e.touch.currentTarget).find("[data-role=button]"));
-    
-    button.expand().duration(200).play();
 }

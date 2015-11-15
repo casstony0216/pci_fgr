@@ -15,7 +15,7 @@ function committeesListViewDataShow(e)
                 read:
                 {
                     // the remote service url
-                    url: "http://dev.pciaa.net/pciwebsite/congressapi/legislators/committees?legislatorId=" + legislatorId,
+                    url: apiBaseServiceUrl + "committees?legislatorId=" + legislatorId,
 
                     // the request type
                     type: "get",
@@ -79,5 +79,5 @@ function committeesListViewDataShow(e)
             }
         );
 
-    kendo.bind(e.view.element, parentModel, kendo.mobile.ui);
+    kendo.bind(e.view.element, legislatorModel, kendo.mobile.ui);
 }

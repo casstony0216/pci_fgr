@@ -3,6 +3,18 @@ var token = 'http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclai
 
 var meetingInitiativesDataSource = null;
 
+function meetingInitiativesListViewDataInit(e)
+{
+    e.view.element.find("#meetingInitiativesListView")
+        .kendoMobileListView
+        (
+            {
+                dataSource: meetingInitiativesDataSource,
+                template: $("#meetingInitiativesListViewTemplate").html()
+            }
+        );
+}
+
 function meetingInitiativesListViewDataShow(e)
 {
     var meetingId = e.view.params.uid;
@@ -14,97 +26,80 @@ function meetingInitiativesListViewDataShow(e)
             {
                 read:
                 {
-                    // the remote service url
-                    url: "http://dev.pciaa.net/pciwebsite/congressapi/legislators/meetinginitiatives?meetingId=" + meetingId,
-
-                    // the request type
+                    url: apiBaseServiceUrl + "meetinginitiatives?meetingId=" + meetingId,
                     type: "get",
-
-                    // the data type of the returned result
                     dataType: "json",
-
                     // crossDomain: true, // enable this,
-                    beforeSend: function (xhr)
-                    {
-                        xhr.setRequestHeader("Authorization", token);
-                    },
-
-                    error: function (xhr, ajaxOptions, thrownError)
-                    {
-                        alert("error " + xhr.responseText);
-                    }
+                    //beforeSend: function (xhr)
+                    //{
+                    //    xhr.setRequestHeader("Authorization", token);
+                    //},
+                    //error: function (xhr, ajaxOptions, thrownError)
+                    //{
+                    //    alert("error " + xhr.responseText);
+                    //}
+                },
+                update:
+                {
+                    url: apiBaseServiceUrl + "updatemeetinginitiative",
+                    type: "post",
+                    dataType: "json",
+                    // crossDomain: true, // enable this,
+                    //beforeSend: function (xhr)
+                    //{
+                    //    xhr.setRequestHeader("Authorization", token);
+                    //},
+                    //error: function (xhr, ajaxOptions, thrownError)
+                    //{
+                    //    alert("error " + xhr.responseText);
+                    //}
                 }
+                //,
+                //parameterMap: function (options, operation)
+                //{
+                //    //if (operation !== "read" && options.models)
+                //    //{
+                //    //    return
+                //    //    {
+                //    //        models: kendo.stringify(options.models)
+                //    //    }
+                //    //}
+                //    if (operation !== "read")
+                //    {
+                //        var stringified = kendo.stringify(options);
+                //        return kendo.stringify(options);
+                //    }
+                //}
             },
-            batch: true,
             schema:
             {
                 model:
                 {
-                    Id: "MeetingId",
+                    id: "InitiativeId",
                     fields:
                     {
-                        MeetingId: "MeetingId",
-                        LegislatorId: "LegislatorId",
-                        InitiativeId: "InitiativeId",
-                        Initiative: "Initiative",
-                        Checked: "Checked"
+                        MeetingId: { editable: false },
+                        LegislatorId: { editable: false },
+                        InitiativeId: { editable: false },
+                        Initiative: { editable: false },
+                        Checked: { editable: true }
                     }
                 }
             }
         }
     );
 
-    e.view.element.find("#meetingInitiativesListView")
-        .kendoMobileListView
-        (
-            {
-                dataSource: meetingInitiativesDataSource,
-                template: $("#meetingInitiativesListViewTemplate").html()
-            }
-        )
-        .kendoTouch
-        (
-            {
-                filter: ">li"
-                //,
-                //enableSwipe: true,
-                //touchstart: meetingstouchstart,
-                //tap: meetingsnavigate,
-                //swipe: meetingsswipe
-            }
-        );
+    $("#meetingInitiativesListView").data("kendoMobileListView").setDataSource(meetingInitiativesDataSource);
+
 }
 
+function meetingInitiativeSwitchChange(e)
+{
+    var listItem = e.sender.element.parent().parent();
+    var uid = listItem.attr("data-uid");
+    var meetingInitiativeModel = meetingInitiativesDataSource.getByUid(uid);
 
-//function issuesnavigate(e) {
-//     var itemUID = $(e.touch.currentTarget).data("uid");
-//     kendo.mobile.application.navigate("views/issue.html?uid=" + itemUID);
-// }
+    meetingInitiativeModel.set("Checked", e.checked);
 
-// function issuesswipe(e) {
-//     var button = kendo.fx($(e.touch.currentTarget).find("[data-role=button]"));
-//     button.expand().duration(200).play();
-// }
-
-// function issuestouchstart(e) {
-//     var target = $(e.touch.initialTouch),
-//         listview = $("#issues-listview").data("kendoMobileListView"),
-//         model,
-//         button = $(e.touch.target).find("[data-role=button]:visible");
-
-//     if (target.closest("[data-role=button]")[0]) {
-//         model = dataSourceIssues.getByUid($(e.touch.target).attr("data-uid"));
-//         dataSourceIssues.remove(model);
-
-//         //prevent `swipe`
-//         this.events.cancel();
-//         e.event.stopPropagation();
-//     } else if (button[0]) {
-//         button.hide();
-
-//         //prevent `swipe`
-//         this.events.cancel();
-//     } else {
-//         listview.items().find("[data-role=button]:visible").hide();
-//     }
-// }
+    meetingInitiativesDataSource.sync();
+}

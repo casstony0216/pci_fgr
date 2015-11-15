@@ -4,77 +4,8 @@ var token = 'http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclai
 var profilesDataSource = null;
 var profileType = null;
 
-function profilesViewDataShow(e)
+function profilesViewDataInit(e)
 {
-    var apiUrl = null;
-    var uid = e.view.params.uid;
-    var dataTitle = null;
-
-    profileType = e.view.params.type;
-
-    if (profileType == "legislator")
-    {
-        apiUrl = "http://dev.pciaa.net/pciwebsite/congressapi/legislators/relationships?legislatorId=" + uid;
-
-        dataTitle = "PCI Relationships";
-    }
-    else
-    {
-        apiUrl = "http://dev.pciaa.net/pciwebsite/congressapi/legislators/meetingattendees?meetingId=" + uid;
-
-        dataTitle = "PCI Attendees";
-    }
-
-    profilesDataSource = new kendo.data.DataSource
-    (
-        {
-            transport:
-            {
-                read:
-                {
-                    // the remote service url
-                    url: apiUrl,
-
-                    // the request type
-                    type: "get",
-
-                    // the data type of the returned result
-                    dataType: "json",
-
-                    // crossDomain: true, // enable this,
-                    beforeSend: function (xhr)
-                    {
-                        xhr.setRequestHeader("Authorization", token);
-                    },
-
-                    error: function (xhr, ajaxOptions, thrownError)
-                    {
-                        alert("error " + xhr.responseText);
-                    }
-                }
-            },
-            batch: true,
-            schema:
-            {
-                model:
-                {
-                    Id: "PersonId",
-                    fields:
-                    {
-                        PersonId: "PersonId",
-                        FullName: "FullName",
-                        Company: "Company",
-                        WorkPhone: "WorkPhone",
-                        Title: "Title",
-                        EmailAddress: "EmailAddress",
-                        ImageUrl: "ImageUrl",
-                        Notes: "Notes"
-                    }
-                }
-            }
-        }
-    );
-
     e.view.element.find("#profilesListView")
         .kendoMobileListView
         (
@@ -93,12 +24,87 @@ function profilesViewDataShow(e)
                 swipe: profilesSwipe
             }
         );
+}
+
+function profilesViewDataShow(e)
+{
+    var apiReadUrl = null;
+    var apiDestroyUrl = null;
+    var uid = e.view.params.uid;
+    var dataTitle = null;
+
+    profileType = e.view.params.type;
+
+    if (profileType == "legislator")
+    {
+        dataTitle = "PCI Relationships";
+    }
+    else
+    {
+        dataTitle = "PCI Attendees";
+    }
+
+    apiReadUrl = apiBaseServiceUrl + "profilerelationships?relationalType=" + profileType + "&relationalId=" + uid;
+    apiDestroyUrl = apiBaseServiceUrl + "updateprofilerelationship";
+
+    profilesDataSource = new kendo.data.DataSource
+    (
+        {
+            transport:
+            {
+                read:
+                {
+                    url: apiReadUrl,
+                    type: "get",
+                    dataType: "json",
+                    // crossDomain: true, // enable this,
+                    beforeSend: function (xhr)
+                    {
+                        xhr.setRequestHeader("Authorization", token);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError)
+                    {
+                        alert("error " + xhr.responseText);
+                    }
+                },
+                destroy:
+                {
+                    url: apiDestroyUrl,
+                    type: "post",
+                    dataType: "json"
+                }
+            },
+            schema:
+            {
+                model:
+                {
+                    id: "PersonId",
+                    fields:
+                    {
+                        RelationalType: { editable: false },
+                        RelationalId: { editable: false },
+                        PersonId: { editable: false },
+                        FullName: { editable: false },
+                        Company: { editable: false },
+                        Title: { editable: false },
+                        WorkPhone: { editable: false },
+                        EmailAddress: { editable: false },
+                        Notes: { editable: true },
+                        Checked: { editable: true },
+                        Total: { editable: false }
+                    }
+                }
+            }
+        }
+    );
 
     $('.km-rightitem a').attr('href', 'views/profilesearch.html?uid=' + uid);
 
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
 
     navbar.title(dataTitle);
+
+    $("#profilesListView").data("kendoMobileListView").setDataSource(profilesDataSource);
 }
 
 function profilesNavigate(e)
@@ -110,36 +116,61 @@ function profilesNavigate(e)
 
 function profilesSwipe(e)
 {
-    var button = kendo.fx($(e.touch.currentTarget).find("[data-role=button]"));
+    if (e.direction === "left")
+    {
+        var detailbutton = $(e.touch.currentTarget).find("[data-role=detailbutton]");
+        var tabstrip = kendo.fx($(e.touch.currentTarget).find("div.swipeButtons"));
 
-    button.expand().duration(200).play();
+        detailbutton.hide();
+        tabstrip.expand().duration(200).play();
+    }
 }
 
 function profilesTouchStart(e)
 {
-    var target = $(e.touch.initialTouch),
-        listview = $("#profilesListView").data("kendoMobileListView"),
-        model,
-        button = $(e.touch.target).find("[data-role=button]:visible");
+    var target = $(e.touch.initialTouch);
+    var listview = $("#profilesListView").data("kendoMobileListView");
+    var model;
+    var detailbutton = $(e.touch.target).find("[data-role=detailbutton]");
+    var tabstrip = $(e.touch.target).find("div.swipeButtons:visible");
 
-    if (target.closest("[data-role=button]")[0])
+    if (target.closest("div.swipeButtons")[0])
     {
-        model = dataSourceMeetings.getByUid($(e.touch.target).attr("data-uid"));
-        dataSourceMeetings.remove(model);
+        model = profilesDataSource.getByUid($(e.touch.target).attr("data-uid"));
+        model.set("Checked", false);
+
+        profilesDataSource.remove(model);
+        profilesDataSource.sync();
 
         //prevent `swipe`
         this.events.cancel();
         e.event.stopPropagation();
     }
-    else if (button[0])
+    else if (tabstrip[0])
     {
-        button.hide();
+        tabstrip.hide();
+        detailbutton.show();
 
         //prevent `swipe`
         this.events.cancel();
     }
     else
     {
-        listview.items().find("[data-role=button]:visible").hide();
+        listview.items().find("[data-role=detailbutton]").show();
+        listview.items().find("div.swipeButtons:visible").hide();
     }
+}
+
+function onProfilesDeleteButtonClick(e)
+{
+    //var divElement = e.sender.element.parent().parent().parent(); //e.sender.element.find('div.swipeButtons'); //.context.offsetParent
+    //var divParentElement = divElement.parent();
+    //var uid = divParentElement.attr('data-uid');
+    
+    //var profile = profilesDataSource.getByUid(uid);
+
+    //profile.set("Checked", false);
+
+    //profilesDataSource.remove(profile);
+    profilesDataSource.sync();
 }

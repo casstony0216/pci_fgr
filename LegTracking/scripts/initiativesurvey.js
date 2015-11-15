@@ -7,7 +7,7 @@ function initiativeSurveyListViewDataShow(e)
 {
     var legislatorId = e.view.params.legislatorId;
     var initiativeId = e.view.params.initiativeId;
-    var apiUrl = "http://dev.pciaa.net/pciwebsite/congressapi/legislators/legislatorsurveys?legislatorId=" + legislatorId + "&initiativeId=" + initiativeId + "&active=Y";
+    var apiUrl = apiBaseServiceUrl + "legislatorsurveys?legislatorId=" + legislatorId + "&initiativeId=" + initiativeId + "&active=Y";
     
     initiativeSurveyDataSource = new kendo.data.DataSource
     (
