@@ -1,5 +1,10 @@
-<div data-role="view" id="initiativesurveyview" data-show="initiativeSurveyListViewDataShow" data-layout="back-button-layout" data-title="Initiative Survey">
-    <ul data-role="buttongroup" data-index="0">
+<div data-role="view" id="initiativesurveyview" data-init="initiativeSurveyListViewDataInit" data-show="initiativeSurveyListViewDataShow" data-layout="back-button-layout" data-title="Initiative Survey">
+    <div class="view-row-details-container-table">
+        <div class="view-row-details-container-table-cell">
+            <span class="view-header" data-bind="text: FullName"></span>
+        </div>
+    </div>
+    <ul data-role="buttongroup" data-index="0" data-select="onInitiativeSurveyGroupSelect">
         <li>Current Questions</li>
         <li>Archived Questions</li>
     </ul>

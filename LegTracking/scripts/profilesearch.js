@@ -50,30 +50,29 @@ function profileSearchViewDataShow(e)
                     url: apiBaseServiceUrl + "profilerelationshipfilter",
                     type: "get",
                     dataType: "json",
-                    //beforeSend: function (xhr)
-                    //{
-                    //    xhr.setRequestHeader("Authorization", token);
-                    //},
-                    //error: function (xhr, ajaxOptions, thrownError)
-                    //{
-                    //    alert("error " + xhr.responseText);
-                    //}
+                    beforeSend: function (xhr)
+                    {
+                        xhr.setRequestHeader("Authorization", token);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError)
+                    {
+                        alert("error " + xhr.responseText);
+                    }
                 },
                 update:
                 {
-                    url: apiBaseServiceUrl + "updateprofilerelationship",
+                    url: apiBaseServiceUrl + "insertdeleteprofilerelationship",
                     type: "post",
-                    dataType: "json"
-                    //,
+                    dataType: "json",
                     // crossDomain: true, // enable this,
-                    //beforeSend: function (xhr)
-                    //{
-                    //    xhr.setRequestHeader("Authorization", token);
-                    //},
-                    //error: function (xhr, ajaxOptions, thrownError)
-                    //{
-                    //    alert("error " + xhr.responseText);
-                    //}
+                    beforeSend: function (xhr)
+                    {
+                        xhr.setRequestHeader("Authorization", token);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError)
+                    {
+                        alert("error " + xhr.responseText);
+                    }
                 },
                 parameterMap: function (options, operation)
                 {

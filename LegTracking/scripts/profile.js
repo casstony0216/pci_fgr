@@ -8,7 +8,7 @@ function profileListViewDataShow(e)
     var profileModel = profilesDataSource.getByUid(uid);
     var dataTitle = null;
 
-    if (type == "legislator")
+    if (type === "legislator")
     {
         dataTitle = "Profile";
     }
@@ -22,4 +22,17 @@ function profileListViewDataShow(e)
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
 
     navbar.title(dataTitle);
+
+    e.view.element.find("#done-button")
+        .data("kendoMobileButton")
+            .bind
+            (
+                "click",
+                function ()
+                {
+                    profilesDataSource.sync();
+
+                    kendo.mobile.application.navigate("#:back");
+                }
+            );
 }

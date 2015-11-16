@@ -7,6 +7,7 @@ var personId = "47561"; // Will need to pull this out of the login token when th
 var legislatorsDataSource = null;
 var legislatorUid;
 var legislatorModel;
+var initiativeSurveysReference = null;
 
 function legislatorsListViewDataInit(e) 
 {
@@ -65,16 +66,40 @@ function legislatorsSwipe(e)
 
 function legislatorsTouchStart(e) 
 {
-    var target = $(e.touch.initialTouch),
-        listview = $("#legislatorsListView").data("kendoMobileListView"),
-        model,
-        detailbutton = $(e.touch.target).find("[data-role=detailbutton]"),
-        tabstrip = $(e.touch.target).find("div.swipeButtons:visible");
+    var target = $(e.touch.initialTouch)
+    var listview = $("#legislatorsListView").data("kendoMobileListView")
+    var model = legislatorsDataSource.getByUid($(e.touch.target).attr("data-uid"));
+    var detailbutton = $(e.touch.target).find("[data-role=detailbutton]")
+    var tabstrip = $(e.touch.target).find("div.swipeButtons:visible");
 
     if (target.closest("div.swipeButtons")[0]) 
     {
-        model = legislatorsDataSource.getByUid($(e.touch.target).attr("data-uid"));
-        legislatorsDataSource.remove(model);
+        var button = target.closest("[data-role=button]")[0];
+        var buttonIcon = button.attributes["data-icon"].value;
+        var legislatorId = model.LegislatorId;
+
+        switch(buttonIcon)
+        {
+            case "compose":
+                //detailbutton.show();
+                //tabstrip.hide();
+
+                kendo.mobile.application.navigate("views/meeting.html?legislatorId=" + legislatorId);
+
+                break;
+
+            case "meeting-e":
+                //detailbutton.show();
+                //tabstrip.hide();
+
+                kendo.mobile.application.navigate("views/meetings.html?uid=" + legislatorId);
+
+                break;
+
+            default:
+                // Do nothing...
+
+        }
 
         //prevent `swipe`
         this.events.cancel();
@@ -93,32 +118,6 @@ function legislatorsTouchStart(e)
         listview.items().find("[data-role=detailbutton]").show();
         listview.items().find("div.swipeButtons:visible").hide();
     }
-}
-
-function onLegislatorsMeetingButtonClick(e)
-{
-    var divElement = e.sender.element.parent().parent().parent(); //e.sender.element.find('div.swipeButtons'); //.context.offsetParent
-    var divParentElement = divElement.parent();
-    var inputElement = divElement.find('input[name="legislatorid"]');
-    var legislatorId = inputElement[0].value;
-
-    divParentElement.find("[data-role=detailbutton]").show();
-    divElement.hide();
-
-    kendo.mobile.application.navigate("views/meetings.html?uid=" + legislatorId);
-}
-
-function onLegislatorsComposeButtonClick(e)
-{
-    var divElement = e.sender.element.parent().parent().parent(); //e.sender.element.find('div.swipeButtons'); //.context.offsetParent
-    var divParentElement = divElement.parent();
-    var inputElement = divElement.find('input[name="legislatorid"]');
-    var legislatorId = inputElement[0].value;
-
-    divParentElement.find("[data-role=detailbutton]").show();
-    divElement.hide();
-
-    kendo.mobile.application.navigate("views/meeting.html?legislatorId=" + legislatorId);
 }
 
 function setLegislatorsDataSource()
@@ -157,7 +156,7 @@ function setLegislatorsDataSource()
             {
                 model:
                 {
-                    Id: "LegislatorId",
+                    id: "LegislatorId",
                     fields:
                     {
                         LegislatorId: "LegislatorId",

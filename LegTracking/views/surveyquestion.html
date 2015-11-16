@@ -1,5 +1,10 @@
-<div data-role="view" id="surveyquestionview" data-show="surveyQuestionListViewDataShow" data-use-native-scrolling="true" data-layout="save-button-layout" data-title="Survey Question">
+<div data-role="view" id="surveyquestionview" data-init="surveyQuestionListViewDataInit" data-show="surveyQuestionListViewDataShow" data-use-native-scrolling="true" data-layout="save-button-layout" data-title="Survey Question">
     <form>
+        <div class="view-row-details-container-table">
+            <div class="view-row-details-container-table-cell">
+                <span class="view-header" data-bind="text:surveyQuestionItem.FullName"></span>
+            </div>
+        </div>
         <ul data-role="listview" data-style="inset" class="formArea" onclick="">
             <li style="margin: 0; padding: 0; width: 100%;">
                 <ul class="listview-row-input-table">

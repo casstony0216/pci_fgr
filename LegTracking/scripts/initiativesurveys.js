@@ -3,55 +3,8 @@ var token = 'http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclai
 
 var initiativeSurveysDataSource = null;
 
-function initiativeSurveysListViewDataShow(e)
+function initiativeSurveysListViewDataInit(e)
 {
-    var legislatorId = e.view.params.uid;
-
-    initiativeSurveysDataSource = new kendo.data.DataSource
-    (
-        {
-            transport:
-            {
-                read:
-                {
-                    // the remote service url
-                    url: apiBaseServiceUrl + "legislatorinitiatives?legislatorId=" + legislatorId,
-
-                    // the request type
-                    type: "get",
-
-                    // the data type of the returned result
-                    dataType: "json",
-
-                    // crossDomain: true, // enable this,
-                    beforeSend: function (xhr)
-                    {
-                        xhr.setRequestHeader("Authorization", token);
-                    },
-
-                    error: function (xhr, ajaxOptions, thrownError)
-                    {
-                        alert("error " + xhr.responseText);
-                    }
-                }
-            },
-            batch: true,
-            schema:
-            {
-                model:
-                {
-                    Id: "InitiativeId",
-                    fields:
-                    {
-                        LegislatorId: "LegislatorId",
-                        InitiativeId: "InitiativeId",
-                        Initiative: "Initiative"
-                    }
-                }
-            }
-        }
-    );
-
     e.view.element.find("#initiativeSurveysListView")
         .kendoMobileListView
         (
@@ -64,19 +17,70 @@ function initiativeSurveysListViewDataShow(e)
         (
             {
                 filter: ">li",
-                enableSwipe: true,
-                touchstart: initiativeSurveysTouchStart,
-                tap: initiativeSurveysNavigate,
-                swipe: initiativeSurveysSwipe
+                tap: initiativeSurveysNavigate
             }
         );
-
-    kendo.bind(e.view.element, legislatorModel, kendo.mobile.ui);
 }
 
-function initiativeSurveysTouchStart(e)
+function initiativeSurveysListViewDataShow(e)
 {
+    var legislatorId = e.view.params.legislatorId;
+    var meetingId = e.view.params.meetingId;
+    var apiUrl = apiBaseServiceUrl + "legislatorinitiatives?legislatorId=" + legislatorId;
 
+    if (meetingId !== null)
+    {
+        apiUrl += "&meetingId=" + meetingId;
+    }
+
+    initiativeSurveysDataSource = new kendo.data.DataSource
+    (
+        {
+            transport:
+            {
+                read:
+                {
+                    url: apiUrl,
+                    type: "get",
+                    dataType: "json",
+                    // crossDomain: true, // enable this,
+                    beforeSend: function (xhr)
+                    {
+                        xhr.setRequestHeader("Authorization", token);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError)
+                    {
+                        alert("error " + xhr.responseText);
+                    }
+                }
+            },
+            schema:
+            {
+                model:
+                {
+                    id: "InitiativeId",
+                    fields:
+                    {
+                        LegislatorId: "LegislatorId",
+                        FullName: "FullName",
+                        InitiativeId: "InitiativeId",
+                        Initiative: "Initiative"
+                    }
+                }
+            }
+        }
+    );
+
+    $("#initiativeSurveysListView").data("kendoMobileListView").setDataSource(initiativeSurveysDataSource);
+
+    if (initiativeSurveysReference === "meeting")
+    {
+        kendo.bind(e.view.element, meetingModel, kendo.mobile.ui);
+    }
+    else
+    {
+        kendo.bind(e.view.element, legislatorModel, kendo.mobile.ui);
+    }
 }
 
 function initiativeSurveysNavigate(e)
@@ -88,11 +92,4 @@ function initiativeSurveysNavigate(e)
     var url = "views/initiativesurvey.html?uid=" + uid + "&legislatorId=" + legislatorId + "&initiativeId=" + initiativeId;
 
     kendo.mobile.application.navigate(url);
-}
-
-function initiativeSurveysSwipe(e)
-{
-    var button = kendo.fx($(e.touch.currentTarget).find("[data-role=button]"));
-
-    button.expand().duration(200).play();
 }

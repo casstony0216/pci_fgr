@@ -40,7 +40,7 @@ function committeesListViewDataShow(e)
             {
                 model:
                 {
-                    Id: "CommitteeId",
+                    id: "CommitteeId",
                     fields:
                     {
                         CommitteeId: "CommitteeId",

@@ -29,6 +29,7 @@ function profilesViewDataInit(e)
 function profilesViewDataShow(e)
 {
     var apiReadUrl = null;
+    var apiUpdateUrl = null;
     var apiDestroyUrl = null;
     var uid = e.view.params.uid;
     var dataTitle = null;
@@ -45,7 +46,8 @@ function profilesViewDataShow(e)
     }
 
     apiReadUrl = apiBaseServiceUrl + "profilerelationships?relationalType=" + profileType + "&relationalId=" + uid;
-    apiDestroyUrl = apiBaseServiceUrl + "updateprofilerelationship";
+    apiUpdateUrl = apiBaseServiceUrl + "updateprofilerelationship";
+    apiDestroyUrl = apiBaseServiceUrl + "insertdeleteprofilerelationship";
 
     profilesDataSource = new kendo.data.DataSource
     (
@@ -66,6 +68,12 @@ function profilesViewDataShow(e)
                     {
                         alert("error " + xhr.responseText);
                     }
+                },
+                update:
+                {
+                    url: apiUpdateUrl,
+                    type: "post",
+                    dataType: "json"
                 },
                 destroy:
                 {
@@ -130,18 +138,28 @@ function profilesTouchStart(e)
 {
     var target = $(e.touch.initialTouch);
     var listview = $("#profilesListView").data("kendoMobileListView");
-    var model;
+    var model = profilesDataSource.getByUid($(e.touch.target).attr("data-uid"));
     var detailbutton = $(e.touch.target).find("[data-role=detailbutton]");
     var tabstrip = $(e.touch.target).find("div.swipeButtons:visible");
 
     if (target.closest("div.swipeButtons")[0])
     {
-        model = profilesDataSource.getByUid($(e.touch.target).attr("data-uid"));
-        model.set("Checked", false);
+        var button = target.closest("[data-role=button]")[0];
+        var buttonIcon = button.attributes["data-icon"].value;
 
-        profilesDataSource.remove(model);
-        profilesDataSource.sync();
+        switch (buttonIcon)
+        {
+            case "delete":
+                model.set("Checked", false);
 
+                profilesDataSource.remove(model);
+                profilesDataSource.sync();
+
+            default:
+                // Do nothing...
+
+        }
+        
         //prevent `swipe`
         this.events.cancel();
         e.event.stopPropagation();
@@ -159,18 +177,4 @@ function profilesTouchStart(e)
         listview.items().find("[data-role=detailbutton]").show();
         listview.items().find("div.swipeButtons:visible").hide();
     }
-}
-
-function onProfilesDeleteButtonClick(e)
-{
-    //var divElement = e.sender.element.parent().parent().parent(); //e.sender.element.find('div.swipeButtons'); //.context.offsetParent
-    //var divParentElement = divElement.parent();
-    //var uid = divParentElement.attr('data-uid');
-    
-    //var profile = profilesDataSource.getByUid(uid);
-
-    //profile.set("Checked", false);
-
-    //profilesDataSource.remove(profile);
-    profilesDataSource.sync();
 }

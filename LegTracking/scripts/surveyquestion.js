@@ -8,33 +8,24 @@ var supportLevelsOptionsDataSource = new kendo.data.DataSource
             {
                 read:
                 {
-                    // the remote service url
                     url: apiBaseServiceUrl + "supportlevels",
-
-                    // the request type
                     type: "get",
-
-                    // the data type of the returned result
                     dataType: "json",
-
-                    // crossDomain: true, // enable this,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
                     },
-
                     error: function (xhr, ajaxOptions, thrownError)
                     {
                         alert("error " + xhr.responseText);
                     }
                 }
             },
-            batch: true,
             schema:
             {
                 model:
                 {
-                    Id: "SupportLevelId",
+                    id: "SupportLevelId",
                     fields:
                     {
                         Value: "SupportLevelId",
@@ -44,6 +35,11 @@ var supportLevelsOptionsDataSource = new kendo.data.DataSource
             }
         }
     );
+
+function surveyQuestionListViewDataInit(e)
+{
+    
+}
 
 function surveyQuestionListViewDataShow(e)
 {
@@ -60,4 +56,17 @@ function surveyQuestionListViewDataShow(e)
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
 
     navbar.title(surveyQuestionModel.Initiative);
+
+    e.view.element.find("#done-button")
+        .data("kendoMobileButton")
+            .bind
+            (
+                "click",
+                function ()
+                {
+                    initiativeSurveyDataSource.sync();
+
+                    kendo.mobile.application.navigate("#:back");
+                }
+            );
 }

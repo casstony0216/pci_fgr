@@ -16,7 +16,7 @@ var legislatorData =
             id: 3,
             name: "surveys",
             label: "Initiative Surveys",
-            url: "views/initiativesurveys.html?uid="
+            url: "views/initiativesurveys.html?legislatorId="
         },
         {
             id: 4,
@@ -96,6 +96,12 @@ function legislatorNavigate(e)
     if (currentRecord.Name === "bio")
     {
         kendo.mobile.application.navigate(url + legislatorUid);
+    }
+    else if (currentRecord.Name == "surveys")
+    {
+        initiativeSurveysReference = "legislator";
+
+        kendo.mobile.application.navigate(url + legislatorId);
     }
     else
     {

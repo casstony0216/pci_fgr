@@ -14,21 +14,14 @@ function initiativeTiersListViewDataShow(e)
             {
                 read:
                 {
-                    // the remote service url
                     url: apiBaseServiceUrl + "initiativestances?legislatorId=" + legislatorId,
-
-                    // the request type
                     type: "get",
-
-                    // the data type of the returned result
                     dataType: "json",
-
                     // crossDomain: true, // enable this,
-                    //beforeSend: function (xhr)
-                    //{
-                    //    xhr.setRequestHeader("Authorization", token);
-                    //},
-
+                    beforeSend: function (xhr)
+                    {
+                        xhr.setRequestHeader("Authorization", token);
+                    },
                     error: function (xhr, ajaxOptions, thrownError)
                     {
                         alert("error " + xhr.responseText);
@@ -40,7 +33,7 @@ function initiativeTiersListViewDataShow(e)
             {
                 model:
                 {
-                    Id: "InitiativeId",
+                    id: "InitiativeId",
                     fields:
                     {
                         InitiativeId: "InitiativeId",

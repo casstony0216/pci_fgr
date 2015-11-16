@@ -34,6 +34,11 @@ body, html
     font-size: 1.5em !important;
 }
 
+.km-flat .km-state-active
+{
+    background-color: #0a6fb0 !important;
+}
+
 .km-collapsible-header
 {
     border-bottom: solid 1px lightgray;
