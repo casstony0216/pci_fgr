@@ -36,7 +36,7 @@ function profilesViewDataShow(e)
 
     profileType = e.view.params.type;
 
-    if (profileType == "legislator")
+    if (profileType === "legislator")
     {
         dataTitle = "PCI Relationships";
     }
@@ -113,6 +113,15 @@ function profilesViewDataShow(e)
     navbar.title(dataTitle);
 
     $("#profilesListView").data("kendoMobileListView").setDataSource(profilesDataSource);
+
+    if (profileType === "legislator")
+    {
+        kendo.bind(e.view.element, legislatorModel, kendo.mobile.ui);
+    }
+    else
+    {
+        kendo.bind(e.view.element, meetingModel, kendo.mobile.ui);
+    }
 }
 
 function profilesNavigate(e)

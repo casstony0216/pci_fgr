@@ -33,7 +33,7 @@ function meetingsListViewDataShow(e)
     var legislatorId = e.view.params.uid;
     var dataTitle = null;
     
-    if (legislatorId == undefined)
+    if (legislatorId === undefined)
     {
         apiUrl = apiBaseServiceUrl + "meetings?personId=" + personId;  // personId is set in the legislators.js
 
@@ -162,9 +162,9 @@ function meetingsListViewDataShow(e)
 
 function meetingsNavigate(e)
 {
-    var uid = $(e.touch.currentTarget).data("uid");
+    meetingUid = $(e.touch.currentTarget).data("uid");
 
-    kendo.mobile.application.navigate("views/meeting.html?uid=" + uid);
+    kendo.mobile.application.navigate("views/meeting.html?uid=" + meetingUid);
 }
 
 function meetingsSwipe(e)

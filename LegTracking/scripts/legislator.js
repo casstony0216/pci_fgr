@@ -97,7 +97,7 @@ function legislatorNavigate(e)
     {
         kendo.mobile.application.navigate(url + legislatorUid);
     }
-    else if (currentRecord.Name == "surveys")
+    else if (currentRecord.Name === "surveys")
     {
         initiativeSurveysReference = "legislator";
 

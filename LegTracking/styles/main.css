@@ -146,6 +146,20 @@ body, html
     height: 6em !important;
 }  
 
+#fgrApp .formArea li textarea.tall
+{
+    background-color: #fff !important;
+    /*border: solid 1px #ccc !important;*/
+	color: #999 !important;
+    float: left !important;
+    font-size: 1.25em !important;
+    margin: 0px !important;
+	position: relative !important;
+    resize: none;
+    width: 100% !important;
+    height: 11em !important;
+} 
+
 /* App Header */
 .km-view-title
 {
@@ -822,7 +836,7 @@ input, select
     display: table; 
     /*height: 3em !important;*/ 
     margin: 0;
-    padding: 0.5em 0 0.5em 0 !important; 
+    padding: 1em 0 0 0 !important; 
     width: 100% !important;
 }
 .listview-row-button-cell

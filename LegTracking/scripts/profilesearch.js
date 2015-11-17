@@ -27,7 +27,7 @@ function profileSearchViewDataShow(e)
     var uid = e.view.params.uid;
     var dataTitle = null;
 
-    if (profileType == "legislator") // profileType is declared and set in the profiles.js
+    if (profileType === "legislator") // profileType is declared and set in the profiles.js
     {
         dataTitle = "Profile Search";
     }

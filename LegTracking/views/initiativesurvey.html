@@ -12,11 +12,15 @@
 </div>
 
 <script type="text/x-kendo-template" id="initiativeSurveyListViewTemplate">
-    <div style="display: table; height: 4em;">
-        <div style="display: table-cell; vertical-align: middle;">
-            <input type="hidden" id="id" value="#:InitiativeSurveyId#" />
-            <span class="listview-row-header">#:InitiativeSurvey#</span>
-        </div>
-    </div>
+    <input type="hidden" id="id" value="#:InitiativeSurveyId#" />
+    <span class="listview-row-header">#:InitiativeSurvey#</span>
+    <br />
+    <span class="listview-row-subdetail">
+        Support Level: #:SupportLevel#
+        <br />
+        Follow Up Required: #:FollowUpRequired#
+        <br />
+        Comments/Observations: #:Comments#
+    </span>
     <a data-role="detailbutton" data-icon="details"></a>
 </script>

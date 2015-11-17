@@ -10,7 +10,22 @@ function initiativeSurveysListViewDataInit(e)
         (
             {
                 dataSource: initiativeSurveysDataSource,
-                template: $("#initiativeSurveysListViewTemplate").html()
+                template: $("#initiativeSurveysListViewTemplate").html(),
+                dataBound: function(e)
+                {
+                    e.sender.element.find('li').each(function ()
+                    {
+                        var liElement = $(this);
+                        var questionCount = liElement.find('input[name="questionCount"]');
+
+                        if (questionCount[0].value === "0")
+                        {
+                            var detailButtonElement = liElement.find("[data-role=detailbutton]");
+
+                            detailButtonElement.hide();
+                        }
+                    });
+                }
             }
         )
         .kendoTouch
@@ -64,7 +79,8 @@ function initiativeSurveysListViewDataShow(e)
                         LegislatorId: "LegislatorId",
                         FullName: "FullName",
                         InitiativeId: "InitiativeId",
-                        Initiative: "Initiative"
+                        Initiative: "Initiative",
+                        QuestionCount: "QuestionCount"
                     }
                 }
             }
@@ -85,11 +101,23 @@ function initiativeSurveysListViewDataShow(e)
 
 function initiativeSurveysNavigate(e)
 {
-    var uid = $(e.touch.currentTarget).data("uid");
-    var currentRecord = initiativeSurveysDataSource.getByUid(uid);
-    var legislatorId = currentRecord.LegislatorId;
-    var initiativeId = currentRecord.InitiativeId;
-    var url = "views/initiativesurvey.html?uid=" + uid + "&legislatorId=" + legislatorId + "&initiativeId=" + initiativeId;
+    var liElement = $(e.touch.currentTarget);
+    var questionCount = liElement.find('input[name="questionCount"]');
 
-    kendo.mobile.application.navigate(url);
+    if (questionCount[0].value === "0")
+    {
+        this.events.cancel();
+        e.event.stopPropagation();
+    }
+    else
+    {
+        var uid = $(e.touch.currentTarget).data("uid");
+        var currentRecord = initiativeSurveysDataSource.getByUid(uid);
+        var legislatorId = currentRecord.LegislatorId;
+        var initiativeId = currentRecord.InitiativeId;
+        var url = "views/initiativesurvey.html?uid=" + uid + "&legislatorId=" + legislatorId + "&initiativeId=" + initiativeId;
+
+        kendo.mobile.application.navigate(url);
+    }
+    
 }

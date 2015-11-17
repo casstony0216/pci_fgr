@@ -28,21 +28,23 @@
             <li style="margin: 0; padding: 0; width: 100%;">
                 <ul class="listview-row-input-table">
                     <li class="listview-row-input-cell-control">
-                        <textarea style="resize: none" data-bind="value:Notes" rows="5"></textarea>
+                        <textarea data-bind="value:Notes" class="tall" style="resize:none"></textarea>
                     </li>
                 </ul>
             </li>
         </ul>
-        <ul class="listview-row-button-table">
-            <li class="listview-row-button-cell">
-                <a data-role="button">Save</a>
-                <a data-role="button">Delete</a>
-            </li>
-        </ul>
-        <ul class="listview-row-button-table">
-            <li class="listview-row-button-cell">
-                <a data-role="button">Cancel</a>
-            </li>
-        </ul>
+        <div style="bottom: 0; position: absolute; width: 100%;">
+            <ul class="listview-row-button-table">
+                <li class="listview-row-button-cell">
+                    <a data-role="button">Save</a>
+                    <a data-role="button">Delete</a>
+                </li>
+            </ul>
+            <ul class="listview-row-button-table" style="padding-bottom: 0.5em !important;">
+                <li class="listview-row-button-cell">
+                    <a data-role="button">Cancel</a>
+                </li>
+            </ul>
+        </div>
     </form>
 </div>
