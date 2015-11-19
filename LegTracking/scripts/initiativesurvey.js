@@ -13,7 +13,29 @@ function initiativeSurveyListViewDataInit(e)
         (
             {
                 dataSource: initiativeSurveyDataSource,
-                template: $("#initiativeSurveyListViewTemplate").html()
+                template: $("#initiativeSurveyListViewTemplate").html(),
+                dataBound: function (e)
+                {
+                    e.sender.element.find('input[name="followUpRequired"]').each(function ()
+                    {
+                        var inputElement = $(this);
+                        var liElement = inputElement.parent();
+                        var spanElement = liElement.find('span[id="followUpRequired"]');
+
+                        if (inputElement[0].value === "true")
+                        {
+                            spanElement[0].innerText = "Yes";
+                        }
+                        else if (inputElement[0].value === "false")
+                        {
+                            spanElement[0].innerText = "No";
+                        }
+                        else
+                        {
+                            spanElement[0].innerText = "";
+                        }
+                    });
+                }
             }
         )
         .kendoTouch

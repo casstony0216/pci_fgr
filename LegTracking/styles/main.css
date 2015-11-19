@@ -87,8 +87,8 @@ body, html
   width: 100%;
   max-width: 600px;
   border: 0 none;
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #fff;
+  color: #000;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -157,16 +157,47 @@ body, html
 	position: relative !important;
     resize: none;
     width: 100% !important;
-    height: 11em !important;
+    height: 10em !important;
 } 
+
+.km-tabstrip 
+{
+    /*background-color: #0a6fb0 !important;*/
+    background-color: #bbb !important;
+    border: solid #aaa !important;
+    border-top: 1px solid #aaa !important;
+    border-width: 1px 0 0 !important;
+    /*text-shadow: 0 1px 1px #fff !important;*/
+}
+
+.km-tabstrip .km-state-active
+{
+    /*background-color: #cc2d30 !important;*/
+    background-color: #ccc !important;
+    /*border: solid #aaa !important;
+    border-left: 1px solid #aaa !important;
+    border-right: 1px solid #aaa !important;
+    border-width: 1px 0 0 !important;*/
+}
+
+.km-tabstrip .km-text, .km-tabstrip .km-icon
+{
+    color: #666 !important;
+}
 
 /* App Header */
 .km-view-title
 {
-    /*background-color: #0a6fb0 !important;*/
-    background-color: #cc2d30 !important;
-    color: #fff !important;
-    font-size: 1.25em !important;
+    /*background-color: #cc2d30 !important;*/
+    background-color: #ccc !important;
+    /*border: solid #aaa !important;*/
+    border-width: 1px 0 0 !important;
+    /*border-top: 1px solid #bbb !important;*/
+    border-bottom: 1px solid #aaa !important;
+    color: #666 !important;
+    font-size: 1.5em !important;
+    /*font-weight: bold !important;*/
+    /*text-shadow: 0 1px 1px #fff !important;*/
 }
 
 #fgrApp .km-flat.km-on-ios.km-black-translucent-status-bar .km-header 
@@ -234,123 +265,6 @@ body, html
     max-width: 300px;
     font-size: .9em;
     -webkit-appearance: none;
-}
-
-/* MAP STYLES*/
-#no-map 
-{
-    position: absolute;
-    margin: 0 auto;
-    top: 40%;    
-    text-align: center;
-}
-
-#map-canvas 
-{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-#map-search-wrap 
-{
-    position: absolute;
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 3px;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-}
-
-#map-address 
-{
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 3px 50px 0px 50px;
-    background-color: #fff;
-    font-style: italic;
-    color: #000;
-    padding: 7px 10px;
-    border-radius: 3em;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(180, 180, 180);
-    border-bottom-color: rgb(255, 255, 255);
-    box-shadow: 0 -1px 0 #3C3C3C;
-    -moz-background-clip: border-box;
-    -webkit-background-clip: border-box;
-    background-clip: border-box;
-}
-
-#map-search 
-{
-    float: right;
-    width: 40px;
-    height: 40px;
-    color: #fff;
-    border: none;
-    background: none;
-    background-image: url(../styles/images/search.png);
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
-#map-search:active 
-{
-    background-image: url(../styles/images/search_active.png);
-    background-repeat: no-repeat;
-}
-
-#map-navigate-home 
-{
-    float: left;
-    width: 40px;
-    height: 40px;
-    color: #fff;
-    border: none;
-    background: none;
-    background-image: url(../styles/images/location.png);
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
-#map-navigate-home:active 
-{
-    background-image: url(../styles/images/location_active.png);
-    background-repeat: no-repeat;
-}
-
-/* WEATHER STYLES*/
-.weather 
-{
-    padding-top:50px;
-}
-
-.weather .weather-title 
-{
-    color: #fff;
-    font-size: 1.5em;
-    line-height: 1.2em;
-    text-shadow: none;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-    position: absolute;
-    top: 10px;
-    left: 0;
-    width: 100%;
-}
-
-.weather-info 
-{
-    color: #fff;
-    font-size: 1.2em;
-    text-shadow: none;
-    line-height: 1.8em;
-    display: inline-block;
 }
 
 .position-left 
@@ -471,41 +385,6 @@ body, html
         background-repeat: no-repeat;
         background-size: 100%;
     }
-
-    #map-search 
-    {
-        background-image: url(../styles/images/search2x.png);
-        background-repeat: no-repeat;
-        background-size: 100%;
-    }
-
-    #map-search:active 
-    {
-        background-image: url(../styles/images/search_active2x.png);
-        background-repeat: no-repeat;
-        background-size: 100%;
-    }
-
-    #map-navigate-home 
-    {
-        background-image: url(../styles/images/location2x.png);
-        background-repeat: no-repeat;
-        background-size: 100%;
-    }
-
-    #map-navigate-home:active 
-    {
-        background-image: url(../styles/images/location_active2x.png);
-        background-repeat: no-repeat;
-        background-size: 100%;
-    }
-
-    .weather-icon 
-    {
-        background-image: url(../styles/images/sprite-weather2x.png);
-        background-repeat: no-repeat;
-        background-size: 100%;
-    }
 }
 
 .bio-detail-container
@@ -518,77 +397,26 @@ body, html
 }
 
 /* Button Styles */
+#fgrApp .km-navbar
+{
+    color: #666 !important;
+}
+
 #fgrApp .km-header .nav-button 
 {
-  display: inline-block;
-  font-size: 1.25em !important;
-  margin: 0;
-  padding: 0;
-  width: 2em;
-  height: 2em;
-  border: 0 none;
-  background-color: transparent;
-  background-position: 0 50%;
-  background-repeat: no-repeat;
+    background-color: transparent !important;
+    border: 0 none !important;
+    float: left !important;
+    font-size: 1em !important;
+    height: 2.5em !important;
+  	line-height: 2.5em !important;
+  	padding: 0 !important;
+    width: auto !important;
 }
 
-#fgrApp .km-header .nav-button-back 
-{
-  background-image: url(images/icon-arrow_left.png);
-  background-position: .65em 50%;
-}
-
-#fgrApp .km-header .nav-button-back .km-text div 
-{
-    color: white !important;
-	margin-left: 1.5em !important;
-    margin-top: .3em !important;
-}
-
-#fgrApp .km-header .nav-button-add 
-{
-  background-image: url(images/icon-add.png);
-}
-
-#fgrApp .km-header .nav-button-back,
-#fgrApp .km-header .nav-button-add 
-{
-  -webkit-transition: opacity 0.3s;
-     -moz-transition: opacity 0.3s;
-          transition: opacity 0.3s;
-}
-
-
-#fgrApp .km-header .nav-button-edit 
-{
-  -webkit-transition: opacity 0.3s;
-     -moz-transition: opacity 0.3s;
-          transition: opacity 0.3s;
-}
-
-#fgrApp .km-header .nav-button-back:hover,
-#fgrApp .km-header .nav-button-add:hover 
+#fgrApp .km-header .nav-button:hover 
 {
     opacity: .6;
-}
-
-#fgrApp .km-header .nav-button-cancel,
-#fgrApp .km-header .nav-button-post 
-{
-    color: #fff;
-	font-size: 1rem;
-  	height: 2.5em;
-  	line-height: 2.5em;
-  	width: auto;
-}
-
-#fgrApp .km-header .nav-button-edit 
-{
-    color: #fff;
-	font-size: 1rem;
-  	height: 2.5em;
-  	line-height: 2.5em;
-  	width: auto;
 }
 
 #fgrApp .km-header .hide-text 
@@ -596,7 +424,6 @@ body, html
   overflow: hidden;
   text-indent: -999px;
 }
-
 
 /* View Styles */
 .view-photo-container
@@ -653,13 +480,13 @@ body, html
 }
 .view-header
 {
-    color: #ffffff;
+    color: #fff;
     font-size: 1.5em !important;
     vertical-align: middle !important;
 }
 .view-detail
 {
-    color: #cccccc;
+    color: #ccc;
     font-size: 1em;
 }
 .view-header-photo 
@@ -731,7 +558,7 @@ input, select
 {
     font-size: 1em !important;
 }
-.listview-row-subdetail
+.listview-row-subdetail, .listview-row-subdetail input
 {
     color: #999 !important;
     font-size: 1em !important;
@@ -875,10 +702,10 @@ span.km-switch-label-on
 .km-native-scroller
 {
     /*background-color: #eee !important;*/
-    background: -webkit-linear-gradient(#fff, #eee, #eee, #eee, #fff) !important; /* For Safari 5.1 to 6.0 */
-  	background: -o-linear-gradient(#fff, #eee, #eee, #eee, #fff) !important; /* For Opera 11.1 to 12.0 */
-  	background: -moz-linear-gradient(#fff, #eee, #eee, #eee, #fff) !important; /* For Firefox 3.6 to 15 */
-  	background: linear-gradient(#ddd, #eee, #fff, #eee, #ddd) !important; /* Standard syntax */
+    /*background: -webkit-linear-gradient(#fff, #eee, #eee, #eee, #fff) !important;*/ /* For Safari 5.1 to 6.0 */
+  	/*background: -o-linear-gradient(#fff, #eee, #eee, #eee, #fff) !important;*/ /* For Opera 11.1 to 12.0 */
+  	/*background: -moz-linear-gradient(#fff, #eee, #eee, #eee, #fff) !important;*/ /* For Firefox 3.6 to 15 */
+  	/*background: linear-gradient(#ddd, #eee, #fff, #eee, #ddd) !important;*/ /* Standard syntax */
 }
 
 .mainList li 
@@ -890,54 +717,27 @@ span.km-switch-label-on
   	background: linear-gradient(#ddd, #eee, #eee, #eee, #ddd) !important; /* Standard syntax */
 }
 
-.km-tabstrip 
-{
-    background-color: #0a6fb0 !important;
-}
-
-.km-tabstrip .km-state-active
-{
-    background-color: #cc2d30 !important;
-}
-
 /* Icon Definitions */
-.km-bio-e:after,
-.km-bio-e:before
+.km-back-e:after,
+.km-back-e:before
+{
+    content: "\e013";
+}
+
+.km-delete-e:after,
+.km-delete-e:before
+{
+    content: "\e321";
+}
+
+.km-legislator-e:after,
+.km-legislator-e:before 
 {
     content: "\e319";
 }
-.km-vote-e:after,
-.km-vote-e:before
+
+.km-meeting-e:after,
+.km-meeting-e:before 
 {
-    content: "\e037";
-}
-.km-committees-e:after,
-.km-committees-e:before
-{
-    content: "\e077";
-}
-.km-news-e:after,
-.km-news-e:before
-{
-    content: "\e0cf";
-}
-.km-youtube-e:after,
-.km-youtube-e:before
-{
-    content: "";
-}
-.km-website-e:after,
-.km-website-e:before
-{
-    content: "\e0dc";
-}
-.km-facebook-e:after,
-.km-facebook-e:before
-{
-    content: "";
-}
-.km-twitter-e:after,
-.km-twitter-e:before
-{
-    content: "";
+    content: "\e089";
 }

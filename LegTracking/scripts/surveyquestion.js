@@ -57,7 +57,7 @@ function surveyQuestionListViewDataShow(e)
 
     navbar.title(surveyQuestionModel.Initiative);
 
-    e.view.element.find("#done-button")
+    e.view.element.find("#save-button")
         .data("kendoMobileButton")
             .bind
             (

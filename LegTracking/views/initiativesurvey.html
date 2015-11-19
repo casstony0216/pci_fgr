@@ -13,14 +13,18 @@
 
 <script type="text/x-kendo-template" id="initiativeSurveyListViewTemplate">
     <input type="hidden" id="id" value="#:InitiativeSurveyId#" />
+    <input type="hidden" name="followUpRequired" value="#:FollowUpRequired#" />
     <span class="listview-row-header">#:InitiativeSurvey#</span>
     <br />
+    <fieldset style="border-top: 1px solid \#eee; border-bottom: none; border-left: none; border-right: none; display: block; margin: 5px 0 5px 0; padding: 0; text-align: center; width: 90%;">
+        <legend style="color: \#999; font-size: 1em; font-style: italic;">Survey Question Details</legend>
+    </fieldset>
     <span class="listview-row-subdetail">
-        Support Level: #:SupportLevel#
+        <strong>Support Level:</strong> #:SupportLevel#
         <br />
-        Follow Up Required: #:FollowUpRequired#
+        <strong>Follow Up Required:</strong> <span id="followUpRequired"></span>
         <br />
-        Comments/Observations: #:Comments#
+        <strong>Comments/Observations:</strong> #:Comments#
     </span>
     <a data-role="detailbutton" data-icon="details"></a>
 </script>

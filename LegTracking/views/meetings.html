@@ -3,11 +3,20 @@
 </div>
 
 <script type="text/x-kendo-tmpl" id="meetingsListViewTemplate">
-	<span class="listview-row-header">#:Name#</span>
-    <br/>
-    <span class="listview-row-detail">#:kendo.toString(kendo.parseDate(MeetingDate, 'yyyy-MM-dd'), 'MM/dd/yyyy')#</span>
-    <br/>
-    <span class="listview-row-subdetail">with #:LegislatorStaffAttendees#</span>
-   	<a data-role="detailbutton" data-icon="details"></a>
+    <div style="display: table-cell; text-align: left; vertical-align: middle;">
+        <span class="listview-row-header">#:Name#</span>
+        <br />
+        <span class="listview-row-detail">#:kendo.toString(kendo.parseDate(MeetingDate, 'yyyy-MM-dd'), 'MM/dd/yyyy')#</span>
+        <br />
+        <span class="listview-row-subdetail">with #:LegislatorStaffAttendees#</span>
+        <a data-role="detailbutton" data-icon="details"></a>
+    </div>
+    <div class="swipeButtons">
+        <ul style="display: table;">
+            <li style="display: table-cell;">
+                <a data-role="button" data-icon="delete-e" class="redButton"></a>
+            </li>
+        </ul>
+    </div>
 </script>
 

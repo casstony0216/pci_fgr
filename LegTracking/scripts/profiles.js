@@ -106,7 +106,16 @@ function profilesViewDataShow(e)
         }
     );
 
-    $('.km-rightitem a').attr('href', 'views/profilesearch.html?uid=' + uid);
+    e.view.element.find("#add-button")
+        .data("kendoMobileButton")
+            .bind
+            (
+                "click",
+                function ()
+                {
+                    kendo.mobile.application.navigate("views/profilesearch.html?uid=" + uid);
+                }
+            );
 
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
 
@@ -158,7 +167,7 @@ function profilesTouchStart(e)
 
         switch (buttonIcon)
         {
-            case "delete":
+            case "delete-e":
                 model.set("Checked", false);
 
                 profilesDataSource.remove(model);

@@ -1,5 +1,6 @@
-<div data-role="view" id="profileview" data-show="profileListViewDataShow" data-use-native-scrolling="true" data-layout="save-button-layout" data-title="Profile">
+<div data-role="view" id="profileview" data-init="profileListViewDataInit" data-show="profileListViewDataShow" data-use-native-scrolling="true" data-layout="save-button-layout" data-title="Profile">
     <form>
+        <input type="hidden" id="uid" value="" />
         <ul data-role="listview" data-style="inset" class="formArea" onclick="">
             <li style="margin: 0; padding: 0; width: 100%;">
                 <ul class="listview-row-input-table">
@@ -36,13 +37,13 @@
         <div style="bottom: 0; position: absolute; width: 100%;">
             <ul class="listview-row-button-table">
                 <li class="listview-row-button-cell">
-                    <a data-role="button">Save</a>
-                    <a data-role="button">Delete</a>
+                    <a data-role="button" data-click="profileSaveButtonClick">Save</a>
+                    <a data-role="button" data-click="profileDeleteButtonClick">Delete</a>
                 </li>
             </ul>
             <ul class="listview-row-button-table" style="padding-bottom: 0.5em !important;">
                 <li class="listview-row-button-cell">
-                    <a data-role="button">Cancel</a>
+                    <a data-role="button" data-click="profileCancelButtonClick">Cancel</a>
                 </li>
             </ul>
         </div>

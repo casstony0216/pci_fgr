@@ -251,15 +251,6 @@
     <Content Include="styles\images\appbuilder2x.png">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="styles\images\icon-add.png">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="styles\images\icon-adsf.png">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="styles\images\icon-arrow_left.png">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="styles\images\icon-facebook.png">
       <SubType>Content</SubType>
     </Content>

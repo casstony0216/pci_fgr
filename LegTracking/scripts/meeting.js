@@ -47,21 +47,14 @@ var legislatorsOptionsDataSource = new kendo.data.DataSource
             {
                 read:
                 {
-                    // the remote service url
                     url: apiBaseServiceUrl + "list",
-
-                    // the request type
                     type: "get",
-
-                    // the data type of the returned result
                     dataType: "json",
-
                     // crossDomain: true, // enable this,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
                     },
-
                     error: function (xhr, ajaxOptions, thrownError)
                     {
                         alert("error " + xhr.responseText);
@@ -90,21 +83,14 @@ var attendeeTypesOptionsDataSource = new kendo.data.DataSource
             {
                 read:
                 {
-                    // the remote service url
                     url: apiBaseServiceUrl + "meetingattendeetypes",
-
-                    // the request type
                     type: "get",
-
-                    // the data type of the returned result
                     dataType: "json",
-
                     // crossDomain: true, // enable this,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
                     },
-
                     error: function (xhr, ajaxOptions, thrownError)
                     {
                         alert("error " + xhr.responseText);
@@ -133,21 +119,14 @@ var meetingLocationsOptionsDataSource = new kendo.data.DataSource
             {
                 read:
                 {
-                    // the remote service url
                     url: apiBaseServiceUrl + "meetinglocations",
-
-                    // the request type
                     type: "get",
-
-                    // the data type of the returned result
                     dataType: "json",
-
                     // crossDomain: true, // enable this,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
                     },
-
                     error: function (xhr, ajaxOptions, thrownError)
                     {
                         alert("error " + xhr.responseText);
@@ -240,34 +219,38 @@ function meetingListViewDataShow(e)
 {
     //meetingUid = e.view.params.uid;
     var legislatorId = e.view.params.legislatorId;
-
-    if (meetingUid != null)
+    
+    if (meetingUid !== undefined && meetingUid !== null)
     {
-        if (meetingsDataSource != null)
+        if (meetingsDataSource !== null)
         {
             meetingModel = meetingsDataSource.getByUid(meetingUid);
 
             meetingModel.MeetingDate = kendo.toString(kendo.parseDate(meetingModel.MeetingDate, 'yyyy-MM-dd'), 'yyyy-MM-dd');
         }
     }
-    else if (legislatorId != null)
+    else if (legislatorId !== null)
     {
         meetingModel = kendo.data.Model.define( {
             id: "MeetingId",
             fields:
             {
-                MeetingId: "MeetingId",
-                MeetingDate: "MeetingDate",
-                Notes: "Notes",
-                LegislatorId: "LegislatorId",
-                FullName: "FullName",
-                Name: "Name",
-                AttendeeTypeId: "AttendeeTypeId",
-                AttendeeType: "AttendeeType",
-                MeetingLocationId: "MeetingLocationId",
-                Location: "Location",
-                LegislatorStaffAttendees: "LegislatorStaffAttendees",
-                PciContact: "PciContact"
+                MeetingId: { editable: true },
+                MeetingDate: { editable: true, validation: { required: true } },
+                AttendeeTypeId: { editable: true, validation: { required: true } },
+                AttendeeType: { editable: true },
+                PersonId: { editable: true },
+                PciContact: { editable: true },
+                LegislatorId: { editable: true, validation: { required: true } },
+                FullName: { editable: true },
+                Name: { editable: true },
+                PrimaryOfficeContact: { editable: true },
+                MeetingLocationId: { editable: true, validation: { required: true } },
+                Location: { editable: true },
+                LegislatorStaffAttendees: { editable: true },
+                FollowUpNeeded: { editable: true },
+                CreatorId: { editable: true },
+                Notes: { editable: true }
             }
         });
 
@@ -282,36 +265,67 @@ function meetingListViewDataShow(e)
     });
 
     kendo.bind(e.view.element, viewModel, kendo.mobile.ui);
+    
+    e.view.element.find("#save-button")
+        .data("kendoMobileButton")
+            .bind
+            (
+                "click",
+                function ()
+                {
+                    if (meetingModel.MeetingId === null)
+                    {
+                        meetingModel.CreatorId = personId;
+                        meetingModel.PersonId = personId;
+                    }
 
-    //var view = e.view;
+                    meetingsDataSource.sync();
 
-    //view.element.find("#done-button")
-    //    .data("kendoMobileButton")
-    //        .bind
-    //        (
-    //            "click",
-    //            function ()
-    //            {
-    //                meetingsDataSource.one
-    //                (
-    //                    "change",
-    //                    function ()
-    //                    {
-    //                        view.loader.hide();
+                    kendo.mobile.application.navigate("#:back");
+                }
+            );
 
-    //                        kendo.mobile.application.navigate("#:back");
-    //                    }
-    //                );
+    $("#meetingLegislator").change
+        (
+            function ()
+            {
+                var optionSelected = $(this).find("option:selected");
+                //var valueSelected  = optionSelected.val();
+                var textSelected = optionSelected.text();
 
-    //                view.loader.show();
+                var model = meetingsDataSource.getByUid(meetingUid);
 
-    //                var meetingUpdateModel = meetingsDataSource.getByUid(meetingUid);
+                model.set("FullName", textSelected);
+            }
+        );
+    
+    $("#meetingAttendeeType").change
+        (
+            function ()
+            {
+                var optionSelected = $(this).find("option:selected");
+                //var valueSelected  = optionSelected.val();
+                var textSelected = optionSelected.text();
 
-    //                meetingUpdateModel.set("AttendeeTypeId", 3);
+                var model = meetingsDataSource.getByUid(meetingUid);
 
-    //                //meetingsDataSource.sync();
-    //            }
-    //        );
+                model.set("AttendeeType", textSelected);
+            }
+        );
+    
+    $("#meetingLocation").change
+        (
+            function ()
+            {
+                var optionSelected = $(this).find("option:selected");
+                //var valueSelected  = optionSelected.val();
+                var textSelected = optionSelected.text();
+
+                var model = meetingsDataSource.getByUid(meetingUid);
+
+                model.set("Location", textSelected);
+            }
+        );
 }
 
 function meetingInitiativeNavigate(e) 
@@ -368,9 +382,4 @@ function meetingOtherNavigate(e)
     {
         kendo.mobile.application.navigate(url + id);
     }
-}
-
-function saveMeeting()
-{
-    meetingsDataSource.sync();
 }

@@ -41,7 +41,7 @@
                             <span>Legislator</span>
                         </li>
                         <li class="listview-row-input-cell-control">
-                            <select data-bind="source: legislatorsOptions, value: meetingItem.LegislatorId" data-template="legislator-select-template"></select>
+                            <select data-bind="source: legislatorsOptions, value: meetingItem.LegislatorId" data-template="legislator-select-template" id="meetingLegislator"></select>
                             <script id="legislator-select-template" type="text/x-kendo-template">
                                 <option value="#:Value#">#:Text#</option>
                             </script>
@@ -54,7 +54,7 @@
                             <span>Office Attendees</span>
                         </li>
                         <li class="listview-row-input-cell-control">
-                            <select data-bind="source: attendeeTypesOptions, value: meetingItem.AttendeeTypeId" data-template="attendeeType-select-template"></select>
+                            <select data-bind="source: attendeeTypesOptions, value: meetingItem.AttendeeTypeId" data-template="attendeeType-select-template" id="meetingAttendeeType"></select>
                             <script id="attendeeType-select-template" type="text/x-kendo-template">
                                 <option value="#:Value#">#:Text#</option>
                             </script>
@@ -67,7 +67,7 @@
                             <span>Type</span>
                         </li>
                         <li class="listview-row-input-cell-control">
-                            <select data-bind="source: meetingLocationsOptions, value: meetingItem.MeetingLocationId" data-template="meetingLocation-select-template"></select>
+                            <select data-bind="source: meetingLocationsOptions, value: meetingItem.MeetingLocationId" data-template="meetingLocation-select-template" id="meetingLocation"></select>
                             <script id="meetingLocation-select-template" type="text/x-kendo-template">
                                 <option value="#:Value#">#:Text#</option>
                             </script>

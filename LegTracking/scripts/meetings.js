@@ -29,19 +29,21 @@ function meetingsListViewDataInit(e)
 
 function meetingsListViewDataShow(e)
 {
-    var apiUrl = null;
+    var apiReadUrl = null;
+    var apiUpdateUrl = apiBaseServiceUrl + "insertupdatemeeting";
+    var apiDestroyUrl = apiBaseServiceUrl + "deletemeeting";
     var legislatorId = e.view.params.uid;
     var dataTitle = null;
     
     if (legislatorId === undefined)
     {
-        apiUrl = apiBaseServiceUrl + "meetings?personId=" + personId;  // personId is set in the legislators.js
+        apiReadUrl = apiBaseServiceUrl + "meetings?personId=" + personId;  // personId is set in the legislators.js
 
         dataTitle = "My Meetings";
     }
     else
     {
-        apiUrl = apiBaseServiceUrl + "legislatormeetings?legislatorId=" + legislatorId;
+        apiReadUrl = apiBaseServiceUrl + "legislatormeetings?legislatorId=" + legislatorId;
 
         dataTitle = "Meetings";
     }
@@ -49,27 +51,17 @@ function meetingsListViewDataShow(e)
     meetingsDataSource = new kendo.data.DataSource
     (
         {
-            autoSync: true,
-            batch: true,
             transport:
             {
                 read:
                 {
-                    // the remote service url
-                    url: apiUrl,
-
-                    // the request type
+                    url: apiReadUrl,
                     type: "get",
-
-                    // the data type of the returned result
                     dataType: "json",
-
-                    // crossDomain: true, // enable this,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
                     },
-
                     error: function (xhr, ajaxOptions, thrownError)
                     {
                         alert("error " + xhr.responseText);
@@ -77,33 +69,39 @@ function meetingsListViewDataShow(e)
                 },
                 update:
                 {
-                    // the remote service url
-                    url: apiBaseServiceUrl + "updatemeeting",
-
-                    // the request type
+                    url: apiUpdateUrl,
                     type: "post",
-
                     dataType: "json",
-
                     // crossDomain: true, // enable this,
-                    //beforeSend: function (xhr)
-                    //{
-                    //    xhr.setRequestHeader("Authorization", token);
-                    //},
-
-                    //error: function (xhr, ajaxOptions, thrownError)
-                    //{
-                    //    alert("error " + xhr.responseText);
-                    //}
+                    beforeSend: function (xhr)
+                    {
+                        xhr.setRequestHeader("Authorization", token);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError)
+                    {
+                        alert("error " + xhr.responseText);
+                    }
+                },
+                destroy:
+                {
+                    url: apiDestroyUrl,
+                    type: "post",
+                    dataType: "json",
+                    // crossDomain: true, // enable this,
+                    beforeSend: function (xhr)
+                    {
+                        xhr.setRequestHeader("Authorization", token);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError)
+                    {
+                        alert("error " + xhr.responseText);
+                    }
                 },
                 parameterMap: function (options, operation)
                 {
-                    if (operation !== "read" && options.models)
+                    if (operation !== "read")
                     {
-                        return
-                        {
-                            models: kendo.stringify(options.models)
-                        }
+                        return options;
                     }
                 }
             },
@@ -114,22 +112,22 @@ function meetingsListViewDataShow(e)
                     id: "MeetingId",
                     fields:
                     {
-                        MeetingId: "MeetingId",
-                        MeetingDate: "MeetingDate",
-                        AttendeeTypeId: "AttendeeTypeId",
-                        AttendeeType: "AttendeeType",
-                        PersonId: "PersonId",
-                        PciContact: "PciContact",
-                        LegislatorId: "LegislatorId",
-                        FullName: "FullName",
-                        Name: "Name",
-                        PrimaryOfficeContact: "PrimaryOfficeContact",
-                        MeetingLocationId: "MeetingLocationId",
-                        Location: "Location",
-                        LegislatorStaffAttendees: "LegislatorStaffAttendees",
-                        FollowUpNeeded: "FollowUpNeeded",
-                        CreatorId: "CreatorId",
-                        Notes: "Notes"
+                        MeetingId: { editable: true },
+                        MeetingDate: { editable: true, validation: { required: true } },
+                        AttendeeTypeId: { editable: true, validation: { required: true } },
+                        AttendeeType: { editable: true },
+                        PersonId: { editable: true },
+                        PciContact: { editable: true },
+                        LegislatorId: { editable: true, validation: { required: true } },
+                        FullName: { editable: true },
+                        Name: { editable: true },
+                        PrimaryOfficeContact: { editable: true },
+                        MeetingLocationId: { editable: true, validation: { required: true } },
+                        Location: { editable: true },
+                        LegislatorStaffAttendees: { editable: true },
+                        FollowUpNeeded: { editable: true },
+                        CreatorId: { editable: true },
+                        Notes: { editable: true }
                     }
                 }
             },
@@ -150,7 +148,23 @@ function meetingsListViewDataShow(e)
         }
     );
 
-    $('.km-rightitem a').attr('href', 'views/meeting.html');
+    e.view.element.find("#add-button")
+        .data("kendoMobileButton")
+            .bind
+            (
+                "click",
+                function ()
+                {
+                    if (legislatorId === null)
+                    {
+                        kendo.mobile.application.navigate("views/meeting.html");
+                    }
+                    else
+                    {
+                        kendo.mobile.application.navigate("views/meeting.html?legislatorId=" + legislatorId);
+                    }
+                }
+            );
 
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
 
@@ -169,37 +183,56 @@ function meetingsNavigate(e)
 
 function meetingsSwipe(e)
 {
-    var button = kendo.fx($(e.touch.currentTarget).find("[data-role=button]"));
+    if (e.direction === "left")
+    {
+        var detailbutton = $(e.touch.currentTarget).find("[data-role=detailbutton]");
+        var tabstrip = kendo.fx($(e.touch.currentTarget).find("div.swipeButtons"));
 
-    button.expand().duration(200).play();
+        detailbutton.hide();
+        tabstrip.expand().duration(200).play();
+    }
 }
 
 function meetingsTouchStart(e)
 {
-    var target = $(e.touch.initialTouch),
-        listview = $("#meetingsListView").data("kendoMobileListView"),
-        model,
-        button = $(e.touch.target).find("[data-role=button]:visible");
+    var target = $(e.touch.initialTouch);
+    var listview = $("#meetingsListView").data("kendoMobileListView");
+    var model = meetingsDataSource.getByUid($(e.touch.target).attr("data-uid"));
+    var detailbutton = $(e.touch.target).find("[data-role=detailbutton]");
+    var tabstrip = $(e.touch.target).find("div.swipeButtons:visible");
 
-    if (target.closest("[data-role=button]")[0])
+    if (target.closest("div.swipeButtons")[0])
     {
-        model = dataSourceMeetings.getByUid($(e.touch.target).attr("data-uid"));
-        dataSourceMeetings.remove(model);
+        var button = target.closest("[data-role=button]")[0];
+        var buttonIcon = button.attributes["data-icon"].value;
 
+        switch (buttonIcon)
+        {
+            case "delete-e":
+                meetingsDataSource.remove(model);
+                meetingsDataSource.sync();
+
+            default:
+                // Do nothing...
+
+        }
+        
         //prevent `swipe`
         this.events.cancel();
         e.event.stopPropagation();
     }
-    else if (button[0])
+    else if (tabstrip[0])
     {
-        button.hide();
+        tabstrip.hide();
+        detailbutton.show();
 
         //prevent `swipe`
         this.events.cancel();
     }
     else
     {
-        listview.items().find("[data-role=button]:visible").hide();
+        listview.items().find("[data-role=detailbutton]").show();
+        listview.items().find("div.swipeButtons:visible").hide();
     }
 }
 
