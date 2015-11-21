@@ -80,11 +80,11 @@ function legislatorsTouchStart(e)
 
         switch(buttonIcon)
         {
-            case "compose":
+            case "add":
                 //detailbutton.show();
                 //tabstrip.hide();
 
-                kendo.mobile.application.navigate("views/meeting.html?legislatorId=" + legislatorId);
+                kendo.mobile.application.navigate("views/meeting.html?isAdd=Y&legislatorId=" + legislatorId);
 
                 break;
 
@@ -92,7 +92,7 @@ function legislatorsTouchStart(e)
                 //detailbutton.show();
                 //tabstrip.hide();
 
-                kendo.mobile.application.navigate("views/meetings.html?uid=" + legislatorId);
+                kendo.mobile.application.navigate("views/meetings.html?reference=legislator&legislatorId=" + legislatorId);
 
                 break;
 

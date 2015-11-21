@@ -5,33 +5,82 @@ body, html
     width: 100%;
 }
 
+.invalid
+{
+    color: red;
+}
+
+.k-error-colored
+{
+    background-color: #ffeeff;
+}
+
+.messages > .k-widget.k-tooltip-validation 
+{
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    line-height: 2em;
+    margin: 0.75em;
+    text-align: left;
+    width: 100%;
+}
+
+#meetingForm input.k-invalid, #meetingForm select.k-invalid
+{
+    background-color: #ffeeff;
+    border: solid 1px red;
+}
+
 .swipeButtons
 {
-    /*background-color: #cc2d30 !important;*/ 
-    border-radius: 3px;
     display: none; 
+    height: 100%;
     position: absolute; 
     right: 0;
     top: 0;
 }
 
+.swipeButtons
+{
+    background-color: transparent !important;
+}
+
 .swipeButtons ul
 {
+    display: table;
+    height: 100%;
+    padding: 0;
     -webkit-padding-start: 0 !important;
 }
 
-.blueButton
+.swipeButtons ul li
 {
-    background-color: #0a6fb0 !important; 
-    color: white !important; 
+    color: white !important;
+    display: table-cell;
     font-size: 1.5em !important;
+    vertical-align: middle;
 }
 
-.redButton
+.swipeButtons ul li.red
 {
-    background-color: #cc2d30 !important; 
-    color: white !important; 
-    font-size: 1.5em !important;
+    background-color: #cc2d30 !important;
+}
+
+.swipeButtons ul li.blue
+{
+    background-color: #0a6fb0 !important;
+}
+
+.swipeButtons ul li.green
+{
+    background-color: green !important;
+}
+
+.swipeButtons ul li .km-button
+{
+    background-color: transparent !important;
+    border: none !important;
 }
 
 .km-flat .km-state-active
@@ -740,4 +789,10 @@ span.km-switch-label-on
 .km-meeting-e:before 
 {
     content: "\e089";
+}
+
+.km-warning-e:after,
+.km-warning-e:before 
+{
+    content: "\e213";
 }

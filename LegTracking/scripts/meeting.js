@@ -2,6 +2,7 @@
 var token = 'http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fname=jonathon.leslie%40pciaa.net&TokenId=9ba3e4e1-efd7-4ac2-8230-60cf01d9137b&http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2femailaddress=jonathon.leslie%40pciaa.net&PersonID=47561&FirstName=Jonathon&MiddleName=&LastName=Leslie&FullName=Leslie%2c+Jonathon&StreetAddress1=8700+West+Bryn+Mawr+Avenue+STE+1200S&StreetAddress2=STE+1200S&City=Chicago&State=IL&PostalCode=60631-3512&Country=USA&WorkPhone=847-553-3699&Extension=&Fax=847-297-5064&Company=PCI&CompanyID=4274&DeptID=262&Department=Information+Technology&SupervisorID=52112&Supervisor=DAngelo%2c+Tony+E&Title=Project+Manager%2c+Information+Technology&EmailAddress=jonathon.leslie%40pciaa.net&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=Amicus+Admin&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=Broadcast+Admin&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=Broadcast+Branding&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=Broadcast+Sender&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=Broadcast+User&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=PCI.Everyone&http%3a%2f%2fschemas.microsoft.com%2fws%2f2008%2f06%2fidentity%2fclaims%2frole=Staff+Request+Admin&Issuer=urn%3a%2f%2fpciaa-sts&Audience=http%3a%2f%2fdev.pciaa.net%2f&ExpiresOn=1445884400&HMACSHA256=vVyMUM0ntSXhTaMBdHYSe3e36LMYp53EwOIqbShOzgs%3d';
 
 var collapsibleMeetingInformation = $("#collapsible").kendoMobileButtonGroup();
+var isAddMeeting = "N";
 
 var meetingInitiativeData =
     [
@@ -217,44 +218,53 @@ function meetingListViewDataInit(e)
 
 function meetingListViewDataShow(e)
 {
-    //meetingUid = e.view.params.uid;
     var legislatorId = e.view.params.legislatorId;
+    var isAdd = e.view.params.isAdd;
+    var dataTitle = null;
     
-    if (meetingUid !== undefined && meetingUid !== null)
+    if (isAdd !== null)
     {
-        if (meetingsDataSource !== null)
-        {
-            meetingModel = meetingsDataSource.getByUid(meetingUid);
-
-            meetingModel.MeetingDate = kendo.toString(kendo.parseDate(meetingModel.MeetingDate, 'yyyy-MM-dd'), 'yyyy-MM-dd');
-        }
+        isAddMeeting = isAdd;
     }
-    else if (legislatorId !== null)
+    else
     {
-        meetingModel = kendo.data.Model.define( {
-            id: "MeetingId",
-            fields:
-            {
-                MeetingId: { editable: true },
-                MeetingDate: { editable: true, validation: { required: true } },
-                AttendeeTypeId: { editable: true, validation: { required: true } },
-                AttendeeType: { editable: true },
-                PersonId: { editable: true },
-                PciContact: { editable: true },
-                LegislatorId: { editable: true, validation: { required: true } },
-                FullName: { editable: true },
-                Name: { editable: true },
-                PrimaryOfficeContact: { editable: true },
-                MeetingLocationId: { editable: true, validation: { required: true } },
-                Location: { editable: true },
-                LegislatorStaffAttendees: { editable: true },
-                FollowUpNeeded: { editable: true },
-                CreatorId: { editable: true },
-                Notes: { editable: true }
-            }
-        });
+        isAddMeeting = "N";
+    }
 
-        meetingModel.LegislatorId = legislatorId;
+    if (isAddMeeting === "Y")
+    {
+        meetingUid = null;
+
+        defineMeetingModel();
+
+        if (legislatorId !== null)
+        {
+            meetingModel.LegislatorId = legislatorId;
+        }
+
+        dataTitle = "Add Meeting";
+    }
+    else
+    {
+        if (meetingUid !== undefined && meetingUid !== null)
+        {
+            if (meetingsDataSource !== null)
+            {
+                meetingModel = meetingsDataSource.getByUid(meetingUid);
+
+                meetingModel.MeetingDate = kendo.toString(kendo.parseDate(meetingModel.MeetingDate, 'yyyy-MM-dd'), 'yyyy-MM-dd');
+
+                dataTitle = "Edit Meeting";
+            }
+            else
+            {
+                alert("Error loading meeting information.");
+            }
+        }
+        else
+        {
+            alert("Error loading meeting information.");
+        }
     }
 
     var viewModel = kendo.observable({
@@ -273,15 +283,62 @@ function meetingListViewDataShow(e)
                 "click",
                 function ()
                 {
-                    if (meetingModel.MeetingId === null)
+                    var isValid = true;
+                    var validator = $("#meetingForm").kendoValidator
+                        (
+                            {
+                                validateOnBlur: false
+                            }
+                        ).data("kendoValidator");
+
+                    $('#meetingForm input').each
+                            (
+                                function ()
+                                {
+                                    $(this).parent().parent().find("li").find("span").removeClass('invalid');
+
+                                    isValid = validator.validateInput($(this));
+
+                                    if (!isValid)
+                                    {
+                                        $(this).parent().parent().find("li").find("span").addClass('invalid');
+
+                                        //return isValid;
+                                    }
+                                }
+                            );
+
+                    if (isValid)
                     {
-                        meetingModel.CreatorId = personId;
-                        meetingModel.PersonId = personId;
+                        $('#meetingForm select').each
+                            (
+                                function ()
+                                {
+                                    $(this).parent().parent().find("li").find("span").removeClass('invalid');
+
+                                    isValid = validator.validateInput($(this));
+                                    
+                                    if (!isValid)
+                                    {
+                                        $(this).parent().parent().find("li").find("span").addClass('invalid');
+
+                                        //return isValid;
+                                    }
+                                }
+                            );
                     }
 
-                    meetingsDataSource.sync();
+                    if (isValid)
+                    {
+                        if (meetingModel.MeetingId === undefined)
+                        {
+                            addNewMeetingToDataSource();
+                        }
 
-                    kendo.mobile.application.navigate("#:back");
+                        meetingsDataSource.sync();
+
+                        kendo.mobile.application.navigate("#:back");
+                    }
                 }
             );
 
@@ -290,12 +347,10 @@ function meetingListViewDataShow(e)
             function ()
             {
                 var optionSelected = $(this).find("option:selected");
-                //var valueSelected  = optionSelected.val();
                 var textSelected = optionSelected.text();
 
-                var model = meetingsDataSource.getByUid(meetingUid);
-
-                model.set("FullName", textSelected);
+                //meetingModel.set("FullName", textSelected);
+                meetingModel.FullName = textSelected;
             }
         );
     
@@ -304,12 +359,10 @@ function meetingListViewDataShow(e)
             function ()
             {
                 var optionSelected = $(this).find("option:selected");
-                //var valueSelected  = optionSelected.val();
                 var textSelected = optionSelected.text();
 
-                var model = meetingsDataSource.getByUid(meetingUid);
-
-                model.set("AttendeeType", textSelected);
+                //meetingModel.set("AttendeeType", textSelected);
+                meetingModel.AttendeeType = textSelected;
             }
         );
     
@@ -318,14 +371,22 @@ function meetingListViewDataShow(e)
             function ()
             {
                 var optionSelected = $(this).find("option:selected");
-                //var valueSelected  = optionSelected.val();
                 var textSelected = optionSelected.text();
 
-                var model = meetingsDataSource.getByUid(meetingUid);
-
-                model.set("Location", textSelected);
+                //meetingModel.set("Location", textSelected);
+                meetingModel.Location = textSelected;
             }
         );
+
+    var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
+
+    navbar.title(dataTitle);
+
+    // clear validation messages from prior instance
+    $("#meetingForm").find("span.k-tooltip-validation").hide();
+    $("#meetingForm").find("input.k-invalid").removeClass('k-invalid');
+    $("#meetingForm").find("select.k-invalid").removeClass('k-invalid');
+    $("#meetingForm").find("span.invalid").removeClass('invalid');
 }
 
 function meetingInitiativeNavigate(e) 
@@ -339,11 +400,14 @@ function meetingInitiativeNavigate(e)
     if (currentRecord.Name === "surveys")
     {
         legislatorId = meetingModel.LegislatorId;
-        meetingId = meetingModel.MeetingId
+        meetingId = meetingModel.MeetingId;
 
-        if (legislatorId === undefined)
+        if (meetingId === undefined)
         {
             alert('In order to view initiative surveys, the meeting must be saved first.');
+
+            this.events.cancel();
+            e.event.stopPropagation();
         }
         else
         {
@@ -359,6 +423,9 @@ function meetingInitiativeNavigate(e)
         if (meetingId === undefined)
         {
             alert('In order to view initiatives, the meeting must be saved first.');
+
+            this.events.cancel();
+            e.event.stopPropagation();
         }
         else
         {
@@ -377,9 +444,127 @@ function meetingOtherNavigate(e)
     if (id === undefined)
     {
         alert('In order to view meeting attendees, the meeting must be saved first.');
+
+        this.events.cancel();
+        e.event.stopPropagation();
     }
     else
     {
         kendo.mobile.application.navigate(url + id);
     }
+}
+
+function defineMeetingModel()
+{
+    meetingModel = kendo.data.Model.define( {
+            id: "MeetingId",
+            fields:
+            {
+                MeetingId: { type: "number", editable: true },
+                MeetingDate: { type: "string", editable: true, validation: { required: true } },
+                AttendeeTypeId: { type: "number", editable: true, validation: { required: true } },
+                AttendeeType: { type: "string", editable: true },
+                PersonId: { type: "number", editable: true },
+                PciContact: { type: "string", editable: true },
+                LegislatorId: { type: "number", editable: true, validation: { required: true } },
+                FullName: { type: "string", editable: true },
+                Name: { type: "string", editable: true },
+                PrimaryOfficeContact: { type: "string", editable: true },
+                MeetingLocationId: { type: "number", editable: true, validation: { required: true } },
+                Location: { type: "string", editable: true },
+                LegislatorStaffAttendees: { type: "string", editable: true },
+                FollowUpNeeded: { type: "string", editable: true },
+                CreatorId: { type: "number", editable: true },
+                Notes: { type: "string", editable: true }
+            }
+        });
+}
+
+function addNewMeetingToDataSource()
+{
+    meetingModel.CreatorId = personId;
+    meetingModel.PersonId = personId;
+    meetingModel.MeetingDate = meetingModel.MeetingDate.toLocaleDateString();
+    //meetingModel.MeetingDate = "2015-11-30";
+                        
+    if (meetingModel.LegislatorId === undefined)
+    {
+        meetingModel.LegislatorId = 8;
+    }
+
+    if (meetingModel.FullName === undefined)
+    {
+        meetingModel.FullName = "";
+    }
+                        
+    if (meetingModel.Name === undefined)
+    {
+        meetingModel.Name = "";
+    }
+                        
+    if (meetingModel.AttendeeTypeId === undefined)
+    {
+        meetingModel.AttendeeTypeId = 1;
+    }
+                        
+    if (meetingModel.AttendeeType === undefined)
+    {
+        meetingModel.AttendeeType = "Staff Only";
+    }
+                        
+    if (meetingModel.MeetingLocationId === undefined)
+    {
+        meetingModel.MeetingLocationId = 1;
+    }
+                        
+    if (meetingModel.Location === undefined)
+    {
+        meetingModel.Location = "Meeting in District";
+    }
+                        
+    if (meetingModel.PciContact === undefined)
+    {
+        meetingModel.PciContact = "";
+    }
+                        
+    if (meetingModel.PrimaryOfficeContact === undefined)
+    {
+        meetingModel.PrimaryOfficeContact = "";
+    }
+                        
+    if (meetingModel.LegislatorStaffAttendees === undefined)
+    {
+        meetingModel.LegislatorStaffAttendees = "";
+    }
+                        
+    if (meetingModel.FollowUpNeeded === undefined)
+    {
+        meetingModel.FollowUpNeeded = "N";
+    }
+                        
+    if (meetingModel.Notes === undefined)
+    {
+        meetingModel.Notes = "";
+    }
+
+    meetingsDataSource.add
+    (
+        {
+            MeetingDate: meetingModel.MeetingDate,
+            AttendeeTypeId: meetingModel.AttendeeTypeId,
+            AttendeeType: meetingModel.AttendeeType,
+            PersonId: meetingModel.PersonId,
+            PciContact: meetingModel.PciContact,
+            LegislatorId: meetingModel.LegislatorId,
+            FullName: meetingModel.FullName,
+            Name: meetingModel.Name,
+            PrimaryOfficeContact: meetingModel.PrimaryOfficeContact,
+            MeetingLocationId: meetingModel.MeetingLocationId,
+            Location: meetingModel.Location,
+            LegislatorStaffAttendees: meetingModel.LegislatorStaffAttendees,
+            FollowUpNeeded: meetingModel.FollowUpNeeded,
+            CreatorId: meetingModel.CreatorId,
+            Notes: meetingModel.Notes
+        }
+    );
 }

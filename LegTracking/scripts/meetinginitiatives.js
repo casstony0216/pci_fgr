@@ -30,14 +30,14 @@ function meetingInitiativesListViewDataShow(e)
                     type: "get",
                     dataType: "json",
                     // crossDomain: true, // enable this,
-                    //beforeSend: function (xhr)
-                    //{
-                    //    xhr.setRequestHeader("Authorization", token);
-                    //},
-                    //error: function (xhr, ajaxOptions, thrownError)
-                    //{
-                    //    alert("error " + xhr.responseText);
-                    //}
+                    beforeSend: function (xhr)
+                    {
+                        xhr.setRequestHeader("Authorization", token);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError)
+                    {
+                        alert("error " + xhr.responseText);
+                    }
                 },
                 update:
                 {
@@ -45,31 +45,15 @@ function meetingInitiativesListViewDataShow(e)
                     type: "post",
                     dataType: "json",
                     // crossDomain: true, // enable this,
-                    //beforeSend: function (xhr)
-                    //{
-                    //    xhr.setRequestHeader("Authorization", token);
-                    //},
-                    //error: function (xhr, ajaxOptions, thrownError)
-                    //{
-                    //    alert("error " + xhr.responseText);
-                    //}
+                    beforeSend: function (xhr)
+                    {
+                        xhr.setRequestHeader("Authorization", token);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError)
+                    {
+                        alert("error " + xhr.responseText);
+                    }
                 }
-                //,
-                //parameterMap: function (options, operation)
-                //{
-                //    //if (operation !== "read" && options.models)
-                //    //{
-                //    //    return
-                //    //    {
-                //    //        models: kendo.stringify(options.models)
-                //    //    }
-                //    //}
-                //    if (operation !== "read")
-                //    {
-                //        var stringified = kendo.stringify(options);
-                //        return kendo.stringify(options);
-                //    }
-                //}
             },
             schema:
             {

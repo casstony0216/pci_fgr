@@ -4,7 +4,7 @@ var legislatorData =
             id: 1,
             name: "meetings",
             label: "Meetings",
-            url: "views/meetings.html?uid="
+            url: "views/meetings.html?reference=legislator&legislatorId="
         },
         {
             id: 2,

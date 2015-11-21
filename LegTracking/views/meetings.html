@@ -1,4 +1,8 @@
 <div data-role="view" id="meetingsview" data-init="meetingsListViewDataInit" data-show="meetingsListViewDataShow" data-layout="add-button-layout" data-title="Meetings">
+    <ul data-role="buttongroup" data-index="0" data-select="onMeetingsGroupSelect">
+        <li>Recent Meetings</li>
+        <li>All Meetings</li>
+    </ul>
     <ul id="meetingsListView"></ul>
 </div>
 
@@ -12,9 +16,9 @@
         <a data-role="detailbutton" data-icon="details"></a>
     </div>
     <div class="swipeButtons">
-        <ul style="display: table;">
-            <li style="display: table-cell;">
-                <a data-role="button" data-icon="delete-e" class="redButton"></a>
+        <ul>
+            <li class="red">
+                <a data-role="button" data-icon="delete-e"></a>
             </li>
         </ul>
     </div>

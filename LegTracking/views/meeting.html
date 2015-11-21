@@ -1,10 +1,12 @@
 <div data-role="view" id="meetingview" data-init="meetingListViewDataInit" data-show="meetingListViewDataShow" data-use-native-scrolling="true" data-layout="save-button-layout" data-title="Edit Meeting">
-    <form>
-        <!--<div class="view-row-details-container-table">
-            <div class="view-row-details-container-table-cell">
-                <span class="view-header" data-bind="text:meetingItem.FullName"></span>
-            </div>
-        </div>-->
+    <form id="meetingForm">
+        <div class="messages k-error-colored" >
+            <!--<a data-role="button" data-icon="warning-e" style="background-color: transparent; border: none; padding: 0;"></a>-->
+            <span data-for="meetingdate" class="k-invalid-msg"></span>
+			<span data-for="legislator" class="k-invalid-msg"></span>
+            <span data-for="officeattendees" class="k-invalid-msg"></span>
+            <span data-for="type" class="k-invalid-msg"></span>
+        </div>
         <ul data-role="listview" data-style="inset" class="formArea" onclick="">
             <li style="margin: 0px; padding: 0px; width: 100%;">
                 <ul class="listview-row-input-table">
@@ -12,7 +14,7 @@
                         <span>Meeting Date</span>
                     </li>
                     <li class="listview-row-input-cell-control">
-                        <input type="date" data-bind="value: meetingItem.MeetingDate" />
+                        <input name="meetingdate" type="date" data-bind="value: meetingItem.MeetingDate" required validationmessage="Meeting date is required<br /\>" />
                     </li>
                 </ul>
             </li>
@@ -41,7 +43,9 @@
                             <span>Legislator</span>
                         </li>
                         <li class="listview-row-input-cell-control">
-                            <select data-bind="source: legislatorsOptions, value: meetingItem.LegislatorId" data-template="legislator-select-template" id="meetingLegislator"></select>
+                            <select name="legislator" data-bind="source: legislatorsOptions, value: meetingItem.LegislatorId"
+                                    data-template="legislator-select-template" id="meetingLegislator" required validationmessage="Legislator is required<br /\>">
+                            </select>
                             <script id="legislator-select-template" type="text/x-kendo-template">
                                 <option value="#:Value#">#:Text#</option>
                             </script>
@@ -54,7 +58,9 @@
                             <span>Office Attendees</span>
                         </li>
                         <li class="listview-row-input-cell-control">
-                            <select data-bind="source: attendeeTypesOptions, value: meetingItem.AttendeeTypeId" data-template="attendeeType-select-template" id="meetingAttendeeType"></select>
+                            <select name="officeattendees" data-bind="source: attendeeTypesOptions, value: meetingItem.AttendeeTypeId"
+                                    data-template="attendeeType-select-template" id="meetingAttendeeType" required validationmessage="Office attendees is required<br /\>">
+                            </select>
                             <script id="attendeeType-select-template" type="text/x-kendo-template">
                                 <option value="#:Value#">#:Text#</option>
                             </script>
@@ -67,7 +73,9 @@
                             <span>Type</span>
                         </li>
                         <li class="listview-row-input-cell-control">
-                            <select data-bind="source: meetingLocationsOptions, value: meetingItem.MeetingLocationId" data-template="meetingLocation-select-template" id="meetingLocation"></select>
+                            <select name="type" data-bind="source: meetingLocationsOptions, value: meetingItem.MeetingLocationId"
+                                    data-template="meetingLocation-select-template" id="meetingLocation" required validationmessage="Type is required<br /\>">
+                            </select>
                             <script id="meetingLocation-select-template" type="text/x-kendo-template">
                                 <option value="#:Value#">#:Text#</option>
                             </script>
