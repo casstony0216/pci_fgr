@@ -5,6 +5,7 @@ body, html
     width: 100%;
 }
 
+/* Validation Formatting Start */
 .k-warning
 {
     background-image: url(../styles/images/sprite.png);
@@ -42,7 +43,9 @@ body, html
     background-color: #ffeeff;
     border: solid 1px red;
 }
+/* Validation Formatting End */
 
+/* List View Swipe Button Formatting Start */
 .swipeButtons
 {
     display: none; 
@@ -93,6 +96,7 @@ body, html
     background-color: transparent !important;
     border: none !important;
 }
+/* List View Swipe Button Formatting End */
 
 .km-flat .km-state-active
 {
@@ -222,8 +226,7 @@ body, html
 
 .km-tabstrip 
 {
-    /*background-color: #0a6fb0 !important;*/
-    background-color: #bbb !important;
+    background-color: #eee !important;
     border: solid #aaa !important;
     border-top: 1px solid #aaa !important;
     border-width: 1px 0 0 !important;
@@ -232,12 +235,12 @@ body, html
 
 .km-tabstrip .km-state-active
 {
-    /*background-color: #cc2d30 !important;*/
-    background-color: #ccc !important;
-    /*border: solid #aaa !important;
-    border-left: 1px solid #aaa !important;
-    border-right: 1px solid #aaa !important;
-    border-width: 1px 0 0 !important;*/
+    background-color: #eee !important;
+}
+
+.km-tabstrip .km-state-active .km-text, .km-tabstrip .km-state-active .km-icon
+{
+    color: #0a6fb0 !important;
 }
 
 .km-tabstrip .km-text, .km-tabstrip .km-icon
@@ -248,15 +251,12 @@ body, html
 /* App Header */
 .km-view-title
 {
-    /*background-color: #cc2d30 !important;*/
-    background-color: #ccc !important;
-    /*border: solid #aaa !important;*/
-    border-width: 1px 0 0 !important;
-    /*border-top: 1px solid #bbb !important;*/
+    background-color: #eee !important;
+    border: solid #aaa !important;
     border-bottom: 1px solid #aaa !important;
+    border-width: 1px 0 0 !important;
     color: #666 !important;
     font-size: 1.5em !important;
-    /*font-weight: bold !important;*/
     /*text-shadow: 0 1px 1px #fff !important;*/
 }
 
