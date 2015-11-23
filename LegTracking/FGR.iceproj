@@ -313,6 +313,9 @@
     <Content Include="styles\images\sprite-weather2x.png">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="styles\images\sprite.png">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="styles\main.css">
       <SubType>Content</SubType>
     </Content>

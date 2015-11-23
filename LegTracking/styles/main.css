@@ -5,6 +5,17 @@ body, html
     width: 100%;
 }
 
+.k-warning
+{
+    background-image: url(../styles/images/sprite.png);
+    background-position: -160px -240px;
+    display: block;
+    float: left;
+    height: 16px;
+    margin: 5px;
+    width: 16px; 
+}
+
 .invalid
 {
     color: red;
@@ -21,7 +32,7 @@ body, html
     border-color: transparent;
     box-shadow: none;
     line-height: 2em;
-    margin: 0.75em;
+    /*margin: 0.75em;*/
     text-align: left;
     width: 100%;
 }

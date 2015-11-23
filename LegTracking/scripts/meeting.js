@@ -335,6 +335,12 @@ function meetingListViewDataShow(e)
                             addNewMeetingToDataSource();
                         }
 
+                        // Necessary to check if MeetingDate is NOT a string... means it was updated and has to be converted.
+                        if (jQuery.type(meetingModel.MeetingDate) !== "string")
+                        {
+                            meetingModel.MeetingDate = meetingModel.MeetingDate.toLocaleDateString();
+                        }
+
                         meetingsDataSource.sync();
 
                         kendo.mobile.application.navigate("#:back");
