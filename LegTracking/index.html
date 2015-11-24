@@ -10,6 +10,7 @@
         <script src="kendo/js/jquery.min.js"></script>
         <script src="kendo/js/kendo.mobile.min.js"></script>
         <!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCG4jUolof0jhqQu0j1aNqSWfW_ms-wRKg&amp;sensor=true"></script>-->
+        <script src="scripts/login.js"></script>
         <script src="scripts/legislators.js"></script>
         <script src="scripts/legislator.js"></script>
         <script src="scripts/initiativetiers.js"></script>
@@ -24,8 +25,6 @@
         <script src="scripts/meetings.js"></script>
         <script src="scripts/meeting.js"></script>
         <script src="scripts/meetinginitiatives.js"></script>
-
-        <!--<script src="scripts/locationMap.js"></script>-->
     </head>  
     <body id="fgrApp">                           
         <div data-role="layout" data-id="no-button-layout">
@@ -108,6 +107,18 @@
                         initial: 'views/legislators.html'
                     }
                 );
+
+            $(document).ajaxError(
+                function (e, xhr, settings, exception)
+                {
+                    if (xhr.status === 401)
+                    {
+                        app.navigate("login.html");
+
+                        return;
+                    }
+                }
+            );
         </script>
     </body>
 </html>

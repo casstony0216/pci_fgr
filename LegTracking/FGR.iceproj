@@ -239,6 +239,7 @@
     <Content Include="scripts\initiativesurvey.js" />
     <Content Include="scripts\initiativesurveys.js" />
     <Content Include="scripts\initiativetiers.js" />
+    <Content Include="scripts\login.js" />
     <Content Include="scripts\meetinginitiatives.js" />
     <Content Include="scripts\profile.js" />
     <Content Include="scripts\profiles.js" />
@@ -342,7 +343,7 @@
     <Content Include="views\locationMap.html">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="views\login.html">
+    <Content Include="login.html">
       <SubType>Content</SubType>
     </Content>
     <Content Include="views\meeting.html">

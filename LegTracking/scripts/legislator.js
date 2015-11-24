@@ -95,16 +95,16 @@ function legislatorNavigate(e)
     
     if (currentRecord.Name === "bio")
     {
-        kendo.mobile.application.navigate(url + legislatorUid);
+        app.navigate(url + legislatorUid);
     }
     else if (currentRecord.Name === "surveys")
     {
         initiativeSurveysReference = "legislator";
 
-        kendo.mobile.application.navigate(url + legislatorId);
+        app.navigate(url + legislatorId);
     }
     else
     {
-        kendo.mobile.application.navigate(url + legislatorId);
+        app.navigate(url + legislatorId);
     }
 }

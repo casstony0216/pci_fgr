@@ -693,6 +693,14 @@ input, select
     font-weight: normal !important;
     margin-left: 10px !important;
 }
+.listview-row-input-cell-label a
+{
+    margin-left: 10px !important;
+}
+.listview-row-input-cell-label a span
+{
+    margin-left: 0 !important;
+}
 .listview-row-input-cell-control
 {
     display: table-cell; 
