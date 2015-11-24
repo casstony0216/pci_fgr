@@ -37,13 +37,13 @@ function meetingsListViewDataShow(e)
     
     var dataTitle = null;
     
-    if (meetingsReference === "meeting")
+    if (meetingsReference === "legislator")
     {
-        dataTitle = "My Meetings";
+        dataTitle = "Meetings";
     }
     else
     {
-        dataTitle = "Meetings";
+        dataTitle = "My Meetings";
     }
     
     setMeetingsDataSource();
@@ -55,13 +55,13 @@ function meetingsListViewDataShow(e)
                 "click",
                 function ()
                 {
-                    if (meetingsReference === "meeting")
+                    if (meetingsReference === "legislator")
                     {
-                        kendo.mobile.application.navigate("views/meeting.html?isAdd=Y");
+                        kendo.mobile.application.navigate("views/meeting.html?isAdd=Y&legislatorId=" + meetingLegislatorId);                        
                     }
                     else
                     {
-                        kendo.mobile.application.navigate("views/meeting.html?isAdd=Y&legislatorId=" + meetingLegislatorId);
+                        kendo.mobile.application.navigate("views/meeting.html?isAdd=Y");
                     }
                 }
             );
@@ -161,13 +161,13 @@ function setMeetingsDataSource()
     var apiUpdateUrl = apiBaseServiceUrl + "insertupdatemeeting";
     var apiDestroyUrl = apiBaseServiceUrl + "deletemeeting";
     
-    if (meetingsReference === "meeting")
+    if (meetingsReference === "legislator")
     {
-        apiReadUrl = apiBaseServiceUrl + "meetings?personId=" + personId + "&recentMeetings=" + recentMeetings;  // personId is set in the legislators.js
+        apiReadUrl = apiBaseServiceUrl + "meetings?legislatorId=" + meetingLegislatorId + "&recentMeetings=" + recentMeetings;
     }
     else
     {
-        apiReadUrl = apiBaseServiceUrl + "meetings?legislatorId=" + meetingLegislatorId + "&recentMeetings=" + recentMeetings;
+        apiReadUrl = apiBaseServiceUrl + "meetings?personId=" + personId + "&recentMeetings=" + recentMeetings;  // personId is set in the legislators.js
     }
     
     meetingsDataSource = new kendo.data.DataSource

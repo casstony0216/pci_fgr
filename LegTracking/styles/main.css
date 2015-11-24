@@ -224,6 +224,20 @@ body, html
     height: 10em !important;
 } 
 
+.km-touch-scrollbar, .km-vertical-scrollbar
+{
+    background-color: #0a6fb0 !important;
+}
+
+/*.km-scroller-pull.km-scroller-refresh, .km-scroller-pull.km-scroller-refresh span, .km-spin,
+.km-widget .km-scroller-refresh .km-icon, 
+.km-scroller-refresh .km-icon, .km-scroller-refresh .km-icon:before, .km-scroller-refresh .km-icon:after,
+.km-scroller-pull .km-icon, .km-scroller-pull .km-icon:before, .km-scroller-pull .km-icon:after,
+.km-scroller-pull.km-scroller-refresh .km-icon, .km-scroller-pull.km-scroller-refresh .km-icon:before, .km-scroller-pull.km-scroller-refresh .km-icon:after
+{
+    color: #0a6fb0 !important;
+}*/
+
 .km-tabstrip 
 {
     background-color: #eee !important;
