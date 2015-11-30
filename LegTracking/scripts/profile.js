@@ -29,18 +29,19 @@ function profileListViewDataShow(e)
 
     navbar.title(dataTitle);
 
-    e.view.element.find("#save-button")
-        .data("kendoMobileButton")
-            .bind
-            (
-                "click",
-                function ()
-                {
-                    profilesDataSource.sync();
+    var saveButton = e.view.element.find("#save-button").data("kendoMobileButton");
+    
+    saveButton.unbind("click");
+    saveButton.bind
+    (
+        "click",
+        function ()
+        {
+            profilesDataSource.sync();
 
-                    app.navigate("#:back");
-                }
-            );
+            app.navigate("#:back");
+        }
+    );
 }
 
 function profileSaveButtonClick(e)

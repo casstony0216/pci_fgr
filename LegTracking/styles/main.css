@@ -103,6 +103,20 @@ body, html
 }
 /* List View Swipe Button Formatting End */
 
+#fgrApp .formArea li textarea.tall
+{
+    background-color: #fff !important;
+    /*border: solid 1px #ccc !important;*/
+	color: #999 !important;
+    float: left !important;
+    font-size: 1.25em !important;
+    margin: 0px !important;
+	position: relative !important;
+    resize: none;
+    width: 100% !important;
+    height: 10em !important;
+} 
+
 .km-flat .km-state-active
 {
     background-color: #0a6fb0 !important;
@@ -207,33 +221,6 @@ body, html
 	position: relative !important;
     text-align: right !important;
     width: 100% !important;
-}  
-  
-#fgrApp .formArea li textarea 
-{
-    background-color: #fff !important;
-    /*border: solid 1px #ccc !important;*/
-	color: #999 !important;
-    float: left !important;
-    font-size: 1.25em !important;
-    margin: 0px !important;
-	position: relative !important;
-    width: 100% !important;
-    height: 6em !important;
-}  
-
-#fgrApp .formArea li textarea.tall
-{
-    background-color: #fff !important;
-    /*border: solid 1px #ccc !important;*/
-	color: #999 !important;
-    float: left !important;
-    font-size: 1.25em !important;
-    margin: 0px !important;
-	position: relative !important;
-    resize: none;
-    width: 100% !important;
-    height: 10em !important;
 } 
 
 .km-touch-scrollbar, .km-vertical-scrollbar
@@ -837,4 +824,16 @@ span.km-switch-label-on
 .km-warning-e:before 
 {
     content: "\e213";
+}
+
+.km-expand-e:after,
+.km-expand-e:before 
+{
+    content: "\e017";
+}
+
+.km-close-e:after,
+.km-close-e:before 
+{
+    content: "\e038";
 }

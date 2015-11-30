@@ -103,17 +103,18 @@ function profilesViewDataShow(e)
             }
         }
     );
+    
+    var addButton = e.view.element.find("#add-button").data("kendoMobileButton");
 
-    e.view.element.find("#add-button")
-        .data("kendoMobileButton")
-            .bind
-            (
-                "click",
-                function ()
-                {
-                    app.navigate("views/profilesearch.html?uid=" + uid);
-                }
-            );
+    addButton.unbind("click");
+    addButton.bind
+    (
+        "click",
+        function (e)
+        {
+            app.navigate("views/profilesearch.html?uid=" + uid);
+        }
+    );
 
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
 

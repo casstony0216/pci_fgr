@@ -234,10 +234,19 @@ function meetingListViewDataShow(e)
 
         defineMeetingModel();
 
-        if (legislatorId !== null)
+        meetingModel.MeetingDate = new Date();
+
+        if (legislatorId !== undefined && legislatorId !== null)
         {
             meetingModel.LegislatorId = legislatorId;
         }
+        else
+        {
+            meetingModel.LegislatorId = "8";
+        }
+
+        meetingModel.MeetingLocationId = "1";
+        meetingModel.AttendeeTypeId = "1";
 
         dataTitle = "Add Meeting";
     }
@@ -273,88 +282,89 @@ function meetingListViewDataShow(e)
 
     kendo.bind(e.view.element, viewModel, kendo.mobile.ui);
     
-    e.view.element.find("#save-button")
-        .data("kendoMobileButton")
-            .bind
-            (
-                "click",
-                function ()
-                {
-                    var allValid = true;
-                    var isValid = true;
-                    var validator = $("#meetingForm").kendoValidator
-                        (
+    var saveButton = e.view.element.find("#save-button").data("kendoMobileButton");
+
+    saveButton.unbind("click");
+    saveButton.bind
+    (
+        "click",
+        function ()
+        {
+            var allValid = true;
+            var isValid = true;
+            var validator = $("#meetingForm").kendoValidator
+                (
+                    {
+                        validateOnBlur: false
+                    }
+                ).data("kendoValidator");
+
+            $('#meetingForm input').each
+                    (
+                        function ()
+                        {
+                            $(this).parent().parent().find("li").find("span").removeClass('invalid');
+
+                            isValid = validator.validateInput($(this));
+
+                            if (!isValid)
                             {
-                                validateOnBlur: false
+                                if (allValid)
+                                {
+                                    allValid = false;
+                                }
+
+                                $(this).parent().parent().find("li").find("span").addClass('invalid');
+
+                                //return isValid;
                             }
-                        ).data("kendoValidator");
+                        }
+                    );
 
-                    $('#meetingForm input').each
-                            (
-                                function ()
-                                {
-                                    $(this).parent().parent().find("li").find("span").removeClass('invalid');
+            if (isValid)
+            {
+                $('#meetingForm select').each
+                    (
+                        function ()
+                        {
+                            $(this).parent().parent().find("li").find("span").removeClass('invalid');
 
-                                    isValid = validator.validateInput($(this));
-
-                                    if (!isValid)
-                                    {
-                                        if (allValid)
-                                        {
-                                            allValid = false;
-                                        }
-
-                                        $(this).parent().parent().find("li").find("span").addClass('invalid');
-
-                                        //return isValid;
-                                    }
-                                }
-                            );
-
-                    if (isValid)
-                    {
-                        $('#meetingForm select').each
-                            (
-                                function ()
-                                {
-                                    $(this).parent().parent().find("li").find("span").removeClass('invalid');
-
-                                    isValid = validator.validateInput($(this));
+                            isValid = validator.validateInput($(this));
                                     
-                                    if (!isValid)
-                                    {
-                                        if (allValid)
-                                        {
-                                            allValid = false;
-                                        }
-
-                                        $(this).parent().parent().find("li").find("span").addClass('invalid');
-
-                                        //return isValid;
-                                    }
+                            if (!isValid)
+                            {
+                                if (allValid)
+                                {
+                                    allValid = false;
                                 }
-                            );
-                    }
 
-                    if (allValid)
-                    {
-                        if (meetingModel.MeetingId === undefined)
-                        {
-                            addNewMeetingToDataSource();
+                                $(this).parent().parent().find("li").find("span").addClass('invalid');
+
+                                //return isValid;
+                            }
                         }
+                    );
+            }
 
-                        // Necessary to check if MeetingDate is NOT a string... means it was updated and has to be converted.
-                        if (jQuery.type(meetingModel.MeetingDate) !== "string")
-                        {
-                            meetingModel.MeetingDate = meetingModel.MeetingDate.toLocaleDateString();
-                        }
-
-                        meetingsDataSource.sync();
-
-                        app.navigate("#:back");
-                    }
+            if (allValid)
+            {
+                if (meetingModel.MeetingId === undefined)
+                {
+                    addNewMeetingToDataSource();
                 }
-            );
+
+                // Necessary to check if MeetingDate is NOT a string... means it was updated and has to be converted.
+                if (jQuery.type(meetingModel.MeetingDate) !== "string")
+                {
+                    meetingModel.MeetingDate = meetingModel.MeetingDate.toLocaleDateString();
+                }
+
+                meetingsDataSource.sync();
+
+                app.navigate("#:back");
+            }
+        }
+    );
 
     $("#meetingLegislator").change
         (

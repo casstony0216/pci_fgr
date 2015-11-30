@@ -141,7 +141,7 @@ function profileSearchViewDataShow(e)
 
 function profileSearchSwitchChange(e)
 {
-    var listItem = e.sender.element.parent().parent();
+    var listItem = e.sender.element.parent().parent().parent().parent();
     var uid = listItem.attr("data-uid");
     var profileSearchModel = profileSearchDataSource.getByUid(uid);
 

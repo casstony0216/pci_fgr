@@ -53,17 +53,18 @@ function surveyQuestionListViewDataShow(e)
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
 
     navbar.title(surveyQuestionModel.Initiative);
+    
+    var saveButton = e.view.element.find("#save-button").data("kendoMobileButton");
 
-    e.view.element.find("#save-button")
-        .data("kendoMobileButton")
-            .bind
-            (
-                "click",
-                function ()
-                {
-                    initiativeSurveyDataSource.sync();
+    saveButton.unbind("click");
+    saveButton.bind
+    (
+        "click",
+        function ()
+        {
+            initiativeSurveyDataSource.sync();
 
-                    app.navigate("#:back");
-                }
-            );
+            app.navigate("#:back");
+        }
+    );
 }

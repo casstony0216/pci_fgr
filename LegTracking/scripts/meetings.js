@@ -45,23 +45,24 @@ function meetingsListViewDataShow(e)
     
     setMeetingsDataSource();
 
-    e.view.element.find("#add-button")
-        .data("kendoMobileButton")
-            .bind
-            (
-                "click",
-                function ()
-                {
-                    if (meetingsReference === "legislator")
-                    {
-                        app.navigate("views/meeting.html?isAdd=Y&legislatorId=" + meetingLegislatorId);                        
-                    }
-                    else
-                    {
-                        app.navigate("views/meeting.html?isAdd=Y");
-                    }
-                }
-            );
+    var addButton = e.view.element.find("#add-button").data("kendoMobileButton");
+
+    addButton.unbind("click");
+    addButton.bind
+    (
+        "click",
+        function ()
+        {
+            if (meetingsReference === "legislator")
+            {
+                app.navigate("views/meeting.html?isAdd=Y&legislatorId=" + meetingLegislatorId);                        
+            }
+            else
+            {
+                app.navigate("views/meeting.html?isAdd=Y");
+            }
+        }
+    );
 
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
 
