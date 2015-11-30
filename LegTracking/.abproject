@@ -3,9 +3,9 @@
   "ProjectGuid": "dc5bed57-5253-46d1-8a03-7f538a90f307",
   "projectVersion": 1,
   "AppIdentifier": "net.pciaa.fgr",
-  "DisplayName": "Capitol Connect",
+  "DisplayName": "CapConnect",
   "Author": "",
-  "Description": "Capitol Connect",
+  "Description": "CapConnect",
   "BundleVersion": "1.0",
   "AndroidVersionCode": "1",
   "iOSDeviceFamily": [

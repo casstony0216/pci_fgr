@@ -35,13 +35,20 @@ function legislatorsListViewDataInit(e)
 
 function legislatorsListViewDataShow(e)
 {
+    var legislatorsListView = $("#legislatorsListView").data("kendoMobileListView");
+    //legislatorsListView.dataSource.page(0); //request the first page
+    legislatorsListView.scroller().reset(); //reset the scroller
+
     setLegislatorsDataSource();
 
-    $("#legislatorsListView").data("kendoMobileListView").setDataSource(legislatorsDataSource);
+    legislatorsListView.setDataSource(legislatorsDataSource);
 }
 
 function legislatorsNavigate(e) 
 {
+    // Close the keyboard.
+    $('input[type="search"]').blur();
+
     var uid = $(e.touch.currentTarget).data("uid");
 
     app.navigate("views/legislator.html?uid=" + uid);

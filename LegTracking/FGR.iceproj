@@ -266,6 +266,7 @@
     <Content Include="styles\images\appbuilder2x.png">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="styles\images\congress-connect-background.png" />
     <Content Include="styles\images\icon-facebook.png">
       <SubType>Content</SubType>
     </Content>

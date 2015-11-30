@@ -3,6 +3,11 @@ body, html
     margin: 0;
     height: 100%;
     width: 100%;
+    background: url('images/congress-connect-background.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 /* Validation Formatting Start */
@@ -38,7 +43,7 @@ body, html
     width: 100%;
 }
 
-#meetingForm input.k-invalid, #meetingForm select.k-invalid
+#loginForm input.k-invalid, #loginForm select.k-invalid, #meetingForm input.k-invalid, #meetingForm select.k-invalid
 {
     background-color: #ffeeff;
     border: solid 1px red;
@@ -156,10 +161,17 @@ body, html
   font-family: "Open Sans", sans-serif;
 }
 
+#fgrApp.km-flat #loginview .km-content
+{
+    background-color: transparent;
+}
+
 #fgrApp .formArea 
 {
     font-family: "Open Sans", sans-serif;
    	margin: 0px !important;
+    /*position: absolute !important;
+    bottom: 0 !important;*/
   	/*border: solid 1px green !important;*/
 }
 
@@ -229,14 +241,10 @@ body, html
     background-color: #0a6fb0 !important;
 }
 
-/*.km-scroller-pull.km-scroller-refresh, .km-scroller-pull.km-scroller-refresh span, .km-spin,
-.km-widget .km-scroller-refresh .km-icon, 
-.km-scroller-refresh .km-icon, .km-scroller-refresh .km-icon:before, .km-scroller-refresh .km-icon:after,
-.km-scroller-pull .km-icon, .km-scroller-pull .km-icon:before, .km-scroller-pull .km-icon:after,
-.km-scroller-pull.km-scroller-refresh .km-icon, .km-scroller-pull.km-scroller-refresh .km-icon:before, .km-scroller-pull.km-scroller-refresh .km-icon:after
+.km-flat .km-scroller-refresh.km-load-more, .km-flat .km-scroller-pull
 {
-    color: #0a6fb0 !important;
-}*/
+    background-color: #0a6fb0 !important;
+}
 
 .km-tabstrip 
 {
@@ -773,6 +781,7 @@ input, select
 .km-flat .km-switch-background, .km-flat .km-switch-wrapper
 {
     background-color: #0a6fb0 !important;
+    /*background-color: #cc2d30 !important;*/
 }
 
 span.km-switch-label-on

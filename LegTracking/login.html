@@ -1,62 +1,56 @@
-﻿<!DOCTYPE html>
-<html>
-    <head>
-        <title>Login</title>
-        <meta charset="utf-8" />
-
-        <!--<link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
-        <link href="styles/main.css" rel="stylesheet" />
-
-        <script src="kendo/js/jquery.min.js"></script>
-        <script src="kendo/js/kendo.mobile.min.js"></script>
-
-        <script src="scripts/login.js"></script>-->
-    </head>
-    <body>
-        <div data-role="view" id="loginview" style="width: 100%; height: auto;" data-style="inset" data-title="Login">
-            <div data-role="header">
-                <div data-role="navbar">
-                    <span data-role="view-title"></span>
-                </div>
-            </div>
-            <form id="meetingForm">
-                <div class="messages k-error-colored">
-                    <span data-for="email" class="k-invalid-msg"></span>
-                    <span data-for="password" class="k-invalid-msg"></span>
-                </div>
-                <ul data-role="listview" data-style="inset" class="formArea" onclick="">
-                    <li style="margin: 0px; padding: 0px; width: 100%;">
-                        <ul class="listview-row-input-table">
-                            <li class="listview-row-input-cell-label">
-                                <span>Email Address</span>
-                            </li>
-                            <li class="listview-row-input-cell-control">
-                                <input id="email" name="email" type="text" required validationmessage="Email address is required<br /\>" value="jonathon.leslie@pciaa.net" />
-                            </li>
-                        </ul>
-                    </li>
-                    <li style="margin: 0px; padding: 0px; width: 100%;">
-                        <ul class="listview-row-input-table">
-                            <li class="listview-row-input-cell-label">
-                                <span>Password</span>
-                            </li>
-                            <li class="listview-row-input-cell-control">
-                                <input id="password" name="password" type="password" required validationmessage="Password is required<br /\>" value="Testing123" />
-                            </li>
-                        </ul>
-                    </li>
-                    <li style="margin: 0px; padding: 0px; width: 100%;">
-                        <ul class="listview-row-input-table">
-                            <li class="listview-row-input-cell-label">
-                                <a data-role="button" data-click="authenticateUser">Login</a>
-                            </li>
-                            <li class="listview-row-input-cell-control">
-                                <div id="login-message"></div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </form>
-        </div>
-    </body>
-</html>
+﻿<div data-role="view" id="loginview" data-init="loginListViewDataInit" data-show="loginListViewDataShow" style="background: transparent; width: 100%;">
+    <div data-role="footer" style="background: transparent; margin-bottom: 1em; width: 100%;">
+        <form id="loginForm" style="margin-left: 1em; margin-right: 1em;">
+            <ul style="background-color: white; border: solid 1px #666; border-radius: 10px; display: table; margin: 0; padding: 0; width: 100%;">
+                <li style="border: none; display: table-cell; margin: 0px; padding: 10px; width: 100%;">
+                    <div class="messages k-error-colored">
+                        <span data-for="email" class="k-invalid-msg"></span>
+                        <span data-for="password" class="k-invalid-msg"></span>
+                    </div>
+                    <ul data-role="listview" class="formArea">
+                        <li style="margin: 0px; padding: 0px; width: 100%;">
+                            <ul class="listview-row-input-table">
+                                <li class="listview-row-input-cell-label">
+                                    <span>Email</span>
+                                </li>
+                                <li class="listview-row-input-cell-control">
+                                    <input id="email" name="email" type="email" required validationmessage="Email address is required<br /\>" value="" />
+                                </li>
+                            </ul>
+                        </li>
+                        <li style="margin: 0px; padding: 0px; width: 100%;">
+                            <ul class="listview-row-input-table">
+                                <li class="listview-row-input-cell-label">
+                                    <span>Password</span>
+                                </li>
+                                <li class="listview-row-input-cell-control">
+                                    <input id="password" name="password" type="password" required validationmessage="Password is required<br /\>" value="" />
+                                </li>
+                            </ul>
+                        </li>
+                        <li style="margin: 0px; padding: 0px; width: 100%;">
+                            <ul class="listview-row-input-table" style="border-bottom: none;">
+                                <li class="listview-row-input-cell-label">
+                                    <span>Remember Me</span>
+                                </li>
+                                <li class="listview-row-input-cell-control">
+                                    <input id="rememberme" name="rememberme" data-role="switch" data-on-label="Yes" data-off-label="No" data-change="loginRememberMeSwitchChange" />
+                                </li>
+                            </ul>
+                        </li>
+                        <li style="margin: 0px; padding: 0px; width: 100%;">
+                            <ul class="listview-row-input-table" style="border: none;">
+                                <li class="listview-row-input-cell-label" style="text-align: center;">
+                                    <a data-role="button" data-click="authenticateUser">Log On</a>
+                                </li>
+                                <li class="listview-row-input-cell-control">
+                                    <div id="login-message"></div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>

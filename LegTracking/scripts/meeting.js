@@ -280,6 +280,7 @@ function meetingListViewDataShow(e)
                 "click",
                 function ()
                 {
+                    var allValid = true;
                     var isValid = true;
                     var validator = $("#meetingForm").kendoValidator
                         (
@@ -298,6 +299,11 @@ function meetingListViewDataShow(e)
 
                                     if (!isValid)
                                     {
+                                        if (allValid)
+                                        {
+                                            allValid = false;
+                                        }
+
                                         $(this).parent().parent().find("li").find("span").addClass('invalid');
 
                                         //return isValid;
@@ -317,6 +323,11 @@ function meetingListViewDataShow(e)
                                     
                                     if (!isValid)
                                     {
+                                        if (allValid)
+                                        {
+                                            allValid = false;
+                                        }
+
                                         $(this).parent().parent().find("li").find("span").addClass('invalid');
 
                                         //return isValid;
@@ -325,7 +336,7 @@ function meetingListViewDataShow(e)
                             );
                     }
 
-                    if (isValid)
+                    if (allValid)
                     {
                         if (meetingModel.MeetingId === undefined)
                         {

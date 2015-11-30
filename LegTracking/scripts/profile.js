@@ -21,6 +21,8 @@ function profileListViewDataShow(e)
         dataTitle = "PCI Attendee Profile";
     }
 
+    profileModel.MailTo = "mailto:" + profileModel.EmailAddress;
+
     kendo.bind(e.view.element, profileModel, kendo.mobile.ui);
 
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");

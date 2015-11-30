@@ -94,6 +94,7 @@ function profilesViewDataShow(e)
                         Title: { editable: false },
                         WorkPhone: { editable: false },
                         EmailAddress: { editable: false },
+                        MailTo: { editable: false },
                         Notes: { editable: true },
                         Checked: { editable: true },
                         Total: { editable: false }
