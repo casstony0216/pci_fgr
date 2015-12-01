@@ -10,6 +10,52 @@ body, html
     background-size: cover;
 }
 
+/* Modal Text Area Start */
+.km-modalview .km-scroll-wrapper .km-scroll-container,
+.km-modalview .km-scroll-wrapper .km-scroll-container .km-listview-wrapper,
+.km-modalview .km-scroll-wrapper .km-scroll-container .km-listview-wrapper .km-listview,
+.km-modalview .km-scroll-wrapper .km-scroll-container .km-listview-wrapper .km-listview li
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.modalTextArea
+{
+    height: 100% !important;
+    margin: 0 !important;
+    resize: none;
+    width: 100% !important;
+}
+
+.expand-button
+{
+    background-color: transparent !important; 
+    border: none !important; 
+    color: #666 !important;
+    float: right !important; 
+    font-size: 0.75em !important;
+    font-style: italic;
+    margin-right: 0.75em !important; 
+    margin-top: 0.5em !important;
+    padding: 0 !important;
+}
+
+.expand-button:hover
+{
+    color: #999 !important;
+}
+
+.expand-button .km-icon
+{
+    float: right !important;
+    margin-left: 0.3em !important;
+}
+/* Modal Text Area End */
+
 /* Validation Formatting Start */
 .k-warning
 {
@@ -103,7 +149,7 @@ body, html
 }
 /* List View Swipe Button Formatting End */
 
-#fgrApp .formArea li textarea.tall
+#fgrApp .formArea li textarea
 {
     background-color: #fff !important;
     /*border: solid 1px #ccc !important;*/
@@ -114,7 +160,12 @@ body, html
 	position: relative !important;
     resize: none;
     width: 100% !important;
-    height: 10em !important;
+    height: 6em !important;
+} 
+
+#fgrApp .formArea li textarea.tall
+{
+    height: 15em !important;
 } 
 
 .km-flat .km-state-active
@@ -832,8 +883,8 @@ span.km-switch-label-on
     content: "\e017";
 }
 
-.km-close-e:after,
-.km-close-e:before 
+.km-cancel-e:after,
+.km-cancel-e:before 
 {
     content: "\e038";
 }

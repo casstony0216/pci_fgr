@@ -1,6 +1,6 @@
 function profileListViewDataInit(e)
 {
-
+    
 }
 
 function profileListViewDataShow(e)
@@ -10,7 +10,7 @@ function profileListViewDataShow(e)
     var profileModel = profilesDataSource.getByUid(uid);
     var dataTitle = null;
 
-    $("#uid")[0].value = uid;
+    $("#profileuid")[0].value = uid;
 
     if (type === "legislator")
     {
@@ -24,6 +24,8 @@ function profileListViewDataShow(e)
     profileModel.MailTo = "mailto:" + profileModel.EmailAddress;
 
     kendo.bind(e.view.element, profileModel, kendo.mobile.ui);
+    
+    $('#profilenotes').val(profileModel.Notes);
 
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
 
@@ -53,7 +55,7 @@ function profileSaveButtonClick(e)
 
 function profileDeleteButtonClick(e)
 {
-    var model = profilesDataSource.getByUid($("#uid")[0].value);
+    var model = profilesDataSource.getByUid($("#profileuid")[0].value);
 
     model.set("Checked", false);
 
@@ -66,4 +68,27 @@ function profileDeleteButtonClick(e)
 function profileCancelButtonClick(e)
 {
     app.navigate("#:back");
+}
+
+function openModalProfileNotes(e)
+{
+    var model = profilesDataSource.getByUid($("#profileuid")[0].value);
+
+    $('#profilenotes').val(model.Notes);
+
+    $("#modalprofilenotes").data("kendoMobileModalView").open();
+}
+
+function updateModalProfileNotes(e)
+{
+    var model = profilesDataSource.getByUid($("#profileuid")[0].value);
+
+    model.set("Notes", $('#profilenotes').val());
+
+    $("#modalprofilenotes").data("kendoMobileModalView").close();
+}
+
+function cancelModalProfileNotes(e)
+{
+    $("#modalprofilenotes").data("kendoMobileModalView").close();
 }

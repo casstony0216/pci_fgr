@@ -13,3 +13,8 @@ function bioListViewDataShow(e)
 
     $('#biodetails').val(legislatorModel.Bio);
 }
+
+function closeModalBio(e)
+{
+    $("#modalbio").data("kendoMobileModalView").close();
+}

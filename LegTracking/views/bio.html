@@ -65,27 +65,19 @@
             <ul class="listview-row-input-table">
                 <li class="listview-row-display-cell-label">
                     <span>DETAILS</span>
-                    <a href="#bio-modal" data-role="button" data-rel="modalview" data-align="right" data-icon="expand-e" style="background-color: transparent; border: none; float: right; margin-right: 0.75em; padding: 0;"></a>
+                    <a href="#modalbio" data-role="button" data-rel="modalview" data-icon="expand-e" class="expand-button">full-screen</a>
                 </li>
             </ul>
             <ul class="listview-row-input-table">
                 <li class="listview-row-display-cell-data">
-                    <!--<div class="bioTextArea">
-                        <input type="checkbox" id="bioToggle" tabindex="-1" class="km-checkbox" />
-                        <div class="bioText">
-                            <textarea data-bind="value:Bio" readonly></textarea>
-                            <label for="bioToggle" class="bioExpand">Full Screen</label>
-                            <label for="bioToggle" class="bioCollapse">Return</label>
-                        </div>
-                    </div>-->
                     <div data-role="scroller" style="height: 11em;">
                         <span data-bind="text:Bio"></span>
                     </div>
-                    <div data-role="modalview" id="bio-modal" style="width: 100%; height: 100%">
+                    <div data-role="modalview" id="modalbio" style="width: 100%; height: 100%">
                         <div data-role="header">
                             <div data-role="navbar">
                                 <span>Details</span>
-                                <a data-role="button" data-align="right" data-click="closeBioModal" data-icon="close-e" style="background-color: transparent; border: none; padding: 0;"></a>
+                                <a data-role="button" data-align="right" data-click="closeModalBio" class="nav-button">Close</a>
                             </div>
                         </div>
                         <ul data-role="listview" data-style="inset" style="margin: 0; padding: 0;">
@@ -99,32 +91,3 @@
         </li>
     </ul>
 </div>
-
-<script>
-    function closeBioModal(e)
-    {
-        $("#bio-modal").data("kendoMobileModalView").close();
-    }
-</script>
-
-<style>
-    .km-modalview .km-scroll-wrapper .km-scroll-container,
-    .km-modalview .km-scroll-wrapper .km-scroll-container .km-listview-wrapper,
-    .km-modalview .km-scroll-wrapper .km-scroll-container .km-listview-wrapper .km-listview,
-    .km-modalview .km-scroll-wrapper .km-scroll-container .km-listview-wrapper .km-listview li
-    {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        top: 0;
-    }
-
-    .modalTextArea
-    {
-        height: 100% !important;
-        margin: 0 !important;
-        resize: none;
-        width: 100% !important;
-    }
-</style>

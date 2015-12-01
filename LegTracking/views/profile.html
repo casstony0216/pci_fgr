@@ -1,6 +1,6 @@
 <div data-role="view" id="profileview" data-init="profileListViewDataInit" data-show="profileListViewDataShow" data-use-native-scrolling="true" data-layout="save-button-layout" data-title="Profile">
-    <form>
-        <input type="hidden" id="uid" value="" />
+    <form id="profileform">
+        <input type="hidden" id="profileuid" value="" />
         <ul data-role="listview" data-style="inset" class="formArea" onclick="">
             <li style="margin: 0; padding: 0; width: 100%;">
                 <ul class="listview-row-input-table">
@@ -23,19 +23,27 @@
                 <ul class="listview-row-input-table">
                     <li class="listview-row-input-cell-label">
                         <span>Notes</span>
+                        <a data-role="button" data-click="openModalProfileNotes" data-icon="expand-e" class="expand-button">full-screen</a>
                     </li>
                 </ul>
             </li>
             <li style="margin: 0; padding: 0; width: 100%;">
                 <ul class="listview-row-input-table">
                     <li class="listview-row-input-cell-control">
-                        <div class="profileTextArea">
-                            <input type="checkbox" id="profileToggle" tabindex="-1" />
-                            <div class="profileText">
-                                <textarea data-bind="value:Notes"></textarea>
-                                <label for="profileToggle" class="profileExpand">Full Screen</label>
-                                <label for="profileToggle" class="profileCollapse">Return</label>
+                        <textarea data-bind="value:Notes" class="tall"></textarea>
+                        <div data-role="modalview" id="modalprofilenotes" style="width: 100%; height: 100%">
+                            <div data-role="header">
+                                <div data-role="navbar">
+                                    <a data-role="button" data-align="left" data-click="cancelModalProfileNotes" data-icon="cancel-e" class="nav-button">Cancel</a>
+                                    <span>Notes</span>
+                                    <a data-role="button" data-align="right" data-click="updateModalProfileNotes" class="nav-button">Update</a>
+                                </div>
                             </div>
+                            <ul data-role="listview" data-style="inset" style="margin: 0; padding: 0;">
+                                <li style="margin: 0; padding: 0;">
+                                    <textarea class="modalTextArea" id="profilenotes"></textarea>
+                                </li>
+                            </ul>
                         </div>
                     </li>
                 </ul>
@@ -56,83 +64,3 @@
         </div>-->
     </form>
 </div>
-
-<style>
-    .profileTextArea 
-    {
-        position: relative;
-        z-index: 2147483646;
-    }
-
-    .profileTextArea input 
-    {
-        /*display: none;*/
-    }
-
-    .profileTextArea label 
-    {
-        background-color: #eee;
-        border: solid 1px #ccc;
-        border-radius: 3px;
-        color: #999;
-        font-size: 0.75em;
-        font-variant: small-caps;
-        padding: 0.25em;
-        position: absolute;
-        right: 0;
-        text-transform: uppercase;
-        top: 0;
-        z-index: 2147483647;
-    }
-
-    .profileTextArea label:hover 
-    {
-        color: #666;
-    }
-
-    .profileText textarea 
-    {
-        background-color: white;
-        height: 8.5em;
-        margin: 0.5em 0 0 0 !important;
-        padding-top: 0 !important;
-        resize: none;
-        width: 100%;
-    }
-
-    .profileText .profileExpand 
-    {
-    }
-
-    .profileText .profileCollapse 
-    {
-        display: none;
-    }
-
-    .profileTextArea input:checked ~ .profileText 
-    {
-        background-color: white;
-        bottom: 0;
-        left: 0;
-        position: fixed;
-        right: 0;
-        top: 3.5em;
-    }
-
-    .profileTextArea input:checked ~ .profileText textarea 
-    {
-        background-color: white !important;
-        height: 100% !important;
-        margin-top: 1.5em !important;
-    }
-
-    .profileTextArea input:checked ~ .profileText .profileExpand 
-    {
-        display: none;
-    }
-
-    .profileTextArea input:checked ~ .profileText .profileCollapse 
-    {
-        display: block;
-    }
-</style>

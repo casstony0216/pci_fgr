@@ -42,6 +42,8 @@ function surveyQuestionListViewDataShow(e)
 {
     var uid = e.view.params.uid;
     var surveyQuestionModel = initiativeSurveyDataSource.getByUid(uid);
+    
+    $("#surveyquestionuid")[0].value = uid;
 
     var viewModel = kendo.observable({
         surveyQuestionItem: surveyQuestionModel,
@@ -49,6 +51,8 @@ function surveyQuestionListViewDataShow(e)
     });
 
     kendo.bind(e.view.element, viewModel, kendo.mobile.ui);
+    
+    $('#surveyquestioncomments').val(surveyQuestionModel.Comments);
 
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
 
@@ -67,4 +71,27 @@ function surveyQuestionListViewDataShow(e)
             app.navigate("#:back");
         }
     );
+}
+
+function openModalSurveyQuestionComments(e)
+{
+    var model = initiativeSurveyDataSource.getByUid($("#surveyquestionuid")[0].value);
+
+    $('#surveyquestioncomments').val(model.Comments);
+
+    $("#modalsurveyquestioncomments").data("kendoMobileModalView").open();
+}
+
+function updateModalSurveyQuestionComments(e)
+{
+    var model = initiativeSurveyDataSource.getByUid($("#surveyquestionuid")[0].value);
+
+    model.set("Comments", $('#surveyquestioncomments').val());
+
+    $("#modalsurveyquestioncomments").data("kendoMobileModalView").close();
+}
+
+function cancelModalSurveyQuestionComments(e)
+{
+    $("#modalsurveyquestioncomments").data("kendoMobileModalView").close();
 }

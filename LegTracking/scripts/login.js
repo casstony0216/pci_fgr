@@ -69,9 +69,16 @@ function authenticateUser()
 
     if (allValid)
     {
+        var rememberme = $("#rememberme").data("kendoMobileSwitch");
         var email = $("#email").val();
         var password = $("#password").val();
         var $msg = $("#login-message");
+
+        if (rememberme.check())
+        {
+            // Update email in local storage, in case of update.
+            localStorage.setItem("Email", email);
+        }
 
         $.ajax({
             url: apiLoginUrl,

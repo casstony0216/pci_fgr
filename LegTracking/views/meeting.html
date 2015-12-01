@@ -21,19 +21,27 @@
                 <ul class="listview-row-input-table">
                     <li class="listview-row-input-cell-label">
                         <span>Notes</span>
+                        <a data-role="button" data-click="openModalMeetingNotes" data-icon="expand-e" class="expand-button">full-screen</a>
                     </li>
                 </ul>
             </li>
             <li style="margin: 0px; padding: 0px; width: 100%;">
                 <ul class="listview-row-input-table">
                     <li class="listview-row-input-cell-control">
-                        <div class="meetingTextArea">
-                            <input type="checkbox" id="meetingToggle" tabindex="-1" />
-                            <div class="meetingText">
-                                <textarea data-bind="value: meetingItem.Notes"></textarea>
-                                <label for="meetingToggle" class="meetingExpand">Full Screen</label>
-                                <label for="meetingToggle" class="meetingCollapse">Return</label>
+                        <textarea data-bind="value: meetingItem.Notes"></textarea>
+                        <div data-role="modalview" id="modalmeetingnotes" style="width: 100%; height: 100%">
+                            <div data-role="header">
+                                <div data-role="navbar">
+                                    <a data-role="button" data-align="left" data-click="cancelModalMeetingNotes" data-icon="cancel-e" class="nav-button">Cancel</a>
+                                    <span>Notes</span>
+                                    <a data-role="button" data-align="right" data-click="updateModalMeetingNotes" class="nav-button">Update</a>
+                                </div>
                             </div>
+                            <ul data-role="listview" data-style="inset" style="margin: 0; padding: 0;">
+                                <li style="margin: 0; padding: 0;">
+                                    <textarea class="modalTextArea" id="meetingnotes"></textarea>
+                                </li>
+                            </ul>
                         </div>
                     </li>
                 </ul>
@@ -103,86 +111,6 @@
         </div>
     </form>
 </div>
-
-<style>
-    .meetingTextArea 
-    {
-        position: relative;
-        z-index: 2147483646;
-    }
-
-    .meetingTextArea input 
-    {
-        /*display: none;*/
-    }
-
-    .meetingTextArea label 
-    {
-        background-color: #eee;
-        border: solid 1px #ccc;
-        border-radius: 3px;
-        color: #999;
-        font-size: 0.75em;
-        font-variant: small-caps;
-        padding: 0.25em;
-        position: absolute;
-        right: 0;
-        text-transform: uppercase;
-        top: 0;
-        z-index: 2147483647;
-    }
-
-    .meetingTextArea label:hover 
-    {
-        color: #666;
-    }
-
-    .meetingText textarea 
-    {
-        background-color: white;
-        height: 6em;
-        margin: 0.5em 0 0 0 !important;
-        padding-top: 0 !important;
-        resize: none;
-        width: 100%;
-    }
-
-    .meetingText .meetingExpand 
-    {
-    }
-
-    .meetingText .meetingCollapse 
-    {
-        display: none;
-    }
-
-    .meetingTextArea input:checked ~ .meetingText 
-    {
-        background-color: white;
-        bottom: 0;
-        left: 0;
-        position: fixed;
-        right: 0;
-        top: 3.5em;
-    }
-
-    .meetingTextArea input:checked ~ .meetingText textarea 
-    {
-        background-color: white !important;
-        height: 100% !important;
-        margin-top: 1.5em !important;
-    }
-
-    .meetingTextArea input:checked ~ .meetingText .meetingExpand 
-    {
-        display: none;
-    }
-
-    .meetingTextArea input:checked ~ .meetingText .meetingCollapse 
-    {
-        display: block;
-    }
-</style>
 
 <script type="text/x-kendo-tmpl" id="meetingInitiativeListViewTemplate">
     <input type="hidden" id="url" value="#:Url#" />

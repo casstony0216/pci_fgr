@@ -211,6 +211,19 @@ function meetingListViewDataInit(e)
                 tap: meetingOtherNavigate
             }
         );
+
+    $("#meetingForm input").keyup
+    (
+        function (e)
+        {   //inputs on login view should call authenticateUser() method on 'enter'
+            if (e.keyCode === 13)
+            {
+                saveMeeting();
+
+                $(this).blur(); //iOS likes to keep the keyboard open ... so remove focus to close it
+            }
+        }
+    );
 }
 
 function meetingListViewDataShow(e)
@@ -282,6 +295,8 @@ function meetingListViewDataShow(e)
 
     kendo.bind(e.view.element, viewModel, kendo.mobile.ui);
     
+    $('#meetingnotes').val(meetingModel.Notes);
+
     var saveButton = e.view.element.find("#save-button").data("kendoMobileButton");
 
     saveButton.unbind("click");
@@ -290,79 +305,7 @@ function meetingListViewDataShow(e)
         "click",
         function ()
         {
-            var allValid = true;
-            var isValid = true;
-            var validator = $("#meetingForm").kendoValidator
-                (
-                    {
-                        validateOnBlur: false
-                    }
-                ).data("kendoValidator");
-
-            $('#meetingForm input').each
-                    (
-                        function ()
-                        {
-                            $(this).parent().parent().find("li").find("span").removeClass('invalid');
-
-                            isValid = validator.validateInput($(this));
-
-                            if (!isValid)
-                            {
-                                if (allValid)
-                                {
-                                    allValid = false;
-                                }
-
-                                $(this).parent().parent().find("li").find("span").addClass('invalid');
-
-                                //return isValid;
-                            }
-                        }
-                    );
-
-            if (isValid)
-            {
-                $('#meetingForm select').each
-                    (
-                        function ()
-                        {
-                            $(this).parent().parent().find("li").find("span").removeClass('invalid');
-
-                            isValid = validator.validateInput($(this));
-                                    
-                            if (!isValid)
-                            {
-                                if (allValid)
-                                {
-                                    allValid = false;
-                                }
-
-                                $(this).parent().parent().find("li").find("span").addClass('invalid');
-
-                                //return isValid;
-                            }
-                        }
-                    );
-            }
-
-            if (allValid)
-            {
-                if (meetingModel.MeetingId === undefined)
-                {
-                    addNewMeetingToDataSource();
-                }
-
-                // Necessary to check if MeetingDate is NOT a string... means it was updated and has to be converted.
-                if (jQuery.type(meetingModel.MeetingDate) !== "string")
-                {
-                    meetingModel.MeetingDate = meetingModel.MeetingDate.toLocaleDateString();
-                }
-
-                meetingsDataSource.sync();
-
-                app.navigate("#:back");
-            }
+            saveMeeting();
         }
     );
 
@@ -591,4 +534,104 @@ function addNewMeetingToDataSource()
             Notes: meetingModel.Notes
         }
     );
+}
+
+function openModalMeetingNotes(e)
+{
+    var model = meetingsDataSource.getByUid(meetingUid);
+
+    $('#meetingnotes').val(model.Notes);
+
+    $("#modalmeetingnotes").data("kendoMobileModalView").open();
+}
+
+function updateModalMeetingNotes(e)
+{
+    var model = meetingsDataSource.getByUid(meetingUid);
+
+    model.set("Notes", $('#meetingnotes').val());
+
+    $("#modalmeetingnotes").data("kendoMobileModalView").close();
+}
+
+function cancelModalMeetingNotes(e)
+{
+    $("#modalmeetingnotes").data("kendoMobileModalView").close();
+}
+
+function saveMeeting()
+{
+    var allValid = true;
+    var isValid = true;
+    var validator = $("#meetingForm").kendoValidator
+        (
+            {
+                validateOnBlur: false
+            }
+        ).data("kendoValidator");
+
+    $('#meetingForm input').each
+            (
+                function ()
+                {
+                    $(this).parent().parent().find("li").find("span").removeClass('invalid');
+
+                    isValid = validator.validateInput($(this));
+
+                    if (!isValid)
+                    {
+                        if (allValid)
+                        {
+                            allValid = false;
+                        }
+
+                        $(this).parent().parent().find("li").find("span").addClass('invalid');
+
+                        //return isValid;
+                    }
+                }
+            );
+
+    if (isValid)
+    {
+        $('#meetingForm select').each
+            (
+                function ()
+                {
+                    $(this).parent().parent().find("li").find("span").removeClass('invalid');
+
+                    isValid = validator.validateInput($(this));
+                                    
+                    if (!isValid)
+                    {
+                        if (allValid)
+                        {
+                            allValid = false;
+                        }
+
+                        $(this).parent().parent().find("li").find("span").addClass('invalid');
+
+                        //return isValid;
+                    }
+                }
+            );
+    }
+
+    if (allValid)
+    {
+        if (meetingModel.MeetingId === undefined)
+        {
+            addNewMeetingToDataSource();
+        }
+
+        // Necessary to check if MeetingDate is NOT a string... means it was updated and has to be converted.
+        if (jQuery.type(meetingModel.MeetingDate) !== "string")
+        {
+            meetingModel.MeetingDate = meetingModel.MeetingDate.toLocaleDateString();
+        }
+
+        meetingsDataSource.sync();
+
+        app.navigate("#:back");
+    }
 }
