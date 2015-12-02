@@ -149,6 +149,11 @@ body, html
 }
 /* List View Swipe Button Formatting End */
 
+.km-flat .km-filter-wrap>input:focus
+{
+    border: solid 1px #0a6fb0 !important;
+}
+
 #fgrApp .formArea li textarea
 {
     background-color: #fff !important;
@@ -457,7 +462,9 @@ body, html
 .km-flat .km-list > li 
 {
     background: none;
-    color:black;
+    /*border: solid 1px #ccc;
+    border-radius: 5px;*/
+    color: black;
 }
 
 /* Separator Style*/
