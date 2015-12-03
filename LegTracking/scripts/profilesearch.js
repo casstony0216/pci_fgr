@@ -17,6 +17,17 @@ function profileSearchViewDataInit(e)
                 pullToRefresh: true
             }
         );
+
+    $("#profileSearchForm input").keyup
+    (
+        function (e)
+        {   //inputs on login view should call authenticateUser() method on 'enter'
+            if (e.keyCode === 13)
+            {
+                $(this).blur(); //iOS likes to keep the keyboard open ... so remove focus to close it
+            }
+        }
+    );
 }
 
 function profileSearchViewDataShow(e)

@@ -244,22 +244,10 @@ function meetingListViewDataShow(e)
     if (isAddMeeting === "Y")
     {
         meetingUid = null;
+        
+        meetingLegislatorId = legislatorId;
 
         defineMeetingModel();
-
-        meetingModel.MeetingDate = new Date();
-
-        if (legislatorId !== undefined && legislatorId !== null)
-        {
-            meetingModel.LegislatorId = legislatorId;
-        }
-        else
-        {
-            meetingModel.LegislatorId = "8";
-        }
-
-        meetingModel.MeetingLocationId = "1";
-        meetingModel.AttendeeTypeId = "1";
 
         dataTitle = "Add Meeting";
     }
@@ -423,28 +411,100 @@ function meetingOtherNavigate(e)
 
 function defineMeetingModel()
 {
-    meetingModel = kendo.data.Model.define( {
-            id: "MeetingId",
-            fields:
+    var newLegislatorId = null;
+    var newAttendeeTypeId = null;
+    var newMeetingLocationId = null;
+
+    var MeetingModel = kendo.data.Model.define
+        (
             {
-                MeetingId: { type: "number", editable: true },
-                MeetingDate: { type: "string", editable: true, validation: { required: true } },
-                AttendeeTypeId: { type: "number", editable: true, validation: { required: true } },
-                AttendeeType: { type: "string", editable: true },
-                PersonId: { type: "number", editable: true },
-                PciContact: { type: "string", editable: true },
-                LegislatorId: { type: "number", editable: true, validation: { required: true } },
-                FullName: { type: "string", editable: true },
-                Name: { type: "string", editable: true },
-                PrimaryOfficeContact: { type: "string", editable: true },
-                MeetingLocationId: { type: "number", editable: true, validation: { required: true } },
-                Location: { type: "string", editable: true },
-                LegislatorStaffAttendees: { type: "string", editable: true },
-                FollowUpNeeded: { type: "string", editable: true },
-                CreatorId: { type: "number", editable: true },
-                Notes: { type: "string", editable: true }
+                id: "MeetingId",
+                fields:
+                {
+                    MeetingId: { type: "number", editable: true },
+                    MeetingDate: { type: "string", editable: true, validation: { required: true } },
+                    AttendeeTypeId: { type: "number", editable: true, validation: { required: true } },
+                    AttendeeType: { type: "string", editable: true },
+                    PersonId: { type: "number", editable: true },
+                    PciContact: { type: "string", editable: true },
+                    LegislatorId: { type: "number", editable: true, validation: { required: true } },
+                    FullName: { type: "string", editable: true },
+                    Name: { type: "string", editable: true },
+                    PrimaryOfficeContact: { type: "string", editable: true },
+                    MeetingLocationId: { type: "number", editable: true, validation: { required: true } },
+                    Location: { type: "string", editable: true },
+                    LegislatorStaffAttendees: { type: "string", editable: true },
+                    FollowUpNeeded: { type: "string", editable: true },
+                    CreatorId: { type: "number", editable: true },
+                    Notes: { type: "string", editable: true }
+                }
             }
-        });
+        );
+
+    if (meetingLegislatorId !== undefined && meetingLegislatorId !== null)
+    {
+        newLegislatorId = meetingLegislatorId;
+    }
+    else
+    {
+        if (legislatorsOptionsDataSource.data().length > 0)
+        {
+            newLegislatorId = legislatorsOptionsDataSource.data()[0].Value; //$('select[name="legislator"] option:first').val();
+        }
+        else
+        {
+            //newLegislatorId = 8;
+            legislatorsOptionsDataSource.fetch
+            (
+                function()
+                {
+                    meetingModel.LegislatorId = this.data()[0].Value;
+                }
+            );
+        }
+    }
+
+    if (attendeeTypesOptionsDataSource.data().length > 0)
+    {
+        newAttendeeTypeId = attendeeTypesOptionsDataSource.data()[0].Value; //$('select[name="officeattendees"] option:first').val();
+    }
+    else
+    {
+        //newAttendeeTypeId = 1;
+        attendeeTypesOptionsDataSource.fetch
+        (
+            function()
+            {
+                meetingModel.AttendeeTypeId = this.data()[0].Value;
+            }
+        );
+    }
+
+    if (meetingLocationsOptionsDataSource.data().length > 0)
+    {
+        newMeetingLocationId = meetingLocationsOptionsDataSource.data()[1].Value; //$('select[name="type"] option:second').val();
+    }
+    else
+    {
+        //newMeetingLocationId = 2;
+        meetingLocationsOptionsDataSource.fetch
+        (
+            function()
+            {
+                meetingModel.MeetingLocationId = this.data()[1].Value;
+            }
+        );
+    }
+
+    meetingModel = new MeetingModel
+        (
+            {
+                MeetingDate: new Date(),
+                AttendeeTypeId: newAttendeeTypeId, //$('select[name="officeattendees"] option:first').val(),
+                LegislatorId: newLegislatorId,
+                MeetingLocationId: newMeetingLocationId //$('select[name="type"] option:first').val()
+            }
+        );
 }
 
 function addNewMeetingToDataSource()
@@ -514,6 +574,16 @@ function addNewMeetingToDataSource()
         meetingModel.Notes = "";
     }
 
+    if (meetingsDataSource === undefined || meetingsDataSource === null)
+    {
+        // The following are defined in the meetings.js.
+        meetingsReference = "legislator";
+        meetingLegislatorId = meetingModel.LegislatorId;
+        recentMeetings = "Y";
+
+        setMeetingsDataSource();
+    }
+
     meetingsDataSource.add
     (
         {
@@ -538,18 +608,18 @@ function addNewMeetingToDataSource()
 
 function openModalMeetingNotes(e)
 {
-    var model = meetingsDataSource.getByUid(meetingUid);
+    //var model = meetingsDataSource.getByUid(meetingUid);
 
-    $('#meetingnotes').val(model.Notes);
+    $('#meetingnotes').val(meetingModel.Notes);
 
     $("#modalmeetingnotes").data("kendoMobileModalView").open();
 }
 
 function updateModalMeetingNotes(e)
 {
-    var model = meetingsDataSource.getByUid(meetingUid);
+    //var model = meetingsDataSource.getByUid(meetingUid);
 
-    model.set("Notes", $('#meetingnotes').val());
+    meetingModel.set("Notes", $('#meetingnotes').val());
 
     $("#modalmeetingnotes").data("kendoMobileModalView").close();
 }
