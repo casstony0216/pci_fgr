@@ -26,7 +26,6 @@ function meetingInitiativesListViewDataShow(e)
                     url: apiBaseServiceUrl + "meetinginitiatives?meetingId=" + meetingId,
                     type: "get",
                     dataType: "json",
-                    // crossDomain: true, // enable this,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
@@ -41,7 +40,6 @@ function meetingInitiativesListViewDataShow(e)
                     url: apiBaseServiceUrl + "updatemeetinginitiative",
                     type: "post",
                     dataType: "json",
-                    // crossDomain: true, // enable this,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);

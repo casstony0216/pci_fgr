@@ -2,6 +2,7 @@ var legislatorsDataSource = null;
 var legislatorUid;
 var legislatorModel;
 var initiativeSurveysReference = null;
+var isAddMeeting = "N";
 
 function legislatorsListViewDataInit(e) 
 {
@@ -46,7 +47,6 @@ function legislatorsListViewDataInit(e)
 function legislatorsListViewDataShow(e)
 {
     var legislatorsListView = $("#legislatorsListView").data("kendoMobileListView");
-    //legislatorsListView.dataSource.page(0); //request the first page
     legislatorsListView.scroller().reset(); //reset the scroller
 
     setLegislatorsDataSource();
@@ -95,7 +95,9 @@ function legislatorsTouchStart(e)
             case "add":
                 //detailbutton.show();
                 //tabstrip.hide();
-                app.navigate("views/meeting.html?isAdd=Y&legislatorId=" + legislatorId);
+                isAddMeeting = "Y";
+
+                app.navigate("views/meeting.html?legislatorId=" + legislatorId);
 
                 break;
 

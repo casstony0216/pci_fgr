@@ -14,7 +14,6 @@ function initiativeTiersListViewDataShow(e)
                     url: apiBaseServiceUrl + "initiativestances?legislatorId=" + legislatorId,
                     type: "get",
                     dataType: "json",
-                    // crossDomain: true, // enable this,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);

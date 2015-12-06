@@ -1,3 +1,4 @@
+// Define all global variables used throughout the entire solution.
 var apiLoginUrl = "https://sts-dev.pciaa.net/api/pci/signin/issue";
 var apiBaseServiceUrl = "http://dev.pciaa.net/pciwebsite/congressapi/legislators/";
 var scope = "http://dev.pciaa.net/";

@@ -56,7 +56,6 @@ function profilesViewDataShow(e)
                     url: apiReadUrl,
                     type: "get",
                     dataType: "json",
-                    // crossDomain: true, // enable this,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
@@ -70,13 +69,29 @@ function profilesViewDataShow(e)
                 {
                     url: apiUpdateUrl,
                     type: "post",
-                    dataType: "json"
+                    dataType: "json",
+                    beforeSend: function (xhr)
+                    {
+                        xhr.setRequestHeader("Authorization", token);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError)
+                    {
+                        alert("error " + xhr.responseText);
+                    }
                 },
                 destroy:
                 {
                     url: apiDestroyUrl,
                     type: "post",
-                    dataType: "json"
+                    dataType: "json",
+                    beforeSend: function (xhr)
+                    {
+                        xhr.setRequestHeader("Authorization", token);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError)
+                    {
+                        alert("error " + xhr.responseText);
+                    }
                 }
             },
             schema:

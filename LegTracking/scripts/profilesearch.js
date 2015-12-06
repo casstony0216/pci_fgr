@@ -48,6 +48,29 @@ function profileSearchViewDataShow(e)
 
     navbar.title(dataTitle);
 
+    var profileSearchListView = $("#profileSearchListView").data("kendoMobileListView");
+    profileSearchListView.scroller().reset(); //reset the scroller
+
+    setProfileSearchDataSource(uid);
+
+    $("#profileSearchListView").data("kendoMobileListView").setDataSource(profileSearchDataSource);
+}
+
+function profileSearchSwitchChange(e)
+{
+    var listItem = e.sender.element.parent().parent().parent().parent();
+    var uid = listItem.attr("data-uid");
+    var profileSearchModel = profileSearchDataSource.getByUid(uid);
+
+    profileSearchModel.set("Checked", e.checked);
+
+    profileSearchDataSource.sync();
+}
+
+function setProfileSearchDataSource(uid)
+{
+    profileSearchDataSource = null;
+
     profileSearchDataSource = new kendo.data.DataSource
     (
         {
@@ -72,7 +95,6 @@ function profileSearchViewDataShow(e)
                     url: apiBaseServiceUrl + "insertdeleteprofilerelationship",
                     type: "post",
                     dataType: "json",
-                    // crossDomain: true, // enable this,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
@@ -146,17 +168,4 @@ function profileSearchViewDataShow(e)
             pageSize: 50
         }
     );
-
-    $("#profileSearchListView").data("kendoMobileListView").setDataSource(profileSearchDataSource);
-}
-
-function profileSearchSwitchChange(e)
-{
-    var listItem = e.sender.element.parent().parent().parent().parent();
-    var uid = listItem.attr("data-uid");
-    var profileSearchModel = profileSearchDataSource.getByUid(uid);
-
-    profileSearchModel.set("Checked", e.checked);
-
-    profileSearchDataSource.sync();
 }

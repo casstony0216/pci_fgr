@@ -55,7 +55,6 @@ function initiativeSurveysListViewDataShow(e)
                     url: apiUrl,
                     type: "get",
                     dataType: "json",
-                    // crossDomain: true, // enable this,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);

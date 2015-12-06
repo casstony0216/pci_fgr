@@ -11,21 +11,13 @@ function committeesListViewDataShow(e)
             {
                 read:
                 {
-                    // the remote service url
                     url: apiBaseServiceUrl + "committees?legislatorId=" + legislatorId,
-
-                    // the request type
                     type: "get",
-
-                    // the data type of the returned result
                     dataType: "json",
-
-                    // crossDomain: true, // enable this,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
                     },
-
                     error: function (xhr, ajaxOptions, thrownError)
                     {
                         alert("error " + xhr.responseText);

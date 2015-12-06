@@ -4,6 +4,7 @@ var meetingUid;
 var meetingModel;
 var meetingLegislatorId = null;
 var recentMeetings = "Y";
+var previousMeetingsChangeAction = null;
 
 function meetingsListViewDataInit(e)
 {
@@ -53,13 +54,15 @@ function meetingsListViewDataShow(e)
         "click",
         function ()
         {
+            isAddMeeting = "Y";
+
             if (meetingsReference === "legislator")
             {
-                app.navigate("views/meeting.html?isAdd=Y&legislatorId=" + meetingLegislatorId);                        
+                app.navigate("views/meeting.html?legislatorId=" + meetingLegislatorId);                        
             }
             else
             {
-                app.navigate("views/meeting.html?isAdd=Y");
+                app.navigate("views/meeting.html");
             }
         }
     );
@@ -75,6 +78,8 @@ function meetingsListViewDataShow(e)
 function meetingsNavigate(e)
 {
     meetingUid = $(e.touch.currentTarget).data("uid");
+
+    isAddMeeting = "N";
 
     app.navigate("views/meeting.html?uid=" + meetingUid);
 }
@@ -192,7 +197,8 @@ function setMeetingsDataSource()
                     url: apiCreateUrl,
                     type: "post",
                     dataType: "json",
-                    // crossDomain: true, // enable this,
+                    async: false, // Work-around for now to get datasource sync to complete before tap event fires... 
+                                  // This is being deprecated and another approach will need to be developed in the near future.
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
@@ -207,7 +213,6 @@ function setMeetingsDataSource()
                     url: apiUpdateUrl,
                     type: "post",
                     dataType: "json",
-                    // crossDomain: true, // enable this,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
@@ -222,7 +227,6 @@ function setMeetingsDataSource()
                     url: apiDestroyUrl,
                     type: "post",
                     dataType: "json",
-                    // crossDomain: true, // enable this,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
@@ -239,6 +243,39 @@ function setMeetingsDataSource()
                         return options;
                     }
                 }
+            },
+            change: function(e)
+            {
+                //alert("Change: " + e.action + ", previous: " + previousMeetingsChangeAction);
+                if (e.action === "sync" && previousMeetingsChangeAction === "add")
+                {
+                    var data = e.items;
+                    var tempMeetingId = null;
+
+                    for (var i = 0; i < data.length; i++)
+                    {
+                        if (tempMeetingId === null)
+                        {
+                            tempMeetingId = data[i].MeetingId;
+                        }
+                        else
+                        {
+                            if (Number(tempMeetingId) < Number(data[i].MeetingId))
+                            {
+                                tempMeetingId = data[i].MeetingId;
+
+                                meetingUid = data[i].uid;
+                            }
+                        }
+                    }
+
+                    if (meetingModel !== undefined)
+                    {
+                        meetingModel.MeetingId = tempMeetingId;
+                    }
+                }
+
+                previousMeetingsChangeAction = e.action;
             },
             schema:
             {
