@@ -22,7 +22,7 @@ function meetingsListViewDataInit(e)
                 filter: ">li",
                 enableSwipe: true,
                 touchstart: meetingsTouchStart,
-                tap: meetingsNavigate,
+                tap: meetingsTap,
                 swipe: meetingsSwipe
             }
         );
@@ -75,7 +75,7 @@ function meetingsListViewDataShow(e)
 
 }
 
-function meetingsNavigate(e)
+function meetingsTap(e)
 {
     meetingUid = $(e.touch.currentTarget).data("uid");
 

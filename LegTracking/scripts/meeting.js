@@ -189,7 +189,7 @@ function meetingListViewDataInit(e)
             {
                 filter: ">li",
                 touchstart: meetingInitiativeTouchStart,
-                tap: meetingInitiativeNavigate
+                tap: meetingInitiativeTap
             }
         );
 
@@ -206,7 +206,7 @@ function meetingListViewDataInit(e)
             {
                 filter: ">li",
                 touchstart: meetingOtherTouchStart,
-                tap: meetingOtherNavigate
+                tap: meetingOtherTap
             }
         );
 
@@ -344,14 +344,10 @@ function meetingListViewDataShow(e)
 
 function meetingInitiativeTouchStart(e)
 {
-    e.sender.cancel();
-
     saveMeeting();
-
-    meetingInitiativeNavigate(e);
 }
 
-function meetingInitiativeNavigate(e) 
+function meetingInitiativeTap(e) 
 {
     var uid = $(e.touch.currentTarget).data("uid");
     var currentRecord = meetingInitiativeDataSource.getByUid(uid);
@@ -395,7 +391,7 @@ function meetingOtherTouchStart(e)
     saveMeeting();
 }
 
-function meetingOtherNavigate(e)
+function meetingOtherTap(e)
 {
     var uid = $(e.touch.currentTarget).data("uid");
     var currentRecord = meetingOtherDataSource.getByUid(uid);

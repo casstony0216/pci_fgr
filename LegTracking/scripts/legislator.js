@@ -73,7 +73,7 @@ function legislatorListViewDataInit(e)
         (
             {
                 filter: ">li",
-                tap: legislatorNavigate
+                tap: legislatorTap
             }
         );
 }
@@ -86,7 +86,7 @@ function legislatorListViewDataShow(e)
     kendo.bind(e.view.element, legislatorModel, kendo.mobile.ui);
 }
 
-function legislatorNavigate(e) 
+function legislatorTap(e) 
 {
     var uid = $(e.touch.currentTarget).data("uid");
     var currentRecord = legislatorDataSource.getByUid(uid);

@@ -39,7 +39,7 @@ function initiativeSurveyListViewDataInit(e)
         (
             {
                 filter: ">li",
-                tap: initiativeSurveyNavigate
+                tap: initiativeSurveyTap
             }
         );
 }
@@ -69,7 +69,7 @@ function initiativeSurveyListViewDataShow(e)
     }
 }
 
-function initiativeSurveyNavigate(e)
+function initiativeSurveyTap(e)
 {
     var uid = $(e.touch.currentTarget).data("uid");
     var url = "views/surveyquestion.html?uid=";

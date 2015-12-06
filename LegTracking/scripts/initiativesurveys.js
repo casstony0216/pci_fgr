@@ -29,7 +29,7 @@ function initiativeSurveysListViewDataInit(e)
         (
             {
                 filter: ">li",
-                tap: initiativeSurveysNavigate
+                tap: initiativeSurveysTap
             }
         );
 }
@@ -95,7 +95,7 @@ function initiativeSurveysListViewDataShow(e)
     }
 }
 
-function initiativeSurveysNavigate(e)
+function initiativeSurveysTap(e)
 {
     var liElement = $(e.touch.currentTarget);
     var questionCount = liElement.find('input[name="questionCount"]');

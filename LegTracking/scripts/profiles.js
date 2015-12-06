@@ -17,7 +17,7 @@ function profilesViewDataInit(e)
                 filter: ">li",
                 enableSwipe: true,
                 touchstart: profilesTouchStart,
-                tap: profilesNavigate,
+                tap: profilesTap,
                 swipe: profilesSwipe
             }
         );
@@ -147,7 +147,7 @@ function profilesViewDataShow(e)
     }
 }
 
-function profilesNavigate(e)
+function profilesTap(e)
 {
     var uid = $(e.touch.currentTarget).data("uid");
 

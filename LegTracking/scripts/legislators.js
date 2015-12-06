@@ -27,7 +27,7 @@ function legislatorsListViewDataInit(e)
                 filter: ">li",
                 enableSwipe: true,
                 touchstart: legislatorsTouchStart,
-                tap: legislatorsNavigate,
+                tap: legislatorsTap,
                 swipe: legislatorsSwipe
             }
         );
@@ -54,7 +54,7 @@ function legislatorsListViewDataShow(e)
     legislatorsListView.setDataSource(legislatorsDataSource);
 }
 
-function legislatorsNavigate(e) 
+function legislatorsTap(e) 
 {
     // Close the keyboard.
     $('input[type="search"]').blur();
