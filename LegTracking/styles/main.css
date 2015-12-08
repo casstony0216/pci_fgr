@@ -783,6 +783,10 @@ input, select
     font-weight: normal !important;
     margin-left: 10px !important;
 }
+.listview-row-display-cell-label a span
+{
+    margin-left: 0 !important;
+}
 .listview-row-display-cell-data
 {
     display: table-cell; 
@@ -889,6 +893,10 @@ span.km-switch-label-on
     content: "\e213";
 }
 
+.km-button .km-expand-e
+{
+    margin-right: 0 !important;
+}
 .km-expand-e:after,
 .km-expand-e:before 
 {
