@@ -177,11 +177,12 @@ function profilesTouchStart(e)
     if (target.closest("div.swipeButtons")[0])
     {
         var button = target.closest("[data-role=button]")[0];
-        var buttonIcon = button.attributes["data-icon"].value;
+        var buttonText = button.text;
+        //var buttonIcon = button.attributes["data-icon"].value;
 
-        switch (buttonIcon)
+        switch (buttonText) //buttonIcon
         {
-            case "delete-e":
+            case "Delete": //"delete-e"
                 model.set("Checked", false);
 
                 profilesDataSource.remove(model);

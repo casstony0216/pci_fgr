@@ -313,6 +313,11 @@ body, html
     color: #666 !important;
 }
 
+/*.km-button .km-icon
+{
+    margin: 0 !important;
+}*/
+
 /* App Header */
 .km-view-title
 {

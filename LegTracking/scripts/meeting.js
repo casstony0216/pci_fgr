@@ -218,11 +218,11 @@ function meetingListViewDataInit(e)
             {
                 saveMeeting();
 
-                alert("Meeting has been saved.");
-
-                //app.navigate("#:back");
+                //alert("Meeting has been saved.");
 
                 $(this).blur(); //iOS likes to keep the keyboard open ... so remove focus to close it
+
+                app.navigate("#:back");
             }
         }
     );
@@ -289,9 +289,9 @@ function meetingListViewDataShow(e)
 
             meetingsDataSource.read();
             
-            alert("Meeting has been saved.")
+            //alert("Meeting has been saved.")
 
-            //app.navigate("#:back");
+            app.navigate("#:back");
         }
     );
 
@@ -340,6 +340,8 @@ function meetingListViewDataShow(e)
     $("#meetingForm").find("input.k-invalid").removeClass('k-invalid');
     $("#meetingForm").find("select.k-invalid").removeClass('k-invalid');
     $("#meetingForm").find("span.invalid").removeClass('invalid');
+
+    e.view.scroller.reset();
 }
 
 function meetingInitiativeTouchStart(e)
@@ -446,6 +448,39 @@ function defineMeetingModel()
     if (meetingLegislatorId !== undefined && meetingLegislatorId !== null)
     {
         newLegislatorId = meetingLegislatorId;
+
+        if (legislatorsOptionsDataSource.data().length > 0)
+        {
+            var data = legislatorsOptionsDataSource.data();
+
+            for (var i = 0; i < data.length; i++)
+            {
+                if (data[i].Value === newLegislatorId)
+                {
+                    newFullName = data[i].Text;
+
+                    break;
+                }
+            }
+        }
+        else
+        {
+            legislatorsOptionsDataSource.fetch
+            (
+                function ()
+                {
+                    for (var i = 0; i < this.data().length; i++)
+                    {
+                        if (this.data()[i].Value === newLegislatorId)
+                        {
+                            meetingModel.FullName = this.data()[i].Text;
+
+                            break;
+                        }
+                    }
+                }
+            );
+        }
     }
     else
     {
@@ -456,7 +491,6 @@ function defineMeetingModel()
         }
         else
         {
-            //newLegislatorId = 8;
             legislatorsOptionsDataSource.fetch
             (
                 function()
@@ -502,10 +536,12 @@ function defineMeetingModel()
         );
     }
 
+    var newDate = kendo.toString(new Date(), 'yyyy-MM-dd');
+
     meetingModel = new MeetingModel
         (
             {
-                MeetingDate: new Date(),
+                MeetingDate: newDate,
                 AttendeeTypeId: newAttendeeTypeId, //$('select[name="officeattendees"] option:first').val(),
                 AttendeeType: newAttendeeType,
                 LegislatorId: newLegislatorId,
@@ -520,8 +556,19 @@ function addNewMeetingToDataSource()
 {
     meetingModel.CreatorId = personId;
     meetingModel.PersonId = personId;
-    meetingModel.MeetingDate = meetingModel.MeetingDate.toLocaleDateString();
-                        
+
+    // Necessary to check if MeetingDate is NOT a string... means it was updated and has to be converted.
+    if (jQuery.type(meetingModel.MeetingDate) !== "string")
+    {
+        meetingModel.MeetingDate = meetingModel.MeetingDate.toLocaleDateString();
+    }
+    else
+    {
+        var newMeetingDate = new Date(meetingModel.MeetingDate);
+
+        meetingModel.MeetingDate = kendo.toString(newMeetingDate, 'yyyy-MM-dd');
+    }
+        
     if (meetingModel.LegislatorId === undefined)
     {
         meetingModel.LegislatorId = 8;
@@ -707,7 +754,5 @@ function saveMeeting()
         }
         
         meetingsDataSource.sync();
-
-        return true;
     }
 }
