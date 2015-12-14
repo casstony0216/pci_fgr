@@ -64,19 +64,20 @@
             </ul>-->
             <ul class="listview-row-input-table">
                 <li class="listview-row-display-cell-label">
-                    <span>DETAILS</span>
+                    <span>PCI Bio</span>
                     <a href="#modalbio" data-role="button" data-rel="modalview" data-icon="expand-e" class="expand-button">full-screen</a>
                 </li>
             </ul>
             <ul class="listview-row-input-table">
                 <li class="listview-row-display-cell-data">
                     <div data-role="scroller" style="height: 14em;">
-                        <span data-bind="text:Bio"></span>
+                        <textarea data-bind="value:Bio" class="medium" readonly></textarea>
+                        <!--<span data-bind="text:Bio"></span>-->
                     </div>
                     <div data-role="modalview" id="modalbio" style="width: 100%; height: 100%">
                         <div data-role="header">
                             <div data-role="navbar">
-                                <span>Details</span>
+                                <span>PCI Bio</span>
                                 <a data-role="button" data-align="right" data-click="closeModalBio" class="nav-button">Close</a>
                             </div>
                         </div>

@@ -258,6 +258,8 @@ function setMeetingsDataSource()
                         if (tempMeetingId === null)
                         {
                             tempMeetingId = data[i].MeetingId;
+
+                            meetingUid = data[i].uid;
                         }
                         else
                         {

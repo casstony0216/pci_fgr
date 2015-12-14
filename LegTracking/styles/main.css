@@ -168,6 +168,13 @@ body, html
     height: 6em !important;
 } 
 
+#fgrApp .formArea li textarea.medium
+{
+    color: black !important;
+    font-size: 1.1em !important;
+    height: 12.5em !important;
+} 
+
 #fgrApp .formArea li textarea.tall
 {
     height: 15em !important;
