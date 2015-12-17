@@ -434,6 +434,7 @@ function defineMeetingModel()
                     LegislatorId: { type: "number", editable: true, validation: { required: true } },
                     FullName: { type: "string", editable: true },
                     Name: { type: "string", editable: true },
+                    PciInitiatives: { type: "string", editable: false },
                     PrimaryOfficeContact: { type: "string", editable: true },
                     MeetingLocationId: { type: "number", editable: true, validation: { required: true } },
                     Location: { type: "string", editable: true },
@@ -584,6 +585,11 @@ function addNewMeetingToDataSource()
         meetingModel.Name = "";
     }
                         
+    if (meetingModel.PciInitiatives === undefined)
+    {
+        meetingModel.PciInitiatives = "";
+    }
+                        
     if (meetingModel.AttendeeTypeId === undefined)
     {
         meetingModel.AttendeeTypeId = 1;
@@ -650,6 +656,7 @@ function addNewMeetingToDataSource()
             LegislatorId: meetingModel.LegislatorId,
             FullName: meetingModel.FullName,
             Name: meetingModel.Name,
+            PciInitiatives: meetingModel.PciInitiatives,
             PrimaryOfficeContact: meetingModel.PrimaryOfficeContact,
             MeetingLocationId: meetingModel.MeetingLocationId,
             Location: meetingModel.Location,

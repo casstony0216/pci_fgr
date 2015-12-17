@@ -1,9 +1,21 @@
+// Dev, test, prod urls
+var apiLoginUrlDev = "https://sts-dev.pciaa.net/api/pci/signin/issue";
+var apiLoginUrlTest = "https://sts-test.pciaa.net/api/pci/signin/issue";
+var apiLoginUrlProd = "https://sts.pciaa.net/api/pci/signin/issue";
+var apiBaseServiceUrlDev = "http://dev.pciaa.net/pciwebsite/congressapi/legislators/";
+var apiBaseServiceUrlTest = "http://test.pciaa.net/pciwebsite/congressapi/legislators/";
+var apiBaseServiceUrlProd = "http://www.pciaa.net/pciwebsite/congressapi/legislators/";
+var scopeDev = "http://dev.pciaa.net/";
+var scopeTest = "http://test.pciaa.net/";
+var scopeProd = "http://www.pciaa.net/";
+
 // Define all global variables used throughout the entire solution.
-var apiLoginUrl = "https://sts-dev.pciaa.net/api/pci/signin/issue";
-var apiBaseServiceUrl = "http://dev.pciaa.net/pciwebsite/congressapi/legislators/";
-var scope = "http://dev.pciaa.net/";
+var apiLoginUrl = apiLoginUrlDev;
+var apiBaseServiceUrl = apiBaseServiceUrlDev;
+var scope = scopeDev;
 var token = null;
 var personId = null;
+var isPci = false;
 
 function loginListViewDataInit(e)
 {
@@ -91,6 +103,13 @@ function authenticateUser()
                 if (data.AccessToken !== null)
                 {
                     token = data.AccessToken;
+
+                    var pciEveryonePosition = token.toLowerCase().indexOf("pci.everyone");
+
+                    if (pciEveryonePosition > 0)
+                    {
+                        isPci = true;
+                    }
 
                     var personIdPosition = token.toLowerCase().indexOf("&personid=") + 10;
                     var firstNamePosition = token.toLowerCase().indexOf("&firstname=");

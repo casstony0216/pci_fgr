@@ -33,39 +33,42 @@ function meetingsListViewDataShow(e)
     meetingLegislatorId = e.view.params.legislatorId;
     meetingsReference = e.view.params.reference;
     
+    var addButton = e.view.element.find("#add-button").data("kendoMobileButton");
     var dataTitle = null;
     
     if (meetingsReference === "legislator")
     {
         dataTitle = "Meetings";
+
+        e.view.element.find("#add-button").show();
+
+        addButton.unbind("click");
+        addButton.bind
+        (
+            "click",
+            function ()
+            {
+                isAddMeeting = "Y";
+
+                if (meetingsReference === "legislator")
+                {
+                    app.navigate("views/meeting.html?legislatorId=" + meetingLegislatorId);                        
+                }
+                else
+                {
+                    app.navigate("views/meeting.html");
+                }
+            }
+        );
     }
     else
     {
         dataTitle = "My Meetings";
+
+        e.view.element.find("#add-button").hide();
     }
     
     setMeetingsDataSource();
-
-    var addButton = e.view.element.find("#add-button").data("kendoMobileButton");
-
-    addButton.unbind("click");
-    addButton.bind
-    (
-        "click",
-        function ()
-        {
-            isAddMeeting = "Y";
-
-            if (meetingsReference === "legislator")
-            {
-                app.navigate("views/meeting.html?legislatorId=" + meetingLegislatorId);                        
-            }
-            else
-            {
-                app.navigate("views/meeting.html");
-            }
-        }
-    );
 
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
 
@@ -167,7 +170,14 @@ function setMeetingsDataSource()
     
     if (meetingsReference === "legislator")
     {
-        apiReadUrl = apiBaseServiceUrl + "meetings?legislatorId=" + meetingLegislatorId + "&recentMeetings=" + recentMeetings;
+        if (isPci) // Declared and set in the login.js
+        {
+            apiReadUrl = apiBaseServiceUrl + "meetings?legislatorId=" + meetingLegislatorId + "&recentMeetings=" + recentMeetings;
+        }
+        else
+        {
+            apiReadUrl = apiBaseServiceUrl + "meetings?personId=" + personId + "&legislatorId=" + meetingLegislatorId + "&recentMeetings=" + recentMeetings;
+        }
     }
     else
     {
@@ -296,6 +306,7 @@ function setMeetingsDataSource()
                         LegislatorId: { editable: true, validation: { required: true } },
                         FullName: { editable: true },
                         Name: { editable: true },
+                        PciInitiatives: { editable: false },
                         PrimaryOfficeContact: { editable: true },
                         MeetingLocationId: { editable: true, validation: { required: true } },
                         Location: { editable: true },

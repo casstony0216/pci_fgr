@@ -45,6 +45,29 @@ function surveyQuestionListViewDataShow(e)
     
     $("#surveyquestionuid")[0].value = uid;
 
+    // Determine if the support level has been set and default to the first item if not.
+    if (surveyQuestionModel.SupportLevelId === undefined || surveyQuestionModel.SupportLevelId === null || surveyQuestionModel.SupportLevelId === 0)
+    {
+        if (supportLevelsOptionsDataSource.data().length > 0)
+        {
+            var data = supportLevelsOptionsDataSource.data();
+            
+            surveyQuestionModel.SupportLevelId = data[0].Value;
+            surveyQuestionModel.SupportLevel = data[0].Text;
+        }
+        else
+        {
+            supportLevelsOptionsDataSource.fetch
+            (
+                function ()
+                {
+                    surveyQuestionModel.SupportLevelId = this.data()[0].Value;
+                    surveyQuestionModel.SupportLevel = this.data()[0].Text;
+                }
+            );
+        }
+    }
+
     var viewModel = kendo.observable({
         surveyQuestionItem: surveyQuestionModel,
         supportLevelsOptions: supportLevelsOptionsDataSource

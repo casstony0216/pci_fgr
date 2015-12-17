@@ -165,6 +165,17 @@ function setLegislatorsDataSource()
                     };
                 }
             },
+            //change: function (data)
+            //{
+            //    if (data.AccessToken !== null)
+            //    {
+            //        token = data.AccessToken;
+            //    }
+            //    else
+            //    {
+            //        alert("Access token returned with a null value.");
+            //    }
+            //},
             schema:
             {
                 model:
@@ -194,6 +205,7 @@ function setLegislatorsDataSource()
                         OcdId: "OcdId",
                         Office: "Office",
                         Party: "Party",
+                        PartyName: "PartyName",
                         Phone: "Phone",
                         State: "State",
                         StateName: "StateName",
@@ -202,6 +214,7 @@ function setLegislatorsDataSource()
                         TermEnd: "TermEnd",
                         ThomasId: "ThomasId",
                         Title: "Title",
+                        TitleName: "TitleName",
                         TwitterId: "TwitterId",
                         VotesmartId: "VotesmartId",
                         Website: "Website",
