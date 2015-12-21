@@ -11,10 +11,16 @@
         <span class="listview-row-header">#:Name#</span>
         <br />
         <span class="listview-row-detail">#:kendo.toString(kendo.parseDate(MeetingDate, 'yyyy-MM-dd'), 'MM/dd/yyyy')#</span>
-        <br />
-        <span class="listview-row-subdetail">with #:LegislatorStaffAttendees#</span>
-        <br />
-        <span class="listview-row-subdetail">on #:PciInitiatives#</span>
+        #if (LegislatorStaffAttendees !== null && LegislatorStaffAttendees.length > 0) 
+        { #
+            <br />
+            <span class="listview-row-subdetail">with #: LegislatorStaffAttendees #</span>
+        # } #
+        #if (PciInitiatives !== null && PciInitiatives.length > 0)
+        { #
+            <br />
+            <span class="listview-row-subdetail">on #: PciInitiatives #</span>
+        # } #
         <a data-role="detailbutton" data-icon="details"></a>
     </div>
     <div class="swipeButtons">

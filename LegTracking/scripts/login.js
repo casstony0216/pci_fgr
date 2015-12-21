@@ -118,6 +118,11 @@ function authenticateUser()
 
                     $msg.hide();
 
+                    legislatorsOptionsDataSource.read();
+                    attendeeTypesOptionsDataSource.read();
+                    meetingLocationsOptionsDataSource.read();
+                    supportLevelsOptionsDataSource.read();
+
                     app.navigate("views/legislators.html");
                 }
                 else
