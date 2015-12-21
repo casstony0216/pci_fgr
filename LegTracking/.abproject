@@ -3,14 +3,13 @@
   "ProjectGuid": "dc5bed57-5253-46d1-8a03-7f538a90f307",
   "projectVersion": 1,
   "AppIdentifier": "net.pciaa.fgr",
-  "DisplayName": "CapConnect",
+  "DisplayName": "PCI LegCon",
   "Author": "",
-  "Description": "CapConnect",
+  "Description": "PCI Legislator Connection",
   "BundleVersion": "1.0",
   "AndroidVersionCode": "1",
   "iOSDeviceFamily": [
-    "1",
-    "2"
+    "1"
   ],
   "iOSBackgroundMode": [],
   "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
