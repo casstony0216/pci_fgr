@@ -48,7 +48,7 @@
             </li>
         </ul>
         <ul id="meetingInitiativeListView"></ul>
-        <div id="collapsible" data-role="collapsible" data-animation="false">
+        <div id="collapsible" data-role="collapsible" data-animation="false" data-collapsed="false">
             <h2>MEETING INFORMATION</h2>
             <ul data-role="listview" data-style="inset" class="formArea" onclick="">
                 <li style="margin: 0px; padding: 0px; width: 100%;">
@@ -63,6 +63,8 @@
                             <script id="legislator-select-template" type="text/x-kendo-template">
                                 <option value="#:Value#">#:Text#</option>
                             </script>
+                            <!--<input type="hidden" id="legislatorId" data-bind="value: meetingItem.LegislatorId" />
+                            <input name="legislator" type="text" data-bind="value: meetingItem.FullName" readonly />-->
                         </li>
                     </ul>
                 </li>

@@ -47,6 +47,7 @@ var legislatorsOptionsDataSource = new kendo.data.DataSource
                     url: apiBaseServiceUrl + "list",
                     type: "get",
                     dataType: "json",
+                    //async: false,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
@@ -82,6 +83,7 @@ var attendeeTypesOptionsDataSource = new kendo.data.DataSource
                     url: apiBaseServiceUrl + "meetingattendeetypes",
                     type: "get",
                     dataType: "json",
+                    //async: false,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
@@ -117,6 +119,7 @@ var meetingLocationsOptionsDataSource = new kendo.data.DataSource
                     url: apiBaseServiceUrl + "meetinglocations",
                     type: "get",
                     dataType: "json",
+                    //async: false,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
