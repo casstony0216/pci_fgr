@@ -10,12 +10,13 @@ var scopeTest = "http://test.pciaa.net/";
 var scopeProd = "http://www.pciaa.net/";
 
 // Define all global variables used throughout the entire solution.
-var apiLoginUrl = apiLoginUrlProd;
-var apiBaseServiceUrl = apiBaseServiceUrlProd;
-var scope = scopeProd;
+var apiLoginUrl = apiLoginUrlDev;
+var apiBaseServiceUrl = apiBaseServiceUrlDev;
+var scope = scopeDev;
 var token = null;
 var personId = null;
 var isPci = false;
+var isCongressUser = false;
 
 function loginListViewDataInit(e)
 {
@@ -111,28 +112,44 @@ function authenticateUser()
                         isPci = true;
                     }
 
-                    var personIdPosition = token.toLowerCase().indexOf("&personid=") + 10;
-                    var firstNamePosition = token.toLowerCase().indexOf("&firstname=");
+                    var congressUserPosition = token.toLowerCase().indexOf("congress+user");
+                    var congressAdminPosition = token.toLowerCase().indexOf("congress+admin");
 
-                    personId = token.slice(personIdPosition, firstNamePosition);
+                    if (congressUserPosition > 0 || congressAdminPosition > 0)
+                    {
+                        isCongressUser = true;
+                    }
 
-                    $msg.hide();
+                    if (isCongressUser)
+                    {
+                        var personIdPosition = token.toLowerCase().indexOf("&personid=") + 10;
+                        var firstNamePosition = token.toLowerCase().indexOf("&firstname=");
 
-                    legislatorsOptionsDataSource.read();
-                    attendeeTypesOptionsDataSource.read();
-                    meetingLocationsOptionsDataSource.read();
-                    supportLevelsOptionsDataSource.read();
+                        personId = token.slice(personIdPosition, firstNamePosition);
 
-                    app.navigate("views/legislators.html");
+                        $msg.hide();
+
+                        legislatorsOptionsDataSource.read();
+                        attendeeTypesOptionsDataSource.read();
+                        meetingLocationsOptionsDataSource.read();
+                        supportLevelsOptionsDataSource.read();
+
+                        app.navigate("views/legislators.html");
+                    }
+                    else
+                    {
+                        $msg.html("<br />ERROR: \"Unauthorized user account.\"").show();
+                    }
                 }
                 else
                 {
-                    $msg.html("Access token returned with a null value.").show();
+                    $msg.html("<br />ERROR: \"Null access token returned.\"").show();
                 }
             },
             error: function (xhr, status, error)
             {
-                alert(xhr.responseText)
+                //alert(xhr.responseText)
+                $msg.html("<br />ERROR: " + xhr.responseText).show();
             }
         });
     }
