@@ -52,6 +52,8 @@ function legislatorsListViewDataShow(e)
     setLegislatorsDataSource();
 
     legislatorsListView.setDataSource(legislatorsDataSource);
+
+    e.view.scroller.reset();
 }
 
 function legislatorsTap(e) 

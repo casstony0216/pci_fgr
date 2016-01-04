@@ -145,6 +145,8 @@ function profilesViewDataShow(e)
     {
         kendo.bind(e.view.element, meetingModel, kendo.mobile.ui);
     }
+
+    e.view.scroller.reset();
 }
 
 function profilesTap(e)

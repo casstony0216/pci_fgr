@@ -67,6 +67,8 @@ function initiativeSurveyListViewDataShow(e)
     {
         kendo.bind(e.view.element, legislatorModel, kendo.mobile.ui);
     }
+
+    e.view.scroller.reset();
 }
 
 function initiativeSurveyTap(e)

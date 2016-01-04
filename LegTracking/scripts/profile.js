@@ -44,6 +44,8 @@ function profileListViewDataShow(e)
             app.navigate("#:back");
         }
     );
+
+    e.view.scroller.reset();
 }
 
 function profileSaveButtonClick(e)
@@ -65,11 +67,6 @@ function profileDeleteButtonClick(e)
     app.navigate("#:back");
 }
 
-function profileCancelButtonClick(e)
-{
-    app.navigate("#:back");
-}
-
 function openModalProfileNotes(e)
 {
     var model = profilesDataSource.getByUid($("#profileuid")[0].value);
@@ -79,16 +76,11 @@ function openModalProfileNotes(e)
     $("#modalprofilenotes").data("kendoMobileModalView").open();
 }
 
-function updateModalProfileNotes(e)
+function closeModalProfileNotes(e)
 {
     var model = profilesDataSource.getByUid($("#profileuid")[0].value);
 
     model.set("Notes", $('#profilenotes').val());
 
-    $("#modalprofilenotes").data("kendoMobileModalView").close();
-}
-
-function cancelModalProfileNotes(e)
-{
     $("#modalprofilenotes").data("kendoMobileModalView").close();
 }

@@ -69,4 +69,6 @@ function committeesListViewDataShow(e)
         );
 
     kendo.bind(e.view.element, legislatorModel, kendo.mobile.ui);
+
+    e.view.scroller.reset();
 }

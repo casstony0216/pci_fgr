@@ -94,6 +94,8 @@ function surveyQuestionListViewDataShow(e)
             app.navigate("#:back");
         }
     );
+
+    e.view.scroller.reset();
 }
 
 function openModalSurveyQuestionComments(e)
@@ -105,16 +107,11 @@ function openModalSurveyQuestionComments(e)
     $("#modalsurveyquestioncomments").data("kendoMobileModalView").open();
 }
 
-function updateModalSurveyQuestionComments(e)
+function closeModalSurveyQuestionComments(e)
 {
     var model = initiativeSurveyDataSource.getByUid($("#surveyquestionuid")[0].value);
 
     model.set("Comments", $('#surveyquestioncomments').val());
 
-    $("#modalsurveyquestioncomments").data("kendoMobileModalView").close();
-}
-
-function cancelModalSurveyQuestionComments(e)
-{
     $("#modalsurveyquestioncomments").data("kendoMobileModalView").close();
 }

@@ -54,6 +54,8 @@ function profileSearchViewDataShow(e)
     setProfileSearchDataSource(uid);
 
     $("#profileSearchListView").data("kendoMobileListView").setDataSource(profileSearchDataSource);
+
+    e.view.scroller.reset();
 }
 
 function profileSearchSwitchChange(e)

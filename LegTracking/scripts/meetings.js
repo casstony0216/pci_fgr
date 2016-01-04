@@ -75,7 +75,8 @@ function meetingsListViewDataShow(e)
     navbar.title(dataTitle);
 
     $("#meetingsListView").data("kendoMobileListView").setDataSource(meetingsDataSource);
-
+    
+    e.view.scroller.reset();
 }
 
 function meetingsTap(e)

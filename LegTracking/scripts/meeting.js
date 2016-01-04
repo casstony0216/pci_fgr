@@ -221,8 +221,6 @@ function meetingListViewDataInit(e)
             {
                 saveMeeting();
 
-                //alert("Meeting has been saved.");
-
                 $(this).blur(); //iOS likes to keep the keyboard open ... so remove focus to close it
 
                 app.navigate("#:back");
@@ -292,8 +290,6 @@ function meetingListViewDataShow(e)
 
             meetingsDataSource.read();
             
-            //alert("Meeting has been saved.")
-
             app.navigate("#:back");
         }
     );
@@ -566,12 +562,13 @@ function addNewMeetingToDataSource()
     {
         meetingModel.MeetingDate = meetingModel.MeetingDate.toLocaleDateString();
     }
-    else
-    {
-        var newMeetingDate = new Date(meetingModel.MeetingDate);
+    // Do NOT think the following else is necessary AND was causing the default date to go back one day.
+    //else
+    //{
+    //    var newMeetingDate = new Date(meetingModel.MeetingDate);
 
-        meetingModel.MeetingDate = kendo.toString(newMeetingDate, 'yyyy-MM-dd');
-    }
+    //    meetingModel.MeetingDate = kendo.toString(newMeetingDate, 'yyyy-MM-dd');
+    //}
         
     if (meetingModel.LegislatorId === undefined)
     {
@@ -678,15 +675,10 @@ function openModalMeetingNotes(e)
     $("#modalmeetingnotes").data("kendoMobileModalView").open();
 }
 
-function updateModalMeetingNotes(e)
+function closeModalMeetingNotes(e)
 {
     meetingModel.set("Notes", $('#meetingnotes').val());
 
-    $("#modalmeetingnotes").data("kendoMobileModalView").close();
-}
-
-function cancelModalMeetingNotes(e)
-{
     $("#modalmeetingnotes").data("kendoMobileModalView").close();
 }
 

@@ -148,7 +148,6 @@ function authenticateUser()
             },
             error: function (xhr, status, error)
             {
-                //alert(xhr.responseText)
                 $msg.html("<br />ERROR: " + xhr.responseText).show();
             }
         });

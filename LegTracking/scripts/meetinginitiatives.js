@@ -69,7 +69,8 @@ function meetingInitiativesListViewDataShow(e)
     );
 
     $("#meetingInitiativesListView").data("kendoMobileListView").setDataSource(meetingInitiativesDataSource);
-
+    
+    e.view.scroller.reset();
 }
 
 function meetingInitiativeSwitchChange(e)

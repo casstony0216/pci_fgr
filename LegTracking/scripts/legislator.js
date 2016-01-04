@@ -84,6 +84,8 @@ function legislatorListViewDataShow(e)
     legislatorModel = legislatorsDataSource.getByUid(legislatorUid);
     
     kendo.bind(e.view.element, legislatorModel, kendo.mobile.ui);
+
+    e.view.scroller.reset();
 }
 
 function legislatorTap(e) 
