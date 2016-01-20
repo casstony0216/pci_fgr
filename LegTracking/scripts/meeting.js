@@ -562,13 +562,21 @@ function addNewMeetingToDataSource()
     {
         meetingModel.MeetingDate = meetingModel.MeetingDate.toLocaleDateString();
     }
-    // Do NOT think the following else is necessary AND was causing the default date to go back one day.
-    //else
-    //{
-    //    var newMeetingDate = new Date(meetingModel.MeetingDate);
+    else
+    {
+        var newMeetingDate = new Date(meetingModel.MeetingDate);
 
-    //    meetingModel.MeetingDate = kendo.toString(newMeetingDate, 'yyyy-MM-dd');
-    //}
+        var newHour = newMeetingDate.getHours();
+
+        // If the newHour !== 0, then the default date was left and needs to be offset from the GMT.  
+        // If the newHour === 0, then the date was changed and will already be set correctly.
+        if (newHour !== 0)
+        {
+            newMeetingDate = new Date(newMeetingDate.getTime() + newMeetingDate.getTimezoneOffset() * 60000);
+        }
+
+        meetingModel.MeetingDate = kendo.toString(newMeetingDate, 'yyyy-MM-dd');
+    }
         
     if (meetingModel.LegislatorId === undefined)
     {
