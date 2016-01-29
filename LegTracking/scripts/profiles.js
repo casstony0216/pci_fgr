@@ -130,6 +130,8 @@ function profilesViewDataShow(e)
             app.navigate("views/profilesearch.html?uid=" + uid);
         }
     );
+    
+    e.view.element.find("#add-button").show();
 
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
 
