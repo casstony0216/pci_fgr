@@ -14,7 +14,8 @@ function bioListViewDataShow(e)
 
     kendo.bind(e.view.element, legislatorModel, kendo.mobile.ui);
 
-    $('#biodetails').val(legislatorModel.Bio);
+    //$('#biodetails').val(legislatorModel.Bio);
+    $('#biodetails').html(legislatorModel.Bio);
 
     e.view.scroller.reset();
 }

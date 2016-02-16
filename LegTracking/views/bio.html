@@ -70,9 +70,9 @@
             </ul>
             <ul class="listview-row-input-table">
                 <li class="listview-row-display-cell-data">
-                    <div data-role="scroller" style="height: 14em;">
-                        <textarea data-bind="value:Bio" class="medium" readonly></textarea>
-                        <!--<span data-bind="text:Bio"></span>-->
+                    <div data-role="scroller" style="height: 14em; text-align: left !important;">
+                        <!--<textarea data-bind="value:Bio" class="medium" readonly></textarea>-->
+                        <span style="margin: 0 !important; padding: 0 !important;" data-bind="html:Bio"></span>
                     </div>
                     <div data-role="modalview" id="modalbio" style="width: 100%; height: 100%">
                         <div data-role="header">
@@ -83,7 +83,10 @@
                         </div>
                         <ul data-role="listview" data-style="inset" style="margin: 0; padding: 0;">
                             <li style="margin: 0; padding: 0;">
-                                <textarea class="modalTextArea" id="biodetails" readonly></textarea>
+                                <div data-role="scroller" style="height: 100%; text-align: left !important;">
+                                    <!--<textarea class="modalTextArea" id="biodetails" readonly></textarea>-->
+                                    <span class="modalTextArea" id="biodetails"></span>
+                                </div>
                             </li>
                         </ul>
                     </div>
