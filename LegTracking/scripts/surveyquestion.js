@@ -42,6 +42,9 @@ function surveyQuestionListViewDataShow(e)
 {
     var uid = e.view.params.uid;
     var surveyQuestionModel = initiativeSurveyDataSource.getByUid(uid);
+
+    // Set the editor id to the current person id in case the survey question is saved.  This is for audit tracking purposes.
+    surveyQuestionModel.EditorId = personId;
     
     $("#surveyquestionuid")[0].value = uid;
 

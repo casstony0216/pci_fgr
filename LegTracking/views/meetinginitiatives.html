@@ -3,6 +3,12 @@
 </div>
 
 <script type="text/x-kendo-template" id="meetingInitiativesListViewTemplate">
-    <span class="listview-row-header">#:Initiative#</span>
-    <input data-role="switch" data-on-label="Yes" data-off-label="No" data-checked="#:Checked#" data-change="meetingInitiativeSwitchChange" />
+    <div style="display: table; width: 100%;">
+        <div style="display: table-cell; padding: 0; width: 75%;">
+            <span class="listview-row-header">#:Initiative#</span>
+        </div>
+        <div style="display: table-cell; padding: 0; text-align: right; width: 25%;">
+            <input data-role="switch" data-on-label="Yes" data-off-label="No" data-checked="#:Checked#" data-change="meetingInitiativeSwitchChange" />
+        </div>
+    </div>
 </script>

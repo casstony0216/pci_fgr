@@ -115,7 +115,6 @@ function setInitiativeSurveyDataSource()
                     {
                         xhr.setRequestHeader("Authorization", token);
                     },
-
                     error: function (xhr, ajaxOptions, thrownError)
                     {
                         alert("error " + xhr.responseText);
@@ -151,7 +150,10 @@ function setInitiativeSurveyDataSource()
                         SupportLevelId: { editable: true },
                         SupportLevel: { editable: true },
                         FollowUpRequired: { editable: true, type: "boolean" },
-                        Comments: { editable: true }
+                        Comments: { editable: true },
+                        EditorId: { editable: false },
+                        Editor: { editable: false },
+                        ModifiedDate: { editable: false }
                     }
                 }
             }
