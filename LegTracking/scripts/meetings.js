@@ -312,7 +312,7 @@ function setMeetingsDataSource()
                         MeetingLocationId: { editable: true, validation: { required: true } },
                         Location: { editable: true },
                         LegislatorStaffAttendees: { editable: true },
-                        FollowUpNeeded: { editable: true },
+                        FollowUpNeeded: { editable: true, type: "boolean" },
                         CreatorId: { editable: true },
                         Notes: { editable: true }
                     }

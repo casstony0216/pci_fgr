@@ -45,6 +45,16 @@
                     </li>
                 </ul>
             </li>
+            <li style="margin: 0; padding: 0; width: 100%;">
+                <ul class="listview-row-input-table">
+                    <li class="listview-row-input-cell-label">
+                        <span>Follow Up Needed?</span>
+                    </li>
+                    <li class="listview-row-input-cell-control">
+                        <input data-role="switch" data-on-label="Yes" data-off-label="No" data-bind="checked:meetingItem.FollowUpNeeded" />
+                    </li>
+                </ul>
+            </li>
         </ul>
         <ul id="meetingInitiativeListView"></ul>
         <div id="collapsible" data-role="collapsible" data-animation="false" data-collapsed="false">
