@@ -59,7 +59,8 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "cordova-plugin-vibration",
-    "cordova-plugin-whitelist"
+    "cordova-plugin-whitelist",
+    "nl.x-services.plugins.touchid@3.1.0"
   ],
   "iOSDeploymentTarget": "6.0"
 }

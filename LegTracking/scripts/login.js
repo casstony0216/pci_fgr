@@ -36,15 +36,82 @@ function loginListViewDataInit(e)
 
 function loginListViewDataShow(e)
 {
+    var useTouchId = localStorage.getItem("UseTouchId");
     var rememberMe = localStorage.getItem("RememberMe");
     var email = null;
+    var password = null;
     
-    if (rememberMe === "true")
+    if (useTouchId === "true")
     {
-        email = localStorage.getItem("Email");
+        if (window.navigator.simulator === true)
+        {
+            // Running in Simulator, so can NOT use TouchID.
+            if (rememberMe === "true")
+            {
+                email = localStorage.getItem("Email");
+                password = localStorage.getItem("Password");
 
-        $("#email").val(email);
-        $("#rememberme").data("kendoMobileSwitch").check(true);
+                $("#email").val(email);
+                $("#password").val(password);
+                $("#rememberme").data("kendoMobileSwitch").check(true);
+            }
+        }
+        else if (window.plugins === undefined || window.plugins.touchid === undefined)
+        {
+            // Plugin NOT found, so can NOT use TouchID.
+            if (rememberMe === "true")
+            {
+                email = localStorage.getItem("Email");
+                password = localStorage.getItem("Password");
+
+                $("#email").val(email);
+                $("#password").val(password);
+                $("#rememberme").data("kendoMobileSwitch").check(true);
+            }
+        }
+        else
+        {
+            // Using TouchID.
+            window.plugins.touchid.verifyFingerprint
+            (
+                // The message shown in the fingerprint window.
+                'Log on to view legislator information',
+                // success callback, invoked when the users input was accepted
+                function (msg)
+                {
+                    email = localStorage.getItem("Email");
+                    password = localStorage.getItem("Password");
+
+                    submitLoginRequest(email, password);
+                },
+                // error callback, invoked when there was no match,
+                // essentially meaning the dialog was closed by pressing 'cancel'
+                function (msg)
+                {
+                    if (rememberMe === "true")
+                    {
+                        email = localStorage.getItem("Email");
+                        password = localStorage.getItem("Password");
+
+                        $("#email").val(email);
+                        $("#password").val(password);
+                        $("#rememberme").data("kendoMobileSwitch").check(true);
+                    }
+                }
+            );
+        }
+    }
+    else
+    {
+        if (rememberMe === "true")
+        {
+            email = localStorage.getItem("Email");
+            password = localStorage.getItem("Password");
+
+            $("#email").val(email);
+            $("#password").val(password);
+            $("#rememberme").data("kendoMobileSwitch").check(true);
+        }
     }
 }
 
@@ -86,72 +153,93 @@ function authenticateUser()
         var rememberme = $("#rememberme").data("kendoMobileSwitch");
         var email = $("#email").val();
         var password = $("#password").val();
-        var $msg = $("#login-message");
 
         if (rememberme.check())
         {
-            // Update email in local storage, in case of update.
+            // Update email & password in local storage, in case of update.
             localStorage.setItem("Email", email);
-        }
+            localStorage.setItem("Password", password);
 
-        $.ajax({
-            url: apiLoginUrl,
-            data: { EmailAddress: email, Password: password, Scope: scope },
-            dataType: "json",
-            type: "POST",
-            success: function (data)
+            var useTouchId = localStorage.getItem("UseTouchId");
+
+            if (useTouchId === "false")
             {
-                if (data.AccessToken !== null)
+                if (confirm("Would you like to use the fingerprint scanner to log on in the future?"))
                 {
-                    token = data.AccessToken;
-
-                    var pciEveryonePosition = token.toLowerCase().indexOf("pci.everyone");
-
-                    if (pciEveryonePosition > 0)
-                    {
-                        isPci = true;
-                    }
-
-                    var congressUserPosition = token.toLowerCase().indexOf("congress+user");
-                    var congressAdminPosition = token.toLowerCase().indexOf("congress+admin");
-
-                    if (congressUserPosition > 0 || congressAdminPosition > 0)
-                    {
-                        isCongressUser = true;
-                    }
-
-                    if (isCongressUser)
-                    {
-                        var personIdPosition = token.toLowerCase().indexOf("&personid=") + 10;
-                        var firstNamePosition = token.toLowerCase().indexOf("&firstname=");
-
-                        personId = token.slice(personIdPosition, firstNamePosition);
-
-                        $msg.hide();
-
-                        legislatorsOptionsDataSource.read();
-                        attendeeTypesOptionsDataSource.read();
-                        meetingLocationsOptionsDataSource.read();
-                        supportLevelsOptionsDataSource.read();
-
-                        app.navigate("views/legislators.html");
-                    }
-                    else
-                    {
-                        $msg.html("<br />ERROR: \"Unauthorized user account.\"").show();
-                    }
+                    localStorage.setItem("UseTouchId", "true");
                 }
                 else
                 {
-                    $msg.html("<br />ERROR: \"Null access token returned.\"").show();
+                    localStorage.setItem("UseTouchId", "false");
                 }
-            },
-            error: function (xhr, status, error)
-            {
-                $msg.html("<br />ERROR: " + xhr.responseText).show();
             }
-        });
+        }
+
+        submitLoginRequest(email, password);
     }
+}
+
+function submitLoginRequest(email, password)
+{
+    var $msg = $("#login-message");
+    
+    $.ajax({
+        url: apiLoginUrl,
+        data: { EmailAddress: email, Password: password, Scope: scope },
+        dataType: "json",
+        type: "POST",
+        success: function (data)
+        {
+            if (data.AccessToken !== null)
+            {
+                token = data.AccessToken;
+
+                var pciEveryonePosition = token.toLowerCase().indexOf("pci.everyone");
+
+                if (pciEveryonePosition > 0)
+                {
+                    isPci = true;
+                }
+
+                var congressUserPosition = token.toLowerCase().indexOf("congress+user");
+                var congressAdminPosition = token.toLowerCase().indexOf("congress+admin");
+
+                if (congressUserPosition > 0 || congressAdminPosition > 0)
+                {
+                    isCongressUser = true;
+                }
+
+                if (isCongressUser)
+                {
+                    var personIdPosition = token.toLowerCase().indexOf("&personid=") + 10;
+                    var firstNamePosition = token.toLowerCase().indexOf("&firstname=");
+
+                    personId = token.slice(personIdPosition, firstNamePosition);
+
+                    $msg.hide();
+
+                    legislatorsOptionsDataSource.read();
+                    attendeeTypesOptionsDataSource.read();
+                    meetingLocationsOptionsDataSource.read();
+                    supportLevelsOptionsDataSource.read();
+
+                    app.navigate("views/legislators.html");
+                }
+                else
+                {
+                    $msg.html("<br />ERROR: \"Unauthorized user account.\"").show();
+                }
+            }
+            else
+            {
+                $msg.html("<br />ERROR: \"Null access token returned.\"").show();
+            }
+        },
+        error: function (xhr, status, error)
+        {
+            $msg.html("<br />ERROR: " + xhr.responseText).show();
+        }
+    });
 }
 
 function loginRememberMeSwitchChange(e)
@@ -159,13 +247,17 @@ function loginRememberMeSwitchChange(e)
     if (e.checked)
     {
         var email = $("#email").val();
+        var password = $("#password").val();
 
         localStorage.setItem("RememberMe", "true");
         localStorage.setItem("Email", email);
+        localStorage.setItem("Password", password);
     }
     else
     {
+        localStorage.setItem("UseTouchId", "false");
         localStorage.setItem("RememberMe", "false");
         localStorage.setItem("Email", null);
+        localStorage.setItem("Password", null);
     }
 }
