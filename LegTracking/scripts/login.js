@@ -10,6 +10,7 @@ var scopeTest = "http://test.pciaa.net/";
 var scopeProd = "http://www.pciaa.net/";
 
 // Define all global variables used throughout the entire solution.
+var app;
 var apiLoginUrl = apiLoginUrlProd;
 var apiBaseServiceUrl = apiBaseServiceUrlProd;
 var scope = scopeProd;
@@ -159,20 +160,6 @@ function authenticateUser()
             // Update email & password in local storage, in case of update.
             localStorage.setItem("Email", email);
             localStorage.setItem("Password", password);
-
-            var useTouchId = localStorage.getItem("UseTouchId");
-
-            if (useTouchId === "false")
-            {
-                if (confirm("Would you like to use the fingerprint scanner to log on in the future?"))
-                {
-                    localStorage.setItem("UseTouchId", "true");
-                }
-                else
-                {
-                    localStorage.setItem("UseTouchId", "false");
-                }
-            }
         }
 
         submitLoginRequest(email, password);
@@ -183,6 +170,14 @@ function submitLoginRequest(email, password)
 {
     var $msg = $("#login-message");
     
+    if (window.navigator.simulator !== true)
+    {
+        if (window.plugins.spinnerDialog !== undefined)
+        {
+            window.plugins.spinnerDialog.show();
+        }
+    }
+
     $.ajax({
         url: apiLoginUrl,
         data: { EmailAddress: email, Password: password, Scope: scope },
@@ -215,28 +210,66 @@ function submitLoginRequest(email, password)
                     var firstNamePosition = token.toLowerCase().indexOf("&firstname=");
 
                     personId = token.slice(personIdPosition, firstNamePosition);
-
+                    
                     $msg.hide();
 
                     legislatorsOptionsDataSource.read();
                     attendeeTypesOptionsDataSource.read();
                     meetingLocationsOptionsDataSource.read();
                     supportLevelsOptionsDataSource.read();
+                    
+                    var useTouchId = localStorage.getItem("UseTouchId");
+
+                    if (useTouchId === undefined || useTouchId === null || useTouchId ==="" || useTouchId === "false")
+                    {
+                        if (confirm("Would you like to use the fingerprint scanner to log on in the future?"))
+                        {
+                            localStorage.setItem("UseTouchId", "true");
+                        }
+                        else
+                        {
+                            localStorage.setItem("UseTouchId", "false");
+                        }
+                    }
 
                     app.navigate("views/legislators.html");
                 }
                 else
                 {
+                    if (window.navigator.simulator !== true)
+                    {
+                        if (window.plugins !== undefined && window.plugins.spinnerDialog !== undefined)
+                        {
+                            window.plugins.spinnerDialog.hide();
+                        }
+                    }
+
                     $msg.html("<br />ERROR: \"Unauthorized user account.\"").show();
                 }
             }
             else
             {
+                if (window.navigator.simulator !== true)
+                {
+                    if (window.plugins !== undefined && window.plugins.spinnerDialog !== undefined)
+                    {
+                        window.plugins.spinnerDialog.hide();
+                    }
+                }
+
                 $msg.html("<br />ERROR: \"Null access token returned.\"").show();
             }
         },
         error: function (xhr, status, error)
         {
+            if (window.navigator.simulator !== true)
+            {
+                if (window.plugins !== undefined && window.plugins.spinnerDialog !== undefined)
+                {
+                    window.plugins.spinnerDialog.hide();
+                }
+            }
+
             $msg.html("<br />ERROR: " + xhr.responseText).show();
         }
     });

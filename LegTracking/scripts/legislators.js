@@ -17,8 +17,8 @@ function legislatorsListViewDataInit(e)
                     field: "FullName",
                     operator: "contains"
                 },
-                endlessScroll: true,
-                pullToRefresh: true
+                endlessScroll: true
+                //pullToRefresh: true
             }
         )
         .kendoTouch
@@ -46,6 +46,16 @@ function legislatorsListViewDataInit(e)
 
 function legislatorsListViewDataShow(e)
 {
+    if (window.navigator.simulator !== true)
+    {
+        if (window.plugins !== undefined && window.plugins.spinnerDialog !== undefined)
+        {
+            window.plugins.spinnerDialog.hide();
+        }
+    }
+
+    app.showLoading();
+
     var legislatorsListView = $("#legislatorsListView").data("kendoMobileListView");
     legislatorsListView.scroller().reset(); //reset the scroller
 
@@ -167,17 +177,10 @@ function setLegislatorsDataSource()
                     };
                 }
             },
-            //change: function (data)
-            //{
-            //    if (data.AccessToken !== null)
-            //    {
-            //        token = data.AccessToken;
-            //    }
-            //    else
-            //    {
-            //        alert("Access token returned with a null value.");
-            //    }
-            //},
+            change: function (data)
+            {
+                app.hideLoading();
+            },
             schema:
             {
                 model:
