@@ -10,6 +10,18 @@ body, html
     background-size: cover;
 }
 
+.km-collapsible
+{
+    margin: 0.1em 0 !important;
+    padding: 0 !important;
+}
+
+div.km-collapsible-content
+{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 /* Modal Text Area Start */
 .km-modalview .km-scroll-wrapper .km-scroll-container,
 .km-modalview .km-scroll-wrapper .km-scroll-container .km-listview-wrapper,
@@ -292,6 +304,11 @@ body, html
 }
 
 .km-flat .km-scroller-refresh.km-load-more, .km-flat .km-scroller-pull
+{
+    background-color: #0a6fb0 !important;
+}
+
+.km-loader:before
 {
     background-color: #0a6fb0 !important;
 }

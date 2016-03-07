@@ -219,17 +219,31 @@ function submitLoginRequest(email, password)
                     supportLevelsOptionsDataSource.read();
                     
                     var useTouchId = localStorage.getItem("UseTouchId");
+                    var rememberMe = localStorage.getItem("RememberMe");
 
-                    if (useTouchId === undefined || useTouchId === null || useTouchId ==="" || useTouchId === "false")
+                    if ((useTouchId === undefined || useTouchId === null || useTouchId === "" || useTouchId === "false") && rememberMe === "true")
                     {
-                        if (confirm("Would you like to use the fingerprint scanner to log on in the future?"))
-                        {
-                            localStorage.setItem("UseTouchId", "true");
-                        }
-                        else
-                        {
-                            localStorage.setItem("UseTouchId", "false");
-                        }
+                        navigator.notification.confirm
+                        (
+                            "Would you like to use the fingerprint scanner to log on in the future?",
+                            function (index)
+                            {
+                                switch (index)
+                                {
+                                    case 1:
+                                        localStorage.setItem("UseTouchId", "true");
+
+                                        break;
+
+                                    case 2:
+                                        localStorage.setItem("UseTouchId", "false");
+
+                                        break;
+                                }
+                            },
+                            "Touch ID for \"PCI LegCon\"",
+                            [ "Yes", "No" ]
+                        );
                     }
 
                     app.navigate("views/legislators.html");
