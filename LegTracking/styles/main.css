@@ -10,18 +10,6 @@ body, html
     background-size: cover;
 }
 
-.km-collapsible
-{
-    margin: 0.1em 0 !important;
-    padding: 0 !important;
-}
-
-div.km-collapsible-content
-{
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
 /* Modal Text Area Start */
 .km-modalview .km-scroll-wrapper .km-scroll-container,
 .km-modalview .km-scroll-wrapper .km-scroll-container .km-listview-wrapper,
@@ -201,6 +189,7 @@ div.km-collapsible-content
 {
     border-bottom: solid 1px lightgray;
     border-top: solid 1px lightgray;
+    padding: 0 !important;
 }
 
 .km-collapsible-header span.km-icon.km-arrow-s, .km-collapsible-header span.km-icon.km-arrow-n
@@ -210,7 +199,19 @@ div.km-collapsible-content
 
 .km-collapsible-header h2
 {
-    margin: 0.25em 0.5em 0.25em 0.5em !important;
+    margin: 0.25em 0.5em 0.2em 0.5em !important;
+    padding: 0 !important;
+}
+
+.km-collapsible
+{
+    margin: 0.1em 0 !important;
+    padding: 0 !important;
+}
+
+div.km-collapsible-content
+{
+    margin: 0 !important;
     padding: 0 !important;
 }
 
