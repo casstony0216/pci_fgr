@@ -216,7 +216,7 @@ function meetingListViewDataInit(e)
     $("#meetingForm input").keyup
     (
         function (e)
-        {   //inputs on login view should call authenticateUser() method on 'enter'
+        {
             if (e.keyCode === 13)
             {
                 saveMeeting();
@@ -345,6 +345,8 @@ function meetingListViewDataShow(e)
 
 function meetingInitiativeTouchStart(e)
 {
+    $("#meetingForm input").blur();
+
     saveMeeting();
 }
 
@@ -389,6 +391,8 @@ function meetingInitiativeTap(e)
 
 function meetingOtherTouchStart(e)
 {
+    $("#meetingForm input").blur();
+
     saveMeeting();
 }
 
@@ -637,12 +641,12 @@ function addNewMeetingToDataSource()
     {
         meetingModel.FollowUpNeeded = "N";
     }
-                        
+
     if (meetingModel.Notes === undefined)
     {
         meetingModel.Notes = "";
     }
-
+    
     if (meetingsDataSource === undefined || meetingsDataSource === null)
     {
         // The following are defined in the meetings.js.
