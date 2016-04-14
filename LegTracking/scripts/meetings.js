@@ -330,7 +330,8 @@ function setMeetingsDataSource()
                 }
         
                 */
-                alert("Status: " + e.status + "; Error message: " + e.errorThrown + "; Error detail: " + e.xhr.responseText);
+                //alert("Status: " + e.status + "; Error message: " + e.errorThrown + "; Error detail: " + e.xhr.responseText);
+                alert("An error has occurred in the application.  Please contact support.");
             }
         }
     );
