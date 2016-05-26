@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}") = "FGR", "FGR.iceproj", "{DC5BED57-5253-46D1-8A03-7F538A90F307}"
 EndProject

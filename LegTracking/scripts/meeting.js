@@ -1,5 +1,7 @@
 var collapsibleMeetingInformation = $("#collapsible").kendoMobileButtonGroup();
 
+var isMeetingEditorDataSource = null;
+
 var meetingInitiativeData =
     [
         {
@@ -47,7 +49,6 @@ var legislatorsOptionsDataSource = new kendo.data.DataSource
                     url: apiBaseServiceUrl + "list",
                     type: "get",
                     dataType: "json",
-                    //async: false,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
@@ -83,7 +84,6 @@ var attendeeTypesOptionsDataSource = new kendo.data.DataSource
                     url: apiBaseServiceUrl + "meetingattendeetypes",
                     type: "get",
                     dataType: "json",
-                    //async: false,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
@@ -119,7 +119,6 @@ var meetingLocationsOptionsDataSource = new kendo.data.DataSource
                     url: apiBaseServiceUrl + "meetinglocations",
                     type: "get",
                     dataType: "json",
-                    //async: false,
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
@@ -243,6 +242,8 @@ function meetingListViewDataShow(e)
         defineMeetingModel();
 
         dataTitle = "Add Meeting";
+
+        e.view.element.find("#save-button").show(); // Need to show in case it was hidden when editing meeting without rights.
     }
     else
     {
@@ -255,6 +256,31 @@ function meetingListViewDataShow(e)
                 meetingModel.MeetingDate = kendo.toString(kendo.parseDate(meetingModel.MeetingDate, 'yyyy-MM-dd'), 'yyyy-MM-dd');
 
                 dataTitle = "Edit Meeting";
+
+                var isMeetingEditor = false;
+
+                setIsMeetingEditorDataSource(meetingModel.MeetingId);
+
+                var data = isMeetingEditorDataSource.data();
+
+                for (var i = 0; i < data.length; i++)
+                {
+                    if (data[i].IsEditor === "Y")
+                    {
+                        isMeetingEditor = true;
+
+                        break;
+                    }
+                }
+
+                if (!isCongressAdmin && !isMeetingEditor)
+                {
+                    e.view.element.find("#save-button").hide();
+                }
+                else
+                {
+                    e.view.element.find("#save-button").show();
+                }
             }
             else
             {
@@ -769,4 +795,48 @@ function saveMeeting()
         
         meetingsDataSource.sync();
     }
+}
+
+function setIsMeetingEditorDataSource(meetingId)
+{
+    var readUrl = apiBaseServiceUrl + "ismeetingeditor?meetingId=" + meetingId + "&personId=" + personId;
+
+    isMeetingEditorDataSource = new kendo.data.DataSource
+        (
+            {
+                transport:
+                {
+                    read:
+                    {
+                        url: readUrl,
+                        type: "get",
+                        dataType: "json",
+                        async: false, // Work-around for now to get datasource sync to complete before show event finishes... 
+                                      // This is being deprecated and another approach will need to be developed in the near future.
+                        beforeSend: function (xhr)
+                        {
+                            xhr.setRequestHeader("Authorization", token);
+                        },
+                        error: function (xhr, ajaxOptions, thrownError)
+                        {
+                            alert("error " + xhr.responseText);
+                        }
+                    }
+                },
+                schema:
+                {
+                    model:
+                    {
+                        id: "MeetingId",
+                        fields:
+                        {
+                            MeetingId: "MeetingId",
+                            IsEditor: "IsEditor"
+                        }
+                    }
+                }
+            }
+        );
+
+    isMeetingEditorDataSource.read();
 }

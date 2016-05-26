@@ -17,6 +17,7 @@ var scope = scopeProd;
 var token = null;
 var personId = null;
 var isPci = false;
+var isCongressAdmin = false;
 var isCongressUser = false;
 
 function loginListViewDataInit(e)
@@ -199,12 +200,16 @@ function submitLoginRequest(email, password)
                 var congressUserPosition = token.toLowerCase().indexOf("congress+user");
                 var congressAdminPosition = token.toLowerCase().indexOf("congress+admin");
 
-                if (congressUserPosition > 0 || congressAdminPosition > 0)
+                if (congressAdminPosition > 0)
+                {
+                    isCongressAdmin = true;
+                }
+                else if (congressUserPosition > 0)
                 {
                     isCongressUser = true;
                 }
 
-                if (isCongressUser)
+                if (isCongressAdmin || isCongressUser)
                 {
                     var personIdPosition = token.toLowerCase().indexOf("&personid=") + 10;
                     var firstNamePosition = token.toLowerCase().indexOf("&firstname=");

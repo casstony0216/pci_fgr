@@ -21,7 +21,12 @@
             <span class="listview-row-header">#:Initiative#</span>
         </div>
         <div style="display: table-cell; text-align: right; vertical-align: middle; width: 20%;">
-            <span class="listview-row-header">#:Tier#</span>
+            #if (Tier !== null)
+            { #
+                <span class="listview-row-header">#:Tier#</span>
+            # } else { #
+                <span class="listview-row-header"></span>
+            # } #
         </div>
     </div>
 </script>
