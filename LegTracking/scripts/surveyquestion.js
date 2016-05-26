@@ -81,8 +81,27 @@ function surveyQuestionListViewDataShow(e)
     $('#surveyquestioncomments').val(surveyQuestionModel.Comments);
 
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
+    var initiativeTitle = surveyQuestionModel.Initiative;
+    var maxTitleLength = 23;
 
-    navbar.title(surveyQuestionModel.Initiative);
+    if (initiativeTitle.length > maxTitleLength)
+    {
+        for (var i = maxTitleLength; i > 0; i--)
+        {
+            var position = initiativeTitle.indexOf(" ", i);
+
+            if (position > -1 && position <= maxTitleLength)
+            {
+                initiativeTitle = initiativeTitle.substr(0, position) + "..."
+
+                break;
+            }
+        }
+
+        //initiativeTitle = initiativeTitle.substr(0, 20) + "..."
+    }
+
+    navbar.title(initiativeTitle);
     
     var saveButton = e.view.element.find("#save-button").data("kendoMobileButton");
 

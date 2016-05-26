@@ -1,6 +1,12 @@
 <div data-role="view" id="meetingview" data-init="meetingListViewDataInit" data-show="meetingListViewDataShow" data-layout="save-button-layout" data-title="Edit Meeting">
     <form id="meetingForm">
-        <div class="messages k-error-colored" >
+        <div id="noneditormessages" class="k-error-colored">
+            <span class="k-widget k-tooltip k-tooltip-validation k-invalid-msg" style="display: block !important; line-height: 1.5em !important; padding-right: 0px !important;">
+                <span class="k-icon k-warning"> </span> Since you did not create this meeting and are not listed as an attendee, you will not be able to save changes.
+                <br />
+            </span>
+        </div>
+        <div class="messages k-error-colored">
             <span data-for="meetingdate" class="k-invalid-msg"></span>
 			<span data-for="legislator" class="k-invalid-msg"></span>
             <span data-for="officeattendees" class="k-invalid-msg"></span>

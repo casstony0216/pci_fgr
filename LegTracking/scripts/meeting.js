@@ -243,6 +243,8 @@ function meetingListViewDataShow(e)
 
         dataTitle = "Add Meeting";
 
+        $("#noneditormessages").hide();
+
         e.view.element.find("#save-button").show(); // Need to show in case it was hidden when editing meeting without rights.
     }
     else
@@ -275,10 +277,14 @@ function meetingListViewDataShow(e)
 
                 if (!isCongressAdmin && !isMeetingEditor)
                 {
+                    $("#noneditormessages").show();
+
                     e.view.element.find("#save-button").hide();
                 }
                 else
                 {
+                    $("#noneditormessages").hide();
+
                     e.view.element.find("#save-button").show();
                 }
             }
@@ -312,11 +318,12 @@ function meetingListViewDataShow(e)
         "click",
         function ()
         {
-            saveMeeting();
+            if (saveMeeting())
+            {
+                meetingsDataSource.read();
 
-            meetingsDataSource.read();
-            
-            app.navigate("#:back");
+                app.navigate("#:back");
+            }
         }
     );
 
@@ -794,6 +801,12 @@ function saveMeeting()
         }
         
         meetingsDataSource.sync();
+
+        return true;
+    }
+    else
+    {
+        return false;
     }
 }
 

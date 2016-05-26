@@ -54,8 +54,27 @@ function initiativeSurveyListViewDataShow(e)
     var uid = e.view.params.uid;
     var initiativeSurveyModel = initiativeSurveysDataSource.getByUid(uid);
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
+    var initiativeTitle = initiativeSurveyModel.Initiative;
+    var maxTitleLength = 23;
 
-    navbar.title(initiativeSurveyModel.Initiative);
+    if (initiativeTitle.length > maxTitleLength)
+    {
+        for (var i = maxTitleLength; i > 0; i--)
+        {
+            var position = initiativeTitle.indexOf(" ", i);
+
+            if (position > -1 && position <= maxTitleLength)
+            {
+                initiativeTitle = initiativeTitle.substr(0, position) + "..."
+
+                break;
+            }
+        }
+
+        //initiativeTitle = initiativeTitle.substr(0, 20) + "..."
+    }
+
+    navbar.title(initiativeTitle);
 
     $("#initiativeSurveyListView").data("kendoMobileListView").setDataSource(initiativeSurveyDataSource);
 
