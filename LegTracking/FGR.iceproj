@@ -354,12 +354,6 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="views\profilesearch.html" />
-    <Content Include="views\sampleSushi.html">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="views\sampleSushi2.html">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="views\surveyquestion.html" />
   </ItemGroup>
   <ItemGroup>
