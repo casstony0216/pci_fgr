@@ -6,7 +6,7 @@
   "DisplayName": "PCI LegCon",
   "Author": "",
   "Description": "PCI Legislator Connection",
-  "BundleVersion": "1.0.4",
+  "BundleVersion": "1.0.5",
   "AndroidVersionCode": "1",
   "iOSDeviceFamily": [
     "1"
