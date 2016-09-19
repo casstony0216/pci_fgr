@@ -4,23 +4,19 @@
             <span class="view-header" data-bind="text: FullName"></span>
         </div>
     </div>
-    <ul data-role="buttongroup" data-index="0" data-select="onSurveyGroupSelect">
-        <li>Current Questions</li>
-        <li>Archived Questions</li>
-    </ul>
     <ul id="surveyListView"></ul>
 </div>
 
 <script type="text/x-kendo-template" id="surveyListViewTemplate">
-    <input type="hidden" id="id" value="#:surveyId#" />
+    <input type="hidden" id="id" value="#:SurveyQuestionId#" />
     <input type="hidden" name="followUpRequired" value="#:FollowUpRequired#" />
-    <span class="listview-row-header">#:survey#</span>
+    <span class="listview-row-header">#:SurveyQuestion#</span>
     <br />
     <fieldset style="border-top: 1px solid \#eee; border-bottom: none; border-left: none; border-right: none; display: block; margin: 5px 0 5px 0; padding: 0; text-align: center; width: 90%;">
         <legend style="color: \#999; font-size: 1em; font-style: italic;">Survey Question Response</legend>
     </fieldset>
     <span class="listview-row-subdetail">
-        <strong>Support Level:</strong> #:SupportLevel#
+        <strong>Response:</strong> #:Response#
         <br />
         <strong>Follow Up Required:</strong> <span id="followUpRequired"></span>
         <br />

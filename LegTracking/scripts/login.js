@@ -11,9 +11,9 @@ var scopeProd = "http://www.pciaa.net/";
 
 // Define all global variables used throughout the entire solution.
 var app;
-var apiLoginUrl = apiLoginUrlProd;
-var apiBaseServiceUrl = apiBaseServiceUrlProd;
-var scope = scopeProd;
+var apiLoginUrl = apiLoginUrlDev;
+var apiBaseServiceUrl = apiBaseServiceUrlDev;
+var scope = scopeDev;
 var token = null;
 var personId = null;
 var isPci = false;
@@ -221,7 +221,7 @@ function submitLoginRequest(email, password)
                     legislatorsOptionsDataSource.read();
                     attendeeTypesOptionsDataSource.read();
                     meetingLocationsOptionsDataSource.read();
-                    supportLevelsOptionsDataSource.read();
+                    //responsesOptionsDataSource.read();
                     
                     var useTouchId = localStorage.getItem("UseTouchId");
                     var rememberMe = localStorage.getItem("RememberMe");

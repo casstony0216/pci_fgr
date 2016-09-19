@@ -1,6 +1,6 @@
 var surveyDataSource = null;
 var surveyLegislatorId = null;
-var surveyInitiativeId = null;
+var surveySurveyId = null;
 var surveyActive = "Y";
 
 function surveyListViewDataInit(e)
@@ -47,34 +47,34 @@ function surveyListViewDataInit(e)
 function surveyListViewDataShow(e)
 {
     surveyLegislatorId = e.view.params.legislatorId;
-    surveyInitiativeId = e.view.params.initiativeId;
+    surveySurveyId = e.view.params.surveyId;
 
     setSurveyDataSource();
 
     var uid = e.view.params.uid;
     var surveyModel = surveysDataSource.getByUid(uid);
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
-    var initiativeTitle = surveyModel.Initiative;
+    var surveyTitle = surveyModel.Survey;
     var maxTitleLength = 23;
 
-    if (initiativeTitle.length > maxTitleLength)
+    if (surveyTitle.length > maxTitleLength)
     {
         for (var i = maxTitleLength; i > 0; i--)
         {
-            var position = initiativeTitle.indexOf(" ", i);
+            var position = surveyTitle.indexOf(" ", i);
 
             if (position > -1 && position <= maxTitleLength)
             {
-                initiativeTitle = initiativeTitle.substr(0, position) + "..."
+                surveyTitle = surveyTitle.substr(0, position) + "..."
 
                 break;
             }
         }
 
-        //initiativeTitle = initiativeTitle.substr(0, 20) + "..."
+        //surveyTitle = surveyTitle.substr(0, 20) + "..."
     }
 
-    navbar.title(initiativeTitle);
+    navbar.title(surveyTitle);
 
     $("#surveyListView").data("kendoMobileListView").setDataSource(surveyDataSource);
 
@@ -98,27 +98,9 @@ function surveyTap(e)
     app.navigate(url + uid);
 }
 
-function onSurveyGroupSelect(e)
-{
-    var index = this.current().index();
-
-    if (index === 0)
-    {
-        surveyActive = "Y";
-    }
-    else
-    {
-        surveyActive = "N";
-    }
-
-    setSurveyDataSource();
-
-    $("#surveyListView").data("kendoMobileListView").setDataSource(surveyDataSource);
-}
-
 function setSurveyDataSource()
 {
-    var apiUrl = apiBaseServiceUrl + "legislatorsurveys?legislatorId=" + surveyLegislatorId + "&initiativeId=" + surveyInitiativeId + "&active=" + surveyActive;
+    var apiUrl = apiBaseServiceUrl + "legislatorsurvey?legislatorId=" + surveyLegislatorId + "&surveyId=" + surveySurveyId;
 
     surveyDataSource = new kendo.data.DataSource
     (
@@ -162,12 +144,14 @@ function setSurveyDataSource()
                     fields:
                     {
                         LegislatorId: { editable: false },
-                        InitiativeId: { editable: false },
-                        Initiative: { editable: false },
                         SurveyId: { editable: false },
                         Survey: { editable: false },
-                        SupportLevelId: { editable: true },
-                        SupportLevel: { editable: true },
+                        SurveyQuestionId: { editable: false },
+                        SurveyQuestion: { editable: false },
+                        InitiativeIds: { editable: false },
+                        Initiatives: { editable: false },
+                        ResponseId: { editable: true },
+                        Response: { editable: true },
                         FollowUpRequired: { editable: true, type: "boolean" },
                         Comments: { editable: true },
                         EditorId: { editable: false },

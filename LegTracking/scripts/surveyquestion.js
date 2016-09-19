@@ -1,37 +1,4 @@
-var supportLevelsOptionsDataSource = new kendo.data.DataSource
-    (
-        {
-            transport:
-            {
-                read:
-                {
-                    url: apiBaseServiceUrl + "supportlevels",
-                    type: "get",
-                    dataType: "json",
-                    beforeSend: function (xhr)
-                    {
-                        xhr.setRequestHeader("Authorization", token);
-                    },
-                    error: function (xhr, ajaxOptions, thrownError)
-                    {
-                        alert("error " + xhr.responseText);
-                    }
-                }
-            },
-            schema:
-            {
-                model:
-                {
-                    id: "SupportLevelId",
-                    fields:
-                    {
-                        Value: "SupportLevelId",
-                        Text: "SupportLevelText"
-                    }
-                }
-            }
-        }
-    );
+var responsesOptionsDataSource = null;
 
 function surveyQuestionListViewDataInit(e)
 {
@@ -48,24 +15,26 @@ function surveyQuestionListViewDataShow(e)
     
     $("#surveyquestionuid")[0].value = uid;
 
-    // Determine if the support level has been set and default to the first item if not.
-    if (surveyQuestionModel.SupportLevelId === undefined || surveyQuestionModel.SupportLevelId === null || surveyQuestionModel.SupportLevelId === 0)
+    setResponsesDataSource(surveyQuestionModel.SurveyQuestionId);
+
+    // Determine if the response has been set and default to the first item if not.
+    if (surveyQuestionModel.ResponseId === undefined || surveyQuestionModel.ResponseId === null || surveyQuestionModel.ResponseId === 0)
     {
-        if (supportLevelsOptionsDataSource.data().length > 0)
+        if (responsesOptionsDataSource.data().length > 0)
         {
-            var data = supportLevelsOptionsDataSource.data();
+            var data = responsesOptionsDataSource.data();
             
-            surveyQuestionModel.SupportLevelId = data[0].Value;
-            surveyQuestionModel.SupportLevel = data[0].Text;
+            surveyQuestionModel.ResponseId = data[0].Value;
+            surveyQuestionModel.Response = data[0].Text;
         }
         else
         {
-            supportLevelsOptionsDataSource.fetch
+            responsesOptionsDataSource.fetch
             (
                 function ()
                 {
-                    surveyQuestionModel.SupportLevelId = this.data()[0].Value;
-                    surveyQuestionModel.SupportLevel = this.data()[0].Text;
+                    surveyQuestionModel.ResponseId = this.data()[0].Value;
+                    surveyQuestionModel.Response = this.data()[0].Text;
                 }
             );
         }
@@ -73,7 +42,7 @@ function surveyQuestionListViewDataShow(e)
 
     var viewModel = kendo.observable({
         surveyQuestionItem: surveyQuestionModel,
-        supportLevelsOptions: supportLevelsOptionsDataSource
+        responsesOptions: responsesOptionsDataSource
     });
 
     kendo.bind(e.view.element, viewModel, kendo.mobile.ui);
@@ -81,27 +50,27 @@ function surveyQuestionListViewDataShow(e)
     $('#surveyquestioncomments').val(surveyQuestionModel.Comments);
 
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
-    var initiativeTitle = surveyQuestionModel.Initiative;
+    var surveyTitle = surveyQuestionModel.Survey;
     var maxTitleLength = 23;
 
-    if (initiativeTitle.length > maxTitleLength)
+    if (surveyTitle.length > maxTitleLength)
     {
         for (var i = maxTitleLength; i > 0; i--)
         {
-            var position = initiativeTitle.indexOf(" ", i);
+            var position = surveyTitle.indexOf(" ", i);
 
             if (position > -1 && position <= maxTitleLength)
             {
-                initiativeTitle = initiativeTitle.substr(0, position) + "..."
+                surveyTitle = surveyTitle.substr(0, position) + "..."
 
                 break;
             }
         }
 
-        //initiativeTitle = initiativeTitle.substr(0, 20) + "..."
+        //surveyTitle = surveyTitle.substr(0, 20) + "..."
     }
 
-    navbar.title(initiativeTitle);
+    navbar.title(surveyTitle);
     
     var saveButton = e.view.element.find("#save-button").data("kendoMobileButton");
 
@@ -136,4 +105,42 @@ function closeModalSurveyQuestionComments(e)
     model.set("Comments", $('#surveyquestioncomments').val());
 
     $("#modalsurveyquestioncomments").data("kendoMobileModalView").close();
+}
+
+function setResponsesDataSource(surveyQuestionId)
+{
+    responsesOptionsDataSource = new kendo.data.DataSource
+    (
+        {
+            transport:
+            {
+                read:
+                {
+                    url: apiBaseServiceUrl + "surveyresponseset?surveyQuestionId=" + surveyQuestionId,
+                    type: "get",
+                    dataType: "json",
+                    beforeSend: function (xhr)
+                    {
+                        xhr.setRequestHeader("Authorization", token);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError)
+                    {
+                        alert("error " + xhr.responseText);
+                    }
+                }
+            },
+            schema:
+            {
+                model:
+                {
+                    id: "ResponseId",
+                    fields:
+                    {
+                        Value: "ResponseId",
+                        Text: "Response"
+                    }
+                }
+            }
+        }
+    );
 }

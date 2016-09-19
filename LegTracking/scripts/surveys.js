@@ -1,4 +1,7 @@
 var surveysDataSource = null;
+var surveyLegislatorId = null;
+var surveyMeetingId = null;
+var surveysActive = "Y";
 
 function surveysListViewDataInit(e)
 {
@@ -36,14 +39,93 @@ function surveysListViewDataInit(e)
 
 function surveysListViewDataShow(e)
 {
-    var legislatorId = e.view.params.legislatorId;
-    var meetingId = e.view.params.meetingId;
-    var apiUrl = apiBaseServiceUrl + "legislatorinitiatives?legislatorId=" + legislatorId;
+    surveyLegislatorId = e.view.params.legislatorId;
+    surveyMeetingId = e.view.params.meetingId;
 
-    if (meetingId !== null)
+    setSurveysDataSource();
+
+    $("#surveysListView").data("kendoMobileListView").setDataSource(surveysDataSource);
+
+    var addButton = e.view.element.find("#add-button").data("kendoMobileButton");
+
+    if (surveysReference === "meeting")
     {
-        apiUrl += "&meetingId=" + meetingId;
+        kendo.bind(e.view.element, meetingModel, kendo.mobile.ui);
+
+        e.view.element.find("#add-button").show();
+
+        addButton.unbind("click");
+        addButton.bind
+        (
+            "click",
+            function ()
+            {
+                // NEED TO UPDATE ONCE SURVEY ADD SCREEN IS CREATED!!!
+                app.navigate("views/meeting.html?legislatorId=" + meetingLegislatorId);
+            }
+        );
     }
+    else
+    {
+        kendo.bind(e.view.element, legislatorModel, kendo.mobile.ui);
+
+        e.view.element.find("#add-button").hide();
+    }
+
+    e.view.scroller.reset();
+}
+
+function surveysTap(e)
+{
+    var liElement = $(e.touch.currentTarget);
+    var questionCount = liElement.find('input[name="questionCount"]');
+
+    if (questionCount[0].value === "0")
+    {
+        this.events.cancel();
+        e.event.stopPropagation();
+    }
+    else
+    {
+        var uid = $(e.touch.currentTarget).data("uid");
+        var currentRecord = surveysDataSource.getByUid(uid);
+        var legislatorId = currentRecord.LegislatorId;
+        var surveyId = currentRecord.SurveyId;
+        var url = "views/survey.html?uid=" + uid + "&legislatorId=" + legislatorId + "&surveyId=" + surveyId;
+
+        app.navigate(url);
+    }
+    
+}
+
+function onSurveysGroupSelect(e)
+{
+    var index = this.current().index();
+
+    if (index === 0)
+    {
+        surveysActive = "Y";
+    }
+    else
+    {
+        surveysActive = "N";
+    }
+
+    setSurveysDataSource();
+
+    $("#surveysListView").data("kendoMobileListView").setDataSource(surveysDataSource);
+}
+
+function setSurveysDataSource()
+{
+    var apiUrl = apiBaseServiceUrl + "legislatorsurveys?legislatorId=" + surveyLegislatorId;
+    
+    if (surveyMeetingId !== null)
+    {
+        apiUrl += "&meetingId=" + surveyMeetingId;
+    }
+
+    apiUrl += "&active=" + surveysActive;
 
     surveysDataSource = new kendo.data.DataSource
     (
@@ -69,53 +151,19 @@ function surveysListViewDataShow(e)
             {
                 model:
                 {
-                    id: "InitiativeId",
+                    id: "SurveyId",
                     fields:
                     {
                         LegislatorId: "LegislatorId",
                         FullName: "FullName",
-                        InitiativeId: "InitiativeId",
-                        Initiative: "Initiative",
+                        SurveyId: "SurveyId",
+                        Survey: "Survey",
+                        Year: "Year",
+                        Chamber: "Chamber",
                         QuestionCount: "QuestionCount"
                     }
                 }
             }
         }
     );
-
-    $("#surveysListView").data("kendoMobileListView").setDataSource(surveysDataSource);
-
-    if (surveysReference === "meeting")
-    {
-        kendo.bind(e.view.element, meetingModel, kendo.mobile.ui);
-    }
-    else
-    {
-        kendo.bind(e.view.element, legislatorModel, kendo.mobile.ui);
-    }
-
-    e.view.scroller.reset();
-}
-
-function surveysTap(e)
-{
-    var liElement = $(e.touch.currentTarget);
-    var questionCount = liElement.find('input[name="questionCount"]');
-
-    if (questionCount[0].value === "0")
-    {
-        this.events.cancel();
-        e.event.stopPropagation();
-    }
-    else
-    {
-        var uid = $(e.touch.currentTarget).data("uid");
-        var currentRecord = surveysDataSource.getByUid(uid);
-        var legislatorId = currentRecord.LegislatorId;
-        var initiativeId = currentRecord.InitiativeId;
-        var url = "views/survey.html?uid=" + uid + "&legislatorId=" + legislatorId + "&initiativeId=" + initiativeId;
-
-        app.navigate(url);
-    }
-    
 }

@@ -9,9 +9,23 @@
         <ul data-role="listview" data-style="inset" class="formArea" onclick="">
             <li style="margin: 0; padding: 0; width: 100%;">
                 <ul class="listview-row-input-table">
+                    <li class="listview-row-input-cell-label">
+                        <span>Initiative(s)</span>
+                    </li>
+                </ul>
+                <ul class="listview-row-input-table">
+                    <li class="listview-row-input-cell-control" style="text-align: left;">
+                        <div style="display: inline-block; margin-left: 10px;">
+                            <span data-bind="text:surveyQuestionItem.Initiatives"></span>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li style="margin: 0; padding: 0; width: 100%;">
+                <ul class="listview-row-input-table">
                     <li class="listview-row-input-cell">
                         <div style="display: inline-block; margin-left: 10px;">
-                            <span data-bind="text:surveyQuestionItem.InitiativeSurvey"></span>
+                            <span data-bind="text:surveyQuestionItem.SurveyQuestion"></span>
                         </div>
                     </li>
                 </ul>
@@ -19,11 +33,11 @@
             <li style="margin: 0; padding: 0; width: 100%;">
                 <ul class="listview-row-input-table">
                     <li class="listview-row-input-cell-label">
-                        <span>Support Level</span>
+                        <span>Response</span>
                     </li>
                     <li class="listview-row-input-cell-control">
-                        <select data-bind="source:supportLevelsOptions, value:surveyQuestionItem.SupportLevelId" data-template="supportLevel-select-template"></select>
-                        <script id="supportLevel-select-template" type="text/x-kendo-template">
+                        <select data-bind="source:responsesOptions, value:surveyQuestionItem.ResponseId" data-template="response-select-template"></select>
+                        <script id="response-select-template" type="text/x-kendo-template">
                             <option value="#:Value#">#:Text#</option>
                         </script>
                     </li>

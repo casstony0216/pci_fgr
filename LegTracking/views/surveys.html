@@ -1,9 +1,13 @@
-<div data-role="view" id="surveysview" data-init="surveysListViewDataInit" data-show="surveysListViewDataShow" data-layout="back-button-layout" data-title="Initiative Surveys">
+<div data-role="view" id="surveysview" data-init="surveysListViewDataInit" data-show="surveysListViewDataShow" data-layout="add-button-layout" data-title="Surveys">
     <div class="view-row-details-container-table">
         <div class="view-row-details-container-table-cell">
             <span class="view-header" data-bind="text:FullName"></span>
         </div>
     </div>
+    <ul data-role="buttongroup" data-index="0" data-select="onSurveysGroupSelect">
+        <li>Current Surveys</li>
+        <li>Archived Surveys</li>
+    </ul>
     <ul id="surveysListView"></ul>
 </div>
 
@@ -11,9 +15,13 @@
     <!--<div style="display: table; height: 4em;">
         <div style="display: table-cell; text-align: left; vertical-align: middle;">-->
     <input type="hidden" id="legislatorId" value="#:LegislatorId#" />
-    <input type="hidden" id="initiativeId" value="#:InitiativeId#" />
+    <input type="hidden" id="surveyId" value="#:SurveyId#" />
     <input type="hidden" name="questionCount" value="#:QuestionCount#" />
-    <span class="listview-row-header">#:Initiative#</span>
+    <span class="listview-row-header">#:Survey#</span>
+    <br />
+    <span class="listview-row-subdetail"><strong>Session Year:</strong> #:Year#</span>
+    <br />
+    <span class="listview-row-subdetail"><strong>Chamber/Caucus:</strong> #:Chamber#</span>
     <br />
     <span class="listview-row-subdetail">(#:QuestionCount# survey questions)</span>
         <!--</div>
