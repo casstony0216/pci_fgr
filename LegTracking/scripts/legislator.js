@@ -15,8 +15,8 @@ var legislatorData =
         {
             id: 3,
             name: "surveys",
-            label: "Initiative Surveys",
-            url: "views/initiativesurveys.html?legislatorId="
+            label: "Surveys",
+            url: "views/surveys.html?legislatorId="
         },
         {
             id: 4,
@@ -101,7 +101,7 @@ function legislatorTap(e)
     }
     else if (currentRecord.Name === "surveys")
     {
-        initiativeSurveysReference = "legislator";
+        surveysReference = "legislator";
 
         app.navigate(url + legislatorId);
     }

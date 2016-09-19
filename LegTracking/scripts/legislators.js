@@ -1,7 +1,7 @@
 var legislatorsDataSource = null;
 var legislatorUid;
 var legislatorModel;
-var initiativeSurveysReference = null;
+var surveysReference = null;
 var isAddMeeting = "N";
 
 function legislatorsListViewDataInit(e) 

@@ -13,8 +13,8 @@ var meetingInitiativeData =
         {
             id: 2,
             name: "surveys",
-            label: "Initiative Surveys",
-            url: "views/initiativesurveys.html?legislatorId="
+            label: "Surveys",
+            url: "views/surveys.html?legislatorId="
         }
     ];
 
@@ -402,7 +402,7 @@ function meetingInitiativeTap(e)
         }
         else
         {
-            initiativeSurveysReference = "meeting";
+            surveysReference = "meeting";
 
             app.navigate(url + legislatorId + "&meetingId=" + meetingId);
         }

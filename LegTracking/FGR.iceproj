@@ -240,7 +240,7 @@
     <Content Include="scripts\bio.js" />
     <Content Include="scripts\committees.js" />
     <Content Include="scripts\initiativesurvey.js" />
-    <Content Include="scripts\initiativesurveys.js" />
+    <Content Include="scripts\surveys.js" />
     <Content Include="scripts\initiativetiers.js" />
     <Content Include="scripts\login.js" />
     <Content Include="scripts\meetinginitiatives.js" />
@@ -333,7 +333,7 @@
     <Content Include="views\bio.html" />
     <Content Include="views\committees.html" />
     <Content Include="views\initiativesurvey.html" />
-    <Content Include="views\initiativesurveys.html" />
+    <Content Include="views\surveys.html" />
     <Content Include="views\initiativetiers.html" />
     <Content Include="views\meetinginitiatives.html" />
     <Content Include="views\profile.html" />

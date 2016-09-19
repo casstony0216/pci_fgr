@@ -52,7 +52,7 @@ function initiativeSurveyListViewDataShow(e)
     setInitiativeSurveyDataSource();
 
     var uid = e.view.params.uid;
-    var initiativeSurveyModel = initiativeSurveysDataSource.getByUid(uid);
+    var initiativeSurveyModel = surveysDataSource.getByUid(uid);
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
     var initiativeTitle = initiativeSurveyModel.Initiative;
     var maxTitleLength = 23;
@@ -78,7 +78,7 @@ function initiativeSurveyListViewDataShow(e)
 
     $("#initiativeSurveyListView").data("kendoMobileListView").setDataSource(initiativeSurveyDataSource);
 
-    if (initiativeSurveysReference === "meeting")
+    if (surveysReference === "meeting")
     {
         kendo.bind(e.view.element, meetingModel, kendo.mobile.ui);
     }
