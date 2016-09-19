@@ -1,13 +1,13 @@
-var initiativeSurveysDataSource = null;
+var surveysDataSource = null;
 
-function initiativeSurveysListViewDataInit(e)
+function surveysListViewDataInit(e)
 {
-    e.view.element.find("#initiativeSurveysListView")
+    e.view.element.find("#surveysListView")
         .kendoMobileListView
         (
             {
-                dataSource: initiativeSurveysDataSource,
-                template: $("#initiativeSurveysListViewTemplate").html(),
+                dataSource: surveysDataSource,
+                template: $("#surveysListViewTemplate").html(),
                 dataBound: function(e)
                 {
                     e.sender.element.find('li').each(function ()
@@ -29,12 +29,12 @@ function initiativeSurveysListViewDataInit(e)
         (
             {
                 filter: ">li",
-                tap: initiativeSurveysTap
+                tap: surveysTap
             }
         );
 }
 
-function initiativeSurveysListViewDataShow(e)
+function surveysListViewDataShow(e)
 {
     var legislatorId = e.view.params.legislatorId;
     var meetingId = e.view.params.meetingId;
@@ -45,7 +45,7 @@ function initiativeSurveysListViewDataShow(e)
         apiUrl += "&meetingId=" + meetingId;
     }
 
-    initiativeSurveysDataSource = new kendo.data.DataSource
+    surveysDataSource = new kendo.data.DataSource
     (
         {
             transport:
@@ -83,9 +83,9 @@ function initiativeSurveysListViewDataShow(e)
         }
     );
 
-    $("#initiativeSurveysListView").data("kendoMobileListView").setDataSource(initiativeSurveysDataSource);
+    $("#surveysListView").data("kendoMobileListView").setDataSource(surveysDataSource);
 
-    if (initiativeSurveysReference === "meeting")
+    if (surveysReference === "meeting")
     {
         kendo.bind(e.view.element, meetingModel, kendo.mobile.ui);
     }
@@ -97,7 +97,7 @@ function initiativeSurveysListViewDataShow(e)
     e.view.scroller.reset();
 }
 
-function initiativeSurveysTap(e)
+function surveysTap(e)
 {
     var liElement = $(e.touch.currentTarget);
     var questionCount = liElement.find('input[name="questionCount"]');
@@ -110,10 +110,10 @@ function initiativeSurveysTap(e)
     else
     {
         var uid = $(e.touch.currentTarget).data("uid");
-        var currentRecord = initiativeSurveysDataSource.getByUid(uid);
+        var currentRecord = surveysDataSource.getByUid(uid);
         var legislatorId = currentRecord.LegislatorId;
         var initiativeId = currentRecord.InitiativeId;
-        var url = "views/initiativesurvey.html?uid=" + uid + "&legislatorId=" + legislatorId + "&initiativeId=" + initiativeId;
+        var url = "views/survey.html?uid=" + uid + "&legislatorId=" + legislatorId + "&initiativeId=" + initiativeId;
 
         app.navigate(url);
     }

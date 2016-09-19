@@ -41,7 +41,7 @@ function surveyQuestionListViewDataInit(e)
 function surveyQuestionListViewDataShow(e)
 {
     var uid = e.view.params.uid;
-    var surveyQuestionModel = initiativeSurveyDataSource.getByUid(uid);
+    var surveyQuestionModel = surveyDataSource.getByUid(uid);
 
     // Set the editor id to the current person id in case the survey question is saved.  This is for audit tracking purposes.
     surveyQuestionModel.EditorId = personId;
@@ -111,7 +111,7 @@ function surveyQuestionListViewDataShow(e)
         "click",
         function ()
         {
-            initiativeSurveyDataSource.sync();
+            surveyDataSource.sync();
 
             app.navigate("#:back");
         }
@@ -122,7 +122,7 @@ function surveyQuestionListViewDataShow(e)
 
 function openModalSurveyQuestionComments(e)
 {
-    var model = initiativeSurveyDataSource.getByUid($("#surveyquestionuid")[0].value);
+    var model = surveyDataSource.getByUid($("#surveyquestionuid")[0].value);
 
     $('#surveyquestioncomments').val(model.Comments);
 
@@ -131,7 +131,7 @@ function openModalSurveyQuestionComments(e)
 
 function closeModalSurveyQuestionComments(e)
 {
-    var model = initiativeSurveyDataSource.getByUid($("#surveyquestionuid")[0].value);
+    var model = surveyDataSource.getByUid($("#surveyquestionuid")[0].value);
 
     model.set("Comments", $('#surveyquestioncomments').val());
 

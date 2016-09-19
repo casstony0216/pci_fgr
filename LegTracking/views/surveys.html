@@ -1,13 +1,13 @@
-<div data-role="view" id="initiativesurveysview" data-init="initiativeSurveysListViewDataInit" data-show="initiativeSurveysListViewDataShow" data-layout="back-button-layout" data-title="Initiative Surveys">
+<div data-role="view" id="surveysview" data-init="surveysListViewDataInit" data-show="surveysListViewDataShow" data-layout="back-button-layout" data-title="Initiative Surveys">
     <div class="view-row-details-container-table">
         <div class="view-row-details-container-table-cell">
             <span class="view-header" data-bind="text:FullName"></span>
         </div>
     </div>
-    <ul id="initiativeSurveysListView"></ul>
+    <ul id="surveysListView"></ul>
 </div>
 
-<script type="text/x-kendo-template" id="initiativeSurveysListViewTemplate">
+<script type="text/x-kendo-template" id="surveysListViewTemplate">
     <!--<div style="display: table; height: 4em;">
         <div style="display: table-cell; text-align: left; vertical-align: middle;">-->
     <input type="hidden" id="legislatorId" value="#:LegislatorId#" />

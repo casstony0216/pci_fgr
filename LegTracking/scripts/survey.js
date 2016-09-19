@@ -1,16 +1,16 @@
-var initiativeSurveyDataSource = null;
-var initiativeSurveyLegislatorId = null;
-var initiativeSurveyInitiativeId = null;
-var initiativeSurveyActive = "Y";
+var surveyDataSource = null;
+var surveyLegislatorId = null;
+var surveyInitiativeId = null;
+var surveyActive = "Y";
 
-function initiativeSurveyListViewDataInit(e)
+function surveyListViewDataInit(e)
 {
-    e.view.element.find("#initiativeSurveyListView")
+    e.view.element.find("#surveyListView")
         .kendoMobileListView
         (
             {
-                dataSource: initiativeSurveyDataSource,
-                template: $("#initiativeSurveyListViewTemplate").html(),
+                dataSource: surveyDataSource,
+                template: $("#surveyListViewTemplate").html(),
                 dataBound: function (e)
                 {
                     e.sender.element.find('input[name="followUpRequired"]').each(function ()
@@ -39,22 +39,22 @@ function initiativeSurveyListViewDataInit(e)
         (
             {
                 filter: ">li",
-                tap: initiativeSurveyTap
+                tap: surveyTap
             }
         );
 }
 
-function initiativeSurveyListViewDataShow(e)
+function surveyListViewDataShow(e)
 {
-    initiativeSurveyLegislatorId = e.view.params.legislatorId;
-    initiativeSurveyInitiativeId = e.view.params.initiativeId;
+    surveyLegislatorId = e.view.params.legislatorId;
+    surveyInitiativeId = e.view.params.initiativeId;
 
-    setInitiativeSurveyDataSource();
+    setSurveyDataSource();
 
     var uid = e.view.params.uid;
-    var initiativeSurveyModel = surveysDataSource.getByUid(uid);
+    var surveyModel = surveysDataSource.getByUid(uid);
     var navbar = app.view().header.find(".km-navbar").data("kendoMobileNavBar");
-    var initiativeTitle = initiativeSurveyModel.Initiative;
+    var initiativeTitle = surveyModel.Initiative;
     var maxTitleLength = 23;
 
     if (initiativeTitle.length > maxTitleLength)
@@ -76,7 +76,7 @@ function initiativeSurveyListViewDataShow(e)
 
     navbar.title(initiativeTitle);
 
-    $("#initiativeSurveyListView").data("kendoMobileListView").setDataSource(initiativeSurveyDataSource);
+    $("#surveyListView").data("kendoMobileListView").setDataSource(surveyDataSource);
 
     if (surveysReference === "meeting")
     {
@@ -90,7 +90,7 @@ function initiativeSurveyListViewDataShow(e)
     e.view.scroller.reset();
 }
 
-function initiativeSurveyTap(e)
+function surveyTap(e)
 {
     var uid = $(e.touch.currentTarget).data("uid");
     var url = "views/surveyquestion.html?uid=";
@@ -98,29 +98,29 @@ function initiativeSurveyTap(e)
     app.navigate(url + uid);
 }
 
-function onInitiativeSurveyGroupSelect(e)
+function onSurveyGroupSelect(e)
 {
     var index = this.current().index();
 
     if (index === 0)
     {
-        initiativeSurveyActive = "Y";
+        surveyActive = "Y";
     }
     else
     {
-        initiativeSurveyActive = "N";
+        surveyActive = "N";
     }
 
-    setInitiativeSurveyDataSource();
+    setSurveyDataSource();
 
-    $("#initiativeSurveyListView").data("kendoMobileListView").setDataSource(initiativeSurveyDataSource);
+    $("#surveyListView").data("kendoMobileListView").setDataSource(surveyDataSource);
 }
 
-function setInitiativeSurveyDataSource()
+function setSurveyDataSource()
 {
-    var apiUrl = apiBaseServiceUrl + "legislatorsurveys?legislatorId=" + initiativeSurveyLegislatorId + "&initiativeId=" + initiativeSurveyInitiativeId + "&active=" + initiativeSurveyActive;
+    var apiUrl = apiBaseServiceUrl + "legislatorsurveys?legislatorId=" + surveyLegislatorId + "&initiativeId=" + surveyInitiativeId + "&active=" + surveyActive;
 
-    initiativeSurveyDataSource = new kendo.data.DataSource
+    surveyDataSource = new kendo.data.DataSource
     (
         {
             transport:
@@ -158,14 +158,14 @@ function setInitiativeSurveyDataSource()
             {
                 model:
                 {
-                    id: "InitiativeSurveyId",
+                    id: "SurveyId",
                     fields:
                     {
                         LegislatorId: { editable: false },
                         InitiativeId: { editable: false },
                         Initiative: { editable: false },
-                        InitiativeSurveyId: { editable: false },
-                        InitiativeSurvey: { editable: false },
+                        SurveyId: { editable: false },
+                        Survey: { editable: false },
                         SupportLevelId: { editable: true },
                         SupportLevel: { editable: true },
                         FollowUpRequired: { editable: true, type: "boolean" },

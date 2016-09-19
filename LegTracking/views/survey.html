@@ -1,20 +1,20 @@
-<div data-role="view" id="initiativesurveyview" data-init="initiativeSurveyListViewDataInit" data-show="initiativeSurveyListViewDataShow" data-layout="back-button-layout" data-title="Initiative Survey">
+<div data-role="view" id="surveyview" data-init="surveyListViewDataInit" data-show="surveyListViewDataShow" data-layout="back-button-layout" data-title="Initiative Survey">
     <div class="view-row-details-container-table">
         <div class="view-row-details-container-table-cell">
             <span class="view-header" data-bind="text: FullName"></span>
         </div>
     </div>
-    <ul data-role="buttongroup" data-index="0" data-select="onInitiativeSurveyGroupSelect">
+    <ul data-role="buttongroup" data-index="0" data-select="onSurveyGroupSelect">
         <li>Current Questions</li>
         <li>Archived Questions</li>
     </ul>
-    <ul id="initiativeSurveyListView"></ul>
+    <ul id="surveyListView"></ul>
 </div>
 
-<script type="text/x-kendo-template" id="initiativeSurveyListViewTemplate">
-    <input type="hidden" id="id" value="#:InitiativeSurveyId#" />
+<script type="text/x-kendo-template" id="surveyListViewTemplate">
+    <input type="hidden" id="id" value="#:surveyId#" />
     <input type="hidden" name="followUpRequired" value="#:FollowUpRequired#" />
-    <span class="listview-row-header">#:InitiativeSurvey#</span>
+    <span class="listview-row-header">#:survey#</span>
     <br />
     <fieldset style="border-top: 1px solid \#eee; border-bottom: none; border-left: none; border-right: none; display: block; margin: 5px 0 5px 0; padding: 0; text-align: center; width: 90%;">
         <legend style="color: \#999; font-size: 1em; font-style: italic;">Survey Question Response</legend>
