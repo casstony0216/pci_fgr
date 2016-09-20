@@ -144,6 +144,7 @@ function setSurveyDataSource()
                     fields:
                     {
                         LegislatorId: { editable: false },
+                        FullName: { editable: false },
                         SurveyId: { editable: false },
                         Survey: { editable: false },
                         SurveyQuestionId: { editable: false },
