@@ -60,8 +60,7 @@ function surveysListViewDataShow(e)
             "click",
             function ()
             {
-                // NEED TO UPDATE ONCE SURVEY ADD SCREEN IS CREATED!!!
-                app.navigate("views/meeting.html?legislatorId=" + meetingLegislatorId);
+                app.navigate("views/meetingsurveys.html?meetingId=" + surveyMeetingId);
             }
         );
     }

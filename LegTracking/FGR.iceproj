@@ -239,6 +239,7 @@
     </Content>
     <Content Include="scripts\bio.js" />
     <Content Include="scripts\committees.js" />
+    <Content Include="scripts\meetingsurveys.js" />
     <Content Include="scripts\survey.js" />
     <Content Include="scripts\surveys.js" />
     <Content Include="scripts\initiativetiers.js" />
@@ -332,6 +333,7 @@
     </Content>
     <Content Include="views\bio.html" />
     <Content Include="views\committees.html" />
+    <Content Include="views\meetingsurveys.html" />
     <Content Include="views\survey.html" />
     <Content Include="views\surveys.html" />
     <Content Include="views\initiativetiers.html" />
