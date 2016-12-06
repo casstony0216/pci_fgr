@@ -300,6 +300,8 @@ function setMeetingsDataSource()
                     {
                         MeetingId: { editable: true },
                         MeetingDate: { editable: true, validation: { required: true } },
+                        VenueTypeId: { editable: true, validation: { required: true } },
+                        VenueType: { editable: true },
                         AttendeeTypeId: { editable: true, validation: { required: true } },
                         AttendeeType: { editable: true },
                         PersonId: { editable: true },

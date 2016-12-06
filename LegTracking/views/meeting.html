@@ -26,6 +26,21 @@
             <li style="margin: 0px; padding: 0px; width: 100%;">
                 <ul class="listview-row-input-table">
                     <li class="listview-row-input-cell-label">
+                        <span>Venue</span>
+                    </li>
+                    <li class="listview-row-input-cell-control">
+                        <select name="venueType" data-bind="source: meetingVenueTypesOptions, value: meetingItem.VenueTypeId"
+                                data-template="meetingVenueType-select-template" id="meetingVenueType" required validationmessage="Venue is required<br /\>">
+                        </select>
+                        <script id="meetingVenueType-select-template" type="text/x-kendo-template">
+                            <option value="#:Value#">#:Text#</option>
+                        </script>
+                    </li>
+                </ul>
+            </li>
+            <li style="margin: 0px; padding: 0px; width: 100%;">
+                <ul class="listview-row-input-table">
+                    <li class="listview-row-input-cell-label">
                         <span>Notes</span>
                         <a data-role="button" data-click="openModalMeetingNotes" data-icon="expand-e" class="expand-button">full-screen</a>
                     </li>

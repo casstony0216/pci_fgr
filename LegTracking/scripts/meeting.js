@@ -74,6 +74,41 @@ var legislatorsOptionsDataSource = new kendo.data.DataSource
         }
     );
 
+var meetingVenueTypesOptionsDataSource = new kendo.data.DataSource
+    (
+        {
+            transport:
+            {
+                read:
+                {
+                    url: apiBaseServiceUrl + "meetingvenuetypes",
+                    type: "get",
+                    dataType: "json",
+                    beforeSend: function (xhr)
+                    {
+                        xhr.setRequestHeader("Authorization", token);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError)
+                    {
+                        alert("error " + xhr.responseText);
+                    }
+                }
+            },
+            schema:
+            {
+                model:
+                {
+                    id: "VenueTypeId",
+                    fields:
+                    {
+                        Value: "VenueTypeId",
+                        Text: "VenueType"
+                    }
+                }
+            }
+        }
+    );
+
 var attendeeTypesOptionsDataSource = new kendo.data.DataSource
     (
         {
@@ -302,6 +337,7 @@ function meetingListViewDataShow(e)
     var viewModel = kendo.observable({
         meetingItem: meetingModel,
         legislatorsOptions: legislatorsOptionsDataSource,
+        meetingVenueTypesOptions: meetingVenueTypesOptionsDataSource,
         attendeeTypesOptions: attendeeTypesOptionsDataSource,
         meetingLocationsOptions: meetingLocationsOptionsDataSource
     });
@@ -450,6 +486,8 @@ function defineMeetingModel()
 {
     var newLegislatorId = null;
     var newFullName = null;
+    var newVenueTypeId = null;
+    var newVenueType = null;
     var newAttendeeTypeId = null;
     var newAttendeeType = null;
     var newMeetingLocationId = null;
@@ -463,6 +501,8 @@ function defineMeetingModel()
                 {
                     MeetingId: { type: "number", editable: true },
                     MeetingDate: { type: "string", editable: true, validation: { required: true } },
+                    VenueTypeId: { type: "number", editable: true, validation: { required: true } },
+                    VenueType: { type: "string", editable: true },
                     AttendeeTypeId: { type: "number", editable: true, validation: { required: true } },
                     AttendeeType: { type: "string", editable: true },
                     PersonId: { type: "number", editable: true },
@@ -539,6 +579,23 @@ function defineMeetingModel()
         }
     }
 
+    if (meetingVenueTypesOptionsDataSource.data().length > 0)
+    {
+        newVenueTypeId = meetingVenueTypesOptionsOptionsDataSource.data()[1].Value; //$('select[name="type"] option:second').val();
+        newVenueType = meetingVenueTypesOptionsDataSource.data()[1].Text;
+    }
+    else
+    {
+        meetingVenueTypesOptionsDataSource.fetch
+        (
+            function ()
+            {
+                meetingModel.VenueTypeId = this.data()[1].Value;
+                meetingModel.Venue = this.data()[1].Text;
+            }
+        );
+    }
+
     if (attendeeTypesOptionsDataSource.data().length > 0)
     {
         newAttendeeTypeId = attendeeTypesOptionsDataSource.data()[0].Value; //$('select[name="officeattendees"] option:first').val();
@@ -579,6 +636,8 @@ function defineMeetingModel()
         (
             {
                 MeetingDate: newDate,
+                VenueTypeId: newVenueTypeId,
+                VenueType: newVenueType,
                 AttendeeTypeId: newAttendeeTypeId, //$('select[name="officeattendees"] option:first').val(),
                 AttendeeType: newAttendeeType,
                 LegislatorId: newLegislatorId,
@@ -633,6 +692,16 @@ function addNewMeetingToDataSource()
     if (meetingModel.PciInitiatives === undefined)
     {
         meetingModel.PciInitiatives = "";
+    }
+
+    if (meetingModel.VenueTypeId === undefined)
+    {
+        meetingModel.VenueTypeId = 1;
+    }
+
+    if (meetingModel.VenueType === undefined)
+    {
+        meetingModel.VenueType = "In Person";
     }
                         
     if (meetingModel.AttendeeTypeId === undefined)
@@ -694,6 +763,8 @@ function addNewMeetingToDataSource()
     (
         {
             MeetingDate: meetingModel.MeetingDate,
+            VenueTypeId: meetingModel.VenueTypeId,
+            VenueType: meetingModel.VenueType,
             AttendeeTypeId: meetingModel.AttendeeTypeId,
             AttendeeType: meetingModel.AttendeeType,
             PersonId: meetingModel.PersonId,
