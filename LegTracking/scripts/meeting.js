@@ -581,8 +581,8 @@ function defineMeetingModel()
 
     if (meetingVenueTypesOptionsDataSource.data().length > 0)
     {
-        newVenueTypeId = meetingVenueTypesOptionsOptionsDataSource.data()[1].Value; //$('select[name="type"] option:second').val();
-        newVenueType = meetingVenueTypesOptionsDataSource.data()[1].Text;
+        newVenueTypeId = meetingVenueTypesOptionsDataSource.data()[0].Value; //$('select[name="type"] option:second').val();
+        newVenueType = meetingVenueTypesOptionsDataSource.data()[0].Text;
     }
     else
     {
@@ -590,8 +590,8 @@ function defineMeetingModel()
         (
             function ()
             {
-                meetingModel.VenueTypeId = this.data()[1].Value;
-                meetingModel.Venue = this.data()[1].Text;
+                meetingModel.VenueTypeId = this.data()[0].Value;
+                meetingModel.Venue = this.data()[0].Text;
             }
         );
     }
