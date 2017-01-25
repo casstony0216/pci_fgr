@@ -34,7 +34,7 @@ var legislatorData =
             id: 6,
             name: "committees",
             label: "Committees",
-            url: "views/committees.html?uid="
+            url: "views/legislatorcommittees.html?uid="
         }
     ];
 

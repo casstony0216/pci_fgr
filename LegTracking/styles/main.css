@@ -906,6 +906,12 @@ span.km-switch-label-on
     content: "\e319";
 }
 
+.km-committee-e:after,
+.km-committee-e:before 
+{
+    content: "\e0be";
+}
+
 .km-meeting-e:after,
 .km-meeting-e:before 
 {
