@@ -1,10 +1,10 @@
-var committeesDataSource = null;
+var legislatorCommitteesDataSource = null;
 
-function committeesListViewDataShow(e)
+function legislatorCommitteesListViewDataShow(e)
 {
     var legislatorId = e.view.params.uid;
 
-    committeesDataSource = new kendo.data.DataSource
+    legislatorCommitteesDataSource = new kendo.data.DataSource
     (
         {
             transport:
@@ -34,6 +34,7 @@ function committeesListViewDataShow(e)
                     {
                         CommitteeId: "CommitteeId",
                         Name: "Name",
+                        Phone: "Phone",
                         ChamberId: "ChamberId",
                         Chamber: "Chamber",
                         ParentCommitteeId: "ParentCommitteeId",
@@ -46,12 +47,12 @@ function committeesListViewDataShow(e)
         }
     );
 
-    e.view.element.find("#committeesListView")
+    e.view.element.find("#legislatorCommitteesListView")
         .kendoMobileListView
         (
             {
-                dataSource: committeesDataSource,
-                template: $("#committeesListViewTemplate").html(),
+                dataSource: legislatorCommitteesDataSource,
+                template: $("#legislatorCommitteesListViewTemplate").html(),
                 dataBound: function (e)
                 {
                     e.sender.element.find('div[id="indentProperty"]').each(function ()

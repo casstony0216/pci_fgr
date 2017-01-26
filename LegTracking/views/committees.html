@@ -1,0 +1,30 @@
+<div data-role="view" id="committeesview" data-init="committeesListViewDataInit" data-show="committeesListViewDataShow" data-layout="back-button-layout" data-title="Committees">
+    <form id="committeesForm">
+        <ul id="committeesListView"></ul>
+    </form>
+</div>
+
+<script type="text/x-kendo-template" id="committeesListViewTemplate">
+    <div style="display: table; /*height: 3em;*/">
+        <!--<input type="hidden" id="issubcommittee" value="#:IsSubcommittee#" />-->
+        #if (IsSubcommittee === "False")
+        { #
+            <span class="listview-row-header">#:CommitteeName#</span>
+            #if (Phone !== "")
+            { #
+                <br />
+                <span class="listview-row-subdetail"><strong>Phone:</strong> #:Phone#</span>
+            # } #
+        # } else { #
+            <div style="margin-left: 1em;">
+                <span class="listview-row-header">#:SubcommitteeName#</span>
+                #if (Phone !== "")
+                { #
+                    <br />
+                    <span class="listview-row-subdetail"><strong>Phone:</strong> #:Phone#</span>
+                # } #
+            </div>
+        # } #
+        <a data-role="detailbutton" data-icon="details"></a>
+    </div>
+</script>

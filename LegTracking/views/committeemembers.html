@@ -1,0 +1,22 @@
+<div data-role="view" id="committeemembersview" data-show="committeeMembersListViewDataShow" data-layout="back-button-layout" data-title="Committees">
+    <div class="view-row-details-container-table">
+        <div class="view-row-details-container-table-cell">
+            <span class="view-header" data-bind="text: CommitteeName"></span>
+        </div>
+    </div>
+    <ul id="committeeMembersListView"></ul>
+</div>
+
+<script type="text/x-kendo-template" id="committeeMembersListViewTemplate">
+    <div id="indentProperty">
+        <span class="listview-row-header">#:FullName#</span>
+        <br />
+        #if (Side !== "")
+        { #
+            <span class="listview-row-subdetail">#:Title# (#:Side#)</span>
+        # } else { #
+            <span class="listview-row-subdetail">#:Title#</span>
+        # } #
+        
+    </div>
+</script>

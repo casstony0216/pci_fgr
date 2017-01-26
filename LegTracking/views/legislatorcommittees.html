@@ -1,19 +1,17 @@
-<div data-role="view" id="committeesview" data-show="committeesListViewDataShow" data-layout="back-button-layout" data-title="Committees">
+<div data-role="view" id="legislatorcommitteesview" data-show="legislatorCommitteesListViewDataShow" data-layout="back-button-layout" data-title="Committees">
     <div class="view-row-details-container-table">
         <div class="view-row-details-container-table-cell">
             <span class="view-header" data-bind="text: FullName"></span>
         </div>
     </div>
-    <ul id="committeesListView"></ul>
+    <ul id="legislatorCommitteesListView"></ul>
 </div>
 
-<script type="text/x-kendo-template" id="committeesListViewTemplate">
+<script type="text/x-kendo-template" id="legislatorCommitteesListViewTemplate">
     <div id="indentProperty">
         <input type="hidden" id="subcommittee" value="#:Subcommittee#" />
         <span class="listview-row-header">#:Name#</span>
         <br />
         <span class="listview-row-subdetail">#:Title#</span>
-        <br />
-        <span class="listview-row-subdetail" style="text-transform: capitalize;">#:Rank#</span>
     </div>
 </script>

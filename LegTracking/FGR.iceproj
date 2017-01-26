@@ -238,6 +238,8 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="scripts\bio.js" />
+    <Content Include="scripts\committees.js" />
+    <Content Include="scripts\committeemembers.js" />
     <Content Include="scripts\legislatorcommittees.js" />
     <Content Include="scripts\meetingsurveys.js" />
     <Content Include="scripts\survey.js" />
@@ -332,6 +334,8 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="views\bio.html" />
+    <Content Include="views\committees.html" />
+    <Content Include="views\committeemembers.html" />
     <Content Include="views\legislatorcommittees.html" />
     <Content Include="views\meetingsurveys.html" />
     <Content Include="views\survey.html" />
