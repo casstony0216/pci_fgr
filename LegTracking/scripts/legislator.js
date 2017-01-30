@@ -1,4 +1,6 @@
-var legislatorData = 
+var committeeMemberDataSource = null;
+
+var legislatorData =
     [
         {
             id: 1,
@@ -80,8 +82,20 @@ function legislatorListViewDataInit(e)
 
 function legislatorListViewDataShow(e) 
 {
-    legislatorUid = e.view.params.uid;
-    legislatorModel = legislatorsDataSource.getByUid(legislatorUid);
+    if (legislatorReference === "legislators")
+    {
+        legislatorUid = e.view.params.uid;
+        legislatorModel = legislatorsDataSource.getByUid(legislatorUid);
+    }
+    else
+    {
+        var legislatorId = e.view.params.legislatorId;
+
+        setCommitteeMemberDataSource(legislatorId);
+
+        committeeMemberDataSource.read();
+        legislatorModel = committeeMemberDataSource.data()[0];
+    }
     
     kendo.bind(e.view.element, legislatorModel, kendo.mobile.ui);
 
@@ -109,4 +123,84 @@ function legislatorTap(e)
     {
         app.navigate(url + legislatorId);
     }
+}
+
+function setCommitteeMemberDataSource(legislatorId)
+{
+    committeeMemberDataSource = null;
+
+    committeeMemberDataSource = new kendo.data.DataSource
+    (
+        {
+            transport:
+            {
+                read:
+                {
+                    url: apiBaseServiceUrl + "legislator?legislatorId=" + legislatorId,
+                    type: "get",
+                    dataType: "json",
+                    async: false, // Work-around for now to get datasource sync to complete before show event finishes... 
+                                  // This is being deprecated and another approach will need to be developed in the near future.
+                    beforeSend: function (xhr)
+                    {
+                        xhr.setRequestHeader("Authorization", token);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError)
+                    {
+                        alert("error " + xhr.responseText);
+                    }
+                }
+            },
+            batch: true,
+            schema:
+            {
+                model:
+                {
+                    id: "LegislatorId",
+                    fields:
+                    {
+                        LegislatorId: "LegislatorId",
+                        BioguideId: "BioguideId",
+                        Birthdate: "Birthdate",
+                        Chamber: "Chamber",
+                        FullName: "FullName",
+                        CrpId: "CrpId",
+                        District: "District",
+                        FacebookId: "FacebookId",
+                        Fax: "Fax",
+                        FirstName: "FirstName",
+                        LastName: "LastName",
+                        MiddleName: "MiddleName",
+                        NameSuffix: "NameSuffix",
+                        Nickname: "Nickname",
+                        Gender: "Gender",
+                        GovtrackId: "GovtrackId",
+                        IcpsrId: "IcpsrId",
+                        InOffice: "InOffice",
+                        OcEmail: "OcEmail",
+                        OcdId: "OcdId",
+                        Office: "Office",
+                        Party: "Party",
+                        PartyName: "PartyName",
+                        Phone: "Phone",
+                        State: "State",
+                        StateName: "StateName",
+                        StateRank: "StateRank",
+                        TermStart: "TermStart",
+                        TermEnd: "TermEnd",
+                        ThomasId: "ThomasId",
+                        Title: "Title",
+                        TitleName: "TitleName",
+                        TwitterId: "TwitterId",
+                        VotesmartId: "VotesmartId",
+                        Website: "Website",
+                        YouTubeUrl: "YouTubeUrl",
+                        Bio: "Bio",
+                        ImageUrl: "PictureUrl",
+                        Description: "Description"
+                    }
+                }
+            }
+        }
+    );
 }

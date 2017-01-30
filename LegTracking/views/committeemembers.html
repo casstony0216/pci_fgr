@@ -1,4 +1,4 @@
-<div data-role="view" id="committeemembersview" data-show="committeeMembersListViewDataShow" data-layout="back-button-layout" data-title="Committees">
+<div data-role="view" id="committeemembersview" data-init="committeeMembersListViewDataInit" data-show="committeeMembersListViewDataShow" data-layout="back-button-layout" data-title="Committees">
     <div class="view-row-details-container-table">
         <div class="view-row-details-container-table-cell">
             <span class="view-header" data-bind="text: CommitteeName"></span>
@@ -17,6 +17,6 @@
         # } else { #
             <span class="listview-row-subdetail">#:Title#</span>
         # } #
-        
+        <a data-role="detailbutton" data-icon="details"></a>
     </div>
 </script>

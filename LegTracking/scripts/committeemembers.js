@@ -1,5 +1,24 @@
 var committeeMembersDataSource = null;
 
+function committeeMembersListViewDataInit(e)
+{
+    e.view.element.find("#committeeMembersListView")
+        .kendoMobileListView
+        (
+            {
+                dataSource: committeeMembersDataSource,
+                template: $("#committeeMembersListViewTemplate").html()
+            }
+        )
+        .kendoTouch
+        (
+            {
+                filter: ">li",
+                tap: committeeMembersTap
+            }
+        );
+}
+
 function committeeMembersListViewDataShow(e)
 {
     var committeeUid = e.view.params.uid;
@@ -75,4 +94,15 @@ function committeeMembersListViewDataShow(e)
     kendo.bind(e.view.element, committeeModel, kendo.mobile.ui);
 
     e.view.scroller.reset();
+}
+
+function committeeMembersTap(e)
+{
+    var committeeMemberUid = $(e.touch.currentTarget).data("uid");
+    var committeeMemberModel = committeeMembersDataSource.getByUid(committeeMemberUid);
+    var legislatorId = committeeMemberModel.LegislatorId;
+
+    legislatorReference = "committeeMembers";
+
+    app.navigate("views/legislator.html?legislatorId=" + legislatorId);
 }

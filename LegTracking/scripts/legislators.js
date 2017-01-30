@@ -1,6 +1,7 @@
 var legislatorsDataSource = null;
 var legislatorUid;
 var legislatorModel;
+var legislatorReference = null;
 var surveysReference = null;
 var isAddMeeting = "N";
 
@@ -73,6 +74,8 @@ function legislatorsTap(e)
 
     var uid = $(e.touch.currentTarget).data("uid");
 
+    legislatorReference = "legislators";
+
     app.navigate("views/legislator.html?uid=" + uid);
 }
 
@@ -90,8 +93,8 @@ function legislatorsSwipe(e)
 
 function legislatorsTouchStart(e) 
 {
-    var target = $(e.touch.initialTouch)
-    var listview = $("#legislatorsListView").data("kendoMobileListView")
+    var target = $(e.touch.initialTouch);
+    var listview = $("#legislatorsListView").data("kendoMobileListView");
     var model = legislatorsDataSource.getByUid($(e.touch.target).attr("data-uid"));
     var detailbutton = $(e.touch.target).find("[data-role=detailbutton]")
     var tabstrip = $(e.touch.target).find("div.swipeButtons:visible");

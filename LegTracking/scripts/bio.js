@@ -1,7 +1,8 @@
 function bioListViewDataShow(e)
 {
-    var uid = e.view.params.uid;
-    var legislatorModel = legislatorsDataSource.getByUid(uid);
+    // Following lines were commented out because the legislatorModel is populated on a previous screen.
+    //var uid = e.view.params.uid;
+    //var legislatorModel = legislatorsDataSource.getByUid(uid);
 
     // Format data where necessary.
     if (legislatorModel.TermStart.length > 4)
