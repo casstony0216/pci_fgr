@@ -5,19 +5,29 @@
 </div>
 
 <script type="text/x-kendo-template" id="committeesListViewTemplate">
-    <div style="display: table; /*height: 3em;*/">
+    <!--<div style="display: table; /*height: 3em;*/">-->
         <!--<input type="hidden" id="issubcommittee" value="#:IsSubcommittee#" />-->
         #if (IsSubcommittee === "False")
         { #
-            <span class="listview-row-header">#:CommitteeName#</span>
+            <span class="listview-row-header">#:CommitteeName#</span>        
+            #if (FullName !== "")
+            { #
+                <br />
+                <span class="listview-row-subdetail"><strong>#:Title#:</strong> #:FullName#</span>
+            # } #
             #if (Phone !== "")
             { #
                 <br />
                 <span class="listview-row-subdetail"><strong>Phone:</strong> #:Phone#</span>
             # } #
         # } else { #
-            <div style="margin-left: 1em;">
-                <span class="listview-row-header">#:SubcommitteeName#</span>
+            <div style="line-height: 1.6em !important; margin-left: 1em;">
+                <span class="listview-row-header">#:SubcommitteeName#</span>                
+                #if (FullName !== "")
+                { #
+                    <br />
+                    <span class="listview-row-subdetail"><strong>#:Title#:</strong> #:FullName#</span>
+                # } #
                 #if (Phone !== "")
                 { #
                     <br />
@@ -26,5 +36,5 @@
             </div>
         # } #
         <a data-role="detailbutton" data-icon="details"></a>
-    </div>
+    <!--</div>-->
 </script>
