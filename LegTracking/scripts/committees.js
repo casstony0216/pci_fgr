@@ -32,14 +32,6 @@ function committeesListViewDataInit(e)
             }
         }
     );
-
-    //$('input[type="search"]').change
-    //(
-    //    function (e)
-    //    {
-    //        filter = $(this).val();
-    //    }
-    //);
 }
 
 function committeesListViewDataShow(e)
@@ -67,16 +59,6 @@ function committeesListViewDataShow(e)
 function onCommitteesGroupSelect(e)
 {
     chamberId = this.current().index();
-
-    //$('input[type="search"]').each(function (index)
-    //{
-    //    var current = $(this).val();
-
-    //    if (current !== "")
-    //    {
-    //        filter = current;
-    //    }
-    //});
 
     var committeesListView = $("#committeesListView").data("kendoMobileListView");
 
@@ -132,10 +114,6 @@ function setCommitteesDataSource()
                     {
                         filter = options.filter.filters[0].value;
                     }
-                    //else
-                    //{
-                    //    filter = "";
-                    //}
 
                     return {
                         chamberId: chamberId,
