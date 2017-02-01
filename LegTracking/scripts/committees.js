@@ -1,4 +1,6 @@
 var committeesDataSource = null;
+var chamberId = 0;
+var filter = "";
 
 function committeesListViewDataInit(e)
 {
@@ -8,11 +10,7 @@ function committeesListViewDataInit(e)
             {
                 dataSource: committeesDataSource,
                 template: $("#committeesListViewTemplate").html(),
-                filterable:
-                {
-                    field: "CommitteeName",
-                    operator: "contains"
-                },
+                filterable: true,
                 endlessScroll: true
             }
         )
@@ -24,7 +22,7 @@ function committeesListViewDataInit(e)
             }
         );
 
-    $("#committeesForm input").keyup
+    $('input[type="search"]').keyup
     (
         function (e)
         {
@@ -34,6 +32,14 @@ function committeesListViewDataInit(e)
             }
         }
     );
+
+    //$('input[type="search"]').change
+    //(
+    //    function (e)
+    //    {
+    //        filter = $(this).val();
+    //    }
+    //);
 }
 
 function committeesListViewDataShow(e)
@@ -56,6 +62,29 @@ function committeesListViewDataShow(e)
     committeesListView.setDataSource(committeesDataSource);
     
     e.view.scroller.reset();
+}
+
+function onCommitteesGroupSelect(e)
+{
+    chamberId = this.current().index();
+
+    //$('input[type="search"]').each(function (index)
+    //{
+    //    var current = $(this).val();
+
+    //    if (current !== "")
+    //    {
+    //        filter = current;
+    //    }
+    //});
+
+    var committeesListView = $("#committeesListView").data("kendoMobileListView");
+
+    setCommitteesDataSource();
+
+    committeesListView.setDataSource(committeesDataSource);
+
+    committeesListView._filter.searchInput[0].value = filter; //set search text
 }
 
 function committeesTap(e)
@@ -82,6 +111,8 @@ function setCommitteesDataSource()
                     url: apiBaseServiceUrl + "committeesfilter",
                     type: "get",
                     dataType: "json",
+                    async: false, // Work-around for now to get datasource sync to complete before show event finishes... 
+                                  // This is being deprecated and another approach will need to be developed in the near future.
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
@@ -93,8 +124,22 @@ function setCommitteesDataSource()
                 },
                 parameterMap: function (options)
                 {
+                    if (options.filter === null)
+                    {
+                        filter = "";
+                    }
+                    else if (options.filter)
+                    {
+                        filter = options.filter.filters[0].value;
+                    }
+                    //else
+                    //{
+                    //    filter = "";
+                    //}
+
                     return {
-                        filter: options.filter ? options.filter.filters[0].value : '',
+                        chamberId: chamberId,
+                        filter: filter, //options.filter ? options.filter.filters[0].value : '',
                         page: options.page,
                         pageSize: options.pageSize
                     };

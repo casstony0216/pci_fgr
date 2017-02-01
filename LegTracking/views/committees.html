@@ -1,5 +1,12 @@
 <div data-role="view" id="committeesview" data-init="committeesListViewDataInit" data-show="committeesListViewDataShow" data-layout="back-button-layout" data-title="Committees">
     <form id="committeesForm">
+        <ul data-role="buttongroup" data-index="0" data-select="onCommitteesGroupSelect">
+            <li>All</li>
+            <li>House</li>
+            <li>Senate</li>
+            <li>Joint</li>
+            <li>Caucus</li>
+        </ul>
         <ul id="committeesListView"></ul>
     </form>
 </div>
