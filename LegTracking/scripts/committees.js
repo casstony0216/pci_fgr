@@ -52,6 +52,11 @@ function committeesListViewDataShow(e)
     setCommitteesDataSource();
     
     committeesListView.setDataSource(committeesDataSource);
+
+    if (filter !== "")
+    {
+        committeesListView._filter.searchInput[0].value = filter;
+    }
     
     e.view.scroller.reset();
 }
