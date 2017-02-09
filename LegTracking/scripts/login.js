@@ -11,9 +11,9 @@ var scopeProd = "http://www.pciaa.net/";
 
 // Define all global variables used throughout the entire solution.
 var app;
-var apiLoginUrl = apiLoginUrlDev;
-var apiBaseServiceUrl = apiBaseServiceUrlDev;
-var scope = scopeDev;
+var apiLoginUrl = apiLoginUrlProd;
+var apiBaseServiceUrl = apiBaseServiceUrlProd;
+var scope = scopeProd;
 var token = null;
 var personId = null;
 var isPci = false;
