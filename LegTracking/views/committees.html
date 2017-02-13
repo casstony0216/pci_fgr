@@ -20,7 +20,12 @@
             #if (FullName !== "")
             { #
                 <br />
-                <span class="listview-row-subdetail"><strong>#:Title#:</strong> #:FullName#</span>
+                #if (Title.indexOf(";") > 0)
+                {#
+                    <span class="listview-row-subdetail"><strong>#:Title.substr(0, Title.indexOf(';'))#:</strong> #:FullName.replace(";", ", ")#</span>
+                # } else { #
+                    <span class="listview-row-subdetail"><strong>#:Title#:</strong> #:FullName#</span>
+                # } #
             # } #
             #if (Phone !== "")
             { #
@@ -29,11 +34,16 @@
             # } #
         # } else { #
             <div style="line-height: 1.6em !important; margin-left: 1em;">
-                <span class="listview-row-header">#:SubcommitteeName#</span>                
+                <span class="listview-row-header">#:SubcommitteeName# Subcommittee</span>
                 #if (FullName !== "")
                 { #
                     <br />
-                    <span class="listview-row-subdetail"><strong>#:Title#:</strong> #:FullName#</span>
+                    #if (Title.indexOf(";") > 0)
+                    {#
+                        <span class="listview-row-subdetail"><strong>#:Title.substr(0, Title.indexOf(';'))#:</strong> #:FullName.replace(";", ", ")#</span>
+                    # } else { #
+                        <span class="listview-row-subdetail"><strong>#:Title#:</strong> #:FullName#</span>
+                    # } #
                 # } #
                 #if (Phone !== "")
                 { #
@@ -43,5 +53,5 @@
             </div>
         # } #
         <a data-role="detailbutton" data-icon="details"></a>
-    <!--</div>-->
+        <!--</div>-->
 </script>
