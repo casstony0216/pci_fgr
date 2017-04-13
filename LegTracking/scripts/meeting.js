@@ -505,8 +505,8 @@ function defineMeetingModel()
                     VenueType: { type: "string", editable: true },
                     AttendeeTypeId: { type: "number", editable: true, validation: { required: true } },
                     AttendeeType: { type: "string", editable: true },
-                    PersonId: { type: "number", editable: true },
-                    PciContact: { type: "string", editable: true },
+                    LobbyistId: { type: "number", editable: true },
+                    Lobbyist: { type: "string", editable: true },
                     LegislatorId: { type: "number", editable: true, validation: { required: true } },
                     FullName: { type: "string", editable: true },
                     Name: { type: "string", editable: true },
@@ -651,7 +651,7 @@ function defineMeetingModel()
 function addNewMeetingToDataSource()
 {
     meetingModel.CreatorId = personId;
-    meetingModel.PersonId = personId;
+    meetingModel.LobbyistId = personId;
 
     // Necessary to check if MeetingDate is NOT a string... means it was updated and has to be converted.
     if (jQuery.type(meetingModel.MeetingDate) !== "string")
@@ -724,9 +724,9 @@ function addNewMeetingToDataSource()
         meetingModel.Location = "Meeting in District";
     }
                         
-    if (meetingModel.PciContact === undefined)
+    if (meetingModel.Lobbyist === undefined)
     {
-        meetingModel.PciContact = "";
+        meetingModel.Lobbyist = "";
     }
                         
     if (meetingModel.PrimaryOfficeContact === undefined)
@@ -767,8 +767,8 @@ function addNewMeetingToDataSource()
             VenueType: meetingModel.VenueType,
             AttendeeTypeId: meetingModel.AttendeeTypeId,
             AttendeeType: meetingModel.AttendeeType,
-            PersonId: meetingModel.PersonId,
-            PciContact: meetingModel.PciContact,
+            LobbyistId: meetingModel.LobbyistId,
+            Lobbyist: meetingModel.Lobbyist,
             LegislatorId: meetingModel.LegislatorId,
             FullName: meetingModel.FullName,
             Name: meetingModel.Name,
