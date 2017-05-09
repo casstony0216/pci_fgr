@@ -124,7 +124,12 @@ body, html
     color: white !important;
     display: table-cell;
     font-size: 1.5em !important;
+    line-height: .5em !important; 
+    /*padding-left: .5em !important; 
+    padding-right: .5em !important;*/ 
+    text-align: center !important;
     vertical-align: middle;
+    width: 4em !important;
 }
 
 .swipeButtons ul li.red
@@ -146,6 +151,12 @@ body, html
 {
     background-color: transparent !important;
     border: none !important;
+    padding: 0 !important;
+}
+
+.swipeButtons ul li .km-button .km-icon
+{
+    margin: 0 !important;
 }
 /* List View Swipe Button Formatting End */
 
@@ -910,6 +921,12 @@ span.km-switch-label-on
 .km-committee-e:before 
 {
     content: "\e0be";
+}
+
+.km-assignment-e:after,
+.km-assignment-e:before 
+{
+    content: "\e07a";
 }
 
 .km-meeting-e:after,

@@ -237,6 +237,7 @@
     <Content Include="kendo\typescript\kendo.mobile.d.ts">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="scripts\assignments.js" />
     <Content Include="scripts\bio.js" />
     <Content Include="scripts\committees.js" />
     <Content Include="scripts\committeemembers.js" />
@@ -333,6 +334,7 @@
     <Content Include="styles\profile.css">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="views\assignments.html" />
     <Content Include="views\bio.html" />
     <Content Include="views\committees.html" />
     <Content Include="views\committeemembers.html" />

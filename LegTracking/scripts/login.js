@@ -11,14 +11,16 @@ var scopeProd = "http://www.pciaa.net/";
 
 // Define all global variables used throughout the entire solution.
 var app;
-var apiLoginUrl = apiLoginUrlProd;
-var apiBaseServiceUrl = apiBaseServiceUrlProd;
-var scope = scopeProd;
+var apiLoginUrl = apiLoginUrlDev;
+var apiBaseServiceUrl = apiBaseServiceUrlDev;
+var scope = scopeDev;
 var token = null;
 var personId = null;
+var companyId = null;
 var isPci = false;
 var isCongressAdmin = false;
 var isCongressUser = false;
+var isCongressExternalUser = false;
 
 function loginListViewDataInit(e)
 {
@@ -198,6 +200,7 @@ function submitLoginRequest(email, password)
                 }
 
                 var congressUserPosition = token.toLowerCase().indexOf("congress+user");
+                var congressExternalUserPosition = token.toLowerCase().indexOf("congress+external+user");
                 var congressAdminPosition = token.toLowerCase().indexOf("congress+admin");
 
                 if (congressAdminPosition > 0)
@@ -208,14 +211,23 @@ function submitLoginRequest(email, password)
                 {
                     isCongressUser = true;
                 }
+                else if (congressExternalUserPosition > 0)
+                {
+                    isCongressExternalUser = true;
+                }
 
-                if (isCongressAdmin || isCongressUser)
+                if (isCongressAdmin || isCongressUser || isCongressExternalUser)
                 {
                     var personIdPosition = token.toLowerCase().indexOf("&personid=") + 10;
                     var firstNamePosition = token.toLowerCase().indexOf("&firstname=");
 
                     personId = token.slice(personIdPosition, firstNamePosition);
-                    
+
+                    var companyIdPosition = token.toLowerCase().indexOf("&companyid=") + 11;
+                    var deptIdPosition = token.toLowerCase().indexOf("&deptid=");
+
+                    companyId = token.slice(companyIdPosition, deptIdPosition);
+
                     $msg.hide();
 
                     legislatorsOptionsDataSource.read();

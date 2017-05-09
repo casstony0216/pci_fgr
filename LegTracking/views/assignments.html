@@ -1,0 +1,29 @@
+<div data-role="view" id="assignmentsview" data-init="assignmentsListViewDataInit" data-show="assignmentsListViewDataShow" data-layout="back-button-layout" data-title="Assignments">
+    <!--<ul data-role="buttongroup" data-index="0" data-select="onAssignmentsGroupSelect">
+        <li>All</li>
+        <li>Open</li>
+        <li>Completed</li>
+    </ul>-->
+    <ul id="assignmentsListView"></ul>
+</div>
+
+<script type="text/x-kendo-tmpl" id="assignmentsListViewTemplate">
+    <div style="display: table-cell; line-height: 1.6em; text-align: left; vertical-align: middle;">
+        <span class="listview-row-header">#:Legislator#</span>
+        #if (Initiative !== "")
+        { #
+            <br />
+            <span class="listview-row-subdetail"><strong>Initiative:</strong> #:Initiative#</span>
+        # } #
+        <br />
+        <span class="listview-row-subdetail"><strong>Survey:</strong> #:Survey#</span>
+    </div>
+    <div class="swipeButtons">
+        <input type="hidden" name="assignmentid" value="#:AssignmentId#" />
+        <ul>
+            <li class="green">
+                <a data-role="button" data-icon="meeting-e" name="add"><span style="display: block; font-size: 0.5em; margin-top: 0.75em !important;">Add&nbsp;Meeting</span></a>
+            </li>
+        </ul>
+    </div>
+</script>

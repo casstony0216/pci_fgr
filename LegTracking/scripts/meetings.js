@@ -316,7 +316,8 @@ function setMeetingsDataSource()
                         LegislatorStaffAttendees: { editable: true },
                         FollowUpNeeded: { editable: true, type: "boolean" },
                         CreatorId: { editable: true },
-                        Notes: { editable: true }
+                        Notes: { editable: true },
+                        AssignmentId: { editable: true }
                     }
                 }
             },

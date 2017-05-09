@@ -102,7 +102,7 @@ function legislatorsTouchStart(e)
     if (target.closest("div.swipeButtons")[0]) 
     {
         var button = target.closest("[data-role=button]")[0];
-        var buttonIcon = button.attributes["data-icon"].value;
+        var buttonIcon = button.attributes["name"].value;
         var legislatorId = model.LegislatorId;
 
         switch(buttonIcon)
@@ -116,7 +116,7 @@ function legislatorsTouchStart(e)
 
                 break;
 
-            case "meeting-e":
+            case "view":
                 //detailbutton.show();
                 //tabstrip.hide();
 
