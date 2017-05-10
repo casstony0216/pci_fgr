@@ -349,6 +349,11 @@ div.km-collapsible-content
     color: #666 !important;
 }
 
+.km-tabstrip .km-text
+{
+    margin-top: .35em !important;
+}
+
 /*.km-button .km-icon
 {
     margin: 0 !important;

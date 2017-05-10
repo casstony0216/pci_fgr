@@ -111,12 +111,11 @@ function meetingsTouchStart(e)
     if (target.closest("div.swipeButtons")[0])
     {
         var button = target.closest("[data-role=button]")[0];
-        var buttonText = button.text;
-        //var buttonIcon = button.attributes["data-icon"].value;
+        var buttonIcon = button.attributes["name"].value;
 
-        switch (buttonText) //buttonIcon
+        switch (buttonIcon) //buttonIcon
         {
-            case "Delete": //"delete-e"
+            case "delete": //"delete-e"
                 meetingsDataSource.remove(model);
                 meetingsDataSource.sync();
 
@@ -317,6 +316,8 @@ function setMeetingsDataSource()
                         FollowUpNeeded: { editable: true, type: "boolean" },
                         CreatorId: { editable: true },
                         Notes: { editable: true },
+                        InitiativeId: { editable: true },
+                        SurveyId: { editable: true },
                         AssignmentId: { editable: true }
                     }
                 }

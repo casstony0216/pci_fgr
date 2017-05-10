@@ -56,14 +56,20 @@ function assignmentsTouchStart(e)
     if (target.closest("div.swipeButtons")[0])
     {
         var button = target.closest("[data-role=button]")[0];
-        var buttonText = button.text;
-        //var buttonIcon = button.attributes["data-icon"].value;
+        var buttonIcon = button.attributes["name"].value;
+        var legislatorId = model.LegislatorId;
+        var initiativeId = model.InitiativeId;
+        var surveyId = model.SurveyId;
+        var assignmentId = model.AssignmentId;
 
-        switch (buttonText) //buttonIcon
+        switch(buttonIcon)
         {
-            case "Create": //"delete-e"
-                assignmentsDataSource.remove(model);
-                assignmentsDataSource.sync();
+            case "add":
+                isAddMeeting = "Y";
+
+                app.navigate("views/meeting.html?legislatorId=" + legislatorId + "&initiativeId=" + initiativeId + "&surveyId=" + surveyId + "&assignmentId=" + assignmentId);
+
+                break;
 
             default:
                 // Do nothing...

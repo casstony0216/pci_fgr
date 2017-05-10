@@ -96,7 +96,7 @@ function legislatorsTouchStart(e)
     var target = $(e.touch.initialTouch);
     var listview = $("#legislatorsListView").data("kendoMobileListView");
     var model = legislatorsDataSource.getByUid($(e.touch.target).attr("data-uid"));
-    var detailbutton = $(e.touch.target).find("[data-role=detailbutton]")
+    var detailbutton = $(e.touch.target).find("[data-role=detailbutton]");
     var tabstrip = $(e.touch.target).find("div.swipeButtons:visible");
 
     if (target.closest("div.swipeButtons")[0]) 
@@ -108,8 +108,6 @@ function legislatorsTouchStart(e)
         switch(buttonIcon)
         {
             case "add":
-                //detailbutton.show();
-                //tabstrip.hide();
                 isAddMeeting = "Y";
 
                 app.navigate("views/meeting.html?legislatorId=" + legislatorId);
@@ -117,9 +115,6 @@ function legislatorsTouchStart(e)
                 break;
 
             case "view":
-                //detailbutton.show();
-                //tabstrip.hide();
-
                 app.navigate("views/meetings.html?reference=legislator&legislatorId=" + legislatorId);
 
                 break;

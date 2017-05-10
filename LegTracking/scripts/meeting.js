@@ -1,6 +1,9 @@
 var collapsibleMeetingInformation = $("#collapsible").kendoMobileButtonGroup();
 
 var isMeetingEditorDataSource = null;
+var meetingInitiativeId = null;
+var meetingSurveyId = null;
+var meetingAssignmentId = null;
 
 var meetingInitiativeData =
     [
@@ -266,13 +269,45 @@ function meetingListViewDataInit(e)
 function meetingListViewDataShow(e)
 {
     var legislatorId = e.view.params.legislatorId;
+    var initiativeId, surveyId, assignmentId;
     var dataTitle = null;
     
     if (isAddMeeting === "Y")
     {
         meetingUid = null;
-        
+
         meetingLegislatorId = legislatorId;
+
+        initiativeId = e.view.params.initiativeId;
+        surveyId = e.view.params.surveyId;
+        assignmentId = e.view.params.assignmentId;
+
+        if (initiativeId == undefined)
+        {
+            meetingInitiativeId = null;
+        }
+        else
+        {
+            meetingInitiativeId = initiativeId;
+        }
+
+        if (surveyId == undefined)
+        {
+            meetingSurveyId = null;
+        }
+        else
+        {
+            meetingSurveyId = surveyId;
+        }
+
+        if (assignmentId == undefined)
+        {
+            meetingAssignmentId = null;
+        }
+        else
+        {
+            meetingAssignmentId = assignmentId;
+        }
 
         defineMeetingModel();
 
@@ -517,7 +552,10 @@ function defineMeetingModel()
                     LegislatorStaffAttendees: { type: "string", editable: true },
                     FollowUpNeeded: { type: "string", editable: true },
                     CreatorId: { type: "number", editable: true },
-                    Notes: { type: "string", editable: true }
+                    Notes: { type: "string", editable: true },
+                    InitiativeId: { type: "number", editable: true },
+                    SurveyId: { type: "number", editable: true },
+                    AssignmentId: { type: "number", editable: true }
                 }
             }
         );
@@ -643,7 +681,10 @@ function defineMeetingModel()
                 LegislatorId: newLegislatorId,
                 FullName: newFullName,
                 MeetingLocationId: newMeetingLocationId, //$('select[name="type"] option:first').val(),
-                Location: newLocation
+                Location: newLocation,
+                InitiativeId: meetingInitiativeId,
+                SurveyId: meetingSurveyId,
+                AssignmentId: meetingAssignmentId
             }
         );
 }
@@ -779,7 +820,10 @@ function addNewMeetingToDataSource()
             LegislatorStaffAttendees: meetingModel.LegislatorStaffAttendees,
             FollowUpNeeded: meetingModel.FollowUpNeeded,
             CreatorId: meetingModel.CreatorId,
-            Notes: meetingModel.Notes
+            Notes: meetingModel.Notes,
+            InitiativeId: meetingModel.InitiativeId,
+            SurveyId: meetingModel.SurveyId,
+            AssignmentId: meetingModel.AssignmentId
         }
     );
 }
