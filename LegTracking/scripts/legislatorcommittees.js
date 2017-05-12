@@ -2,6 +2,10 @@ var legislatorCommitteesDataSource = null;
 
 function legislatorCommitteesListViewDataShow(e)
 {
+    // Set the highlighted tabstrip icon.
+    var tabstrip = e.view.footer.find(".km-tabstrip").data("kendoMobileTabStrip");
+    tabstrip.switchTo(tabstripPathName);
+
     var legislatorId = e.view.params.uid;
 
     legislatorCommitteesDataSource = new kendo.data.DataSource

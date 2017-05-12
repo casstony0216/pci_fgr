@@ -5,6 +5,10 @@ function profileListViewDataInit(e)
 
 function profileListViewDataShow(e)
 {
+    // Set the highlighted tabstrip icon.
+    var tabstrip = e.view.footer.find(".km-tabstrip").data("kendoMobileTabStrip");
+    tabstrip.switchTo(tabstripPathName);
+
     var type = e.view.params.type;
     var uid = e.view.params.uid;
     var profileModel = profilesDataSource.getByUid(uid);

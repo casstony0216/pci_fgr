@@ -26,6 +26,10 @@ function assignmentsListViewDataInit(e)
 
 function assignmentsListViewDataShow(e)
 {
+    // Set the highlighted tabstrip icon.
+    var tabstrip = e.view.footer.find(".km-tabstrip").data("kendoMobileTabStrip");
+    tabstrip.switchTo(tabstripPathName);
+
     setAssignmentsDataSource();
 
     $("#assignmentsListView").data("kendoMobileListView").setDataSource(assignmentsDataSource);

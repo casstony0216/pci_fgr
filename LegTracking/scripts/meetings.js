@@ -30,6 +30,10 @@ function meetingsListViewDataInit(e)
 
 function meetingsListViewDataShow(e)
 {
+    // Set the highlighted tabstrip icon.
+    var tabstrip = e.view.footer.find(".km-tabstrip").data("kendoMobileTabStrip");
+    tabstrip.switchTo(tabstripPathName);
+
     meetingLegislatorId = e.view.params.legislatorId;
     meetingsReference = e.view.params.reference;
     

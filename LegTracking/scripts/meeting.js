@@ -268,10 +268,14 @@ function meetingListViewDataInit(e)
 
 function meetingListViewDataShow(e)
 {
+    // Set the highlighted tabstrip icon.
+    var tabstrip = e.view.footer.find(".km-tabstrip").data("kendoMobileTabStrip");
+    tabstrip.switchTo(tabstripPathName);
+
     var legislatorId = e.view.params.legislatorId;
     var initiativeId, surveyId, assignmentId;
     var dataTitle = null;
-    
+
     if (isAddMeeting === "Y")
     {
         meetingUid = null;

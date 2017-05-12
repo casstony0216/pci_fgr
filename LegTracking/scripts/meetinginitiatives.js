@@ -14,6 +14,10 @@ function meetingInitiativesListViewDataInit(e)
 
 function meetingInitiativesListViewDataShow(e)
 {
+    // Set the highlighted tabstrip icon.
+    var tabstrip = e.view.footer.find(".km-tabstrip").data("kendoMobileTabStrip");
+    tabstrip.switchTo(tabstripPathName);
+
     var meetingId = e.view.params.uid;
 
     meetingInitiativesDataSource = new kendo.data.DataSource

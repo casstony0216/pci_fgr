@@ -7,6 +7,10 @@ function surveyQuestionListViewDataInit(e)
 
 function surveyQuestionListViewDataShow(e)
 {
+    // Set the highlighted tabstrip icon.
+    var tabstrip = e.view.footer.find(".km-tabstrip").data("kendoMobileTabStrip");
+    tabstrip.switchTo(tabstripPathName);
+
     var uid = e.view.params.uid;
     var surveyQuestionModel = surveyDataSource.getByUid(uid);
 

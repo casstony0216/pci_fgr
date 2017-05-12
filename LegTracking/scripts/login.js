@@ -21,6 +21,7 @@ var isPci = false;
 var isCongressAdmin = false;
 var isCongressUser = false;
 var isCongressExternalUser = false;
+var tabstripPathName = "views/legislators.html";
 
 function loginListViewDataInit(e)
 {

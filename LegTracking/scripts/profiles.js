@@ -25,6 +25,10 @@ function profilesViewDataInit(e)
 
 function profilesViewDataShow(e)
 {
+    // Set the highlighted tabstrip icon.
+    var tabstrip = e.view.footer.find(".km-tabstrip").data("kendoMobileTabStrip");
+    tabstrip.switchTo(tabstripPathName);
+
     var apiReadUrl = null;
     var apiUpdateUrl = null;
     var apiDestroyUrl = null;

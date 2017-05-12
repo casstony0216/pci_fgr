@@ -40,7 +40,7 @@
             </div>
             <!-- application views will be rendered here -->        
             <div data-role="footer">
-                <div data-role="tabstrip">
+                <div data-role="tabstrip" data-select="onTabstripSelect">
                     <a href="views/legislators.html" data-icon="legislator-e">Legislators</a>
                     <a href="views/committees.html" data-icon="committee-e">Committees</a>
                     <a href="views/meetings.html" data-icon="meeting-e">My Meetings</a>
@@ -58,7 +58,7 @@
             </div>
             <!-- application views will be rendered here -->
             <div data-role="footer">
-                <div data-role="tabstrip">
+                <div data-role="tabstrip" data-select="onTabstripSelect">
                     <a href="views/legislators.html" data-icon="legislator-e">Legislators</a>
                     <a href="views/committees.html" data-icon="committee-e">Committees</a>
                     <a href="views/meetings.html" data-icon="meeting-e">My Meetings</a>
@@ -76,7 +76,7 @@
             </div>
             <!-- application views will be rendered here -->
             <div data-role="footer">
-                <div data-role="tabstrip">
+                <div data-role="tabstrip" data-select="onTabstripSelect">
                     <a href="views/legislators.html" data-icon="legislator-e">Legislators</a>
                     <a href="views/committees.html" data-icon="committee-e">Committees</a>
                     <a href="views/meetings.html" data-icon="meeting-e">My Meetings</a>
@@ -93,7 +93,7 @@
             </div>
             <!-- application views will be rendered here -->
             <div data-role="footer">
-                <div data-role="tabstrip">
+                <div data-role="tabstrip" data-select="onTabstripSelect">
                     <a href="views/legislators.html" data-icon="legislator-e">Legislators</a>
                     <a href="views/committees.html" data-icon="committee-e">Committees</a>
                     <a href="views/meetings.html" data-icon="meeting-e">My Meetings</a>
@@ -129,6 +129,13 @@
                     }
                 }
             );
+
+            function onTabstripSelect(e)
+            {
+                var pathName = e.item[0].pathname;
+
+                tabstripPathName = pathName;
+            }
         </script>
     </body>
 </html>

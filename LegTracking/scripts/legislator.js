@@ -82,6 +82,10 @@ function legislatorListViewDataInit(e)
 
 function legislatorListViewDataShow(e) 
 {
+    // Set the highlighted tabstrip icon.
+    var tabstrip = e.view.footer.find(".km-tabstrip").data("kendoMobileTabStrip");
+    tabstrip.switchTo(tabstripPathName);
+
     if (legislatorReference === "legislators")
     {
         legislatorUid = e.view.params.uid;

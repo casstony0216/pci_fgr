@@ -21,6 +21,10 @@ function committeeMembersListViewDataInit(e)
 
 function committeeMembersListViewDataShow(e)
 {
+    // Set the highlighted tabstrip icon.
+    var tabstrip = e.view.footer.find(".km-tabstrip").data("kendoMobileTabStrip");
+    tabstrip.switchTo(tabstripPathName);
+
     var committeeUid = e.view.params.uid;
     var committeeModel = committeesDataSource.getByUid(committeeUid);
     var committeeId;
