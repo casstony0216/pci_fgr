@@ -1,0 +1,49 @@
+<div data-role="view" id="assignmentview" data-init="assignmentListViewDataInit" data-show="assignmentListViewDataShow" data-layout="add-button-layout" data-title="Assignment">
+    <div class="view-row-details-container-table">
+        <div class="view-row-details-container-table-cell">
+            <span class="view-header" data-bind="text:Legislator"></span>
+        </div>
+    </div>
+    <ul data-role="listview" data-style="inset" class="formArea" onclick="">
+        <li style="margin: 0; padding: 0; width: 100%;">
+            <ul class="listview-row-input-table">
+                <li class="listview-row-input-cell-label">
+                    <span>Company</span>
+                </li>
+                <li class="listview-row-input-cell-control">
+                    <span data-bind="text:Company"></span>
+                </li>
+            </ul>
+        </li>
+        <li style="margin: 0; padding: 0; width: 100%;">
+            <ul class="listview-row-input-table">
+                <li class="listview-row-input-cell-label">
+                    <span>Initiative</span>
+                </li>
+                <li class="listview-row-input-cell-control">
+                    <span data-bind="text:Initiative"></span>
+                </li>
+            </ul>
+        </li>
+        <li style="margin: 0; padding: 0; width: 100%;">
+            <ul class="listview-row-input-table">
+                <li class="listview-row-input-cell-label">
+                    <span>Survey</span>
+                </li>
+                <li class="listview-row-input-cell-control">
+                    <span data-bind="text:Survey"></span>
+                </li>
+            </ul>
+        </li>
+        <li style="margin: 0; padding: 0; width: 100%;">
+            <ul class="listview-row-input-table">
+                <li class="listview-row-input-cell-label">
+                    <span>Meeting Created?</span>
+                </li>
+                <li class="listview-row-input-cell-control">
+                    <span id="meetingCreated"></span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

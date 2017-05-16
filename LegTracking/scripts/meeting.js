@@ -911,6 +911,11 @@ function saveMeeting()
             addNewMeetingToDataSource();
             
             isAddMeeting = "N";
+
+            if (meetingModel.AssignmentId != null)
+            {
+                assignmentModel.MeetingCreated = 'Y';
+            }
         }
 
         // Necessary to check if MeetingDate is NOT a string... means it was updated and has to be converted.

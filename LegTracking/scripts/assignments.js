@@ -2,6 +2,7 @@ var assignmentsDataSource = null;
 var assignmentUid;
 var assignmentModel;
 var assignmentMeetingCreated = "N";
+var assignmentsFilter = "";
 
 function assignmentsListViewDataInit(e)
 {
@@ -10,7 +11,9 @@ function assignmentsListViewDataInit(e)
         (
             {
                 dataSource: assignmentsDataSource,
-                template: $("#assignmentsListViewTemplate").html()
+                template: $("#assignmentsListViewTemplate").html(),
+                filterable: true,
+                endlessScroll: true
             }
         )
         .kendoTouch
@@ -18,10 +21,22 @@ function assignmentsListViewDataInit(e)
             {
                 filter: ">li",
                 enableSwipe: true,
+                tap: assignmentsTap,
                 touchstart: assignmentsTouchStart,
                 swipe: assignmentsSwipe
             }
         );
+
+    $('input[type="search"]').keyup
+    (
+        function (e)
+        {
+            if (e.keyCode === 13)
+            {
+                $(this).blur(); //iOS likes to keep the keyboard open ... so remove focus to close it
+            }
+        }
+    );
 }
 
 function assignmentsListViewDataShow(e)
@@ -30,11 +45,53 @@ function assignmentsListViewDataShow(e)
     var tabstrip = e.view.footer.find(".km-tabstrip").data("kendoMobileTabStrip");
     tabstrip.switchTo(tabstripPathName);
 
+    if (window.navigator.simulator !== true)
+    {
+        if (window.plugins !== undefined && window.plugins.spinnerDialog !== undefined)
+        {
+            window.plugins.spinnerDialog.hide();
+        }
+    }
+
+    app.showLoading();
+
+    var assignmentsListView = $("#assignmentsListView").data("kendoMobileListView");
+    assignmentsListView.scroller().reset(); //reset the scroller
+
+    setAssignmentsDataSource();
+
+    assignmentsListView.setDataSource(assignmentsDataSource);
+
+    if (assignmentsFilter !== "")
+    {
+        assignmentsListView._filter.searchInput[0].value = assignmentsFilter;
+    }
+
+    e.view.scroller.reset();
+}
+
+function onAssignmentsGroupSelect(e)
+{
+    var index = this.current().index();
+
+    if (index === 0)
+    {
+        assignmentMeetingCreated = "";
+    }
+    else if (index === 1)
+    {
+        assignmentMeetingCreated = "N";
+    }
+    else
+    {
+        assignmentMeetingCreated = "Y";
+    }
+
     setAssignmentsDataSource();
 
     $("#assignmentsListView").data("kendoMobileListView").setDataSource(assignmentsDataSource);
 
-    e.view.scroller.reset();
+    assignmentsListView._filter.searchInput[0].value = assignmentsFilter; //set search text
 }
 
 function assignmentsSwipe(e)
@@ -47,6 +104,16 @@ function assignmentsSwipe(e)
         detailbutton.hide();
         tabstrip.expand().duration(200).play();
     }
+}
+
+function assignmentsTap(e)
+{
+    // Close the keyboard.
+    $('input[type="search"]').blur();
+
+    var uid = $(e.touch.currentTarget).data("uid");
+
+    app.navigate("views/assignment.html?uid=" + uid);
 }
 
 function assignmentsTouchStart(e)
@@ -99,40 +166,9 @@ function assignmentsTouchStart(e)
     }
 }
 
-function onAssignmentsGroupSelect(e)
-{
-    var index = this.current().index();
-
-    if (index === 0)
-    {
-        assignmentMeetingCreated = "";
-    }
-    else if (index === 1)
-    {
-        assignmentMeetingCreated = "N";
-    }
-    else
-    {
-        assignmentMeetingCreated = "Y";
-    }
-
-    setAssignmentsDataSource();
-
-    $("#assignmentsListView").data("kendoMobileListView").setDataSource(assignmentsDataSource);
-}
-
 function setAssignmentsDataSource()
 {
-    var apiReadUrl;
-    
-    //if (isPci)
-    //{
-    //    apiReadUrl = apiBaseServiceUrl + "assignments?meetingcreated=" + assignmentMeetingCreated;
-    //}
-    //else
-    //{
-    apiReadUrl = apiBaseServiceUrl + "assignments?meetingcreated=" + assignmentMeetingCreated + "&companyId=" + companyId;  // companyId declared and set in the login.js
-    //}
+    assignmentsDataSource = null;
 
     assignmentsDataSource = new kendo.data.DataSource
     (
@@ -141,9 +177,11 @@ function setAssignmentsDataSource()
             {
                 read:
                 {
-                    url: apiReadUrl,
+                    url: apiBaseServiceUrl + "assignmentsfilter",
                     type: "get",
                     dataType: "json",
+                    async: false, // Work-around for now to get datasource sync to complete before show event finishes... 
+                                // This is being deprecated and another approach will need to be developed in the near future.
                     beforeSend: function (xhr)
                     {
                         xhr.setRequestHeader("Authorization", token);
@@ -152,7 +190,32 @@ function setAssignmentsDataSource()
                     {
                         alert("error " + xhr.responseText);
                     }
+                },
+                parameterMap: function (options)
+                {
+                    if (options.filter === null)
+                    {
+                        assignmentsFilter = "";
+                    }
+                    else if (options.filter)
+                    {
+                        assignmentsFilter = options.filter.filters[0].value;
+                    }
+
+                    //alert(companyId);
+
+                    return {
+                        meetingCreated: assignmentMeetingCreated,
+                        filter: assignmentsFilter, //options.filter ? options.filter.filters[0].value : '',
+                        page: options.page,
+                        pageSize: options.pageSize,
+                        companyId: companyId
+                    };
                 }
+            },
+            change: function (data)
+            {
+                app.hideLoading();
             },
             schema:
             {
@@ -183,23 +246,24 @@ function setAssignmentsDataSource()
                         MeetingCreated: "MeetingCreated",
                         MeetingId: "MeetingId"
                     }
+                },
+                parse: function (data)
+                {
+                    // assign top level array to property
+                    data.data = data;
+                    // assign the count off one of the fields to a new total field
+                    data.total = data.data[0].Total;
+
+                    return data;
+                },
+                total: function (data)
+                {
+                    return data.total;
                 }
             },
-            error: function (e)
-            {
-                /* the e event argument will represent the following object:
-        
-                {
-                    errorThrown: "Unauthorized",
-                    sender: {... the Kendo UI DataSource instance ...}
-                    status: "error"
-                    xhr: {... the Ajax request object ...}
-                }
-        
-                */
-                //alert("Status: " + e.status + "; Error message: " + e.errorThrown + "; Error detail: " + e.xhr.responseText);
-                alert("An error has occurred in the application.  Please contact support.");
-            }
+            serverPaging: true,
+            serverFiltering: true,
+            pageSize: 50
         }
     );
 }
