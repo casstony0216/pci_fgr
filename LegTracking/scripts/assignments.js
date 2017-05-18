@@ -72,13 +72,10 @@ function assignmentsListViewDataShow(e)
 
 function onAssignmentsGroupSelect(e)
 {
+    var assignmentsListView = $("#assignmentsListView").data("kendoMobileListView");
     var index = this.current().index();
 
     if (index === 0)
-    {
-        assignmentMeetingCreated = "";
-    }
-    else if (index === 1)
     {
         assignmentMeetingCreated = "N";
     }
@@ -89,8 +86,8 @@ function onAssignmentsGroupSelect(e)
 
     setAssignmentsDataSource();
 
-    $("#assignmentsListView").data("kendoMobileListView").setDataSource(assignmentsDataSource);
-
+    assignmentsListView.setDataSource(assignmentsDataSource);
+    
     assignmentsListView._filter.searchInput[0].value = assignmentsFilter; //set search text
 }
 
