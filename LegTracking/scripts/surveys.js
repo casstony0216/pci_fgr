@@ -51,6 +51,7 @@ function surveysListViewDataShow(e)
     $("#surveysListView").data("kendoMobileListView").setDataSource(surveysDataSource);
 
     var addButton = e.view.element.find("#add-button").data("kendoMobileButton");
+    addButton.element[0].text = "Add";
 
     if (surveysReference === "meeting")
     {

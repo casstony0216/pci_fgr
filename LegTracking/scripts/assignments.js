@@ -241,7 +241,9 @@ function setAssignmentsDataSource()
                         AssignmentStatusCode: "AssignmentStatusCode",
                         AssignmentStatus: "AssignmentStatus",
                         MeetingCreated: "MeetingCreated",
-                        MeetingId: "MeetingId"
+                        MeetingId: "MeetingId",
+                        LobbyistId: "LobbyistId",
+                        Lobbyist: "Lobbyist"
                     }
                 },
                 parse: function (data)

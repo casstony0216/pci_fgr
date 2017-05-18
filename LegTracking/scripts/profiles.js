@@ -124,6 +124,7 @@ function profilesViewDataShow(e)
     );
     
     var addButton = e.view.element.find("#add-button").data("kendoMobileButton");
+    addButton.element[0].text = "Add";
 
     addButton.unbind("click");
     addButton.bind

@@ -38,6 +38,8 @@ function meetingsListViewDataShow(e)
     meetingsReference = e.view.params.reference;
     
     var addButton = e.view.element.find("#add-button").data("kendoMobileButton");
+    addButton.element[0].text = "Add";
+
     var dataTitle = null;
     
     if (meetingsReference === "legislator")

@@ -47,6 +47,13 @@ function legislatorsListViewDataInit(e)
 
 function legislatorsListViewDataShow(e)
 {
+    var backButton = e.view.element.find("#back-button").data("kendoMobileButton");
+
+    if (backButton === null)
+    {
+        tabstripPathName = "views/legislators.html";
+    }
+
     // Set the highlighted tabstrip icon.
     var tabstrip = e.view.footer.find(".km-tabstrip").data("kendoMobileTabStrip");
     tabstrip.switchTo(tabstripPathName);
